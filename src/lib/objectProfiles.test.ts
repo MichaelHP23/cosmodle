@@ -24,4 +24,19 @@ describe("getProfileForCategory", () => {
   it("comet profile is the same shape as asteroid", () => {
     expect(getProfileForCategory("comet")).toEqual(getProfileForCategory("asteroid"))
   })
+  it("star profile uses distanceFromEarthLy, not distanceFromSunAU", () => {
+    const profile = getProfileForCategory("star")
+    expect(profile.find(p => p.property === "distanceFromEarthLy")?.label).toBe("Distance from Earth")
+    expect(profile.find(p => p.property === "distanceFromSunAU")).toBeUndefined()
+  })
+  it("black hole profile has its own event-horizon-labeled diameter, distinct from galaxy profile", () => {
+    const blackHole = getProfileForCategory("black_hole")
+    const galaxy = getProfileForCategory("galaxy")
+    expect(blackHole.find(p => p.property === "diameterKm")?.label).toBe("Event Horizon Diameter")
+    expect(blackHole).not.toEqual(galaxy)
+  })
+  it("nebula profile excludes mass", () => {
+    const profile = getProfileForCategory("nebula")
+    expect(profile.find(p => p.property === "massKg")).toBeUndefined()
+  })
 })

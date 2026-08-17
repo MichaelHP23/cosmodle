@@ -19,11 +19,14 @@ export type CelestialObject = {
 
   distanceFromSunAU?: number
   distanceFromParentKm?: number
+  distanceFromEarthLy?: number
 
   diameterKm?: number
   massKg?: number
   temperatureK?: number
   gravityMs2?: number
+
+  color?: string
 
   moons?: number
   rings?: boolean

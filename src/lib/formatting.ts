@@ -28,3 +28,26 @@ export function formatMassKg(v: number): string {
 export function formatGravity(v: number): string {
   return `${v} m/s²`
 }
+
+export function formatLightYears(v: number): string {
+  return `${Number(v.toPrecision(3))} ly`
+}
+
+function capitalizeWords(s: string): string {
+  return s.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())
+}
+
+export function formatPropertyValue(property: string, value: unknown): string {
+  if (value === undefined || value === null) return "—"
+  if (typeof value === "boolean") return value ? "Yes" : "No"
+  if (property === "distanceFromSunAU") return formatAU(value as number)
+  if (property === "distanceFromEarthLy") return formatLightYears(value as number)
+  if (property === "distanceFromParentKm" || property === "diameterKm") return formatKm(value as number)
+  if (property === "temperatureK") return formatKelvinAsCelsius(value as number)
+  if (property === "orbitalPeriodDays") return formatDays(value as number)
+  if (property === "rotationPeriodHours") return formatHours(value as number)
+  if (property === "massKg") return formatMassKg(value as number)
+  if (property === "gravityMs2") return formatGravity(value as number)
+  if (property === "category" || property === "parentBodyId") return capitalizeWords(String(value))
+  return String(value)
+}

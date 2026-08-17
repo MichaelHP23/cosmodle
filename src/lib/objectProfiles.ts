@@ -38,7 +38,7 @@ const SMALL_BODY_PROFILE: ProfileEntry[] = [
 
 const STAR_PROFILE: ProfileEntry[] = [
   { property: "category", label: "Type", kind: "exact" },
-  { property: "distanceFromSunAU", label: "Distance from Earth", kind: "numeric" },
+  { property: "distanceFromEarthLy", label: "Distance from Earth", kind: "numeric" },
   { property: "temperatureK", label: "Surface Temperature", kind: "temperature" },
   { property: "diameterKm", label: "Diameter", kind: "numeric" },
   { property: "massKg", label: "Mass", kind: "numeric" },
@@ -46,9 +46,22 @@ const STAR_PROFILE: ProfileEntry[] = [
 
 const GALAXY_PROFILE: ProfileEntry[] = [
   { property: "category", label: "Type", kind: "exact" },
-  { property: "distanceFromSunAU", label: "Distance from Earth", kind: "numeric" },
+  { property: "distanceFromEarthLy", label: "Distance from Earth", kind: "numeric" },
   { property: "diameterKm", label: "Diameter", kind: "numeric" },
   { property: "massKg", label: "Estimated Mass", kind: "numeric" },
+]
+
+const BLACK_HOLE_PROFILE: ProfileEntry[] = [
+  { property: "category", label: "Type", kind: "exact" },
+  { property: "distanceFromEarthLy", label: "Distance from Earth", kind: "numeric" },
+  { property: "diameterKm", label: "Event Horizon Diameter", kind: "numeric" },
+  { property: "massKg", label: "Mass", kind: "numeric" },
+]
+
+const NEBULA_PROFILE: ProfileEntry[] = [
+  { property: "category", label: "Type", kind: "exact" },
+  { property: "distanceFromEarthLy", label: "Distance from Earth", kind: "numeric" },
+  { property: "diameterKm", label: "Diameter", kind: "numeric" },
 ]
 
 const PROFILES_BY_CATEGORY: Record<CelestialCategory, ProfileEntry[]> = {
@@ -59,8 +72,8 @@ const PROFILES_BY_CATEGORY: Record<CelestialCategory, ProfileEntry[]> = {
   comet: SMALL_BODY_PROFILE,
   star: STAR_PROFILE,
   galaxy: GALAXY_PROFILE,
-  black_hole: GALAXY_PROFILE,
-  nebula: GALAXY_PROFILE,
+  black_hole: BLACK_HOLE_PROFILE,
+  nebula: NEBULA_PROFILE,
 }
 
 export function getProfileForCategory(category: CelestialCategory): ProfileEntry[] {

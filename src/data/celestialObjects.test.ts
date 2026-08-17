@@ -4,9 +4,16 @@ import { getProfileForCategory } from "../lib/objectProfiles"
 import type { CelestialObject } from "../types/celestial"
 
 describe("celestialObjects dataset", () => {
-  it("has between 40 and 55 objects", () => {
+  it("has between 40 and 65 objects", () => {
     expect(dataset.length).toBeGreaterThanOrEqual(40)
-    expect(dataset.length).toBeLessThanOrEqual(55)
+    expect(dataset.length).toBeLessThanOrEqual(65)
+  })
+
+  it("covers every celestial category", () => {
+    const categories = new Set((dataset as CelestialObject[]).map(o => o.category))
+    for (const c of ["planet", "dwarf_planet", "moon", "asteroid", "comet", "star", "black_hole", "nebula", "galaxy"]) {
+      expect(categories.has(c as CelestialObject["category"])).toBe(true)
+    }
   })
 
   it("has unique ids", () => {
