@@ -1,5 +1,7 @@
 import type { GameMode } from "../types/game"
 
+const TITLE = "CELESTIAL"
+
 export function DailyHeader({
   mode,
   onModeChange,
@@ -10,20 +12,32 @@ export function DailyHeader({
   dayNumber: number
 }) {
   return (
-    <header className="mb-6 flex items-center justify-between">
+    <header className="mb-6 flex flex-wrap items-center justify-between gap-3">
       <div>
-        <h1 className="text-2xl font-bold text-slate-100">🌌 CELESTIAL</h1>
-        {mode === "daily" && <div className="text-sm text-slate-400">Celestial #{dayNumber}</div>}
+        <h1 className="title-text text-3xl font-extrabold sm:text-4xl">
+          {TITLE.split("").map((ch, i) => (
+            <span key={i}>{ch}</span>
+          ))}
+        </h1>
+        {mode === "daily" && <div className="text-sm text-[#4d4d4d]">Celestial #{dayNumber}</div>}
       </div>
       <div className="flex gap-2">
         <button
-          className={`rounded px-3 py-1 text-sm ${mode === "daily" ? "bg-indigo-600 text-white" : "bg-slate-800 text-slate-300"}`}
+          className={`rounded-lg border-2 px-3 py-1 text-sm font-semibold transition-colors ${
+            mode === "daily"
+              ? "border-[#00998a] bg-[#00b99b] text-white"
+              : "border-[#4d4d4d] bg-white text-[#4d4d4d] hover:bg-[#f0f0f0]"
+          }`}
           onClick={() => onModeChange("daily")}
         >
           Daily
         </button>
         <button
-          className={`rounded px-3 py-1 text-sm ${mode === "practice" ? "bg-indigo-600 text-white" : "bg-slate-800 text-slate-300"}`}
+          className={`rounded-lg border-2 px-3 py-1 text-sm font-semibold transition-colors ${
+            mode === "practice"
+              ? "border-[#00998a] bg-[#00b99b] text-white"
+              : "border-[#4d4d4d] bg-white text-[#4d4d4d] hover:bg-[#f0f0f0]"
+          }`}
           onClick={() => onModeChange("practice")}
         >
           Practice

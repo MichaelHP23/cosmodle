@@ -6,9 +6,10 @@ import { getDailyObject, pickRandomObject, daysSinceEpoch, LAUNCH_DATE } from ".
 import { createInitialState, applyGuess, loadDailyState, saveDailyState } from "../lib/gameState"
 import { getProfileForCategory } from "../lib/objectProfiles"
 import { compareProperty } from "../lib/comparison"
+import { getStatistics, recordDailyWin, type Statistics } from "../lib/statistics"
 import { DailyHeader } from "./DailyHeader"
 import { GuessInput } from "./GuessInput"
-import { GuessRow } from "./GuessRow"
+import { GuessTable } from "./GuessTable"
 import { ResultModal } from "./ResultModal"
 
 const typedDataset = dataset as CelestialObject[]
@@ -28,6 +29,7 @@ export function GameBoard() {
   const [practiceGuessIds, setPracticeGuessIds] = useState<string[]>([])
   const [practiceWon, setPracticeWon] = useState(false)
   const [showResultModal, setShowResultModal] = useState(false)
+  const [statistics, setStatistics] = useState<Statistics | null>(() => (dailyState.won ? getStatistics() : null))
 
   useEffect(() => {
     if (mode === "daily") saveDailyState(dailyState)
@@ -37,12 +39,16 @@ export function GameBoard() {
   const guessIds = mode === "daily" ? dailyState.guessIds : practiceGuessIds
   const won = mode === "daily" ? dailyState.won : practiceWon
   const guesses = guessIds.map(id => typedDataset.find(o => o.id === id)!).filter(Boolean)
+  const profile = getProfileForCategory(answer.category)
 
   function handleGuess(id: string) {
     if (mode === "daily") {
       const { state: next } = applyGuess(dailyState, id, typedDataset, dailyAnswer.id)
       setDailyState(next)
-      if (next.won) setShowResultModal(true)
+      if (next.won && !dailyState.won) {
+        setStatistics(recordDailyWin(dayNumber))
+        setShowResultModal(true)
+      }
     } else {
       if (won || practiceGuessIds.includes(id)) return
       setPracticeGuessIds([...practiceGuessIds, id])
@@ -66,7 +72,6 @@ export function GameBoard() {
   }
 
   const guessStatusRows = guesses.map(guess => {
-    const profile = getProfileForCategory(guess.category)
     const statuses: ComparisonStatus[] = profile
       .filter(e => e.property !== "category")
       .map(e => compareProperty((guess as any)[e.property], (answer as any)[e.property], e.kind).status)
@@ -74,40 +79,44 @@ export function GameBoard() {
   })
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-8">
-      <DailyHeader mode={mode} onModeChange={changeMode} dayNumber={dayNumber} />
-      {!won && <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />}
-      <div className="mt-6">
-        {[...guesses].reverse().map(guess => (
-          <GuessRow key={guess.id} guess={guess} answer={answer} />
-        ))}
+    <div className="starfield min-h-screen">
+      <div className="mx-auto max-w-3xl px-4 py-8">
+        <DailyHeader mode={mode} onModeChange={changeMode} dayNumber={dayNumber} />
+        {!won && <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />}
+        <div className="mt-6">
+          <GuessTable profile={profile} guesses={guesses} answer={answer} />
+        </div>
+        {won && !showResultModal && (
+          <div className="mt-4 text-center">
+            <button
+              className="rounded-lg border-2 border-[#4d4d4d] bg-white px-4 py-2 font-semibold text-[#4d4d4d] hover:bg-[#f0f0f0]"
+              onClick={() => setShowResultModal(true)}
+            >
+              View Result
+            </button>
+          </div>
+        )}
+        {won && showResultModal && (
+          <ResultModal
+            answer={answer}
+            guessCount={guessIds.length}
+            dayNumber={dayNumber}
+            guessStatusRows={guessStatusRows}
+            statistics={mode === "daily" ? statistics : null}
+            onClose={() => setShowResultModal(false)}
+          />
+        )}
+        {mode === "practice" && won && (
+          <div className="mt-4 text-center">
+            <button
+              className="rounded-lg border-2 border-[#00998a] bg-[#00b99b] px-4 py-2 font-semibold text-white hover:bg-[#00a68a]"
+              onClick={startNewPractice}
+            >
+              Play Again
+            </button>
+          </div>
+        )}
       </div>
-      {won && !showResultModal && (
-        <div className="mt-4 text-center">
-          <button
-            className="rounded bg-slate-700 px-4 py-2 text-slate-100"
-            onClick={() => setShowResultModal(true)}
-          >
-            View Result
-          </button>
-        </div>
-      )}
-      {won && showResultModal && (
-        <ResultModal
-          answer={answer}
-          guessCount={guessIds.length}
-          dayNumber={dayNumber}
-          guessStatusRows={guessStatusRows}
-          onClose={() => setShowResultModal(false)}
-        />
-      )}
-      {mode === "practice" && won && (
-        <div className="mt-4 text-center">
-          <button className="rounded bg-slate-700 px-4 py-2 text-slate-100" onClick={startNewPractice}>
-            Play Again
-          </button>
-        </div>
-      )}
     </div>
   )
 }

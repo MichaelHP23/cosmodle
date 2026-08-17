@@ -33,7 +33,10 @@ export function Share({
   }
 
   return (
-    <button className="rounded bg-indigo-600 px-4 py-2 text-white" onClick={handleShare}>
+    <button
+      className="rounded-lg border-2 border-[#00998a] bg-[#00b99b] px-4 py-2 font-semibold text-white transition-colors hover:bg-[#00a68a]"
+      onClick={handleShare}
+    >
       Share Result
     </button>
   )
