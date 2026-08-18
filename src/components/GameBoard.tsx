@@ -84,7 +84,7 @@ export function GameBoard() {
 
   return (
     <div className="starfield min-h-screen">
-      <div className="mx-auto max-w-3xl px-4 py-8">
+      <div className="mx-auto max-w-[1200px] px-4 py-8">
         <DailyHeader mode={mode} onModeChange={changeMode} dayNumber={dayNumber} />
         {!gameOver && (
           <>

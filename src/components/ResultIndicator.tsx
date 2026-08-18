@@ -19,7 +19,7 @@ export function ResultIndicator({ status, title }: { status: ComparisonStatus; t
       >
         {content}
       </div>
-      <div className="pointer-events-none absolute bottom-full left-1/2 z-30 mb-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-[#1a1a1a] px-2 py-1 text-xs font-bold text-white opacity-0 shadow-lg transition-opacity duration-100 group-hover:opacity-100">
+      <div className="pointer-events-none invisible absolute bottom-full left-1/2 z-30 mb-2 w-max max-w-[100px] -translate-x-1/2 rounded-md bg-[#1a1a1a] px-2 py-1 text-center text-xs font-bold text-white opacity-0 shadow-lg transition-opacity duration-100 group-hover:visible group-hover:opacity-100">
         {title}
       </div>
     </div>

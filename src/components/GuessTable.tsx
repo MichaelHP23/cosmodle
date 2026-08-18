@@ -17,16 +17,16 @@ export function GuessTable({
 
   return (
     <div className="overflow-x-auto rounded-xl border-2 border-[#4d4d4d] bg-white">
-      <table className="w-full border-collapse text-sm">
+      <table className="w-full table-fixed border-collapse text-sm">
         <thead>
           <tr className="border-b-2 border-[#4d4d4d]">
-            <th className="sticky left-0 z-10 min-w-[110px] border-r border-[#e0e0e0] bg-[#f7f7f7] px-3 py-2 text-left font-semibold text-[#4d4d4d]">
+            <th className="sticky left-0 z-10 w-[120px] min-w-[120px] border-r border-[#e0e0e0] bg-[#f7f7f7] px-3 py-2 text-left font-semibold text-[#4d4d4d]">
               Guess
             </th>
             {profile.map(entry => (
               <th
                 key={entry.property}
-                className="min-w-[70px] cursor-default px-2 py-2 text-center font-semibold text-[#4d4d4d] transition-colors hover:font-extrabold hover:text-[#1a1a1a]"
+                className="min-w-0 cursor-default px-1 py-2 text-center font-semibold text-[#4d4d4d] transition-colors hover:font-extrabold hover:text-[#1a1a1a]"
               >
                 {entry.label}
               </th>
@@ -39,7 +39,7 @@ export function GuessTable({
               <th
                 scope="row"
                 title={guess.name}
-                className="sticky left-0 z-10 border-r border-[#e0e0e0] bg-white px-3 py-2 text-left font-bold text-[#1a1a1a] underline decoration-dotted decoration-2 underline-offset-2"
+                className="sticky left-0 z-10 w-[120px] truncate border-r border-[#e0e0e0] bg-white px-3 py-2 text-left font-bold text-[#1a1a1a] underline decoration-dotted decoration-2 underline-offset-2"
               >
                 {guess.name}
               </th>
