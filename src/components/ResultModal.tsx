@@ -23,12 +23,12 @@ export function ResultModal({
 }) {
   return (
     <div
-      className="fixed inset-0 z-30 flex items-center justify-center overflow-y-auto bg-black/50 p-4"
+      className="fixed inset-0 z-30 overflow-y-auto bg-black/50 p-4"
       onClick={e => {
         if (e.target === e.currentTarget) onClose()
       }}
     >
-      <div className="my-8 w-full max-w-md rounded-xl border-2 border-[#4d4d4d] bg-[#f7f7f7] p-6">
+      <div className="mx-auto my-8 w-full max-w-md rounded-xl border-2 border-[#4d4d4d] bg-[#f7f7f7] p-6">
         <div className="mb-4 flex items-start justify-between">
           <div className="flex-1 text-center">
             <div className="text-lg font-bold text-[#1a1a1a]">🎉 YOU FOUND IT!</div>
