@@ -51,7 +51,7 @@ export function GameBoard() {
       setDailyState(next)
       const justEnded = (next.won || next.guessIds.length >= MAX_GUESSES) && !(dailyState.won || dailyState.guessIds.length >= MAX_GUESSES)
       if (justEnded) {
-        setStatistics(recordDailyResult(dayNumber, next.won))
+        setStatistics(recordDailyResult(dayNumber, next.won, next.guessIds.length))
         setShowResultModal(true)
       }
     } else {

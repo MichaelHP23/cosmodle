@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, it, expect, beforeEach } from "vitest"
-import { getStatistics, recordDailyResult } from "./statistics"
+import { getStatistics, recordDailyResult, getWinPercentage } from "./statistics"
 
 beforeEach(() => {
   localStorage.clear()
@@ -10,83 +10,114 @@ describe("getStatistics", () => {
   it("returns zeroed statistics when nothing is stored", () => {
     expect(getStatistics()).toEqual({
       gamesPlayed: 0,
+      wins: 0,
       currentStreak: 0,
       longestStreak: 0,
       lastDayNumber: null,
+      guessDistribution: [0, 0, 0, 0, 0, 0, 0],
     })
+  })
+
+  it("backfills missing fields from an older stored shape (migration safety)", () => {
+    localStorage.setItem("celestial:statistics", JSON.stringify({ gamesPlayed: 2, currentStreak: 1, longestStreak: 1, lastDayNumber: 5 }))
+    const stats = getStatistics()
+    expect(stats.wins).toBe(0)
+    expect(stats.guessDistribution).toEqual([0, 0, 0, 0, 0, 0, 0])
+    expect(stats.gamesPlayed).toBe(2)
   })
 })
 
 describe("recordDailyResult - wins", () => {
-  it("starts a streak of 1 on the first win", () => {
-    const stats = recordDailyResult(5, true)
+  it("starts a streak of 1 on the first win and records the guess count", () => {
+    const stats = recordDailyResult(5, true, 3)
     expect(stats.currentStreak).toBe(1)
     expect(stats.longestStreak).toBe(1)
     expect(stats.gamesPlayed).toBe(1)
-    expect(stats.lastDayNumber).toBe(5)
+    expect(stats.wins).toBe(1)
+    expect(stats.guessDistribution).toEqual([0, 0, 1, 0, 0, 0, 0])
   })
 
   it("extends the streak on the very next consecutive day", () => {
-    recordDailyResult(5, true)
-    const stats = recordDailyResult(6, true)
+    recordDailyResult(5, true, 2)
+    const stats = recordDailyResult(6, true, 4)
     expect(stats.currentStreak).toBe(2)
     expect(stats.longestStreak).toBe(2)
     expect(stats.gamesPlayed).toBe(2)
+    expect(stats.wins).toBe(2)
+    expect(stats.guessDistribution).toEqual([0, 1, 0, 1, 0, 0, 0])
   })
 
   it("resets the streak to 1 when a day is skipped", () => {
-    recordDailyResult(5, true)
-    recordDailyResult(6, true)
-    const stats = recordDailyResult(9, true)
+    recordDailyResult(5, true, 1)
+    recordDailyResult(6, true, 1)
+    const stats = recordDailyResult(9, true, 1)
     expect(stats.currentStreak).toBe(1)
     expect(stats.longestStreak).toBe(2)
     expect(stats.gamesPlayed).toBe(3)
   })
 
   it("keeps longestStreak at its peak even after the streak resets", () => {
-    recordDailyResult(1, true)
-    recordDailyResult(2, true)
-    recordDailyResult(3, true)
-    recordDailyResult(10, true)
-    const stats = recordDailyResult(11, true)
+    recordDailyResult(1, true, 1)
+    recordDailyResult(2, true, 1)
+    recordDailyResult(3, true, 1)
+    recordDailyResult(10, true, 1)
+    const stats = recordDailyResult(11, true, 1)
     expect(stats.currentStreak).toBe(2)
     expect(stats.longestStreak).toBe(3)
   })
 
   it("is idempotent for the same day number (no double counting on reload)", () => {
-    recordDailyResult(5, true)
-    const stats = recordDailyResult(5, true)
+    recordDailyResult(5, true, 3)
+    const stats = recordDailyResult(5, true, 3)
     expect(stats.gamesPlayed).toBe(1)
     expect(stats.currentStreak).toBe(1)
+    expect(stats.wins).toBe(1)
   })
 })
 
 describe("recordDailyResult - losses", () => {
   it("resets currentStreak to 0 on a loss", () => {
-    recordDailyResult(5, true)
-    recordDailyResult(6, true)
-    const stats = recordDailyResult(7, false)
+    recordDailyResult(5, true, 2)
+    recordDailyResult(6, true, 2)
+    const stats = recordDailyResult(7, false, 7)
     expect(stats.currentStreak).toBe(0)
     expect(stats.gamesPlayed).toBe(3)
   })
 
-  it("does not touch longestStreak on a loss", () => {
-    recordDailyResult(5, true)
-    recordDailyResult(6, true)
-    const stats = recordDailyResult(7, false)
+  it("does not touch longestStreak, wins, or guessDistribution on a loss", () => {
+    recordDailyResult(5, true, 2)
+    recordDailyResult(6, true, 2)
+    const stats = recordDailyResult(7, false, 7)
     expect(stats.longestStreak).toBe(2)
+    expect(stats.wins).toBe(2)
+    expect(stats.guessDistribution).toEqual([0, 2, 0, 0, 0, 0, 0])
   })
 
   it("counts a loss toward gamesPlayed even with no prior wins", () => {
-    const stats = recordDailyResult(1, false)
+    const stats = recordDailyResult(1, false, 7)
     expect(stats.gamesPlayed).toBe(1)
     expect(stats.currentStreak).toBe(0)
     expect(stats.lastDayNumber).toBe(1)
+    expect(stats.wins).toBe(0)
   })
 
   it("is idempotent for the same day number", () => {
-    recordDailyResult(5, false)
-    const stats = recordDailyResult(5, false)
+    recordDailyResult(5, false, 7)
+    const stats = recordDailyResult(5, false, 7)
     expect(stats.gamesPlayed).toBe(1)
+  })
+})
+
+describe("getWinPercentage", () => {
+  it("returns 0 when no games have been played", () => {
+    expect(getWinPercentage({ gamesPlayed: 0, wins: 0, currentStreak: 0, longestStreak: 0, lastDayNumber: null, guessDistribution: [0, 0, 0, 0, 0, 0, 0] })).toBe(0)
+  })
+
+  it("rounds to the nearest whole percent", () => {
+    expect(getWinPercentage({ gamesPlayed: 3, wins: 2, currentStreak: 0, longestStreak: 0, lastDayNumber: null, guessDistribution: [0, 0, 0, 0, 0, 0, 0] })).toBe(67)
+  })
+
+  it("returns 100 for a perfect record", () => {
+    expect(getWinPercentage({ gamesPlayed: 4, wins: 4, currentStreak: 0, longestStreak: 0, lastDayNumber: null, guessDistribution: [0, 0, 0, 0, 0, 0, 0] })).toBe(100)
   })
 })
