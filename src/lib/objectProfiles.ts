@@ -65,6 +65,20 @@ const NEBULA_PROFILE: ProfileEntry[] = [
   { property: "diameterKm", label: "Diameter", kind: "numeric" },
 ]
 
+const QUASAR_PROFILE: ProfileEntry[] = [
+  { property: "category", label: "Type", kind: "exact" },
+  { property: "distanceFromEarthLy", label: "Distance from Earth", kind: "numeric" },
+  { property: "massKg", label: "Central Black Hole Mass", kind: "numeric" },
+  { property: "discoveredYear", label: "Discovered", kind: "numeric" },
+]
+
+const CONSTELLATION_PROFILE: ProfileEntry[] = [
+  { property: "category", label: "Type", kind: "exact" },
+  { property: "hemisphere", label: "Hemisphere", kind: "exact" },
+  { property: "areaSqDeg", label: "Sky Area", kind: "numeric" },
+  { property: "brightestStarMagnitude", label: "Brightest Star Magnitude", kind: "numeric" },
+]
+
 const PROFILES_BY_CATEGORY: Record<CelestialCategory, ProfileEntry[]> = {
   planet: PLANET_PROFILE,
   dwarf_planet: DWARF_PLANET_PROFILE,
@@ -75,6 +89,8 @@ const PROFILES_BY_CATEGORY: Record<CelestialCategory, ProfileEntry[]> = {
   galaxy: GALAXY_PROFILE,
   black_hole: BLACK_HOLE_PROFILE,
   nebula: NEBULA_PROFILE,
+  quasar: QUASAR_PROFILE,
+  constellation: CONSTELLATION_PROFILE,
 }
 
 export function getProfileForCategory(category: CelestialCategory): ProfileEntry[] {

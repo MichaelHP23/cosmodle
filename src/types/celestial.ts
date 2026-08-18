@@ -8,6 +8,10 @@ export type CelestialCategory =
   | "galaxy"
   | "black_hole"
   | "nebula"
+  | "quasar"
+  | "constellation"
+
+export type Hemisphere = "northern" | "southern" | "both"
 
 export type CelestialObject = {
   id: string
@@ -40,6 +44,10 @@ export type CelestialObject = {
   atmosphere?: string
 
   discoveredYear?: number
+
+  areaSqDeg?: number
+  brightestStarMagnitude?: number
+  hemisphere?: Hemisphere
 
   difficulty?: 1 | 2 | 3 | 4 | 5
 }

@@ -40,6 +40,19 @@ describe("getProfileForCategory", () => {
     const profile = getProfileForCategory("nebula")
     expect(profile.find(p => p.property === "massKg")).toBeUndefined()
   })
+  it("quasar profile uses distanceFromEarthLy and central black hole mass", () => {
+    const profile = getProfileForCategory("quasar")
+    expect(profile.find(p => p.property === "distanceFromEarthLy")).toBeDefined()
+    expect(profile.find(p => p.property === "massKg")?.label).toBe("Central Black Hole Mass")
+  })
+  it("constellation profile uses hemisphere/area/brightest-star instead of distance or mass", () => {
+    const profile = getProfileForCategory("constellation")
+    expect(profile.find(p => p.property === "hemisphere")).toBeDefined()
+    expect(profile.find(p => p.property === "areaSqDeg")).toBeDefined()
+    expect(profile.find(p => p.property === "brightestStarMagnitude")).toBeDefined()
+    expect(profile.find(p => p.property === "distanceFromEarthLy")).toBeUndefined()
+    expect(profile.find(p => p.property === "massKg")).toBeUndefined()
+  })
 })
 
 describe("getSearchHint", () => {

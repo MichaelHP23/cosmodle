@@ -45,6 +45,18 @@ const TITLE_OVERRIDE = {
   itokawa: "25143 Itokawa",
   psyche: "16 Psyche",
   ida: "243 Ida",
+  nereid: "Nereid (moon)",
+  hyperion: "Hyperion (moon)",
+  amalthea: "Amalthea (moon)",
+  pallas: "2 Pallas",
+  juno_asteroid: "3 Juno",
+  chiron: "2060 Chiron",
+  neowise: "C/2020 F3 (NEOWISE)",
+  alpha_centauri_a: "Alpha Centauri A",
+  cassiopeia: "Cassiopeia (constellation)",
+  leo: "Leo (constellation)",
+  cygnus: "Cygnus (constellation)",
+  orion: "Orion (constellation)",
 }
 
 const UA = "CelestialGame/1.0 (contact: mpink2491@gmail.com)"

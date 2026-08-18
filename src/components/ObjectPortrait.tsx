@@ -26,7 +26,7 @@ function GeneratedPortrait({ object, size }: { object: CelestialObject; size: nu
     )
   }
 
-  if (object.category === "nebula" || object.category === "galaxy") {
+  if (object.category === "nebula" || object.category === "galaxy" || object.category === "constellation") {
     return (
       <div
         className="portrait-pop mx-auto rounded-full"
@@ -41,7 +41,7 @@ function GeneratedPortrait({ object, size }: { object: CelestialObject; size: nu
     )
   }
 
-  if (object.category === "star") {
+  if (object.category === "star" || object.category === "quasar") {
     return (
       <div
         className="portrait-pop mx-auto rounded-full"

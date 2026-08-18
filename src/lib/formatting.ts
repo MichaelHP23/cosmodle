@@ -33,6 +33,14 @@ export function formatLightYears(v: number): string {
   return `${Number(v.toPrecision(3))} ly`
 }
 
+export function formatAreaSqDeg(v: number): string {
+  return `${v.toLocaleString("en-US")} sq°`
+}
+
+export function formatMagnitude(v: number): string {
+  return `mag ${v}`
+}
+
 function capitalizeWords(s: string): string {
   return s.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())
 }
@@ -48,6 +56,8 @@ export function formatPropertyValue(property: string, value: unknown): string {
   if (property === "rotationPeriodHours") return formatHours(value as number)
   if (property === "massKg") return formatMassKg(value as number)
   if (property === "gravityMs2") return formatGravity(value as number)
-  if (property === "category" || property === "parentBodyId") return capitalizeWords(String(value))
+  if (property === "areaSqDeg") return formatAreaSqDeg(value as number)
+  if (property === "brightestStarMagnitude") return formatMagnitude(value as number)
+  if (property === "category" || property === "parentBodyId" || property === "hemisphere") return capitalizeWords(String(value))
   return String(value)
 }

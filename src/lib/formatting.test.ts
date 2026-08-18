@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { formatAU, formatKm, formatKelvinAsCelsius, formatDays, formatHours, formatMassKg, formatGravity, formatLightYears, formatPropertyValue } from "./formatting"
+import { formatAU, formatKm, formatKelvinAsCelsius, formatDays, formatHours, formatMassKg, formatGravity, formatLightYears, formatPropertyValue, formatAreaSqDeg, formatMagnitude } from "./formatting"
 
 describe("formatting", () => {
   it("formats AU with 2 decimals", () => {
@@ -32,6 +32,12 @@ describe("formatting", () => {
   it("formats very small light-year distances without collapsing to zero", () => {
     expect(formatLightYears(0.0000158)).toBe("0.0000158 ly")
   })
+  it("formats sky area in square degrees", () => {
+    expect(formatAreaSqDeg(1280)).toBe("1,280 sq°")
+  })
+  it("formats apparent magnitude", () => {
+    expect(formatMagnitude(0.13)).toBe("mag 0.13")
+  })
 })
 
 describe("formatPropertyValue", () => {
@@ -48,5 +54,10 @@ describe("formatPropertyValue", () => {
   it("title-cases category and parentBodyId strings", () => {
     expect(formatPropertyValue("category", "black_hole")).toBe("Black Hole")
     expect(formatPropertyValue("parentBodyId", "jupiter")).toBe("Jupiter")
+  })
+  it("title-cases hemisphere and routes area/magnitude through their formatters", () => {
+    expect(formatPropertyValue("hemisphere", "northern")).toBe("Northern")
+    expect(formatPropertyValue("areaSqDeg", 594)).toBe("594 sq°")
+    expect(formatPropertyValue("brightestStarMagnitude", 0.13)).toBe("mag 0.13")
   })
 })
