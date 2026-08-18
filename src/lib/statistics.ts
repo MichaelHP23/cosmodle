@@ -24,11 +24,13 @@ export function getStatistics(): Statistics {
   }
 }
 
-export function recordDailyWin(dayNumber: number): Statistics {
+export function recordDailyResult(dayNumber: number, won: boolean): Statistics {
   const previous = getStatistics()
   if (previous.lastDayNumber === dayNumber) return previous
 
-  const currentStreak = previous.lastDayNumber === dayNumber - 1 ? previous.currentStreak + 1 : 1
+  const currentStreak = won
+    ? (previous.lastDayNumber === dayNumber - 1 ? previous.currentStreak + 1 : 1)
+    : 0
   const next: Statistics = {
     gamesPlayed: previous.gamesPlayed + 1,
     currentStreak,

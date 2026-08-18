@@ -1,5 +1,6 @@
-import type { CelestialCategory } from "../types/celestial"
+import type { CelestialCategory, CelestialObject } from "../types/celestial"
 import type { ProfileEntry } from "../types/game"
+import { formatPropertyValue } from "./formatting"
 
 const PLANET_PROFILE: ProfileEntry[] = [
   { property: "category", label: "Type", kind: "exact" },
@@ -78,4 +79,14 @@ const PROFILES_BY_CATEGORY: Record<CelestialCategory, ProfileEntry[]> = {
 
 export function getProfileForCategory(category: CelestialCategory): ProfileEntry[] {
   return PROFILES_BY_CATEGORY[category]
+}
+
+export function getSearchHint(object: CelestialObject): string {
+  const profile = getProfileForCategory(object.category).filter(e => e.property !== "category")
+  const stats = profile
+    .slice(0, 2)
+    .map(e => formatPropertyValue(e.property, (object as any)[e.property]))
+    .filter(v => v !== "—")
+  const categoryLabel = object.category.replace(/_/g, " ")
+  return [categoryLabel, ...stats].join(" · ")
 }

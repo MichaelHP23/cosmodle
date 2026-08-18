@@ -3,14 +3,15 @@ import dataset from "../data/celestialObjects.json"
 import type { CelestialObject } from "../types/celestial"
 import type { ComparisonStatus, DailyGameState, GameMode } from "../types/game"
 import { getDailyObject, pickRandomObject, daysSinceEpoch, LAUNCH_DATE } from "../lib/dailyObject"
-import { createInitialState, applyGuess, loadDailyState, saveDailyState } from "../lib/gameState"
+import { createInitialState, applyGuess, loadDailyState, saveDailyState, MAX_GUESSES } from "../lib/gameState"
 import { getProfileForCategory } from "../lib/objectProfiles"
 import { compareProperty } from "../lib/comparison"
-import { getStatistics, recordDailyWin, type Statistics } from "../lib/statistics"
+import { getStatistics, recordDailyResult, type Statistics } from "../lib/statistics"
 import { DailyHeader } from "./DailyHeader"
 import { GuessInput } from "./GuessInput"
 import { GuessTable } from "./GuessTable"
 import { ResultModal } from "./ResultModal"
+import { LossModal } from "./LossModal"
 
 const typedDataset = dataset as CelestialObject[]
 
@@ -38,24 +39,26 @@ export function GameBoard() {
   const answer = mode === "daily" ? dailyAnswer : practiceAnswer
   const guessIds = mode === "daily" ? dailyState.guessIds : practiceGuessIds
   const won = mode === "daily" ? dailyState.won : practiceWon
+  const lost = guessIds.length >= MAX_GUESSES && !won
   const guesses = guessIds.map(id => typedDataset.find(o => o.id === id)!).filter(Boolean)
   const profile = getProfileForCategory(answer.category)
+  const gameOver = won || lost
 
   function handleGuess(id: string) {
     if (mode === "daily") {
       const { state: next } = applyGuess(dailyState, id, typedDataset, dailyAnswer.id)
       setDailyState(next)
-      if (next.won && !dailyState.won) {
-        setStatistics(recordDailyWin(dayNumber))
+      const justEnded = (next.won || next.guessIds.length >= MAX_GUESSES) && !(dailyState.won || dailyState.guessIds.length >= MAX_GUESSES)
+      if (justEnded) {
+        setStatistics(recordDailyResult(dayNumber, next.won))
         setShowResultModal(true)
       }
     } else {
-      if (won || practiceGuessIds.includes(id)) return
-      setPracticeGuessIds([...practiceGuessIds, id])
-      if (id === practiceAnswer.id) {
-        setPracticeWon(true)
-        setShowResultModal(true)
-      }
+      if (gameOver || practiceGuessIds.includes(id)) return
+      const nextIds = [...practiceGuessIds, id]
+      setPracticeGuessIds(nextIds)
+      if (id === practiceAnswer.id) setPracticeWon(true)
+      if (id === practiceAnswer.id || nextIds.length >= MAX_GUESSES) setShowResultModal(true)
     }
   }
 
@@ -82,11 +85,18 @@ export function GameBoard() {
     <div className="starfield min-h-screen">
       <div className="mx-auto max-w-3xl px-4 py-8">
         <DailyHeader mode={mode} onModeChange={changeMode} dayNumber={dayNumber} />
-        {!won && <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />}
-        <div className="mt-6">
+        {!gameOver && (
+          <>
+            <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />
+            <div className="mt-2 text-sm text-[#4d4d4d]">
+              {MAX_GUESSES - guessIds.length} of {MAX_GUESSES} guesses left
+            </div>
+          </>
+        )}
+        <div className="mt-4">
           <GuessTable profile={profile} guesses={guesses} answer={answer} />
         </div>
-        {won && !showResultModal && (
+        {gameOver && !showResultModal && (
           <div className="mt-4 text-center">
             <button
               className="rounded-lg border-2 border-[#4d4d4d] bg-white px-4 py-2 font-semibold text-[#4d4d4d] hover:bg-[#f0f0f0]"
@@ -106,7 +116,17 @@ export function GameBoard() {
             onClose={() => setShowResultModal(false)}
           />
         )}
-        {mode === "practice" && won && (
+        {lost && showResultModal && (
+          <LossModal
+            answer={answer}
+            guessCount={guessIds.length}
+            dayNumber={dayNumber}
+            guessStatusRows={guessStatusRows}
+            statistics={mode === "daily" ? statistics : null}
+            onClose={() => setShowResultModal(false)}
+          />
+        )}
+        {mode === "practice" && gameOver && (
           <div className="mt-4 text-center">
             <button
               className="rounded-lg border-2 border-[#00998a] bg-[#00b99b] px-4 py-2 font-semibold text-white hover:bg-[#00a68a]"

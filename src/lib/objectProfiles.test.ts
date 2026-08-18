@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest"
-import { getProfileForCategory } from "./objectProfiles"
+import { getProfileForCategory, getSearchHint } from "./objectProfiles"
+import type { CelestialObject } from "../types/celestial"
 
 describe("getProfileForCategory", () => {
   it("returns the planet profile with distanceFromSunAU labeled 'Distance from Sun'", () => {
@@ -38,5 +39,22 @@ describe("getProfileForCategory", () => {
   it("nebula profile excludes mass", () => {
     const profile = getProfileForCategory("nebula")
     expect(profile.find(p => p.property === "massKg")).toBeUndefined()
+  })
+})
+
+describe("getSearchHint", () => {
+  it("builds a compact stat line from the object's own profile", () => {
+    const mars: CelestialObject = { id: "mars", name: "Mars", category: "planet", distanceFromSunAU: 1.52, temperatureK: 210 }
+    expect(getSearchHint(mars)).toBe("planet · 1.52 AU · -63°C")
+  })
+
+  it("skips missing values instead of showing an em dash", () => {
+    const sparse: CelestialObject = { id: "x", name: "X", category: "star", distanceFromEarthLy: 4.25 }
+    expect(getSearchHint(sparse)).toBe("star · 4.25 ly")
+  })
+
+  it("uses the parent body and distance for moons", () => {
+    const europa: CelestialObject = { id: "europa", name: "Europa", category: "moon", parentBodyId: "jupiter", distanceFromParentKm: 671100 }
+    expect(getSearchHint(europa)).toBe("moon · Jupiter · 671,100 km")
   })
 })

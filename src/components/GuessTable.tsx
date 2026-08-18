@@ -24,7 +24,10 @@ export function GuessTable({
               Guess
             </th>
             {profile.map(entry => (
-              <th key={entry.property} className="min-w-[70px] px-2 py-2 text-center font-semibold text-[#4d4d4d]">
+              <th
+                key={entry.property}
+                className="min-w-[70px] cursor-default px-2 py-2 text-center font-semibold text-[#4d4d4d] transition-colors hover:font-extrabold hover:text-[#1a1a1a]"
+              >
                 {entry.label}
               </th>
             ))}
