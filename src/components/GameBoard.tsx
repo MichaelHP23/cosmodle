@@ -12,6 +12,7 @@ import { GuessInput } from "./GuessInput"
 import { GuessTable } from "./GuessTable"
 import { ResultModal } from "./ResultModal"
 import { LossModal } from "./LossModal"
+import { Footer } from "./Footer"
 
 const typedDataset = dataset as CelestialObject[]
 
@@ -136,6 +137,7 @@ export function GameBoard() {
             </button>
           </div>
         )}
+        <Footer />
       </div>
     </div>
   )
