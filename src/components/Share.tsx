@@ -20,7 +20,7 @@ export function Share({
 }) {
   function buildShareText(): string {
     const emojiLine = guessStatusRows.map(row => bucketGuessEmoji(row.statuses, row.isWinningGuess)).join(" ")
-    return `🌌 Celestial #${dayNumber}\n\n${emojiLine}\n${guessStatusRows.length} guesses\n\nPlay Celestial`
+    return `🌌 Cosmodle #${dayNumber}\n\n${emojiLine}\n${guessStatusRows.length} guesses\n\nPlay Cosmodle`
   }
 
   async function handleShare() {
