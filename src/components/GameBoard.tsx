@@ -13,8 +13,10 @@ import { GuessTable } from "./GuessTable"
 import { ResultModal } from "./ResultModal"
 import { LossModal } from "./LossModal"
 import { Footer } from "./Footer"
+import { HowToPlayModal } from "./HowToPlayModal"
 
 const typedDataset = dataset as CelestialObject[]
+const HOW_TO_PLAY_SEEN_KEY = "cosmodle:hasSeenHowToPlay"
 
 function todayDateString(): string {
   return new Date().toISOString().slice(0, 10)
@@ -31,7 +33,13 @@ export function GameBoard() {
   const [practiceGuessIds, setPracticeGuessIds] = useState<string[]>([])
   const [practiceWon, setPracticeWon] = useState(false)
   const [showResultModal, setShowResultModal] = useState(false)
+  const [showHowToPlay, setShowHowToPlay] = useState(() => !localStorage.getItem(HOW_TO_PLAY_SEEN_KEY))
   const [statistics, setStatistics] = useState<Statistics | null>(() => (dailyState.won ? getStatistics() : null))
+
+  function closeHowToPlay() {
+    localStorage.setItem(HOW_TO_PLAY_SEEN_KEY, "true")
+    setShowHowToPlay(false)
+  }
 
   useEffect(() => {
     if (mode === "daily") saveDailyState(dailyState)
@@ -85,7 +93,7 @@ export function GameBoard() {
   return (
     <div className="starfield min-h-screen">
       <div className="mx-auto max-w-[1200px] px-4 py-8">
-        <DailyHeader mode={mode} onModeChange={changeMode} dayNumber={dayNumber} />
+        <DailyHeader mode={mode} onModeChange={changeMode} dayNumber={dayNumber} onHelpClick={() => setShowHowToPlay(true)} />
         {!gameOver && (
           <>
             <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />
@@ -138,6 +146,7 @@ export function GameBoard() {
           </div>
         )}
         <Footer />
+        {showHowToPlay && <HowToPlayModal onClose={closeHowToPlay} />}
       </div>
     </div>
   )

@@ -1,15 +1,17 @@
 import type { GameMode } from "../types/game"
 
-const TITLE = "CELESTIAL"
+const TITLE = "COSMODLE"
 
 export function DailyHeader({
   mode,
   onModeChange,
   dayNumber,
+  onHelpClick,
 }: {
   mode: GameMode
   onModeChange: (m: GameMode) => void
   dayNumber: number
+  onHelpClick: () => void
 }) {
   return (
     <header className="mb-6 flex flex-wrap items-center justify-between gap-3">
@@ -19,9 +21,9 @@ export function DailyHeader({
             <span key={i}>{ch}</span>
           ))}
         </h1>
-        {mode === "daily" && <div className="text-sm text-[#4d4d4d]">Celestial #{dayNumber}</div>}
+        {mode === "daily" && <div className="text-sm text-[#4d4d4d]">Cosmodle #{dayNumber}</div>}
       </div>
-      <div className="flex gap-2">
+      <div className="flex items-center gap-2">
         <button
           className={`rounded-lg border-2 px-3 py-1 text-sm font-semibold transition-colors ${
             mode === "daily"
@@ -41,6 +43,13 @@ export function DailyHeader({
           onClick={() => onModeChange("practice")}
         >
           Practice
+        </button>
+        <button
+          className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#4d4d4d] bg-white font-bold text-[#4d4d4d] hover:bg-[#f0f0f0]"
+          onClick={onHelpClick}
+          aria-label="How to play"
+        >
+          ?
         </button>
       </div>
     </header>
