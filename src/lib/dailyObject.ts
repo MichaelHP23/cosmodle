@@ -1,6 +1,6 @@
 import type { CelestialObject } from "../types/celestial"
 
-export const LAUNCH_DATE = new Date("2026-08-17T00:00:00Z")
+export const LAUNCH_DATE = new Date("2026-08-18T00:00:00Z")
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000
 
