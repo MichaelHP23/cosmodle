@@ -79,6 +79,12 @@ const TITLE_OVERRIDE = {
   taurus: "Taurus (constellation)",
   vela: "Vela (constellation)",
   virgo: "Virgo (constellation)",
+  himalia: "Himalia (moon)",
+  pan: "Pan (moon)",
+  puck: "Puck (moon)",
+  nix: "Nix (moon)",
+  hydra_moon: "Hydra (moon)",
+  ngc4889_black_hole: "NGC 4889",
 }
 
 const UA = "CelestialGame/1.0 (contact: mpink2491@gmail.com)"

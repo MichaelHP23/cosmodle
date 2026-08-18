@@ -4,9 +4,9 @@ import { getProfileForCategory } from "../lib/objectProfiles"
 import type { CelestialObject } from "../types/celestial"
 
 describe("celestialObjects dataset", () => {
-  it("has between 40 and 220 objects", () => {
+  it("has between 40 and 300 objects", () => {
     expect(dataset.length).toBeGreaterThanOrEqual(40)
-    expect(dataset.length).toBeLessThanOrEqual(220)
+    expect(dataset.length).toBeLessThanOrEqual(300)
   })
 
   it("includes all 88 official IAU constellations", () => {
