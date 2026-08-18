@@ -20,7 +20,7 @@ export function GuessTable({
       <table className="w-full table-fixed border-collapse text-sm">
         <thead>
           <tr className="border-b-2 border-[#4d4d4d]">
-            <th className="sticky left-0 z-10 w-[120px] min-w-[120px] border-r border-[#e0e0e0] bg-[#f7f7f7] px-3 py-2 text-left font-semibold text-[#4d4d4d]">
+            <th className="sticky left-0 z-10 w-[140px] min-w-[140px] border-r border-[#e0e0e0] bg-[#f7f7f7] px-3 py-2 text-left font-semibold text-[#4d4d4d]">
               Guess
             </th>
             {profile.map(entry => (
@@ -39,7 +39,7 @@ export function GuessTable({
               <th
                 scope="row"
                 title={guess.name}
-                className="sticky left-0 z-10 w-[120px] truncate border-r border-[#e0e0e0] bg-white px-3 py-2 text-left font-bold text-[#1a1a1a] underline decoration-dotted decoration-2 underline-offset-2"
+                className="sticky left-0 z-10 w-[140px] break-words border-r border-[#e0e0e0] bg-white px-3 py-2 text-left text-sm font-bold leading-tight text-[#1a1a1a] underline decoration-dotted decoration-2 underline-offset-2"
               >
                 {guess.name}
               </th>
