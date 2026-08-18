@@ -21,9 +21,9 @@ export function DailyHeader({
             <span key={i}>{ch}</span>
           ))}
         </h1>
-        {mode === "daily" && <div className="text-sm text-[#4d4d4d]">Cosmodle #{dayNumber}</div>}
+        {mode !== "practice" && <div className="text-sm text-[#4d4d4d]">Cosmodle #{dayNumber}</div>}
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap items-center gap-2">
         <button
           className={`rounded-lg border-2 px-3 py-1 text-sm font-semibold transition-colors ${
             mode === "daily"
@@ -43,6 +43,16 @@ export function DailyHeader({
           onClick={() => onModeChange("practice")}
         >
           Practice
+        </button>
+        <button
+          className={`rounded-lg border-2 px-3 py-1 text-sm font-semibold transition-colors ${
+            mode === "archive"
+              ? "border-[#00998a] bg-[#00b99b] text-white"
+              : "border-[#4d4d4d] bg-white text-[#4d4d4d] hover:bg-[#f0f0f0]"
+          }`}
+          onClick={() => onModeChange("archive")}
+        >
+          Archive
         </button>
         <button
           className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#4d4d4d] bg-white font-bold text-[#4d4d4d] hover:bg-[#f0f0f0]"

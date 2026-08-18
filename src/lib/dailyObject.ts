@@ -10,6 +10,10 @@ export function daysSinceEpoch(date: Date, epoch: Date): number {
   return Math.floor((dateUTC - epochUTC) / MS_PER_DAY)
 }
 
+export function dateForDayNumber(dayNumber: number, epoch: Date = LAUNCH_DATE): Date {
+  return new Date(epoch.getTime() + (dayNumber - 1) * MS_PER_DAY)
+}
+
 function mulberry32(seed: number): () => number {
   let state = seed
   return function next() {

@@ -21,7 +21,7 @@ export type ProfileEntry = {
   kind: ComparatorKind
 }
 
-export type GameMode = "daily" | "practice"
+export type GameMode = "daily" | "practice" | "archive"
 
 export type DailyGameState = {
   date: string

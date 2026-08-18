@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { daysSinceEpoch, getDailyObject, pickRandomObject, seededShuffle, LAUNCH_DATE } from "./dailyObject"
+import { daysSinceEpoch, dateForDayNumber, getDailyObject, pickRandomObject, seededShuffle, LAUNCH_DATE } from "./dailyObject"
 import type { CelestialObject } from "../types/celestial"
 
 const dataset: CelestialObject[] = [
@@ -15,6 +15,22 @@ describe("daysSinceEpoch", () => {
   it("returns 1 for the day after epoch", () => {
     const next = new Date(LAUNCH_DATE.getTime() + 24 * 60 * 60 * 1000)
     expect(daysSinceEpoch(next, LAUNCH_DATE)).toBe(1)
+  })
+})
+
+describe("dateForDayNumber", () => {
+  it("returns the epoch date for day 1", () => {
+    expect(dateForDayNumber(1, LAUNCH_DATE).getTime()).toBe(LAUNCH_DATE.getTime())
+  })
+  it("returns a date N-1 days after the epoch for day N", () => {
+    const day5 = dateForDayNumber(5, LAUNCH_DATE)
+    expect(daysSinceEpoch(day5, LAUNCH_DATE)).toBe(4)
+  })
+  it("round-trips with daysSinceEpoch + 1", () => {
+    for (const dayNumber of [1, 2, 10, 100]) {
+      const date = dateForDayNumber(dayNumber, LAUNCH_DATE)
+      expect(daysSinceEpoch(date, LAUNCH_DATE) + 1).toBe(dayNumber)
+    }
   })
 })
 
