@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { daysSinceEpoch, getDailyObject, pickRandomObject, LAUNCH_DATE } from "./dailyObject"
+import { daysSinceEpoch, getDailyObject, pickRandomObject, seededShuffle, LAUNCH_DATE } from "./dailyObject"
 import type { CelestialObject } from "../types/celestial"
 
 const dataset: CelestialObject[] = [
@@ -18,6 +18,29 @@ describe("daysSinceEpoch", () => {
   })
 })
 
+describe("seededShuffle", () => {
+  it("is deterministic for the same seed", () => {
+    const a = seededShuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 42)
+    const b = seededShuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 42)
+    expect(a).toEqual(b)
+  })
+  it("produces a permutation (same elements, no duplicates)", () => {
+    const input = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    const shuffled = seededShuffle(input, 7)
+    expect([...shuffled].sort((x, y) => x - y)).toEqual(input)
+  })
+  it("different seeds usually produce different orders", () => {
+    const a = seededShuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 1)
+    const b = seededShuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 2)
+    expect(a).not.toEqual(b)
+  })
+  it("does not mutate the input array", () => {
+    const input = [0, 1, 2]
+    seededShuffle(input, 5)
+    expect(input).toEqual([0, 1, 2])
+  })
+})
+
 describe("getDailyObject", () => {
   it("returns the same object for the same date", () => {
     const date = new Date("2026-09-01T00:00:00Z")
@@ -30,10 +53,26 @@ describe("getDailyObject", () => {
     const o2 = getDailyObject(d2, dataset)
     expect([o1.id, o2.id].length).toBe(2)
   })
-  it("wraps correctly at dataset length boundary", () => {
-    const day0 = getDailyObject(LAUNCH_DATE, dataset)
-    const dayN = getDailyObject(new Date(LAUNCH_DATE.getTime() + dataset.length * 24 * 60 * 60 * 1000), dataset)
-    expect(dayN.id).toBe(day0.id)
+  it("does not simply cycle through the dataset in array order", () => {
+    const ids = Array.from({ length: dataset.length }, (_, i) =>
+      getDailyObject(new Date(LAUNCH_DATE.getTime() + i * 24 * 60 * 60 * 1000), dataset).id
+    )
+    expect(ids).not.toEqual(dataset.map(o => o.id))
+  })
+  it("covers every object exactly once within one full cycle (no repeats, no skips)", () => {
+    const ids = Array.from({ length: dataset.length }, (_, i) =>
+      getDailyObject(new Date(LAUNCH_DATE.getTime() + i * 24 * 60 * 60 * 1000), dataset).id
+    )
+    expect([...ids].sort()).toEqual(dataset.map(o => o.id).sort())
+  })
+  it("uses a different shuffle order for the next cycle", () => {
+    const cycle0 = Array.from({ length: dataset.length }, (_, i) =>
+      getDailyObject(new Date(LAUNCH_DATE.getTime() + i * 24 * 60 * 60 * 1000), dataset).id
+    )
+    const cycle1 = Array.from({ length: dataset.length }, (_, i) =>
+      getDailyObject(new Date(LAUNCH_DATE.getTime() + (dataset.length + i) * 24 * 60 * 60 * 1000), dataset).id
+    )
+    expect(cycle1).not.toEqual(cycle0)
   })
 })
 
