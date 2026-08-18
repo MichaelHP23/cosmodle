@@ -4,9 +4,14 @@ import { getProfileForCategory } from "../lib/objectProfiles"
 import type { CelestialObject } from "../types/celestial"
 
 describe("celestialObjects dataset", () => {
-  it("has between 40 and 120 objects", () => {
+  it("has between 40 and 220 objects", () => {
     expect(dataset.length).toBeGreaterThanOrEqual(40)
-    expect(dataset.length).toBeLessThanOrEqual(120)
+    expect(dataset.length).toBeLessThanOrEqual(220)
+  })
+
+  it("includes all 88 official IAU constellations", () => {
+    const constellations = (dataset as CelestialObject[]).filter(o => o.category === "constellation")
+    expect(constellations.length).toBe(88)
   })
 
   it("covers every celestial category", () => {
