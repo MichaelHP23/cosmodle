@@ -1,3 +1,4 @@
+import { useState } from "react"
 import type { CelestialObject } from "../types/celestial"
 import { getObjectColor } from "../lib/objectVisuals"
 
@@ -8,7 +9,7 @@ function hexToRgba(hex: string, alpha: number): string {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`
 }
 
-export function ObjectPortrait({ object, size = 96 }: { object: CelestialObject; size?: number }) {
+function GeneratedPortrait({ object, size }: { object: CelestialObject; size: number }) {
   const color = getObjectColor(object)
 
   if (object.category === "black_hole") {
@@ -65,4 +66,24 @@ export function ObjectPortrait({ object, size = 96 }: { object: CelestialObject;
       }}
     />
   )
+}
+
+export function ObjectPortrait({ object, size = 96 }: { object: CelestialObject; size?: number }) {
+  const [imageFailed, setImageFailed] = useState(false)
+
+  if (object.imageUrl && !imageFailed) {
+    return (
+      <img
+        src={object.imageUrl}
+        alt={object.name}
+        width={size}
+        height={size}
+        className="portrait-pop mx-auto rounded-full object-cover shadow-md"
+        style={{ width: size, height: size }}
+        onError={() => setImageFailed(true)}
+      />
+    )
+  }
+
+  return <GeneratedPortrait object={object} size={size} />
 }
