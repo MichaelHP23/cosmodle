@@ -52,7 +52,7 @@ export function GuessInput({
     <div className="relative">
       <input
         className="w-full rounded-lg border-2 border-[#4d4d4d] bg-white px-4 py-2 text-[#1a1a1a] placeholder-[#8a8a8a] focus:border-[#00b99b] focus:outline-none"
-        placeholder="🔎 Search celestial objects..."
+        placeholder="Search celestial objects..."
         value={query}
         onChange={e => handleChange(e.target.value)}
         onKeyDown={handleKeyDown}

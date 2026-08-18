@@ -31,7 +31,7 @@ export function ResultModal({
       <div className="mx-auto my-8 w-full max-w-md rounded-xl border-2 border-[#4d4d4d] bg-[#f7f7f7] p-6">
         <div className="mb-4 flex items-start justify-between">
           <div className="flex-1 text-center">
-            <div className="text-lg font-bold text-[#1a1a1a]">🎉 YOU FOUND IT!</div>
+            <div className="text-lg font-bold text-[#1a1a1a]">YOU FOUND IT!</div>
             <div className="text-2xl font-extrabold text-[#00998a]">{answer.name.toUpperCase()}</div>
             <div className="text-sm text-[#4d4d4d]">{getScoreLabel(guessCount)}</div>
           </div>
