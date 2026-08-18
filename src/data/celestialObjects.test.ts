@@ -11,7 +11,7 @@ describe("celestialObjects dataset", () => {
 
   it("covers every celestial category", () => {
     const categories = new Set((dataset as CelestialObject[]).map(o => o.category))
-    for (const c of ["planet", "dwarf_planet", "moon", "asteroid", "comet", "star", "black_hole", "nebula", "galaxy", "quasar", "constellation"]) {
+    for (const c of ["planet", "dwarf_planet", "moon", "asteroid", "comet", "star", "black_hole", "nebula", "galaxy", "quasar", "constellation", "exoplanet"]) {
       expect(categories.has(c as CelestialObject["category"])).toBe(true)
     }
   })

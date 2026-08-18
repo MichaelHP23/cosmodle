@@ -53,6 +53,12 @@ describe("getProfileForCategory", () => {
     expect(profile.find(p => p.property === "distanceFromEarthLy")).toBeUndefined()
     expect(profile.find(p => p.property === "massKg")).toBeUndefined()
   })
+  it("exoplanet profile uses parentBodyId labeled 'Host Star' and distanceFromEarthLy, not distanceFromSunAU", () => {
+    const profile = getProfileForCategory("exoplanet")
+    expect(profile.find(p => p.property === "parentBodyId")?.label).toBe("Host Star")
+    expect(profile.find(p => p.property === "distanceFromEarthLy")).toBeDefined()
+    expect(profile.find(p => p.property === "distanceFromSunAU")).toBeUndefined()
+  })
 })
 
 describe("getSearchHint", () => {

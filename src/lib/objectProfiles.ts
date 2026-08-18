@@ -79,6 +79,17 @@ const CONSTELLATION_PROFILE: ProfileEntry[] = [
   { property: "brightestStarMagnitude", label: "Brightest Star Magnitude", kind: "numeric" },
 ]
 
+const EXOPLANET_PROFILE: ProfileEntry[] = [
+  { property: "category", label: "Type", kind: "exact" },
+  { property: "parentBodyId", label: "Host Star", kind: "exact" },
+  { property: "distanceFromEarthLy", label: "Distance from Earth", kind: "numeric" },
+  { property: "temperatureK", label: "Equilibrium Temperature", kind: "temperature" },
+  { property: "diameterKm", label: "Diameter", kind: "numeric" },
+  { property: "massKg", label: "Mass", kind: "numeric" },
+  { property: "orbitalPeriodDays", label: "Orbital Period", kind: "numeric" },
+  { property: "discoveredYear", label: "Discovered", kind: "numeric" },
+]
+
 const PROFILES_BY_CATEGORY: Record<CelestialCategory, ProfileEntry[]> = {
   planet: PLANET_PROFILE,
   dwarf_planet: DWARF_PLANET_PROFILE,
@@ -91,6 +102,7 @@ const PROFILES_BY_CATEGORY: Record<CelestialCategory, ProfileEntry[]> = {
   nebula: NEBULA_PROFILE,
   quasar: QUASAR_PROFILE,
   constellation: CONSTELLATION_PROFILE,
+  exoplanet: EXOPLANET_PROFILE,
 }
 
 export function getProfileForCategory(category: CelestialCategory): ProfileEntry[] {

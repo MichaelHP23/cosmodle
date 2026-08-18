@@ -10,6 +10,7 @@ export type CelestialCategory =
   | "nebula"
   | "quasar"
   | "constellation"
+  | "exoplanet"
 
 export type Hemisphere = "northern" | "southern" | "both"
 
