@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { createInitialState, applyGuess, MAX_GUESSES } from "./gameState"
+import { createInitialState, applyGuess, useHint, MAX_GUESSES, MAX_HINTS } from "./gameState"
 import type { CelestialObject } from "../types/celestial"
 
 const dataset: CelestialObject[] = [
@@ -87,5 +87,48 @@ describe("applyGuess", () => {
     expect(error).toBeUndefined()
     expect(next.won).toBe(true)
     expect(next.guessIds.length).toBe(MAX_GUESSES)
+  })
+})
+
+describe("createInitialState", () => {
+  it("starts with zero hints used", () => {
+    expect(createInitialState("2026-09-01").hintsUsed).toBe(0)
+  })
+})
+
+describe("useHint", () => {
+  it("increments hintsUsed", () => {
+    const state = createInitialState("2026-09-01")
+    const { state: next, error } = useHint(state)
+    expect(error).toBeUndefined()
+    expect(next.hintsUsed).toBe(1)
+  })
+
+  it("allows using hints up to MAX_HINTS", () => {
+    let state = createInitialState("2026-09-01")
+    for (let i = 0; i < MAX_HINTS; i++) {
+      const { state: next, error } = useHint(state)
+      expect(error).toBeUndefined()
+      state = next
+    }
+    expect(state.hintsUsed).toBe(MAX_HINTS)
+  })
+
+  it("rejects using a hint beyond MAX_HINTS", () => {
+    let state = createInitialState("2026-09-01")
+    for (let i = 0; i < MAX_HINTS; i++) {
+      state = useHint(state).state
+    }
+    const { state: next, error } = useHint(state)
+    expect(error).toBe("no_hints_left")
+    expect(next.hintsUsed).toBe(MAX_HINTS)
+  })
+
+  it("rejects using a hint after the game is already won", () => {
+    let state = createInitialState("2026-09-01")
+    state = applyGuess(state, "jupiter", dataset, "jupiter").state
+    const { state: next, error } = useHint(state)
+    expect(error).toBe("already_won")
+    expect(next.hintsUsed).toBe(0)
   })
 })

@@ -2,9 +2,10 @@ import type { CelestialObject } from "../types/celestial"
 import type { DailyGameState } from "../types/game"
 
 export const MAX_GUESSES = 7
+export const MAX_HINTS = 3
 
 export function createInitialState(date: string): DailyGameState {
-  return { date, guessIds: [], won: false }
+  return { date, guessIds: [], won: false, hintsUsed: 0 }
 }
 
 export function applyGuess(
@@ -23,13 +24,22 @@ export function applyGuess(
   return { state: { ...state, guessIds, won } }
 }
 
+export function useHint(
+  state: DailyGameState
+): { state: DailyGameState; error?: "already_won" | "no_hints_left" } {
+  if (state.won) return { state, error: "already_won" }
+  if (state.hintsUsed >= MAX_HINTS) return { state, error: "no_hints_left" }
+  return { state: { ...state, hintsUsed: state.hintsUsed + 1 } }
+}
+
 const STORAGE_PREFIX = "celestial:daily:"
 
 export function loadDailyState(date: string): DailyGameState | null {
   const raw = localStorage.getItem(STORAGE_PREFIX + date)
   if (!raw) return null
   try {
-    return JSON.parse(raw) as DailyGameState
+    const parsed = JSON.parse(raw) as DailyGameState
+    return { hintsUsed: 0, ...parsed }
   } catch {
     return null
   }

@@ -1,3 +1,5 @@
+import { MAX_HINTS } from "./gameState"
+
 export type Statistics = {
   gamesPlayed: number
   wins: number
@@ -30,11 +32,12 @@ export function getStatistics(): Statistics {
   }
 }
 
-export function recordDailyResult(dayNumber: number, won: boolean, guessCount: number): Statistics {
+export function recordDailyResult(dayNumber: number, won: boolean, guessCount: number, hintsUsed: number = 0): Statistics {
   const previous = getStatistics()
   if (previous.lastDayNumber === dayNumber) return previous
 
-  const currentStreak = won
+  const streakEligible = won && hintsUsed < MAX_HINTS
+  const currentStreak = streakEligible
     ? (previous.lastDayNumber === dayNumber - 1 ? previous.currentStreak + 1 : 1)
     : 0
   const guessDistribution = [...previous.guessDistribution]

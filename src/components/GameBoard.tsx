@@ -3,7 +3,7 @@ import dataset from "../data/celestialObjects.json"
 import type { CelestialObject } from "../types/celestial"
 import type { ComparisonStatus, DailyGameState, GameMode } from "../types/game"
 import { getDailyObject, pickRandomObject, daysSinceEpoch, dateForDayNumber, LAUNCH_DATE } from "../lib/dailyObject"
-import { createInitialState, applyGuess, loadDailyState, saveDailyState, MAX_GUESSES } from "../lib/gameState"
+import { createInitialState, applyGuess, useHint, loadDailyState, saveDailyState, MAX_GUESSES, MAX_HINTS } from "../lib/gameState"
 import { getProfileForCategory } from "../lib/objectProfiles"
 import { compareProperty } from "../lib/comparison"
 import { getStatistics, recordDailyResult, type Statistics } from "../lib/statistics"
@@ -15,6 +15,7 @@ import { LossModal } from "./LossModal"
 import { Footer } from "./Footer"
 import { HowToPlayModal } from "./HowToPlayModal"
 import { ArchiveList } from "./ArchiveList"
+import { HintPanel } from "./HintPanel"
 
 const typedDataset = dataset as CelestialObject[]
 const HOW_TO_PLAY_SEEN_KEY = "cosmodle:hasSeenHowToPlay"
@@ -71,7 +72,7 @@ export function GameBoard() {
       setDailyState(next)
       const justEnded = (next.won || next.guessIds.length >= MAX_GUESSES) && !(dailyState.won || dailyState.guessIds.length >= MAX_GUESSES)
       if (justEnded) {
-        setStatistics(recordDailyResult(todayDayNumber, next.won, next.guessIds.length))
+        setStatistics(recordDailyResult(todayDayNumber, next.won, next.guessIds.length, next.hintsUsed))
         setShowResultModal(true)
       }
     } else if (mode === "practice") {
@@ -86,6 +87,14 @@ export function GameBoard() {
       if ((next.won || next.guessIds.length >= MAX_GUESSES) && !(archiveState.won || archiveState.guessIds.length >= MAX_GUESSES)) {
         setShowResultModal(true)
       }
+    }
+  }
+
+  function handleUseHint() {
+    if (mode === "daily") {
+      setDailyState(s => useHint(s).state)
+    } else if (mode === "archive") {
+      setArchiveState(s => (s ? useHint(s).state : s))
     }
   }
 
@@ -117,6 +126,8 @@ export function GameBoard() {
       setArchiveState(null)
     }
   }
+
+  const currentDailyState = mode === "daily" ? dailyState : mode === "archive" ? archiveState : null
 
   const guessStatusRows = answer
     ? guesses.map(guess => {
@@ -154,6 +165,15 @@ export function GameBoard() {
           <>
             {!gameOver && (
               <>
+                {currentDailyState && (
+                  <HintPanel
+                    profile={profile}
+                    answer={answer}
+                    hintsUsed={currentDailyState.hintsUsed}
+                    maxHints={MAX_HINTS}
+                    onUseHint={handleUseHint}
+                  />
+                )}
                 <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />
                 <div className="mt-2 text-sm text-[#4d4d4d]">
                   {MAX_GUESSES - guessIds.length} of {MAX_GUESSES} guesses left

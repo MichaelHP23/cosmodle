@@ -75,6 +75,35 @@ describe("recordDailyResult - wins", () => {
   })
 })
 
+describe("recordDailyResult - hint penalty", () => {
+  it("resets currentStreak to 0 on a win if all 3 hints were used", () => {
+    recordDailyResult(5, true, 2)
+    const stats = recordDailyResult(6, true, 3, 3)
+    expect(stats.currentStreak).toBe(0)
+  })
+
+  it("still counts a hint-penalized win as a win (gamesPlayed/wins/distribution unaffected)", () => {
+    const stats = recordDailyResult(1, true, 4, 3)
+    expect(stats.wins).toBe(1)
+    expect(stats.gamesPlayed).toBe(1)
+    expect(stats.guessDistribution).toEqual([0, 0, 0, 1, 0, 0, 0])
+  })
+
+  it("does not reset the streak for 1 or 2 hints", () => {
+    recordDailyResult(5, true, 2, 1)
+    const stats = recordDailyResult(6, true, 3, 2)
+    expect(stats.currentStreak).toBe(2)
+  })
+
+  it("does not bump longestStreak from a hint-penalized win", () => {
+    recordDailyResult(5, true, 2)
+    recordDailyResult(6, true, 2)
+    const stats = recordDailyResult(7, true, 3, 3)
+    expect(stats.currentStreak).toBe(0)
+    expect(stats.longestStreak).toBe(2)
+  })
+})
+
 describe("recordDailyResult - losses", () => {
   it("resets currentStreak to 0 on a loss", () => {
     recordDailyResult(5, true, 2)
