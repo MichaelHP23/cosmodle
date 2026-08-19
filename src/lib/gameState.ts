@@ -39,7 +39,7 @@ export function loadDailyState(date: string): DailyGameState | null {
   if (!raw) return null
   try {
     const parsed = JSON.parse(raw) as DailyGameState
-    return { hintsUsed: 0, ...parsed }
+    return { ...parsed, hintsUsed: parsed.hintsUsed ?? 0 }
   } catch {
     return null
   }
