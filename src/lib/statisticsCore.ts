@@ -1,4 +1,4 @@
-import { MAX_HINTS } from "./gameState"
+import { MAX_HINTS } from "./gameConstants"
 
 export type Statistics = {
   gamesPlayed: number

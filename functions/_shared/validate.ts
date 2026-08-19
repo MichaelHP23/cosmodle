@@ -1,4 +1,4 @@
-import { MAX_GUESSES } from "../../src/lib/gameState"
+import { MAX_GUESSES } from "../../src/lib/gameConstants"
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 

@@ -1,8 +1,8 @@
 import type { CelestialObject } from "../types/celestial"
 import type { DailyGameState } from "../types/game"
 
-export const MAX_GUESSES = 7
-export const MAX_HINTS = 3
+import { MAX_GUESSES, MAX_HINTS } from "./gameConstants"
+export { MAX_GUESSES, MAX_HINTS }
 
 export function createInitialState(date: string): DailyGameState {
   return { date, guessIds: [], won: false, hintsUsed: 0 }
