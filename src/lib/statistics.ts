@@ -1,25 +1,10 @@
-import { MAX_HINTS } from "./gameState"
+import { ZERO_STATISTICS, applyResult } from "./statisticsCore"
+import type { Statistics } from "./statisticsCore"
 
-export type Statistics = {
-  gamesPlayed: number
-  wins: number
-  currentStreak: number
-  longestStreak: number
-  lastDayNumber: number | null
-  guessDistribution: number[]
-}
+export type { Statistics, DailyResult } from "./statisticsCore"
+export { deriveStatsFromResults, getWinPercentage } from "./statisticsCore"
 
 const STORAGE_KEY = "celestial:statistics"
-const MAX_GUESSES = 7
-
-const ZERO_STATISTICS: Statistics = {
-  gamesPlayed: 0,
-  wins: 0,
-  currentStreak: 0,
-  longestStreak: 0,
-  lastDayNumber: null,
-  guessDistribution: new Array(MAX_GUESSES).fill(0),
-}
 
 export function getStatistics(): Statistics {
   const raw = localStorage.getItem(STORAGE_KEY)
@@ -35,27 +20,12 @@ export function getStatistics(): Statistics {
 export function recordDailyResult(dayNumber: number, won: boolean, guessCount: number, hintsUsed: number = 0): Statistics {
   const previous = getStatistics()
   if (previous.lastDayNumber === dayNumber) return previous
-
-  const streakEligible = won && hintsUsed < MAX_HINTS
-  const currentStreak = streakEligible
-    ? (previous.lastDayNumber === dayNumber - 1 ? previous.currentStreak + 1 : 1)
-    : 0
-  const guessDistribution = [...previous.guessDistribution]
-  if (won) guessDistribution[guessCount - 1] += 1
-
-  const next: Statistics = {
-    gamesPlayed: previous.gamesPlayed + 1,
-    wins: previous.wins + (won ? 1 : 0),
-    currentStreak,
-    longestStreak: Math.max(previous.longestStreak, currentStreak),
-    lastDayNumber: dayNumber,
-    guessDistribution,
-  }
+  const next = applyResult(previous, dayNumber, won, guessCount, hintsUsed)
   localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
   return next
 }
 
-export function getWinPercentage(stats: Statistics): number {
-  if (stats.gamesPlayed === 0) return 0
-  return Math.round((stats.wins / stats.gamesPlayed) * 100)
+export function applyServerStatistics(stats: Statistics): Statistics {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(stats))
+  return stats
 }
