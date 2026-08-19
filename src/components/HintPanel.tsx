@@ -8,12 +8,14 @@ export function HintPanel({
   hintsUsed,
   maxHints,
   onUseHint,
+  showStreakWarning = true,
 }: {
   profile: ProfileEntry[]
   answer: CelestialObject
   hintsUsed: number
   maxHints: number
   onUseHint: () => void
+  showStreakWarning?: boolean
 }) {
   const hintable = profile.filter(e => e.property !== "category")
   const revealed = hintable.slice(0, hintsUsed)
@@ -26,9 +28,9 @@ export function HintPanel({
         onClick={onUseHint}
         disabled={hintsLeft <= 0 || revealed.length >= hintable.length}
       >
-        💡 Hint ({hintsLeft} left)
+        Hint ({hintsLeft} left)
       </button>
-      {hintsUsed > 0 && (
+      {hintsUsed > 0 && showStreakWarning && (
         <span className="text-xs text-[#b8860b]">
           Use all {maxHints} and win — your streak resets.
         </span>

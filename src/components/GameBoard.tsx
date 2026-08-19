@@ -37,6 +37,7 @@ export function GameBoard() {
   const [dailyState, setDailyState] = useState<DailyGameState>(() => loadDailyState(today) ?? createInitialState(today))
   const [practiceGuessIds, setPracticeGuessIds] = useState<string[]>([])
   const [practiceWon, setPracticeWon] = useState(false)
+  const [practiceHintsUsed, setPracticeHintsUsed] = useState(0)
   const [archiveDayNumber, setArchiveDayNumber] = useState<number | null>(null)
   const [archiveState, setArchiveState] = useState<DailyGameState | null>(null)
   const [showResultModal, setShowResultModal] = useState(false)
@@ -98,6 +99,8 @@ export function GameBoard() {
       setDailyState(s => useHint(s).state)
     } else if (mode === "archive") {
       setArchiveState(s => (s ? useHint(s).state : s))
+    } else if (mode === "practice") {
+      setPracticeHintsUsed(h => (practiceWon || h >= MAX_HINTS ? h : h + 1))
     }
   }
 
@@ -105,6 +108,7 @@ export function GameBoard() {
     setPracticeAnswer(pickRandomObject(typedDataset))
     setPracticeGuessIds([])
     setPracticeWon(false)
+    setPracticeHintsUsed(0)
     setShowResultModal(false)
   }
 
@@ -130,7 +134,7 @@ export function GameBoard() {
     }
   }
 
-  const currentDailyState = mode === "daily" ? dailyState : mode === "archive" ? archiveState : null
+  const hintsUsed = mode === "daily" ? dailyState.hintsUsed : mode === "archive" ? archiveState?.hintsUsed ?? 0 : practiceHintsUsed
 
   const guessStatusRows = answer
     ? guesses.map(guess => {
@@ -168,15 +172,14 @@ export function GameBoard() {
           <>
             {!gameOver && (
               <>
-                {currentDailyState && (
-                  <HintPanel
-                    profile={profile}
-                    answer={answer}
-                    hintsUsed={currentDailyState.hintsUsed}
-                    maxHints={MAX_HINTS}
-                    onUseHint={handleUseHint}
-                  />
-                )}
+                <HintPanel
+                  profile={profile}
+                  answer={answer}
+                  hintsUsed={hintsUsed}
+                  maxHints={MAX_HINTS}
+                  onUseHint={handleUseHint}
+                  showStreakWarning={mode !== "practice"}
+                />
                 <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />
                 <div className="mt-2 text-sm text-[#4d4d4d]">
                   {MAX_GUESSES - guessIds.length} of {MAX_GUESSES} guesses left

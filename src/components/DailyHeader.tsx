@@ -7,24 +7,24 @@ const EASTER_EGG_CLICKS = 5
 
 function GalaxyIcon() {
   return (
-    <svg viewBox="0 0 24 24" width="0.75em" height="0.75em" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.4" />
-      <path
-        d="M12 4c3 0 5 1.6 5 4.2 0 2-1.6 3.2-3.6 3.2-1.6 0-2.8-.9-2.8-2.3 0-1.1.9-1.8 1.9-1.8"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinecap="round"
-      />
-      <path
-        d="M12 20c-3 0-5-1.6-5-4.2 0-2 1.6-3.2 3.6-3.2 1.6 0 2.8.9 2.8 2.3 0 1.1-.9 1.8-1.9 1.8"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinecap="round"
-      />
-      <circle cx="12" cy="12" r="1.6" fill="currentColor" />
-      <circle cx="17" cy="7" r="0.6" fill="currentColor" />
-      <circle cx="7" cy="17" r="0.6" fill="currentColor" />
-      <circle cx="18" cy="15" r="0.5" fill="currentColor" />
+    <svg viewBox="0 0 24 24" width="0.95em" height="0.95em" aria-hidden="true">
+      <defs>
+        <radialGradient id="cosmodleBadgeBg" cx="35%" cy="30%" r="75%">
+          <stop offset="0%" stopColor="#3d2a72" />
+          <stop offset="100%" stopColor="#160a2e" />
+        </radialGradient>
+      </defs>
+      <circle cx="12" cy="12" r="11" fill="url(#cosmodleBadgeBg)" stroke="#f0a500" strokeWidth="0.8" />
+      <circle cx="6.5" cy="6" r="0.5" fill="#fff" />
+      <circle cx="18" cy="7.5" r="0.4" fill="#fff" />
+      <circle cx="17.5" cy="18" r="0.5" fill="#fff" />
+      <circle cx="5.5" cy="16.5" r="0.35" fill="#fff" />
+      <path d="M4.2 3.4l0.5 1.4 1.4 0.5-1.4 0.5-0.5 1.4-0.5-1.4L2.3 5.3l1.4-0.5z" fill="#fff" />
+      <g transform="translate(13.5 13.5) rotate(-25)">
+        <ellipse cx="0" cy="0" rx="6.6" ry="1.9" fill="none" stroke="#f0a500" strokeWidth="0.9" />
+        <circle cx="0" cy="0" r="3.6" fill="#37c9c1" />
+        <circle cx="-1.1" cy="-1.2" r="1.1" fill="#fff" opacity="0.2" />
+      </g>
     </svg>
   )
 }
@@ -71,7 +71,7 @@ export function DailyHeader({
         {mode !== "practice" && <div className="text-sm text-[#4d4d4d]">Cosmodle #{dayNumber}</div>}
         {showEasterEgg && (
           <div className="absolute left-0 top-full z-20 mt-1 w-max max-w-xs rounded-lg border-2 border-[#f0a500] bg-[#fff8e7] px-3 py-2 text-xs font-semibold text-[#8a6400] shadow-lg">
-            🥛 Fun fact: averaged across the whole sky, the universe is this exact color — cosmic latte, #FFF8E7.
+            Fun fact: averaged across the whole sky, the universe is this exact color — cosmic latte, #FFF8E7.
           </div>
         )}
       </div>
