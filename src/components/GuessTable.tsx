@@ -17,16 +17,16 @@ export function GuessTable({
 
   return (
     <div className="overflow-x-auto rounded-xl border-2 border-[#4d4d4d] bg-white">
-      <table className="w-full table-fixed border-collapse text-sm">
+      <table className="border-collapse text-sm">
         <thead>
           <tr className="border-b-2 border-[#4d4d4d]">
-            <th className="sticky left-0 z-10 w-[140px] min-w-[140px] border-r border-[#e0e0e0] bg-[#f7f7f7] px-3 py-2 text-left font-semibold text-[#4d4d4d]">
+            <th className="sticky left-0 z-10 w-[110px] min-w-[110px] border-r border-[#e0e0e0] bg-[#f7f7f7] px-3 py-2 text-left font-semibold text-[#4d4d4d] sm:w-[140px] sm:min-w-[140px]">
               Guess
             </th>
             {profile.map(entry => (
               <th
                 key={entry.property}
-                className="min-w-0 cursor-default px-1 py-2 text-center font-semibold text-[#4d4d4d] transition-colors hover:font-extrabold hover:text-[#1a1a1a]"
+                className="w-[64px] min-w-[64px] cursor-default px-1 py-2 text-center text-xs font-semibold text-[#4d4d4d] transition-colors hover:font-extrabold hover:text-[#1a1a1a] sm:w-20 sm:min-w-[80px] sm:text-sm"
               >
                 {entry.label}
               </th>
@@ -39,7 +39,7 @@ export function GuessTable({
               <th
                 scope="row"
                 title={guess.name}
-                className="sticky left-0 z-10 w-[140px] break-words border-r border-[#e0e0e0] bg-white px-3 py-2 text-left text-sm font-bold leading-tight text-[#1a1a1a] underline decoration-dotted decoration-2 underline-offset-2"
+                className="sticky left-0 z-10 w-[110px] break-words border-r border-[#e0e0e0] bg-white px-3 py-2 text-left text-sm font-bold leading-tight text-[#1a1a1a] underline decoration-dotted decoration-2 underline-offset-2 sm:w-[140px]"
               >
                 {guess.name}
               </th>
@@ -48,7 +48,7 @@ export function GuessTable({
                 const answerValue = (answer as any)[entry.property]
                 const result = compareProperty(guessValue, answerValue, entry.kind)
                 return (
-                  <td key={entry.property} className="px-2 py-2">
+                  <td key={entry.property} className="px-1 py-2 sm:px-2">
                     <ResultIndicator
                       status={result.status}
                       title={`${entry.label}: ${formatPropertyValue(entry.property, guessValue)}`}
