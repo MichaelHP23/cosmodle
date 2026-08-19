@@ -25,14 +25,10 @@ body {
     0 3px 0 transparent;
 }
 
-.title-text .title-globe {
-  color: initial;
-  text-shadow: none;
-  animation: title-spin 6s linear infinite;
-}
-
-@keyframes title-spin {
-  to { transform: rotate(360deg); }
+.title-text .title-icon {
+  color: #00b99b;
+  display: inline-flex;
+  align-items: center;
 }
 
 .title-text span:nth-child(2) { animation-delay: 0.05s; }
