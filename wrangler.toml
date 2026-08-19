@@ -1,0 +1,8 @@
+name = "cosmodle"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-08-19"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "cosmodle"
+database_id = "c97260f9-d569-4218-ad79-0b81abe235ca"
