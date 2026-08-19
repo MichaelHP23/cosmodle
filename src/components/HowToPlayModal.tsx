@@ -30,13 +30,13 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
         </div>
 
         <p className="mb-3 text-sm text-[#4d4d4d]">
-          There's a mystery celestial object — a planet, moon, star, galaxy, whatever the universe throws
+          There's a mystery celestial object: a planet, moon, star, galaxy, whatever the universe throws
           at you. Find it in 7 guesses or fewer.
         </p>
 
         <ol className="mb-4 list-decimal space-y-1.5 pl-5 text-sm text-[#4d4d4d]">
           <li>Search for and select any celestial object as your guess.</li>
-          <li>Your guess is compared to the mystery object property-by-property — distance, size, temperature, moons, whatever applies to its category — and each one gets a colored square.</li>
+          <li>Your guess is compared to the mystery object property-by-property: distance, size, temperature, moons, whatever applies to its category, and each one gets a colored square.</li>
           <li>Read the squares (legend below) to narrow down what the answer could be, then guess again.</li>
           <li>Guess the exact object, or run out of guesses and see the answer revealed.</li>
         </ol>
@@ -60,7 +60,7 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
           <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Hints</div>
           <p>
             Stuck? The Hint button reveals one of the mystery object's actual properties. You get 3 per
-            puzzle — but if you use all 3 and still win, that day doesn't extend your streak (it still
+            puzzle, but if you use all 3 and still win, that day doesn't extend your streak (it still
             counts as a win).
           </p>
         </div>
@@ -68,9 +68,9 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
         <div className="rounded-lg border border-[#e0e0e0] bg-white p-3 text-sm text-[#4d4d4d]">
           <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Modes</div>
           <ul className="space-y-1.5">
-            <li><span className="font-semibold text-[#1a1a1a]">Daily</span> — one puzzle a day, same for everyone. Wins/losses count toward your Played, Win %, and Streak stats.</li>
-            <li><span className="font-semibold text-[#1a1a1a]">Practice</span> — unlimited random rounds, anytime. Doesn't affect your stats.</li>
-            <li><span className="font-semibold text-[#1a1a1a]">Archive</span> — replay any past daily puzzle you missed.</li>
+            <li><span className="font-semibold text-[#1a1a1a]">Daily:</span> one puzzle a day, same for everyone. Wins/losses count toward your Played, Win %, and Streak stats.</li>
+            <li><span className="font-semibold text-[#1a1a1a]">Practice:</span> unlimited random rounds, anytime. Doesn't affect your stats.</li>
+            <li><span className="font-semibold text-[#1a1a1a]">Archive:</span> replay any past daily puzzle you missed.</li>
           </ul>
         </div>
 
