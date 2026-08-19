@@ -1,6 +1,8 @@
+import { useState } from "react"
 import type { GameMode } from "../types/game"
 
-const TITLE = "COSMODLE"
+const TITLE_CHARS = ["C", "O", "S", "M", "🌐", "D", "L", "E"] // globe replaces 2nd O
+const EASTER_EGG_CLICKS = 5
 
 export function DailyHeader({
   mode,
@@ -13,15 +15,40 @@ export function DailyHeader({
   dayNumber: number
   onHelpClick: () => void
 }) {
+  const [globeClicks, setGlobeClicks] = useState(0)
+  const [showEasterEgg, setShowEasterEgg] = useState(false)
+
+  function handleGlobeClick() {
+    const next = globeClicks + 1
+    if (next >= EASTER_EGG_CLICKS) {
+      setGlobeClicks(0)
+      setShowEasterEgg(true)
+      setTimeout(() => setShowEasterEgg(false), 5000)
+    } else {
+      setGlobeClicks(next)
+    }
+  }
+
   return (
-    <header className="mb-6 flex flex-wrap items-center justify-between gap-3">
+    <header className="relative mb-6 flex flex-wrap items-center justify-between gap-3">
       <div>
         <h1 className="title-text text-3xl font-extrabold sm:text-4xl">
-          {TITLE.split("").map((ch, i) => (
-            <span key={i}>{ch}</span>
-          ))}
+          {TITLE_CHARS.map((ch, i) =>
+            ch === "🌐" ? (
+              <span key={i} className="title-globe cursor-pointer" onClick={handleGlobeClick}>
+                {ch}
+              </span>
+            ) : (
+              <span key={i}>{ch}</span>
+            )
+          )}
         </h1>
         {mode !== "practice" && <div className="text-sm text-[#4d4d4d]">Cosmodle #{dayNumber}</div>}
+        {showEasterEgg && (
+          <div className="absolute left-0 top-full z-20 mt-1 w-max max-w-xs rounded-lg border-2 border-[#f0a500] bg-[#fff8e7] px-3 py-2 text-xs font-semibold text-[#8a6400] shadow-lg">
+            🥛 Fun fact: averaged across the whole sky, the universe is this exact color — cosmic latte, #FFF8E7.
+          </div>
+        )}
       </div>
       <div className="flex flex-wrap items-center gap-2">
         <button

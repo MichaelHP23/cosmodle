@@ -2,7 +2,8 @@
 
 body {
   margin: 0;
-  background: #f7f7f7;
+  /* cosmic latte: the average color of the universe (Glazebrook & Baldry, 2002) */
+  background: #fff8e7;
 }
 
 .title-text {
@@ -22,6 +23,16 @@ body {
     0 1px 0 var(--shadow-color),
     0 2px 0 var(--shadow-color),
     0 3px 0 transparent;
+}
+
+.title-text .title-globe {
+  color: initial;
+  text-shadow: none;
+  animation: title-spin 6s linear infinite;
+}
+
+@keyframes title-spin {
+  to { transform: rotate(360deg); }
 }
 
 .title-text span:nth-child(2) { animation-delay: 0.05s; }
