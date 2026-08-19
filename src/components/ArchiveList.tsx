@@ -6,7 +6,6 @@ function formatArchiveDate(dayNumber: number): string {
     month: "short",
     day: "numeric",
     year: "numeric",
-    timeZone: "UTC",
   })
 }
 

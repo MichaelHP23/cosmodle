@@ -1,17 +1,19 @@
 import type { CelestialObject } from "../types/celestial"
 
-export const LAUNCH_DATE = new Date("2026-08-18T00:00:00Z")
+export const LAUNCH_DATE = new Date(2026, 7, 18) // local calendar date, not UTC
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000
 
+// Uses local calendar day (not UTC) so the puzzle rolls over at each player's
+// own midnight instead of UTC midnight, which is early evening in US timezones.
 export function daysSinceEpoch(date: Date, epoch: Date): number {
-  const dateUTC = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate())
-  const epochUTC = Date.UTC(epoch.getUTCFullYear(), epoch.getUTCMonth(), epoch.getUTCDate())
-  return Math.floor((dateUTC - epochUTC) / MS_PER_DAY)
+  const dateLocal = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()
+  const epochLocal = new Date(epoch.getFullYear(), epoch.getMonth(), epoch.getDate()).getTime()
+  return Math.round((dateLocal - epochLocal) / MS_PER_DAY)
 }
 
 export function dateForDayNumber(dayNumber: number, epoch: Date = LAUNCH_DATE): Date {
-  return new Date(epoch.getTime() + (dayNumber - 1) * MS_PER_DAY)
+  return new Date(epoch.getFullYear(), epoch.getMonth(), epoch.getDate() + (dayNumber - 1))
 }
 
 function mulberry32(seed: number): () => number {
