@@ -1,4 +1,4 @@
-import { isValidUuid, isValidGuessCount } from "../_shared/validate"
+import { isValidUuid, isValidGuessCount, isValidHintsUsed } from "../_shared/validate"
 import { isValidDayNumber } from "../_shared/dayNumber"
 import { json } from "../_shared/response"
 import { rowsToResults, type ResultRow } from "../_shared/rows"
@@ -14,12 +14,12 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   if (!isValidDayNumber(body.dayNumber)) return json({ error: "invalid_day_number" }, 400)
   if (!isValidGuessCount(body.guessCount)) return json({ error: "invalid_guess_count" }, 400)
   if (typeof body.won !== "boolean") return json({ error: "invalid_won" }, 400)
-  const hintsUsed = typeof body.hintsUsed === "number" && Number.isInteger(body.hintsUsed) ? body.hintsUsed : 0
+  if (!isValidHintsUsed(body.hintsUsed)) return json({ error: "invalid_hints_used" }, 400)
 
   await env.DB.prepare(
     "INSERT OR IGNORE INTO results (uuid, day_number, won, guess_count, hints_used, created_at) VALUES (?, ?, ?, ?, ?, ?)"
   )
-    .bind(body.uuid, body.dayNumber, body.won ? 1 : 0, body.guessCount, hintsUsed, Date.now())
+    .bind(body.uuid, body.dayNumber, body.won ? 1 : 0, body.guessCount, body.hintsUsed, Date.now())
     .run()
 
   const { results } = await env.DB.prepare(

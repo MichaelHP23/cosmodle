@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { isValidUuid, isValidGuessCount } from "./validate"
+import { isValidUuid, isValidGuessCount, isValidHintsUsed } from "./validate"
 
 describe("isValidUuid", () => {
   it("accepts a well-formed v4-shaped uuid", () => {
@@ -25,5 +25,19 @@ describe("isValidGuessCount", () => {
     expect(isValidGuessCount(8)).toBe(false)
     expect(isValidGuessCount(2.5)).toBe(false)
     expect(isValidGuessCount("3")).toBe(false)
+  })
+})
+
+describe("isValidHintsUsed", () => {
+  it("accepts integers 0 through 3", () => {
+    expect(isValidHintsUsed(0)).toBe(true)
+    expect(isValidHintsUsed(3)).toBe(true)
+  })
+  it("rejects negative numbers, out-of-range values, and non-integers", () => {
+    expect(isValidHintsUsed(-5)).toBe(false)
+    expect(isValidHintsUsed(4)).toBe(false)
+    expect(isValidHintsUsed(999999)).toBe(false)
+    expect(isValidHintsUsed(1.5)).toBe(false)
+    expect(isValidHintsUsed("1")).toBe(false)
   })
 })

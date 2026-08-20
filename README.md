@@ -26,17 +26,18 @@ That's it. No astronomy degree required, just paying attention to whether your l
 - **Practice** — unlimited random rounds whenever you want. Doesn't touch your stats.
 - **Archive** — go back and play any past daily puzzle you missed.
 
-Stats and puzzle progress are stored locally in your browser (no account, no server) — clearing your browser data resets them.
+No account or login is ever required. Your identity is just a random id stored in your browser, and your stats sync to a server under that id, so they survive a cleared cache or a new device.
 
 ## Tech stack
 
-React + TypeScript + Vite, styled with Tailwind CSS. Tests run on Vitest.
+React + TypeScript + Vite, styled with Tailwind CSS, backed by Cloudflare Pages Functions + D1. Tests run on Vitest.
 
 ## Development
 
 ```bash
 npm install
 npm run dev      # local dev server
+npm run dev:api  # local dev server plus the Functions/D1 backend (via wrangler)
 npm run test     # run the test suite
 npm run build    # typecheck + production build
 npm run lint     # oxlint
