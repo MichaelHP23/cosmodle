@@ -17,5 +17,5 @@ export const onRequestGet: PagesFunction<Env> = async ({ params, env }) => {
     .bind(uuid)
     .all<ResultRow>()
 
-  return json(deriveStatsFromResults(rowsToResults(results ?? [])))
+  return json(deriveStatsFromResults(rowsToResults(results ?? [])), 200, { "Cache-Control": "private, no-store" })
 }

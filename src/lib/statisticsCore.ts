@@ -1,4 +1,4 @@
-import { MAX_HINTS } from "./gameConstants"
+import { MAX_GUESSES, MAX_HINTS } from "./gameConstants"
 
 export type Statistics = {
   gamesPlayed: number
@@ -16,15 +16,13 @@ export type DailyResult = {
   hintsUsed: number
 }
 
-const MAX_GUESSES_FOR_DISTRIBUTION = 7
-
 export const ZERO_STATISTICS: Statistics = {
   gamesPlayed: 0,
   wins: 0,
   currentStreak: 0,
   longestStreak: 0,
   lastDayNumber: null,
-  guessDistribution: new Array(MAX_GUESSES_FOR_DISTRIBUTION).fill(0),
+  guessDistribution: new Array(MAX_GUESSES).fill(0),
 }
 
 export function applyResult(
