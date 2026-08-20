@@ -18,8 +18,11 @@ export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
     wins: number | null
     total: number
   }>()
-  const { results: wonRows } = await env.DB.prepare("SELECT guess_count FROM results WHERE won = 1").all<{
+  const { results: wonRows } = await env.DB.prepare(
+    "SELECT guess_count, COUNT(*) as n FROM results WHERE won = 1 GROUP BY guess_count"
+  ).all<{
     guess_count: number
+    n: number
   }>()
 
   const totalGames = winRow?.total ?? 0
