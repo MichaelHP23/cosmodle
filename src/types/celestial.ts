@@ -50,5 +50,12 @@ export type CelestialObject = {
   brightestStarMagnitude?: number
   hemisphere?: Hemisphere
 
+  redshift?: number
+  apparentMagnitude?: number
+  galaxyType?: string
+  blackHoleType?: string
+  nebulaType?: string
+  isZodiac?: boolean
+
   difficulty?: 1 | 2 | 3 | 4 | 5
 }

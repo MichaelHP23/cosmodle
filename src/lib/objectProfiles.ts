@@ -43,6 +43,7 @@ const STAR_PROFILE: ProfileEntry[] = [
   { property: "temperatureK", label: "Surface Temperature", kind: "temperature" },
   { property: "diameterKm", label: "Diameter", kind: "numeric" },
   { property: "massKg", label: "Mass", kind: "numeric" },
+  { property: "discoveredYear", label: "Discovered", kind: "numeric" },
 ]
 
 const GALAXY_PROFILE: ProfileEntry[] = [
@@ -50,6 +51,8 @@ const GALAXY_PROFILE: ProfileEntry[] = [
   { property: "distanceFromEarthLy", label: "Distance from Earth", kind: "numeric" },
   { property: "diameterKm", label: "Diameter", kind: "numeric" },
   { property: "massKg", label: "Estimated Mass", kind: "numeric" },
+  { property: "galaxyType", label: "Galaxy Type", kind: "exact" },
+  { property: "discoveredYear", label: "Discovered", kind: "numeric" },
 ]
 
 const BLACK_HOLE_PROFILE: ProfileEntry[] = [
@@ -57,18 +60,25 @@ const BLACK_HOLE_PROFILE: ProfileEntry[] = [
   { property: "distanceFromEarthLy", label: "Distance from Earth", kind: "numeric" },
   { property: "diameterKm", label: "Event Horizon Diameter", kind: "numeric" },
   { property: "massKg", label: "Mass", kind: "numeric" },
+  { property: "blackHoleType", label: "Black Hole Type", kind: "exact" },
+  { property: "discoveredYear", label: "Discovered", kind: "numeric" },
 ]
 
 const NEBULA_PROFILE: ProfileEntry[] = [
   { property: "category", label: "Type", kind: "exact" },
   { property: "distanceFromEarthLy", label: "Distance from Earth", kind: "numeric" },
   { property: "diameterKm", label: "Diameter", kind: "numeric" },
+  { property: "nebulaType", label: "Nebula Type", kind: "exact" },
+  { property: "apparentMagnitude", label: "Apparent Magnitude", kind: "numeric" },
+  { property: "discoveredYear", label: "Discovered", kind: "numeric" },
 ]
 
 const QUASAR_PROFILE: ProfileEntry[] = [
   { property: "category", label: "Type", kind: "exact" },
   { property: "distanceFromEarthLy", label: "Distance from Earth", kind: "numeric" },
   { property: "massKg", label: "Central Black Hole Mass", kind: "numeric" },
+  { property: "redshift", label: "Redshift", kind: "numeric" },
+  { property: "apparentMagnitude", label: "Apparent Magnitude", kind: "numeric" },
   { property: "discoveredYear", label: "Discovered", kind: "numeric" },
 ]
 
@@ -77,6 +87,8 @@ const CONSTELLATION_PROFILE: ProfileEntry[] = [
   { property: "hemisphere", label: "Hemisphere", kind: "exact" },
   { property: "areaSqDeg", label: "Sky Area", kind: "numeric" },
   { property: "brightestStarMagnitude", label: "Brightest Star Magnitude", kind: "numeric" },
+  { property: "isZodiac", label: "Zodiac Constellation", kind: "exact" },
+  { property: "discoveredYear", label: "Discovered", kind: "numeric" },
 ]
 
 const EXOPLANET_PROFILE: ProfileEntry[] = [
