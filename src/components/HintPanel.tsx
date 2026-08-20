@@ -51,16 +51,17 @@ export function HintPanel({
   const revealed = revealedOrder
     .map(property => hintable.find(e => e.property === property))
     .filter((e): e is ProfileEntry => e !== undefined)
-  const hintsLeft = maxHints - hintsUsed
+  const allRevealed = revealed.length >= hintable.length
+  const hintsLeft = Math.min(maxHints - hintsUsed, hintable.length - revealed.length)
 
   return (
     <div className="mb-2 flex flex-wrap items-center gap-2">
       <button
         className="rounded-lg border-2 border-[#f0a500] bg-white px-3 py-1 text-sm font-semibold text-[#b8860b] transition-colors hover:bg-[#fff6e0] disabled:cursor-not-allowed disabled:opacity-40"
         onClick={onUseHint}
-        disabled={hintsLeft <= 0 || revealed.length >= hintable.length}
+        disabled={hintsLeft <= 0}
       >
-        Hint ({hintsLeft} left)
+        {allRevealed ? "All hints revealed" : `Hint (${hintsLeft} left)`}
       </button>
       {hintsUsed > 0 && showStreakWarning && (
         <span className="text-xs text-[#b8860b]">
