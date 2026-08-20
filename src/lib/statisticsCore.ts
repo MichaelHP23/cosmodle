@@ -1,4 +1,4 @@
-import { MAX_GUESSES, MAX_HINTS } from "./gameConstants"
+import { MAX_HINTS, STATS_BUCKET_COUNT } from "./gameConstants"
 
 export type Statistics = {
   gamesPlayed: number
@@ -22,7 +22,7 @@ export const ZERO_STATISTICS: Statistics = {
   currentStreak: 0,
   longestStreak: 0,
   lastDayNumber: null,
-  guessDistribution: new Array(MAX_GUESSES).fill(0),
+  guessDistribution: new Array(STATS_BUCKET_COUNT).fill(0),
 }
 
 export function applyResult(
@@ -37,7 +37,7 @@ export function applyResult(
     ? (previous.lastDayNumber === dayNumber - 1 ? previous.currentStreak + 1 : 1)
     : 0
   const guessDistribution = [...previous.guessDistribution]
-  if (won) guessDistribution[guessCount - 1] += 1
+  if (won) guessDistribution[Math.min(guessCount, STATS_BUCKET_COUNT) - 1] += 1
 
   return {
     gamesPlayed: previous.gamesPlayed + 1,

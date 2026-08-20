@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import type { CelestialObject } from "../types/celestial"
 import type { ProfileEntry } from "../types/game"
 import { formatPropertyValue } from "../lib/formatting"
@@ -8,6 +9,7 @@ export function HintPanel({
   hintsUsed,
   maxHints,
   onUseHint,
+  correctProperties,
   showStreakWarning = true,
 }: {
   profile: ProfileEntry[]
@@ -15,10 +17,40 @@ export function HintPanel({
   hintsUsed: number
   maxHints: number
   onUseHint: () => void
+  correctProperties: Set<string>
   showStreakWarning?: boolean
 }) {
   const hintable = profile.filter(e => e.property !== "category")
-  const revealed = hintable.slice(0, hintsUsed)
+  // Properties the player hasn't nailed via a guess yet are more useful to reveal,
+  // so they go first; properties already confirmed correct go last.
+  const priorityOrder = [
+    ...hintable.filter(e => !correctProperties.has(e.property)),
+    ...hintable.filter(e => correctProperties.has(e.property)),
+  ]
+
+  // Reveal order is locked in incrementally as hints are used, so a chip already
+  // shown never disappears or reorders just because a later guess changed priority.
+  const [revealedOrder, setRevealedOrder] = useState<string[]>([])
+
+  useEffect(() => {
+    if (hintsUsed === 0) {
+      if (revealedOrder.length !== 0) setRevealedOrder([])
+      return
+    }
+    if (hintsUsed > revealedOrder.length) {
+      const next = [...revealedOrder]
+      for (const entry of priorityOrder) {
+        if (next.length >= hintsUsed) break
+        if (!next.includes(entry.property)) next.push(entry.property)
+      }
+      if (next.length !== revealedOrder.length) setRevealedOrder(next)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hintsUsed, answer.id])
+
+  const revealed = revealedOrder
+    .map(property => hintable.find(e => e.property === property))
+    .filter((e): e is ProfileEntry => e !== undefined)
   const hintsLeft = maxHints - hintsUsed
 
   return (
@@ -32,7 +64,7 @@ export function HintPanel({
       </button>
       {hintsUsed > 0 && showStreakWarning && (
         <span className="text-xs text-[#b8860b]">
-          Use all {maxHints} and win — your streak resets.
+          Use all {maxHints} hints and still win, and your streak resets.
         </span>
       )}
       {revealed.map(entry => (

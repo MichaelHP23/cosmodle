@@ -12,7 +12,10 @@ describe("buildGuessDistribution", () => {
   it("returns all zeros for no rows", () => {
     expect(buildGuessDistribution([], 7)).toEqual([0, 0, 0, 0, 0, 0, 0])
   })
-  it("ignores out-of-range guess counts", () => {
-    expect(buildGuessDistribution([{ guess_count: 0, n: 5 }, { guess_count: 9, n: 5 }], 7)).toEqual([0, 0, 0, 0, 0, 0, 0])
+  it("ignores non-positive guess counts", () => {
+    expect(buildGuessDistribution([{ guess_count: 0, n: 5 }], 7)).toEqual([0, 0, 0, 0, 0, 0, 0])
+  })
+  it("clamps guess counts above the bucket count into the last bucket", () => {
+    expect(buildGuessDistribution([{ guess_count: 9, n: 3 }, { guess_count: 15, n: 2 }], 7)).toEqual([0, 0, 0, 0, 0, 0, 5])
   })
 })

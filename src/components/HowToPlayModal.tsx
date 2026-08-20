@@ -1,4 +1,5 @@
 import { ResultIndicator } from "./ResultIndicator"
+import { MAX_GUESSES, MAX_HINTS } from "../lib/gameConstants"
 
 const LEGEND: { status: Parameters<typeof ResultIndicator>[0]["status"]; label: string; detail: string }[] = [
   { status: "correct", label: "Correct", detail: "Exact match, or within 2% for numbers / 3°C for temperature." },
@@ -31,7 +32,7 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
 
         <p className="mb-3 text-sm text-[#4d4d4d]">
           There's a mystery celestial object: a planet, moon, star, galaxy, whatever the universe throws
-          at you. Find it in 7 guesses or fewer.
+          at you. Find it in {MAX_GUESSES} guesses or fewer.
         </p>
 
         <ol className="mb-4 list-decimal space-y-1.5 pl-5 text-sm text-[#4d4d4d]">
@@ -59,9 +60,9 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
         <div className="mb-4 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3 text-sm text-[#4d4d4d]">
           <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Hints</div>
           <p>
-            Stuck? The Hint button reveals one of the mystery object's actual properties. You get 3 per
-            puzzle, but if you use all 3 and still win, that day doesn't extend your streak (it still
-            counts as a win).
+            Stuck? The Hint button reveals one of the mystery object's actual properties, prioritizing
+            whatever your guesses haven't already told you. You get {MAX_HINTS} per puzzle, but if you use
+            all {MAX_HINTS} and still win, that day doesn't extend your streak (it still counts as a win).
           </p>
         </div>
 

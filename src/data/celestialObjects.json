@@ -15,7 +15,8 @@
     "rotationPeriodHours": 1407.6,
     "difficulty": 1,
     "description": "The smallest planet and closest to the Sun, with no atmosphere to retain heat.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Mercury_in_true_color.jpg/330px-Mercury_in_true_color.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Mercury_in_true_color.jpg/330px-Mercury_in_true_color.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "venus",
@@ -33,7 +34,8 @@
     "rotationPeriodHours": 5832.5,
     "difficulty": 1,
     "description": "The hottest planet in the solar system due to a runaway greenhouse atmosphere of carbon dioxide.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Venus_2_Approach_Image.jpg/330px-Venus_2_Approach_Image.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Venus_2_Approach_Image.jpg/330px-Venus_2_Approach_Image.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "earth",
@@ -51,7 +53,8 @@
     "rotationPeriodHours": 23.93,
     "difficulty": 1,
     "description": "The only known planet with liquid water oceans covering most of its surface.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Meteosat-12-fci-march-equinox-2025-noon.jpg/330px-Meteosat-12-fci-march-equinox-2025-noon.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Meteosat-12-fci-march-equinox-2025-noon.jpg/330px-Meteosat-12-fci-march-equinox-2025-noon.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "mars",
@@ -69,7 +72,8 @@
     "rotationPeriodHours": 24.62,
     "difficulty": 1,
     "description": "Known as the Red Planet for its iron-oxide-rich surface dust.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mars_-_August_30_2021_-_Flickr_-_Kevin_M._Gill.png/330px-Mars_-_August_30_2021_-_Flickr_-_Kevin_M._Gill.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Mars_-_August_30_2021_-_Flickr_-_Kevin_M._Gill.png/330px-Mars_-_August_30_2021_-_Flickr_-_Kevin_M._Gill.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "jupiter",
@@ -87,7 +91,8 @@
     "rotationPeriodHours": 9.93,
     "difficulty": 1,
     "description": "The largest planet in the solar system, a gas giant with a Great Red Spot storm.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Jupiter_OPAL_2024.png/330px-Jupiter_OPAL_2024.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Jupiter_OPAL_2024.png/330px-Jupiter_OPAL_2024.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "saturn",
@@ -105,7 +110,8 @@
     "rotationPeriodHours": 10.7,
     "difficulty": 1,
     "description": "Famous for its spectacular ring system made mostly of ice particles.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Saturn_global_view_from_Cassini%2C_rings_open_Better_Colour.png/330px-Saturn_global_view_from_Cassini%2C_rings_open_Better_Colour.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Saturn_global_view_from_Cassini%2C_rings_open_Better_Colour.png/330px-Saturn_global_view_from_Cassini%2C_rings_open_Better_Colour.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "uranus",
@@ -123,7 +129,8 @@
     "rotationPeriodHours": 17.24,
     "difficulty": 2,
     "description": "An ice giant that rotates almost on its side, likely from a past massive collision.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Uranus_Voyager2_color_calibrated.png/330px-Uranus_Voyager2_color_calibrated.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Uranus_Voyager2_color_calibrated.png/330px-Uranus_Voyager2_color_calibrated.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1781
   },
   {
     "id": "neptune",
@@ -141,7 +148,8 @@
     "rotationPeriodHours": 16.11,
     "difficulty": 2,
     "description": "The windiest planet in the solar system, with storms reaching supersonic speeds.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Neptune_Voyager2_color_calibrated.png/330px-Neptune_Voyager2_color_calibrated.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Neptune_Voyager2_color_calibrated.png/330px-Neptune_Voyager2_color_calibrated.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1846
   },
   {
     "id": "pluto",
@@ -159,7 +167,8 @@
     "rotationPeriodHours": 153.3,
     "difficulty": 2,
     "description": "Reclassified as a dwarf planet in 2006, it has a heart-shaped nitrogen-ice glacier.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Pluto_in_True_Color_-_High-Res.png/330px-Pluto_in_True_Color_-_High-Res.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Pluto_in_True_Color_-_High-Res.png/330px-Pluto_in_True_Color_-_High-Res.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1930
   },
   {
     "id": "ceres",
@@ -177,7 +186,8 @@
     "rotationPeriodHours": 9.07,
     "difficulty": 3,
     "description": "The largest object in the asteroid belt and the only dwarf planet located there.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Ceres_-_RC3_-_Haulani_Crater_%2822381131691%29_%28cropped%29.jpg/330px-Ceres_-_RC3_-_Haulani_Crater_%2822381131691%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Ceres_-_RC3_-_Haulani_Crater_%2822381131691%29_%28cropped%29.jpg/330px-Ceres_-_RC3_-_Haulani_Crater_%2822381131691%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1801
   },
   {
     "id": "eris",
@@ -195,7 +205,8 @@
     "rotationPeriodHours": 25.9,
     "difficulty": 4,
     "description": "A distant, icy dwarf planet whose discovery helped trigger Pluto's reclassification.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Eris_and_moon_Dysnomia_JWST_NIRCam.jpg/330px-Eris_and_moon_Dysnomia_JWST_NIRCam.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Eris_and_moon_Dysnomia_JWST_NIRCam.jpg/330px-Eris_and_moon_Dysnomia_JWST_NIRCam.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 2005
   },
   {
     "id": "haumea",
@@ -213,7 +224,8 @@
     "rotationPeriodHours": 3.92,
     "difficulty": 4,
     "description": "An oddly elongated dwarf planet that spins so fast it is shaped like a football, and has a thin ring.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Haumea_Hubble.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Haumea_Hubble.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "discoveredYear": 2004
   },
   {
     "id": "makemake",
@@ -231,7 +243,8 @@
     "rotationPeriodHours": 22.48,
     "difficulty": 4,
     "description": "A reddish, icy dwarf planet in the Kuiper Belt named after a Rapa Nui creation deity.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Makemake_and_its_moon.jpg/330px-Makemake_and_its_moon.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Makemake_and_its_moon.jpg/330px-Makemake_and_its_moon.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 2005
   },
   {
     "id": "moon",
@@ -247,7 +260,8 @@
     "parentBodyId": "earth",
     "difficulty": 1,
     "description": "Earth's only natural satellite, thought to have formed from debris after a giant impact.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/330px-FullMoon2010.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/330px-FullMoon2010.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "io",
@@ -263,7 +277,8 @@
     "parentBodyId": "jupiter",
     "difficulty": 3,
     "description": "The most volcanically active body in the solar system, driven by tidal heating from Jupiter.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Io_highest_resolution_true_color.jpg/330px-Io_highest_resolution_true_color.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Io_highest_resolution_true_color.jpg/330px-Io_highest_resolution_true_color.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1610
   },
   {
     "id": "europa",
@@ -279,7 +294,8 @@
     "parentBodyId": "jupiter",
     "difficulty": 2,
     "description": "An icy moon of Jupiter believed to hide a subsurface ocean beneath its frozen crust.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Europa_-_Perijove_45_%28cropped%29.png/330px-Europa_-_Perijove_45_%28cropped%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Europa_-_Perijove_45_%28cropped%29.png/330px-Europa_-_Perijove_45_%28cropped%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1610
   },
   {
     "id": "ganymede",
@@ -295,7 +311,8 @@
     "parentBodyId": "jupiter",
     "difficulty": 3,
     "description": "The largest moon in the solar system, bigger than the planet Mercury.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Ganymede_-_Perijove_34_Composite.png/330px-Ganymede_-_Perijove_34_Composite.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Ganymede_-_Perijove_34_Composite.png/330px-Ganymede_-_Perijove_34_Composite.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1610
   },
   {
     "id": "callisto",
@@ -311,7 +328,8 @@
     "parentBodyId": "jupiter",
     "difficulty": 3,
     "description": "One of the most heavily cratered bodies in the solar system, largely unchanged for billions of years.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Callisto_VGR2_C2060635_OGB.png/330px-Callisto_VGR2_C2060635_OGB.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Callisto_VGR2_C2060635_OGB.png/330px-Callisto_VGR2_C2060635_OGB.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1610
   },
   {
     "id": "titan",
@@ -327,7 +345,8 @@
     "parentBodyId": "saturn",
     "difficulty": 2,
     "description": "Saturn's largest moon, with thick clouds and lakes of liquid methane on its surface.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Titan_in_true_color_by_Kevin_M._Gill.jpg/330px-Titan_in_true_color_by_Kevin_M._Gill.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Titan_in_true_color_by_Kevin_M._Gill.jpg/330px-Titan_in_true_color_by_Kevin_M._Gill.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1655
   },
   {
     "id": "enceladus",
@@ -343,7 +362,8 @@
     "parentBodyId": "saturn",
     "difficulty": 4,
     "description": "A small icy moon that sprays plumes of water vapor from its south pole.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/PIA17202_-_Approaching_Enceladus.jpg/330px-PIA17202_-_Approaching_Enceladus.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/PIA17202_-_Approaching_Enceladus.jpg/330px-PIA17202_-_Approaching_Enceladus.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1789
   },
   {
     "id": "triton",
@@ -359,7 +379,8 @@
     "parentBodyId": "neptune",
     "difficulty": 3,
     "description": "Neptune's largest moon, notable for orbiting backwards relative to the planet's rotation.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Triton-usgs23-with-frame.jpg/330px-Triton-usgs23-with-frame.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Triton-usgs23-with-frame.jpg/330px-Triton-usgs23-with-frame.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1846
   },
   {
     "id": "titania",
@@ -375,7 +396,8 @@
     "parentBodyId": "uranus",
     "difficulty": 4,
     "description": "The largest moon of Uranus, marked by canyons far deeper than the Grand Canyon.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Titania_VGR2_C2684315.png/330px-Titania_VGR2_C2684315.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Titania_VGR2_C2684315.png/330px-Titania_VGR2_C2684315.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1787
   },
   {
     "id": "oberon",
@@ -391,7 +413,8 @@
     "parentBodyId": "uranus",
     "difficulty": 4,
     "description": "The outermost major moon of Uranus, heavily cratered with a reddish surface.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Joseph_Noel_Paton_-_The_Reconciliation_of_Titania_and_Oberon.jpg/330px-Joseph_Noel_Paton_-_The_Reconciliation_of_Titania_and_Oberon.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Joseph_Noel_Paton_-_The_Reconciliation_of_Titania_and_Oberon.jpg/330px-Joseph_Noel_Paton_-_The_Reconciliation_of_Titania_and_Oberon.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1787
   },
   {
     "id": "rhea",
@@ -407,7 +430,8 @@
     "parentBodyId": "saturn",
     "difficulty": 4,
     "description": "Saturn's second-largest moon, composed mostly of water ice.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/PIA07763_Rhea_full_globe5.jpg/330px-PIA07763_Rhea_full_globe5.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/PIA07763_Rhea_full_globe5.jpg/330px-PIA07763_Rhea_full_globe5.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1672
   },
   {
     "id": "iapetus",
@@ -423,7 +447,8 @@
     "parentBodyId": "saturn",
     "difficulty": 4,
     "description": "Known for its striking two-tone coloring, one hemisphere dark and one bright.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Iapetus_trailing_natural_color.jpg/330px-Iapetus_trailing_natural_color.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Iapetus_trailing_natural_color.jpg/330px-Iapetus_trailing_natural_color.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1671
   },
   {
     "id": "phobos",
@@ -439,7 +464,8 @@
     "parentBodyId": "mars",
     "difficulty": 4,
     "description": "The larger of Mars's two moons, orbiting so close and fast it rises twice a day.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Phobos_colour_2008.jpg/330px-Phobos_colour_2008.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Phobos_colour_2008.jpg/330px-Phobos_colour_2008.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1877
   },
   {
     "id": "deimos",
@@ -455,7 +481,8 @@
     "parentBodyId": "mars",
     "difficulty": 4,
     "description": "The smaller, outer moon of Mars, likely a captured asteroid.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/NASA-Deimos-MarsMoon-20090221.jpg/330px-NASA-Deimos-MarsMoon-20090221.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/NASA-Deimos-MarsMoon-20090221.jpg/330px-NASA-Deimos-MarsMoon-20090221.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1877
   },
   {
     "id": "mimas",
@@ -471,7 +498,8 @@
     "parentBodyId": "saturn",
     "difficulty": 4,
     "description": "A small moon of Saturn with a giant crater that gives it a Death Star-like appearance.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Mimas_Masked.jpg/330px-Mimas_Masked.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Mimas_Masked.jpg/330px-Mimas_Masked.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1789
   },
   {
     "id": "dione",
@@ -487,7 +515,8 @@
     "parentBodyId": "saturn",
     "difficulty": 4,
     "description": "An icy moon of Saturn with bright, wispy cliffs of fractured ice.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Dione_in_natural_light.jpg/330px-Dione_in_natural_light.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Dione_in_natural_light.jpg/330px-Dione_in_natural_light.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1684
   },
   {
     "id": "tethys",
@@ -503,7 +532,8 @@
     "parentBodyId": "saturn",
     "difficulty": 4,
     "description": "A Saturnian moon almost entirely composed of water ice, with a massive canyon system.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Global_view_of_Tethys_from_Cassini.jpg/330px-Global_view_of_Tethys_from_Cassini.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Global_view_of_Tethys_from_Cassini.jpg/330px-Global_view_of_Tethys_from_Cassini.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1684
   },
   {
     "id": "miranda",
@@ -519,7 +549,8 @@
     "parentBodyId": "uranus",
     "difficulty": 4,
     "description": "The smallest of Uranus's major moons, with an extraordinarily varied, jumbled terrain.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Miranda_mosaic_in_color_-_Voyager_2.png/330px-Miranda_mosaic_in_color_-_Voyager_2.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Miranda_mosaic_in_color_-_Voyager_2.png/330px-Miranda_mosaic_in_color_-_Voyager_2.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1948
   },
   {
     "id": "ariel",
@@ -535,7 +566,8 @@
     "parentBodyId": "uranus",
     "difficulty": 4,
     "description": "The brightest of Uranus's major moons, with a surface of ice canyons and lava-like flows.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Ariel_in_monochrome.jpg/330px-Ariel_in_monochrome.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Ariel_in_monochrome.jpg/330px-Ariel_in_monochrome.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1851
   },
   {
     "id": "umbriel",
@@ -551,7 +583,8 @@
     "parentBodyId": "uranus",
     "difficulty": 4,
     "description": "The darkest of Uranus's major moons, heavily cratered and ancient.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/PIA00040_Umbrielx2.47.jpg/330px-PIA00040_Umbrielx2.47.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/PIA00040_Umbrielx2.47.jpg/330px-PIA00040_Umbrielx2.47.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1851
   },
   {
     "id": "charon",
@@ -567,7 +600,8 @@
     "parentBodyId": "pluto",
     "difficulty": 4,
     "description": "Pluto's largest moon, so massive relative to Pluto that the two form a binary system.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Attic_Red_Figure_%28White_Ground%29_Lekythos_with_Charon%2C_attributed_to_the_Tymbos_painter%2C_ca_500_-_450_BC%2C_Ashmolean_Museum%2C_Oxford%2C_UK_%2822681344331%29.jpg/330px-Attic_Red_Figure_%28White_Ground%29_Lekythos_with_Charon%2C_attributed_to_the_Tymbos_painter%2C_ca_500_-_450_BC%2C_Ashmolean_Museum%2C_Oxford%2C_UK_%2822681344331%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Attic_Red_Figure_%28White_Ground%29_Lekythos_with_Charon%2C_attributed_to_the_Tymbos_painter%2C_ca_500_-_450_BC%2C_Ashmolean_Museum%2C_Oxford%2C_UK_%2822681344331%29.jpg/330px-Attic_Red_Figure_%28White_Ground%29_Lekythos_with_Charon%2C_attributed_to_the_Tymbos_painter%2C_ca_500_-_450_BC%2C_Ashmolean_Museum%2C_Oxford%2C_UK_%2822681344331%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1978
   },
   {
     "id": "vesta",
@@ -581,7 +615,8 @@
     "orbitalPeriodDays": 1325,
     "difficulty": 4,
     "description": "One of the largest bodies in the asteroid belt, bright enough to sometimes be seen with the naked eye.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Vesta_in_natural_color.jpg/330px-Vesta_in_natural_color.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Vesta_in_natural_color.jpg/330px-Vesta_in_natural_color.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1807
   },
   {
     "id": "bennu",
@@ -595,7 +630,8 @@
     "orbitalPeriodDays": 436,
     "difficulty": 4,
     "description": "A carbon-rich near-Earth asteroid sampled by NASA's OSIRIS-REx mission.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Bennu_bird.svg/330px-Bennu_bird.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Bennu_bird.svg/330px-Bennu_bird.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1999
   },
   {
     "id": "ryugu",
@@ -609,7 +645,8 @@
     "orbitalPeriodDays": 474,
     "difficulty": 4,
     "description": "A diamond-shaped near-Earth asteroid visited and sampled by Japan's Hayabusa2 mission.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/162173_Ryugu_brightened.png/330px-162173_Ryugu_brightened.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/162173_Ryugu_brightened.png/330px-162173_Ryugu_brightened.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1999
   },
   {
     "id": "apophis",
@@ -623,7 +660,8 @@
     "orbitalPeriodDays": 324,
     "difficulty": 4,
     "description": "A near-Earth asteroid that will pass closer to Earth than some satellites in 2029.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Apep_%28Deity%29.svg/330px-Apep_%28Deity%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Apep_%28Deity%29.svg/330px-Apep_%28Deity%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 2004
   },
   {
     "id": "eros",
@@ -637,7 +675,8 @@
     "orbitalPeriodDays": 643,
     "difficulty": 4,
     "description": "An elongated near-Earth asteroid, the first ever to be orbited and landed on by a spacecraft.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Eros_Farnese_N%C3%A1poles_05.jpg/330px-Eros_Farnese_N%C3%A1poles_05.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Eros_Farnese_N%C3%A1poles_05.jpg/330px-Eros_Farnese_N%C3%A1poles_05.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1898
   },
   {
     "id": "itokawa",
@@ -651,7 +690,8 @@
     "orbitalPeriodDays": 556,
     "difficulty": 5,
     "description": "A small, peanut-shaped near-Earth asteroid, the first to have samples returned to Earth.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Asteroid_%2825143%29_Itokawa_seen_in_close-up_%28eso1405c%29.jpg/330px-Asteroid_%2825143%29_Itokawa_seen_in_close-up_%28eso1405c%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Asteroid_%2825143%29_Itokawa_seen_in_close-up_%28eso1405c%29.jpg/330px-Asteroid_%2825143%29_Itokawa_seen_in_close-up_%28eso1405c%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1998
   },
   {
     "id": "psyche",
@@ -665,7 +705,8 @@
     "orbitalPeriodDays": 1834,
     "difficulty": 5,
     "description": "A metal-rich asteroid thought to be the exposed core of an early planetary building block.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Psyche_VLT.png/330px-Psyche_VLT.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Psyche_VLT.png/330px-Psyche_VLT.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1852
   },
   {
     "id": "ida",
@@ -679,7 +720,8 @@
     "orbitalPeriodDays": 1767,
     "difficulty": 5,
     "description": "An asteroid in the main belt that was found to have its own tiny moon, Dactyl.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/243_ida_crop.jpg/330px-243_ida_crop.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/243_ida_crop.jpg/330px-243_ida_crop.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1884
   },
   {
     "id": "halley",
@@ -693,7 +735,8 @@
     "orbitalPeriodDays": 27740,
     "difficulty": 3,
     "description": "The most famous periodic comet, visible from Earth roughly every 76 years.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Lspn_comet_halley.jpg/330px-Lspn_comet_halley.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Lspn_comet_halley.jpg/330px-Lspn_comet_halley.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1705
   },
   {
     "id": "hale_bopp",
@@ -707,20 +750,22 @@
     "orbitalPeriodDays": 2533000,
     "difficulty": 5,
     "description": "One of the brightest comets of the 20th century, visible to the naked eye for a record 18 months.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Comet_Hale-Bopp_1995O1.jpg/330px-Comet_Hale-Bopp_1995O1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Comet_Hale-Bopp_1995O1.jpg/330px-Comet_Hale-Bopp_1995O1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1995
   },
   {
     "id": "sun",
     "name": "Sun",
     "category": "star",
     "color": "#ffd54a",
-    "distanceFromEarthLy": 0.0000158,
+    "distanceFromEarthLy": 1.58e-05,
     "diameterKm": 1391000,
     "massKg": 1.989e+30,
     "temperatureK": 5778,
     "difficulty": 1,
     "description": "The star at the center of the solar system, a yellow dwarf that makes up 99.8% of the system's mass.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/The_Sun_in_white_light.jpg/330px-The_Sun_in_white_light.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/The_Sun_in_white_light.jpg/330px-The_Sun_in_white_light.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "sirius",
@@ -733,7 +778,8 @@
     "temperatureK": 9940,
     "difficulty": 3,
     "description": "The brightest star in Earth's night sky, a blue-white star twice the mass of the Sun.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Canis_Major_constellation_map.svg/330px-Canis_Major_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Canis_Major_constellation_map.svg/330px-Canis_Major_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "proxima_centauri",
@@ -746,7 +792,8 @@
     "temperatureK": 3042,
     "difficulty": 4,
     "description": "The closest known star to the Sun, a small red dwarf orbited by at least one Earth-sized planet.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/New_shot_of_Proxima_Centauri%2C_our_nearest_neighbour.jpg/330px-New_shot_of_Proxima_Centauri%2C_our_nearest_neighbour.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/New_shot_of_Proxima_Centauri%2C_our_nearest_neighbour.jpg/330px-New_shot_of_Proxima_Centauri%2C_our_nearest_neighbour.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1915
   },
   {
     "id": "vega",
@@ -759,7 +806,8 @@
     "temperatureK": 9600,
     "difficulty": 3,
     "description": "One of the brightest stars in the northern sky, and was the northern pole star around 12,000 BCE.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Lyra_constellation_map.svg/330px-Lyra_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Lyra_constellation_map.svg/330px-Lyra_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "betelgeuse",
@@ -772,7 +820,8 @@
     "temperatureK": 3600,
     "difficulty": 2,
     "description": "A red supergiant so vast that, if it replaced the Sun, its surface would extend past Jupiter's orbit.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Orion_constellation_map.svg/330px-Orion_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Orion_constellation_map.svg/330px-Orion_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "sagittarius_a_star",
@@ -784,7 +833,8 @@
     "massKg": 8.2e+36,
     "difficulty": 3,
     "description": "The supermassive black hole at the center of the Milky Way, about 4 million times the Sun's mass.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/EHT_Saggitarius_A_black_hole.tif/lossy-page1-330px-EHT_Saggitarius_A_black_hole.tif.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/EHT_Saggitarius_A_black_hole.tif/lossy-page1-330px-EHT_Saggitarius_A_black_hole.tif.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1974
   },
   {
     "id": "m87_star",
@@ -796,7 +846,8 @@
     "massKg": 1.3e+40,
     "difficulty": 4,
     "description": "A supermassive black hole in galaxy M87, the first black hole ever directly photographed, in 2019.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Messier_87_Hubble_WikiSky.jpg/330px-Messier_87_Hubble_WikiSky.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Messier_87_Hubble_WikiSky.jpg/330px-Messier_87_Hubble_WikiSky.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 2019
   },
   {
     "id": "cygnus_x1",
@@ -808,7 +859,8 @@
     "massKg": 4.3e+31,
     "difficulty": 5,
     "description": "One of the first black holes ever identified, formed from the collapse of a massive star.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Cygnus_IAU.svg/330px-Cygnus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Cygnus_IAU.svg/330px-Cygnus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1964
   },
   {
     "id": "orion_nebula",
@@ -819,7 +871,8 @@
     "diameterKm": 227000000000000,
     "difficulty": 2,
     "description": "A vast stellar nursery visible to the naked eye, where thousands of new stars are being born.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Orion_Nebula_-_Hubble_2006_mosaic_18000.jpg/330px-Orion_Nebula_-_Hubble_2006_mosaic_18000.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Orion_Nebula_-_Hubble_2006_mosaic_18000.jpg/330px-Orion_Nebula_-_Hubble_2006_mosaic_18000.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1610
   },
   {
     "id": "crab_nebula",
@@ -830,7 +883,8 @@
     "diameterKm": 104000000000000,
     "difficulty": 3,
     "description": "The expanding remnant of a supernova recorded by astronomers in the year 1054.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/330px-Crab_Nebula.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/330px-Crab_Nebula.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1731
   },
   {
     "id": "ring_nebula",
@@ -841,7 +895,8 @@
     "diameterKm": 11300000000000,
     "difficulty": 4,
     "description": "A glowing shell of gas cast off by a dying star, forming a famous ring shape as seen from Earth.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Webb_captures_detailed_beauty_of_Ring_Nebula_%28NIRCam_image%29_%28weic2320b%29.jpg/330px-Webb_captures_detailed_beauty_of_Ring_Nebula_%28NIRCam_image%29_%28weic2320b%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Webb_captures_detailed_beauty_of_Ring_Nebula_%28NIRCam_image%29_%28weic2320b%29.jpg/330px-Webb_captures_detailed_beauty_of_Ring_Nebula_%28NIRCam_image%29_%28weic2320b%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1779
   },
   {
     "id": "milky_way",
@@ -853,7 +908,8 @@
     "massKg": 2.9e+42,
     "difficulty": 1,
     "description": "The barred spiral galaxy containing the solar system, home to at least 100 billion stars.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/ESO-VLT-Laser-phot-33a-07.jpg/330px-ESO-VLT-Laser-phot-33a-07.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/ESO-VLT-Laser-phot-33a-07.jpg/330px-ESO-VLT-Laser-phot-33a-07.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "andromeda",
@@ -865,7 +921,8 @@
     "massKg": 3e+42,
     "difficulty": 2,
     "description": "The nearest large spiral galaxy to the Milky Way, on a slow collision course with it.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Andromeda_Galaxy_2025.png/330px-Andromeda_Galaxy_2025.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Andromeda_Galaxy_2025.png/330px-Andromeda_Galaxy_2025.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 964
   },
   {
     "id": "whirlpool_galaxy",
@@ -877,7 +934,8 @@
     "massKg": 3.2e+41,
     "difficulty": 4,
     "description": "A classic spiral galaxy famous for its clearly defined arms, seen interacting with a smaller companion galaxy.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Messier51_sRGB.jpg/330px-Messier51_sRGB.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Messier51_sRGB.jpg/330px-Messier51_sRGB.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1773
   },
   {
     "id": "ton_618",
@@ -889,7 +947,8 @@
     "massKg": 1.313e+41,
     "difficulty": 5,
     "description": "One of the most massive black holes ever found, powering a hyperluminous quasar.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e1/TON_618_SDSS9_version_3.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e1/TON_618_SDSS9_version_3.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "discoveredYear": 1970
   },
   {
     "id": "oj_287",
@@ -901,7 +960,8 @@
     "massKg": 3.58e+40,
     "difficulty": 5,
     "description": "A binary black hole system whose smaller companion punches through the larger one's disk every ~12 years, causing predictable flares.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/SizesCompared-GalaxyOJ287CentralBlackHoles%26SolarSystem.jpg/330px-SizesCompared-GalaxyOJ287CentralBlackHoles%26SolarSystem.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/SizesCompared-GalaxyOJ287CentralBlackHoles%26SolarSystem.jpg/330px-SizesCompared-GalaxyOJ287CentralBlackHoles%26SolarSystem.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1891
   },
   {
     "id": "gro_j1655_40",
@@ -913,7 +973,8 @@
     "massKg": 1.253e+31,
     "difficulty": 5,
     "description": "A stellar-mass black hole in a binary system, notable for jets that appeared to move faster than light (an illusion of perspective).",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/GRO_J1655-40.jpg/330px-GRO_J1655-40.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/GRO_J1655-40.jpg/330px-GRO_J1655-40.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1994
   },
   {
     "id": "v404_cygni",
@@ -925,7 +986,8 @@
     "massKg": 1.79e+31,
     "difficulty": 5,
     "description": "A black hole binary that erupted dramatically in 2015 after 26 years of quiet, briefly becoming one of the brightest X-ray sources in the sky.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/V404Cyg_XRT_halo_fullsize.jpg/330px-V404Cyg_XRT_halo_fullsize.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/V404Cyg_XRT_halo_fullsize.jpg/330px-V404Cyg_XRT_halo_fullsize.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1989
   },
   {
     "id": "3c273",
@@ -997,7 +1059,8 @@
     "massKg": 9.95e+40,
     "difficulty": 3,
     "description": "The third-largest galaxy in the Local Group, a spiral galaxy visible to the naked eye under dark skies.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/VST_snaps_a_very_detailed_view_of_the_Triangulum_Galaxy.jpg/330px-VST_snaps_a_very_detailed_view_of_the_Triangulum_Galaxy.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/VST_snaps_a_very_detailed_view_of_the_Triangulum_Galaxy.jpg/330px-VST_snaps_a_very_detailed_view_of_the_Triangulum_Galaxy.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1764
   },
   {
     "id": "sombrero_galaxy",
@@ -1009,7 +1072,8 @@
     "massKg": 1.59e+42,
     "difficulty": 4,
     "description": "A galaxy with a bright nucleus, large central bulge, and a prominent dust lane, resembling a wide-brimmed hat.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Sombrero_Galaxy_%28heic2506a%29.jpg/330px-Sombrero_Galaxy_%28heic2506a%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Sombrero_Galaxy_%28heic2506a%29.jpg/330px-Sombrero_Galaxy_%28heic2506a%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1781
   },
   {
     "id": "large_magellanic_cloud",
@@ -1021,7 +1085,8 @@
     "massKg": 1.989e+40,
     "difficulty": 2,
     "description": "A satellite galaxy of the Milky Way visible to the naked eye from the Southern Hemisphere.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Eso1021d.jpg/330px-Eso1021d.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Eso1021d.jpg/330px-Eso1021d.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "centaurus_a",
@@ -1033,7 +1098,8 @@
     "massKg": 1.989e+42,
     "difficulty": 4,
     "description": "A giant elliptical galaxy with an active supermassive black hole launching a jet of particles thousands of light-years long.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/ESO_Centaurus_A_LABOCA.jpg/330px-ESO_Centaurus_A_LABOCA.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/ESO_Centaurus_A_LABOCA.jpg/330px-ESO_Centaurus_A_LABOCA.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1826
   },
   {
     "id": "eagle_nebula",
@@ -1044,7 +1110,8 @@
     "diameterKm": 662000000000000,
     "difficulty": 2,
     "description": "Home to the Pillars of Creation, towering columns of gas and dust where new stars are forming.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eagle_Nebula_from_ESO.jpg/330px-Eagle_Nebula_from_ESO.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eagle_Nebula_from_ESO.jpg/330px-Eagle_Nebula_from_ESO.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1745
   },
   {
     "id": "helix_nebula",
@@ -1055,7 +1122,8 @@
     "diameterKm": 23700000000000,
     "difficulty": 3,
     "description": "One of the closest planetary nebulae to Earth, nicknamed the 'Eye of God' for its ring-like appearance.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/NGC7293_%282004%29.jpg/330px-NGC7293_%282004%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/NGC7293_%282004%29.jpg/330px-NGC7293_%282004%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1824
   },
   {
     "id": "cats_eye_nebula",
@@ -1066,7 +1134,8 @@
     "diameterKm": 2840000000000,
     "difficulty": 4,
     "description": "A planetary nebula with an intricate, layered structure suggesting repeated bursts of material from its dying central star.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Looking_at_the_Cat%E2%80%99s_Eye_Nebula_with_Hubble_%28potm2602b%29.jpg/330px-Looking_at_the_Cat%E2%80%99s_Eye_Nebula_with_Hubble_%28potm2602b%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Looking_at_the_Cat%E2%80%99s_Eye_Nebula_with_Hubble_%28potm2602b%29.jpg/330px-Looking_at_the_Cat%E2%80%99s_Eye_Nebula_with_Hubble_%28potm2602b%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1786
   },
   {
     "id": "nereid",
@@ -1082,7 +1151,8 @@
     "parentBodyId": "neptune",
     "difficulty": 5,
     "description": "One of the most eccentric orbits of any moon in the solar system, swinging from close to Neptune to far beyond it.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Nereid-Voyager2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Nereid-Voyager2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "discoveredYear": 1949
   },
   {
     "id": "hyperion",
@@ -1098,7 +1168,8 @@
     "parentBodyId": "saturn",
     "difficulty": 5,
     "description": "An irregularly shaped, sponge-like moon of Saturn that tumbles chaotically rather than rotating predictably.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Hyperion_true.jpg/330px-Hyperion_true.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Hyperion_true.jpg/330px-Hyperion_true.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1848
   },
   {
     "id": "amalthea",
@@ -1114,7 +1185,8 @@
     "parentBodyId": "jupiter",
     "difficulty": 5,
     "description": "A small, reddish inner moon of Jupiter, likely stained by sulfur particles from Io's volcanic eruptions.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Amalthea_PIA02532.png/330px-Amalthea_PIA02532.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Amalthea_PIA02532.png/330px-Amalthea_PIA02532.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1892
   },
   {
     "id": "pallas",
@@ -1128,7 +1200,8 @@
     "orbitalPeriodDays": 1686,
     "difficulty": 4,
     "description": "The third-largest object in the asteroid belt, tilted at a steep angle unlike most other large asteroids.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Potw1749a_Pallas_crop.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Potw1749a_Pallas_crop.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "discoveredYear": 1802
   },
   {
     "id": "juno_asteroid",
@@ -1142,7 +1215,8 @@
     "orbitalPeriodDays": 1594,
     "difficulty": 5,
     "description": "One of the first asteroids discovered, bright enough to occasionally be visible with the naked eye.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/3_Juno_VLT_%282021%29.png/330px-3_Juno_VLT_%282021%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/3_Juno_VLT_%282021%29.png/330px-3_Juno_VLT_%282021%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1804
   },
   {
     "id": "chiron",
@@ -1156,7 +1230,8 @@
     "orbitalPeriodDays": 18500,
     "difficulty": 5,
     "description": "A centaur that orbits between Saturn and Uranus, classified as both an asteroid and a comet due to its occasional cometary activity.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/2060_Chiron.jpg/330px-2060_Chiron.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/2060_Chiron.jpg/330px-2060_Chiron.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1977
   },
   {
     "id": "neowise",
@@ -1170,7 +1245,8 @@
     "orbitalPeriodDays": 2483000,
     "difficulty": 3,
     "description": "A long-period comet that became the brightest seen from the Northern Hemisphere in over two decades when it passed by in 2020.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Comet_2020_F3_%28NEOWISE%29_on_Jul_14_2020_aligned_to_stars.jpg/330px-Comet_2020_F3_%28NEOWISE%29_on_Jul_14_2020_aligned_to_stars.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Comet_2020_F3_%28NEOWISE%29_on_Jul_14_2020_aligned_to_stars.jpg/330px-Comet_2020_F3_%28NEOWISE%29_on_Jul_14_2020_aligned_to_stars.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 2020
   },
   {
     "id": "rigel",
@@ -1183,7 +1259,8 @@
     "temperatureK": 12100,
     "difficulty": 3,
     "description": "A blue supergiant and the brightest star in the constellation Orion, tens of thousands of times more luminous than the Sun.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Orion_constellation_map.svg/330px-Orion_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Orion_constellation_map.svg/330px-Orion_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "antares",
@@ -1196,7 +1273,8 @@
     "temperatureK": 3660,
     "difficulty": 3,
     "description": "A red supergiant so large that, like Betelgeuse, it could engulf the orbit of Mars if placed at the center of the solar system.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Scorpius_constellation_map.svg/330px-Scorpius_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Scorpius_constellation_map.svg/330px-Scorpius_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "polaris",
@@ -1209,7 +1287,8 @@
     "temperatureK": 6015,
     "difficulty": 4,
     "description": "The current North Star, closely aligned with Earth's axis of rotation, making it appear nearly fixed in the sky.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Ursa_Minor_constellation_map.svg/330px-Ursa_Minor_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Ursa_Minor_constellation_map.svg/330px-Ursa_Minor_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "alpha_centauri_a",
@@ -1222,7 +1301,8 @@
     "temperatureK": 5790,
     "difficulty": 4,
     "description": "The brighter member of the nearest star system to the Sun, a yellow star very similar in size and temperature to our own.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/The_sky_around_Alpha_Centauri_and_Proxima_Centauri_%28eso1629i%29.jpg/330px-The_sky_around_Alpha_Centauri_and_Proxima_Centauri_%28eso1629i%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/The_sky_around_Alpha_Centauri_and_Proxima_Centauri_%28eso1629i%29.jpg/330px-The_sky_around_Alpha_Centauri_and_Proxima_Centauri_%28eso1629i%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "orion",
@@ -1234,7 +1314,8 @@
     "brightestStarMagnitude": 0.13,
     "difficulty": 1,
     "description": "One of the most recognizable constellations, depicting a hunter flanked by two dogs, with a distinctive three-star belt.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Orion_IAU.svg/330px-Orion_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Orion_IAU.svg/330px-Orion_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "ursa_major",
@@ -1246,7 +1327,8 @@
     "brightestStarMagnitude": 1.77,
     "difficulty": 1,
     "description": "The third-largest constellation, home to the Big Dipper asterism used for centuries to find true north.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Ursa_Major_IAU.svg/330px-Ursa_Major_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Ursa_Major_IAU.svg/330px-Ursa_Major_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "ursa_minor",
@@ -1258,7 +1340,8 @@
     "brightestStarMagnitude": 1.98,
     "difficulty": 2,
     "description": "Contains Polaris, the North Star, at the tip of its tail, making it a key reference for celestial navigation.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Ursa_Minor_IAU.svg/330px-Ursa_Minor_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Ursa_Minor_IAU.svg/330px-Ursa_Minor_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "cassiopeia",
@@ -1270,7 +1353,8 @@
     "brightestStarMagnitude": 2.24,
     "difficulty": 2,
     "description": "Named for a vain queen in Greek mythology, easily spotted by its distinctive W or M shape of five bright stars.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Cassiopeia_IAU.svg/330px-Cassiopeia_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Cassiopeia_IAU.svg/330px-Cassiopeia_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "leo",
@@ -1282,7 +1366,8 @@
     "brightestStarMagnitude": 1.35,
     "difficulty": 3,
     "description": "A zodiac constellation resembling a crouching lion, with a curved 'sickle' of stars marking its head and mane.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Leo_IAU.svg/330px-Leo_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Leo_IAU.svg/330px-Leo_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "scorpius",
@@ -1294,7 +1379,8 @@
     "brightestStarMagnitude": 0.91,
     "difficulty": 3,
     "description": "A zodiac constellation whose curving tail of stars traces the shape of a scorpion across the southern summer sky.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Scorpius_IAU.svg/330px-Scorpius_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Scorpius_IAU.svg/330px-Scorpius_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "crux",
@@ -1306,7 +1392,8 @@
     "brightestStarMagnitude": 0.76,
     "difficulty": 3,
     "description": "The smallest of all 88 official constellations, known as the Southern Cross and featured on several national flags.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Crux_IAU.svg/330px-Crux_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Crux_IAU.svg/330px-Crux_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1679
   },
   {
     "id": "cygnus",
@@ -1318,7 +1405,8 @@
     "brightestStarMagnitude": 1.25,
     "difficulty": 3,
     "description": "Depicts a swan flying along the Milky Way, its brightest stars forming the well-known Northern Cross asterism.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Cygnus_IAU.svg/330px-Cygnus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Cygnus_IAU.svg/330px-Cygnus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "andromeda_constellation",
@@ -1330,7 +1418,8 @@
     "brightestStarMagnitude": 2.06,
     "difficulty": 4,
     "description": "Named for a mythological princess, this constellation is best known as the location of the Andromeda Galaxy.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Andromeda_IAU.svg/330px-Andromeda_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Andromeda_IAU.svg/330px-Andromeda_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "sagittarius_constellation",
@@ -1342,7 +1431,8 @@
     "brightestStarMagnitude": 1.85,
     "difficulty": 3,
     "description": "A zodiac constellation shaped like a teapot, pointing toward the center of the Milky Way galaxy.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Sagittarius_IAU.svg/330px-Sagittarius_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Sagittarius_IAU.svg/330px-Sagittarius_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "proxima_centauri_b",
@@ -1482,7 +1572,8 @@
     "description": "A faint southern constellation representing an air pump, one of the constellations introduced by Nicolas-Louis de Lacaille in the 18th century.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Antlia_IAU.svg/330px-Antlia_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Antlia_IAU.svg/330px-Antlia_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "apus",
@@ -1494,7 +1585,8 @@
     "description": "A small southern constellation representing a bird-of-paradise, first depicted on a 16th-century celestial globe.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Apus_IAU.svg/330px-Apus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Apus_IAU.svg/330px-Apus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1597
   },
   {
     "id": "aquarius",
@@ -1506,7 +1598,8 @@
     "description": "A zodiac constellation depicting a water-bearer, home to the radiant point of the annual Aquariid meteor showers.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aquarius_IAU.svg/330px-Aquarius_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Aquarius_IAU.svg/330px-Aquarius_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "aquila",
@@ -1518,7 +1611,8 @@
     "description": "Represents an eagle in Greek mythology, marked by its brightest star Altair, one point of the Summer Triangle.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Aquila_IAU.svg/330px-Aquila_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Aquila_IAU.svg/330px-Aquila_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "ara",
@@ -1530,7 +1624,8 @@
     "description": "A southern constellation representing an altar, located near the tail of Scorpius.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Ara_IAU.svg/330px-Ara_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Ara_IAU.svg/330px-Ara_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "aries",
@@ -1542,7 +1637,8 @@
     "description": "A zodiac constellation depicting a ram, historically marking the location of the vernal equinox in ancient astronomy.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Aries_IAU.svg/330px-Aries_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Aries_IAU.svg/330px-Aries_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "auriga",
@@ -1554,7 +1650,8 @@
     "description": "Represents a charioteer, marked by the bright star Capella and several notable open star clusters.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Auriga_IAU.svg/330px-Auriga_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Auriga_IAU.svg/330px-Auriga_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "bootes",
@@ -1566,7 +1663,8 @@
     "description": "Represents a herdsman, home to Arcturus, one of the brightest stars in the night sky.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Bo%C3%B6tes_IAU.svg/330px-Bo%C3%B6tes_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Bo%C3%B6tes_IAU.svg/330px-Bo%C3%B6tes_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "caelum",
@@ -1578,7 +1676,8 @@
     "description": "One of the faintest constellations, representing an engraving tool, introduced by Lacaille.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Caelum_IAU.svg/330px-Caelum_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Caelum_IAU.svg/330px-Caelum_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "camelopardalis",
@@ -1590,7 +1689,8 @@
     "description": "A large but faint northern constellation representing a giraffe.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Camelopardalis_IAU.svg/330px-Camelopardalis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Camelopardalis_IAU.svg/330px-Camelopardalis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1613
   },
   {
     "id": "cancer",
@@ -1602,7 +1702,8 @@
     "description": "The dimmest zodiac constellation, representing a crab, home to the Beehive Cluster.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Tumor_Mesothelioma2_legend.jpg/330px-Tumor_Mesothelioma2_legend.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Tumor_Mesothelioma2_legend.jpg/330px-Tumor_Mesothelioma2_legend.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "canes_venatici",
@@ -1614,7 +1715,8 @@
     "description": "Represents hunting dogs, home to the Whirlpool Galaxy.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Canes_Venatici_IAU.svg/330px-Canes_Venatici_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Canes_Venatici_IAU.svg/330px-Canes_Venatici_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1690
   },
   {
     "id": "canis_major",
@@ -1626,7 +1728,8 @@
     "description": "Represents the greater dog, containing Sirius, the brightest star in the night sky.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Canis_Major_IAU.svg/330px-Canis_Major_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Canis_Major_IAU.svg/330px-Canis_Major_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "canis_minor",
@@ -1638,7 +1741,8 @@
     "description": "Represents the lesser dog, marked by the bright star Procyon.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Canis_Minor_IAU.svg/330px-Canis_Minor_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Canis_Minor_IAU.svg/330px-Canis_Minor_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "capricornus",
@@ -1650,7 +1754,8 @@
     "description": "A zodiac constellation depicting a sea-goat, one of the faintest zodiac constellations.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Capricornus_IAU.svg/330px-Capricornus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Capricornus_IAU.svg/330px-Capricornus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "carina",
@@ -1662,7 +1767,8 @@
     "description": "Represents the keel of the ship Argo, home to the bright star Canopus and the Carina Nebula.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Carina_IAU.svg/330px-Carina_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Carina_IAU.svg/330px-Carina_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "centaurus",
@@ -1674,7 +1780,8 @@
     "description": "Represents a centaur, home to Alpha Centauri, the closest star system to the Sun.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Centaurus_IAU.svg/330px-Centaurus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Centaurus_IAU.svg/330px-Centaurus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "cepheus",
@@ -1686,7 +1793,8 @@
     "description": "Represents a mythological king of Aethiopia, home to several notable variable stars.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Cepheus_IAU.svg/330px-Cepheus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Cepheus_IAU.svg/330px-Cepheus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "cetus",
@@ -1698,7 +1806,8 @@
     "description": "Represents a sea monster or whale, home to the famous variable star Mira.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Cetus_IAU.svg/330px-Cetus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Cetus_IAU.svg/330px-Cetus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "chamaeleon",
@@ -1710,7 +1819,8 @@
     "description": "A small, faint southern constellation representing a chameleon.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Chamaeleon_IAU.svg/330px-Chamaeleon_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Chamaeleon_IAU.svg/330px-Chamaeleon_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1597
   },
   {
     "id": "circinus",
@@ -1722,7 +1832,8 @@
     "description": "One of the smallest constellations, representing a drafting compass.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Circinus_IAU.svg/330px-Circinus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Circinus_IAU.svg/330px-Circinus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "columba",
@@ -1734,7 +1845,8 @@
     "description": "Represents a dove, sometimes associated with the dove released from Noah's Ark.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Columba_at_Bridei%27s_fort.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Columba_at_Bridei%27s_fort.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "discoveredYear": 1592
   },
   {
     "id": "coma_berenices",
@@ -1746,7 +1858,8 @@
     "description": "Named after the hair of Queen Berenice II of Egypt, home to a rich cluster of galaxies.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Coma_Berenices_IAU.svg/330px-Coma_Berenices_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Coma_Berenices_IAU.svg/330px-Coma_Berenices_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1602
   },
   {
     "id": "corona_australis",
@@ -1758,7 +1871,8 @@
     "description": "Represents a southern crown, one of the 48 constellations listed by the ancient astronomer Ptolemy.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Corona_Australis_IAU.svg/330px-Corona_Australis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Corona_Australis_IAU.svg/330px-Corona_Australis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "corona_borealis",
@@ -1770,7 +1884,8 @@
     "description": "Represents a northern crown, associated in Greek mythology with the crown of Ariadne.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Corona_Borealis_IAU.svg/330px-Corona_Borealis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Corona_Borealis_IAU.svg/330px-Corona_Borealis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "corvus",
@@ -1782,7 +1897,8 @@
     "description": "Represents a crow, a small constellation associated with the myth of Apollo.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Corvus_corax_ad_berlin_090516.jpg/330px-Corvus_corax_ad_berlin_090516.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Corvus_corax_ad_berlin_090516.jpg/330px-Corvus_corax_ad_berlin_090516.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "crater",
@@ -1794,7 +1910,8 @@
     "description": "Represents a cup, associated in mythology with the god Apollo.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Barringer_Crater_aerial_photo_by_USGS.jpg/330px-Barringer_Crater_aerial_photo_by_USGS.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Barringer_Crater_aerial_photo_by_USGS.jpg/330px-Barringer_Crater_aerial_photo_by_USGS.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "delphinus",
@@ -1806,7 +1923,8 @@
     "description": "A small constellation representing a dolphin, easily recognized despite containing no especially bright stars.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Delphinus_IAU.svg/330px-Delphinus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Delphinus_IAU.svg/330px-Delphinus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "dorado",
@@ -1818,7 +1936,8 @@
     "description": "Represents a dolphinfish, home to most of the Large Magellanic Cloud.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Dorado_IAU.svg/330px-Dorado_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Dorado_IAU.svg/330px-Dorado_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1597
   },
   {
     "id": "draco",
@@ -1830,7 +1949,8 @@
     "description": "Represents a dragon coiled around the north celestial pole, one of the largest constellations.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Draco_IAU.svg/330px-Draco_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Draco_IAU.svg/330px-Draco_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "equuleus",
@@ -1842,7 +1962,8 @@
     "description": "The second-smallest constellation, representing a small horse or foal.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Equuleus_IAU.svg/330px-Equuleus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Equuleus_IAU.svg/330px-Equuleus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "eridanus",
@@ -1854,7 +1975,8 @@
     "description": "Represents a river, one of the largest constellations, stretching from near Orion to the southern star Achernar.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Eridanus_IAU.svg/330px-Eridanus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Eridanus_IAU.svg/330px-Eridanus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "fornax",
@@ -1866,7 +1988,8 @@
     "description": "Represents a furnace, introduced by Lacaille and home to the Fornax Cluster of galaxies.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Fornax_IAU.svg/330px-Fornax_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Fornax_IAU.svg/330px-Fornax_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "gemini",
@@ -1878,7 +2001,8 @@
     "description": "A zodiac constellation representing twins, marked by the bright stars Castor and Pollux.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gemini_IAU.svg/330px-Gemini_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gemini_IAU.svg/330px-Gemini_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "grus",
@@ -1890,7 +2014,8 @@
     "description": "Represents a crane, one of twelve constellations introduced by Dutch navigators in the late 16th century.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Grus_IAU.svg/330px-Grus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Grus_IAU.svg/330px-Grus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1597
   },
   {
     "id": "hercules",
@@ -1902,7 +2027,8 @@
     "description": "Represents the mythological hero, home to the Great Globular Cluster, one of the brightest globular clusters visible from the north.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Hercules_combatant_Achelous_%288655488835%29.jpg/330px-Hercules_combatant_Achelous_%288655488835%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Hercules_combatant_Achelous_%288655488835%29.jpg/330px-Hercules_combatant_Achelous_%288655488835%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "horologium",
@@ -1914,7 +2040,8 @@
     "description": "Represents a pendulum clock, one of the faintest constellations introduced by Lacaille.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Horologium_IAU.svg/330px-Horologium_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Horologium_IAU.svg/330px-Horologium_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "hydra",
@@ -1926,7 +2053,8 @@
     "description": "The largest of all 88 constellations, representing a water serpent.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Hydra_IAU.svg/330px-Hydra_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Hydra_IAU.svg/330px-Hydra_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "hydrus",
@@ -1938,7 +2066,8 @@
     "description": "Represents a male water snake, not to be confused with the much larger constellation Hydra.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hydrus_IAU.svg/330px-Hydrus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hydrus_IAU.svg/330px-Hydrus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1597
   },
   {
     "id": "indus",
@@ -1950,7 +2079,8 @@
     "description": "Represents an indigenous person, one of twelve constellations introduced by Dutch navigators.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Nanga_Parbat_Indus_Gorge.jpg/330px-Nanga_Parbat_Indus_Gorge.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Nanga_Parbat_Indus_Gorge.jpg/330px-Nanga_Parbat_Indus_Gorge.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1597
   },
   {
     "id": "lacerta",
@@ -1962,7 +2092,8 @@
     "description": "A small, faint northern constellation representing a lizard.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Lacerta_IAU.svg/330px-Lacerta_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Lacerta_IAU.svg/330px-Lacerta_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1690
   },
   {
     "id": "leo_minor",
@@ -1974,7 +2105,8 @@
     "description": "A faint constellation representing a smaller lion, introduced in the 17th century.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Leo_Minor_IAU.svg/330px-Leo_Minor_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Leo_Minor_IAU.svg/330px-Leo_Minor_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1687
   },
   {
     "id": "lepus",
@@ -1986,7 +2118,8 @@
     "description": "Represents a hare, positioned just south of Orion.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Scrub_Hare_%28Lepus_saxatilis%29_close-up_%2830544290256%29_%282%29.jpg/330px-Scrub_Hare_%28Lepus_saxatilis%29_close-up_%2830544290256%29_%282%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Scrub_Hare_%28Lepus_saxatilis%29_close-up_%2830544290256%29_%282%29.jpg/330px-Scrub_Hare_%28Lepus_saxatilis%29_close-up_%2830544290256%29_%282%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "libra",
@@ -1998,7 +2131,8 @@
     "description": "The only zodiac constellation representing an inanimate object, a set of scales.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Libra_IAU.svg/330px-Libra_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Libra_IAU.svg/330px-Libra_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "lupus",
@@ -2010,7 +2144,8 @@
     "description": "Represents a wolf, one of the 48 constellations listed by Ptolemy in antiquity.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Lupusfoto.jpg/330px-Lupusfoto.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Lupusfoto.jpg/330px-Lupusfoto.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "lynx",
@@ -2022,7 +2157,8 @@
     "description": "A faint northern constellation representing a lynx, said to require lynx-like eyesight to see.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Lynx_heads_collage.jpg/330px-Lynx_heads_collage.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Lynx_heads_collage.jpg/330px-Lynx_heads_collage.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1687
   },
   {
     "id": "lyra",
@@ -2034,7 +2170,8 @@
     "description": "Represents a lyre, home to Vega, one of the brightest stars in the northern sky.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Lyra_IAU.svg/330px-Lyra_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Lyra_IAU.svg/330px-Lyra_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "mensa",
@@ -2046,7 +2183,8 @@
     "description": "The faintest of all 88 constellations, named after Table Mountain in South Africa.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Mensa_IAU.svg/330px-Mensa_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Mensa_IAU.svg/330px-Mensa_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "microscopium",
@@ -2058,7 +2196,8 @@
     "description": "Represents a microscope, one of the faint constellations introduced by Lacaille.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Microscopium_IAU.svg/330px-Microscopium_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Microscopium_IAU.svg/330px-Microscopium_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "monoceros",
@@ -2070,7 +2209,8 @@
     "description": "Represents a unicorn, a faint constellation straddling the celestial equator near Orion.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Monoceros_IAU.svg/330px-Monoceros_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Monoceros_IAU.svg/330px-Monoceros_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1613
   },
   {
     "id": "musca",
@@ -2082,7 +2222,8 @@
     "description": "Represents a fly, the only official constellation depicting an insect.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Musca_IAU.svg/330px-Musca_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Musca_IAU.svg/330px-Musca_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1597
   },
   {
     "id": "norma",
@@ -2094,7 +2235,8 @@
     "description": "Represents a carpenter's square, one of the smaller constellations introduced by Lacaille.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Norma_IAU.svg/330px-Norma_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Norma_IAU.svg/330px-Norma_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "octans",
@@ -2106,7 +2248,8 @@
     "description": "Contains the south celestial pole, though it has no bright star marking it precisely as Polaris does in the north.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Octans_IAU.svg/330px-Octans_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Octans_IAU.svg/330px-Octans_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1752
   },
   {
     "id": "ophiuchus",
@@ -2118,7 +2261,8 @@
     "description": "Represents a serpent-bearer, straddling the ecliptic and sometimes called the 13th zodiac sign.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Ophiuchus_IAU.svg/330px-Ophiuchus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Ophiuchus_IAU.svg/330px-Ophiuchus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "pavo",
@@ -2130,7 +2274,8 @@
     "description": "Represents a peacock, one of twelve constellations introduced by Dutch navigators.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Pavo_IAU.svg/330px-Pavo_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Pavo_IAU.svg/330px-Pavo_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1597
   },
   {
     "id": "pegasus",
@@ -2142,7 +2287,8 @@
     "description": "Represents a winged horse from Greek mythology, marked by the Great Square asterism.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lakonian_Black-Figure_Kylix%3B_detached_fragments.jpg/330px-Lakonian_Black-Figure_Kylix%3B_detached_fragments.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lakonian_Black-Figure_Kylix%3B_detached_fragments.jpg/330px-Lakonian_Black-Figure_Kylix%3B_detached_fragments.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "perseus",
@@ -2154,7 +2300,8 @@
     "description": "Represents the mythological hero, home to the annual Perseid meteor shower's radiant point.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Perseo_con_la_testa_di_medusa%2C_originale_di_et%C3%A0_flavia_o_traianea%2C_dalle_terme_presso_porta_laurentina%2C_01.JPG/330px-Perseo_con_la_testa_di_medusa%2C_originale_di_et%C3%A0_flavia_o_traianea%2C_dalle_terme_presso_porta_laurentina%2C_01.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Perseo_con_la_testa_di_medusa%2C_originale_di_et%C3%A0_flavia_o_traianea%2C_dalle_terme_presso_porta_laurentina%2C_01.JPG/330px-Perseo_con_la_testa_di_medusa%2C_originale_di_et%C3%A0_flavia_o_traianea%2C_dalle_terme_presso_porta_laurentina%2C_01.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "phoenix",
@@ -2166,7 +2313,8 @@
     "description": "Represents the mythical bird reborn from ashes, one of twelve constellations introduced by Dutch navigators.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Phoenix_IAU.svg/330px-Phoenix_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Phoenix_IAU.svg/330px-Phoenix_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1597
   },
   {
     "id": "pictor",
@@ -2178,7 +2326,8 @@
     "description": "Represents a painter's easel, a faint constellation introduced by Lacaille.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Pictor_IAU.svg/330px-Pictor_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Pictor_IAU.svg/330px-Pictor_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "pisces",
@@ -2190,7 +2339,8 @@
     "description": "A zodiac constellation representing two fish, containing the vernal equinox point in modern astronomy.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pisces_IAU.svg/330px-Pisces_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Pisces_IAU.svg/330px-Pisces_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "piscis_austrinus",
@@ -2202,7 +2352,8 @@
     "description": "Represents a southern fish, home to the bright star Fomalhaut.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Piscis_Austrinus_IAU.svg/330px-Piscis_Austrinus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Piscis_Austrinus_IAU.svg/330px-Piscis_Austrinus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "puppis",
@@ -2214,7 +2365,8 @@
     "description": "Represents the stern of the ship Argo, the largest of the three constellations formed from the ancient constellation Argo Navis.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Puppis_IAU.svg/330px-Puppis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Puppis_IAU.svg/330px-Puppis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "pyxis",
@@ -2226,7 +2378,8 @@
     "description": "Represents a mariner's compass, a small constellation once considered part of the ship Argo Navis.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Pyxis_IAU.svg/330px-Pyxis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Pyxis_IAU.svg/330px-Pyxis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "reticulum",
@@ -2238,7 +2391,8 @@
     "description": "A small southern constellation representing a reticle, the crosshairs used in optical instruments.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Reticulum_IAU.svg/330px-Reticulum_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Reticulum_IAU.svg/330px-Reticulum_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "sagitta",
@@ -2250,7 +2404,8 @@
     "description": "Represents an arrow, the third-smallest constellation despite being one of the oldest recognized.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Sagitta_IAU.svg/330px-Sagitta_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Sagitta_IAU.svg/330px-Sagitta_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "sculptor",
@@ -2262,7 +2417,8 @@
     "description": "Represents a sculptor's workshop, home to the south galactic pole.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Dying_gaul.jpg/330px-Dying_gaul.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Dying_gaul.jpg/330px-Dying_gaul.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "scutum",
@@ -2274,7 +2430,8 @@
     "description": "Represents a shield, home to a dense field of the Milky Way including the Wild Duck Cluster.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ag-obj-5959-001-pub-large_%28cropped%29.jpg/330px-Ag-obj-5959-001-pub-large_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ag-obj-5959-001-pub-large_%28cropped%29.jpg/330px-Ag-obj-5959-001-pub-large_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1684
   },
   {
     "id": "serpens",
@@ -2286,7 +2443,8 @@
     "description": "The only constellation split into two separate regions, representing a serpent held by Ophiuchus.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Serpens_Caput_IAU.svg/330px-Serpens_Caput_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Serpens_Caput_IAU.svg/330px-Serpens_Caput_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "sextans",
@@ -2298,7 +2456,8 @@
     "description": "Represents an astronomical sextant, a faint constellation introduced by Johannes Hevelius.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Sextans_IAU.svg/330px-Sextans_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Sextans_IAU.svg/330px-Sextans_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1687
   },
   {
     "id": "taurus",
@@ -2310,7 +2469,8 @@
     "description": "A zodiac constellation representing a bull, home to both the Pleiades and Hyades star clusters.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Taurus_IAU.svg/330px-Taurus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Taurus_IAU.svg/330px-Taurus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "telescopium",
@@ -2322,7 +2482,8 @@
     "description": "Represents a telescope, one of the fainter constellations introduced by Lacaille.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Telescopium_IAU.svg/330px-Telescopium_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Telescopium_IAU.svg/330px-Telescopium_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "triangulum_constellation",
@@ -2334,7 +2495,8 @@
     "description": "A small northern constellation representing a triangle, home to the Triangulum Galaxy.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Triangulum_IAU.svg/330px-Triangulum_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Triangulum_IAU.svg/330px-Triangulum_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "triangulum_australe",
@@ -2346,7 +2508,8 @@
     "description": "Represents a southern triangle, one of twelve constellations introduced by Dutch navigators.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Triangulum_Australe_IAU.svg/330px-Triangulum_Australe_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Triangulum_Australe_IAU.svg/330px-Triangulum_Australe_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1597
   },
   {
     "id": "tucana",
@@ -2358,7 +2521,8 @@
     "description": "Represents a toucan, home to the Small Magellanic Cloud and the bright globular cluster 47 Tucanae.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Tucana_IAU.svg/330px-Tucana_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Tucana_IAU.svg/330px-Tucana_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1597
   },
   {
     "id": "vela",
@@ -2370,7 +2534,8 @@
     "description": "Represents the sails of the ship Argo, part of the ancient constellation Argo Navis.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Vela_IAU.svg/330px-Vela_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Vela_IAU.svg/330px-Vela_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1756
   },
   {
     "id": "virgo",
@@ -2382,7 +2547,8 @@
     "description": "The largest zodiac constellation, home to the Virgo Cluster of thousands of galaxies.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Virgo_IAU.svg/330px-Virgo_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Virgo_IAU.svg/330px-Virgo_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 150
   },
   {
     "id": "volans",
@@ -2394,7 +2560,8 @@
     "description": "Represents a flying fish, one of twelve constellations introduced by Dutch navigators.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Volans_IAU.svg/330px-Volans_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Volans_IAU.svg/330px-Volans_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1597
   },
   {
     "id": "vulpecula",
@@ -2406,7 +2573,8 @@
     "description": "Represents a small fox, home to the Dumbbell Nebula, one of the first planetary nebulae discovered.",
     "category": "constellation",
     "color": "#dbe4ff",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Vulpecula_IAU.svg/330px-Vulpecula_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Vulpecula_IAU.svg/330px-Vulpecula_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1690
   },
   {
     "id": "himalia",
@@ -2422,7 +2590,8 @@
     "parentBodyId": "jupiter",
     "difficulty": 5,
     "description": "The largest of Jupiter's irregular moons, likely a captured asteroid orbiting far beyond the main Galilean moons.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Himalia.png/330px-Himalia.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Himalia.png/330px-Himalia.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1904
   },
   {
     "id": "janus",
@@ -2438,7 +2607,8 @@
     "parentBodyId": "saturn",
     "difficulty": 5,
     "description": "Shares nearly the same orbit as the moon Epimetheus, the two swapping positions every four years without colliding.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Double_herm_Chiaramonti_Inv1395.jpg/330px-Double_herm_Chiaramonti_Inv1395.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Double_herm_Chiaramonti_Inv1395.jpg/330px-Double_herm_Chiaramonti_Inv1395.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1966
   },
   {
     "id": "epimetheus",
@@ -2454,7 +2624,8 @@
     "parentBodyId": "saturn",
     "difficulty": 5,
     "description": "Co-orbital with Janus in one of the most unusual orbital relationships in the solar system.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Comparable_to_the_Group_of_Polygnotos_-_ARV_1562_-_birth_of_Pandora_-_Theseus_pursuing_woman_-_Oxford_AM_V_525_-_04.jpg/330px-Comparable_to_the_Group_of_Polygnotos_-_ARV_1562_-_birth_of_Pandora_-_Theseus_pursuing_woman_-_Oxford_AM_V_525_-_04.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Comparable_to_the_Group_of_Polygnotos_-_ARV_1562_-_birth_of_Pandora_-_Theseus_pursuing_woman_-_Oxford_AM_V_525_-_04.jpg/330px-Comparable_to_the_Group_of_Polygnotos_-_ARV_1562_-_birth_of_Pandora_-_Theseus_pursuing_woman_-_Oxford_AM_V_525_-_04.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1980
   },
   {
     "id": "pan",
@@ -2470,7 +2641,8 @@
     "parentBodyId": "saturn",
     "difficulty": 5,
     "description": "A tiny, walnut-shaped moon that orbits within a gap in Saturn's rings, sweeping the gap clear of debris.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Pan_color_PIA21449.png/330px-Pan_color_PIA21449.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Pan_color_PIA21449.png/330px-Pan_color_PIA21449.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1990
   },
   {
     "id": "puck",
@@ -2486,7 +2658,8 @@
     "parentBodyId": "uranus",
     "difficulty": 5,
     "description": "The largest of Uranus's inner moons, named after the mischievous sprite from Shakespeare's A Midsummer Night's Dream.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Puck%2C_moon_of_Uranus_%281986%29.png/330px-Puck%2C_moon_of_Uranus_%281986%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Puck%2C_moon_of_Uranus_%281986%29.png/330px-Puck%2C_moon_of_Uranus_%281986%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1985
   },
   {
     "id": "proteus",
@@ -2502,7 +2675,8 @@
     "parentBodyId": "neptune",
     "difficulty": 5,
     "description": "One of the darkest objects in the solar system, so close to Neptune that it is difficult to observe from Earth.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Proteus-Alciato.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Proteus-Alciato.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "discoveredYear": 1989
   },
   {
     "id": "larissa",
@@ -2518,7 +2692,8 @@
     "parentBodyId": "neptune",
     "difficulty": 5,
     "description": "An irregularly shaped inner moon of Neptune, discovered during a stellar occultation before being confirmed by Voyager 2.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Larissa_Montage_L.png/330px-Larissa_Montage_L.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Larissa_Montage_L.png/330px-Larissa_Montage_L.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1981
   },
   {
     "id": "nix",
@@ -2534,7 +2709,8 @@
     "parentBodyId": "pluto",
     "difficulty": 5,
     "description": "One of Pluto's small outer moons, tumbling chaotically due to the complex gravity of the Pluto-Charon binary system.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Nix_best_view.jpg/330px-Nix_best_view.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Nix_best_view.jpg/330px-Nix_best_view.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 2005
   },
   {
     "id": "hydra_moon",
@@ -2550,7 +2726,8 @@
     "parentBodyId": "pluto",
     "difficulty": 5,
     "description": "The outermost of Pluto's known moons, named after the many-headed serpent of Greek mythology.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Hydra_reprocessed.png/330px-Hydra_reprocessed.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Hydra_reprocessed.png/330px-Hydra_reprocessed.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 2005
   },
   {
     "id": "hygiea",
@@ -2564,7 +2741,8 @@
     "orbitalPeriodDays": 2031,
     "difficulty": 5,
     "description": "The fourth-largest object in the asteroid belt, round enough that it has been considered for dwarf planet status.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/SPHERE_image_of_Hygiea.jpg/330px-SPHERE_image_of_Hygiea.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/SPHERE_image_of_Hygiea.jpg/330px-SPHERE_image_of_Hygiea.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1849
   },
   {
     "id": "interamnia",
@@ -2578,7 +2756,8 @@
     "orbitalPeriodDays": 1955,
     "difficulty": 5,
     "description": "One of the largest main-belt asteroids not yet visited by any spacecraft, named after the Latin name for Teramo, Italy.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/704_Interamnia_VLT_%282021%29%2C_deconvolved.pdf/page1-120px-704_Interamnia_VLT_%282021%29%2C_deconvolved.pdf.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/704_Interamnia_VLT_%282021%29%2C_deconvolved.pdf/page1-120px-704_Interamnia_VLT_%282021%29%2C_deconvolved.pdf.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1910
   },
   {
     "id": "eunomia",
@@ -2592,7 +2771,8 @@
     "orbitalPeriodDays": 1569,
     "difficulty": 5,
     "description": "The largest asteroid of the stony S-type, and the most massive asteroid without a spacecraft visit as of its discovery era.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/15_Eunomia_VLT_%282021%29%2C_deconvolved.pdf/page1-120px-15_Eunomia_VLT_%282021%29%2C_deconvolved.pdf.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/15_Eunomia_VLT_%282021%29%2C_deconvolved.pdf/page1-120px-15_Eunomia_VLT_%282021%29%2C_deconvolved.pdf.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1851
   },
   {
     "id": "davida",
@@ -2606,7 +2786,8 @@
     "orbitalPeriodDays": 2052,
     "difficulty": 5,
     "description": "One of the largest main-belt asteroids, irregularly shaped and dark in color.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/511_Davida_VLT_%282021%29%2C_deconvolved.pdf/page1-120px-511_Davida_VLT_%282021%29%2C_deconvolved.pdf.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/511_Davida_VLT_%282021%29%2C_deconvolved.pdf/page1-120px-511_Davida_VLT_%282021%29%2C_deconvolved.pdf.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1903
   },
   {
     "id": "lutetia",
@@ -2620,7 +2801,8 @@
     "orbitalPeriodDays": 1390,
     "difficulty": 5,
     "description": "A heavily cratered metallic asteroid visited by the Rosetta spacecraft on its way to comet 67P.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Rosetta_triumphs_at_asteroid_Lutetia.jpg/330px-Rosetta_triumphs_at_asteroid_Lutetia.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Rosetta_triumphs_at_asteroid_Lutetia.jpg/330px-Rosetta_triumphs_at_asteroid_Lutetia.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1852
   },
   {
     "id": "encke",
@@ -2634,7 +2816,8 @@
     "orbitalPeriodDays": 1204,
     "difficulty": 4,
     "description": "Has the shortest orbital period of any known comet, returning past the Sun once every 3.3 years.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Comet_Encke.jpg/330px-Comet_Encke.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Comet_Encke.jpg/330px-Comet_Encke.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1786
   },
   {
     "id": "swift_tuttle",
@@ -2648,7 +2831,8 @@
     "orbitalPeriodDays": 47758,
     "difficulty": 3,
     "description": "The parent body of the annual Perseid meteor shower, with a nucleus larger than the object believed to have ended the dinosaurs.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Comet_Swift-Tuttle_by_G._J._Chambers_on_Aug_23%2C_1862.jpg/330px-Comet_Swift-Tuttle_by_G._J._Chambers_on_Aug_23%2C_1862.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Comet_Swift-Tuttle_by_G._J._Chambers_on_Aug_23%2C_1862.jpg/330px-Comet_Swift-Tuttle_by_G._J._Chambers_on_Aug_23%2C_1862.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1862
   },
   {
     "id": "hyakutake",
@@ -2662,7 +2846,8 @@
     "orbitalPeriodDays": 25567500,
     "difficulty": 3,
     "description": "Passed unusually close to Earth in 1996, appearing as one of the brightest comets in decades with an exceptionally long visible tail.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Hyakutake_Color.jpg/330px-Hyakutake_Color.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Hyakutake_Color.jpg/330px-Hyakutake_Color.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1996
   },
   {
     "id": "deneb",
@@ -2675,7 +2860,8 @@
     "temperatureK": 8525,
     "difficulty": 3,
     "description": "One of the most luminous stars known, a blue-white supergiant marking the tail of the constellation Cygnus.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Cygnus_constellation_map.svg/330px-Cygnus_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Cygnus_constellation_map.svg/330px-Cygnus_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "capella",
@@ -2688,7 +2874,8 @@
     "temperatureK": 4970,
     "difficulty": 3,
     "description": "Actually a system of four stars appearing as one bright point, the brightest star in the constellation Auriga.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Auriga_constellation_map.svg/330px-Auriga_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Auriga_constellation_map.svg/330px-Auriga_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "arcturus",
@@ -2701,7 +2888,8 @@
     "temperatureK": 4286,
     "difficulty": 3,
     "description": "The brightest star in the northern celestial hemisphere, an aging orange giant nearing the end of its life.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Bo%C3%B6tes_IAU.svg/330px-Bo%C3%B6tes_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Bo%C3%B6tes_IAU.svg/330px-Bo%C3%B6tes_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "aldebaran",
@@ -2714,7 +2902,8 @@
     "temperatureK": 3900,
     "difficulty": 3,
     "description": "A red giant marking the eye of the bull in Taurus, though it only appears aligned with the more distant Hyades cluster.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Taurus_constellation_map.svg/330px-Taurus_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Taurus_constellation_map.svg/330px-Taurus_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "spica",
@@ -2727,7 +2916,8 @@
     "temperatureK": 22300,
     "difficulty": 4,
     "description": "A close binary of hot blue giant stars so near each other that their mutual gravity distorts them into egg shapes.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Virgo_constellation_map.svg/330px-Virgo_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Virgo_constellation_map.svg/330px-Virgo_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "fomalhaut",
@@ -2739,7 +2929,8 @@
     "massKg": 3.82e+30,
     "temperatureK": 8590,
     "difficulty": 3,
-    "description": "Surrounded by a debris disk that once hosted a directly imaged exoplanet candidate, since found likely to be a dust cloud."
+    "description": "Surrounded by a debris disk that once hosted a directly imaged exoplanet candidate, since found likely to be a dust cloud.",
+    "discoveredYear": -3000
   },
   {
     "id": "altair",
@@ -2752,7 +2943,8 @@
     "temperatureK": 7670,
     "difficulty": 3,
     "description": "Spins so rapidly that it is flattened into an oblate shape, completing a full rotation in under 9 hours.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Aquila_constellation_map.svg/330px-Aquila_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Aquila_constellation_map.svg/330px-Aquila_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "achernar",
@@ -2765,7 +2957,8 @@
     "temperatureK": 14000,
     "difficulty": 4,
     "description": "One of the least spherical stars known, flattened by extremely fast rotation into a shape wider at its equator than its poles.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Eridanus_constellation_map.svg/330px-Eridanus_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Eridanus_constellation_map.svg/330px-Eridanus_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "a0620_00",
@@ -2777,7 +2970,8 @@
     "massKg": 1.31e+31,
     "difficulty": 5,
     "description": "One of the closest known stellar-mass black holes to Earth, discovered via an X-ray nova outburst in 1975.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/V616MonLightCurve.png/330px-V616MonLightCurve.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/V616MonLightCurve.png/330px-V616MonLightCurve.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1975
   },
   {
     "id": "grs1915",
@@ -2789,7 +2983,8 @@
     "massKg": 2.47e+31,
     "difficulty": 5,
     "description": "One of the most massive stellar black holes known in our galaxy, famous for launching relativistic jets nicknamed a 'microquasar.'",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/V1487AqlLightCurve.png/330px-V1487AqlLightCurve.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/V1487AqlLightCurve.png/330px-V1487AqlLightCurve.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1992
   },
   {
     "id": "ngc4889_black_hole",
@@ -2801,7 +2996,8 @@
     "massKg": 4.18e+40,
     "difficulty": 5,
     "description": "One of the most massive black holes ever measured, sitting at the center of a giant elliptical galaxy in the Coma Cluster.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Caldwell_35.jpg/330px-Caldwell_35.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Caldwell_35.jpg/330px-Caldwell_35.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 2011
   },
   {
     "id": "phoenix_a",
@@ -2813,7 +3009,8 @@
     "massKg": 3.98e+40,
     "difficulty": 5,
     "description": "An extraordinarily massive black hole at the heart of the Phoenix Cluster, forming stars at a rate unusual for its host galaxy type.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/SPT-CLJ2344%E2%80%934243_%28Phoenix_Cluster%29_Chandra.jpg/330px-SPT-CLJ2344%E2%80%934243_%28Phoenix_Cluster%29_Chandra.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/SPT-CLJ2344%E2%80%934243_%28Phoenix_Cluster%29_Chandra.jpg/330px-SPT-CLJ2344%E2%80%934243_%28Phoenix_Cluster%29_Chandra.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 2012
   },
   {
     "id": "3c279",
@@ -2873,7 +3070,8 @@
     "massKg": 1.99e+41,
     "difficulty": 3,
     "description": "A grand-design spiral galaxy with well-defined arms, a favorite target for amateur astronomers due to its brightness.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Messier_81_HST.jpg/330px-Messier_81_HST.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Messier_81_HST.jpg/330px-Messier_81_HST.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1774
   },
   {
     "id": "cigar_galaxy",
@@ -2885,7 +3083,8 @@
     "massKg": 6e+40,
     "difficulty": 3,
     "description": "A starburst galaxy producing new stars at a rate ten times faster than the Milky Way, likely triggered by a close pass with its neighbor.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/M82_HST_ACS_2006-14-a-large_web.jpg/330px-M82_HST_ACS_2006-14-a-large_web.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/M82_HST_ACS_2006-14-a-large_web.jpg/330px-M82_HST_ACS_2006-14-a-large_web.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1774
   },
   {
     "id": "pinwheel_galaxy",
@@ -2897,7 +3096,8 @@
     "massKg": 2e+41,
     "difficulty": 3,
     "description": "A large, face-on spiral galaxy with asymmetric arms shaped by gravitational interactions with several companion galaxies.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/M101_hires_STScI-PRC2006-10a.jpg/330px-M101_hires_STScI-PRC2006-10a.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/M101_hires_STScI-PRC2006-10a.jpg/330px-M101_hires_STScI-PRC2006-10a.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1781
   },
   {
     "id": "cartwheel_galaxy",
@@ -2909,7 +3109,8 @@
     "massKg": 2e+41,
     "difficulty": 4,
     "description": "Its distinctive ring shape was formed by a smaller galaxy passing directly through its center, triggering a ripple of star formation.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Cartwheel_Galaxy.jpg/330px-Cartwheel_Galaxy.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Cartwheel_Galaxy.jpg/330px-Cartwheel_Galaxy.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1941
   },
   {
     "id": "small_magellanic_cloud",
@@ -2921,7 +3122,8 @@
     "massKg": 7e+39,
     "difficulty": 2,
     "description": "A dwarf galaxy visible to the naked eye from the Southern Hemisphere, gravitationally linked to its larger neighbor, the LMC.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Small_Magellanic_Cloud_%28Digitized_Sky_Survey_2%29.jpg/330px-Small_Magellanic_Cloud_%28Digitized_Sky_Survey_2%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Small_Magellanic_Cloud_%28Digitized_Sky_Survey_2%29.jpg/330px-Small_Magellanic_Cloud_%28Digitized_Sky_Survey_2%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": -3000
   },
   {
     "id": "lagoon_nebula",
@@ -2932,7 +3134,8 @@
     "diameterKm": 1040000000000000,
     "difficulty": 2,
     "description": "A vast stellar nursery visible to the naked eye, containing a young star cluster embedded within its glowing gas.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/VST_images_the_Lagoon_Nebula.jpg/330px-VST_images_the_Lagoon_Nebula.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/VST_images_the_Lagoon_Nebula.jpg/330px-VST_images_the_Lagoon_Nebula.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1654
   },
   {
     "id": "trifid_nebula",
@@ -2943,7 +3146,8 @@
     "diameterKm": 350000000000000,
     "difficulty": 3,
     "description": "Named for the dark dust lanes that appear to split its glowing gas into three lobes.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Trifid_Nebula_%28noirlab2521ah%29.jpg/330px-Trifid_Nebula_%28noirlab2521ah%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Trifid_Nebula_%28noirlab2521ah%29.jpg/330px-Trifid_Nebula_%28noirlab2521ah%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1764
   },
   {
     "id": "rosette_nebula",
@@ -2954,7 +3158,8 @@
     "diameterKm": 1230000000000000,
     "difficulty": 3,
     "description": "A rose-shaped ring of glowing gas surrounding a young cluster of stars whose radiation carved out its central cavity.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/SHO_Final_with_copyright.jpg/330px-SHO_Final_with_copyright.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/SHO_Final_with_copyright.jpg/330px-SHO_Final_with_copyright.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1690
   },
   {
     "id": "tarantula_nebula",
@@ -2965,7 +3170,8 @@
     "diameterKm": 9600000000000000,
     "difficulty": 3,
     "description": "The most active star-forming region known in the nearby universe, located within the Large Magellanic Cloud.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Tarantula_Nebula_by_JWST.jpg/330px-Tarantula_Nebula_by_JWST.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Tarantula_Nebula_by_JWST.jpg/330px-Tarantula_Nebula_by_JWST.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1751
   },
   {
     "id": "veil_nebula",
@@ -2976,7 +3182,8 @@
     "diameterKm": 1040000000000000,
     "difficulty": 3,
     "description": "The delicate, glowing remains of a massive star that exploded as a supernova roughly 10,000 years ago.",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Veil_Nebula_-_NGC6960.jpg/330px-Veil_Nebula_-_NGC6960.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Veil_Nebula_-_NGC6960.jpg/330px-Veil_Nebula_-_NGC6960.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "discoveredYear": 1784
   },
   {
     "id": "kepler_186f",

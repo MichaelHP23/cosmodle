@@ -16,26 +16,26 @@ describe("isValidUuid", () => {
 })
 
 describe("isValidGuessCount", () => {
-  it("accepts integers 1 through 7", () => {
+  it("accepts integers 1 through 20", () => {
     expect(isValidGuessCount(1)).toBe(true)
-    expect(isValidGuessCount(7)).toBe(true)
+    expect(isValidGuessCount(20)).toBe(true)
   })
-  it("rejects 0, 8, and non-integers", () => {
+  it("rejects 0, 21, and non-integers", () => {
     expect(isValidGuessCount(0)).toBe(false)
-    expect(isValidGuessCount(8)).toBe(false)
+    expect(isValidGuessCount(21)).toBe(false)
     expect(isValidGuessCount(2.5)).toBe(false)
     expect(isValidGuessCount("3")).toBe(false)
   })
 })
 
 describe("isValidHintsUsed", () => {
-  it("accepts integers 0 through 3", () => {
+  it("accepts integers 0 through 5", () => {
     expect(isValidHintsUsed(0)).toBe(true)
-    expect(isValidHintsUsed(3)).toBe(true)
+    expect(isValidHintsUsed(5)).toBe(true)
   })
   it("rejects negative numbers, out-of-range values, and non-integers", () => {
     expect(isValidHintsUsed(-5)).toBe(false)
-    expect(isValidHintsUsed(4)).toBe(false)
+    expect(isValidHintsUsed(6)).toBe(false)
     expect(isValidHintsUsed(999999)).toBe(false)
     expect(isValidHintsUsed(1.5)).toBe(false)
     expect(isValidHintsUsed("1")).toBe(false)

@@ -76,9 +76,9 @@ describe("recordDailyResult - wins", () => {
 })
 
 describe("recordDailyResult - hint penalty", () => {
-  it("resets currentStreak to 0 on a win if all 3 hints were used", () => {
+  it("resets currentStreak to 0 on a win if all 5 hints were used", () => {
     recordDailyResult(5, true, 2)
-    const stats = recordDailyResult(6, true, 3, 3)
+    const stats = recordDailyResult(6, true, 3, 5)
     expect(stats.currentStreak).toBe(0)
   })
 
@@ -98,7 +98,7 @@ describe("recordDailyResult - hint penalty", () => {
   it("does not bump longestStreak from a hint-penalized win", () => {
     recordDailyResult(5, true, 2)
     recordDailyResult(6, true, 2)
-    const stats = recordDailyResult(7, true, 3, 3)
+    const stats = recordDailyResult(7, true, 3, 5)
     expect(stats.currentStreak).toBe(0)
     expect(stats.longestStreak).toBe(2)
   })

@@ -41,10 +41,17 @@ describe("deriveStatsFromResults", () => {
 
   it("does not extend the streak when all hints were used", () => {
     const stats = deriveStatsFromResults([
-      { dayNumber: 1, won: true, guessCount: 4, hintsUsed: 3 },
+      { dayNumber: 1, won: true, guessCount: 4, hintsUsed: 5 },
     ])
     expect(stats.currentStreak).toBe(0)
     expect(stats.wins).toBe(1)
+  })
+
+  it("clamps a win with more than 7 guesses into the last distribution bucket", () => {
+    const stats = deriveStatsFromResults([
+      { dayNumber: 1, won: true, guessCount: 15, hintsUsed: 0 },
+    ])
+    expect(stats.guessDistribution).toEqual([0, 0, 0, 0, 0, 0, 1])
   })
 
   it("ignores a duplicate row for a day already applied", () => {

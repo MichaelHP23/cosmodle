@@ -150,14 +150,21 @@ export function GameBoard() {
 
   const hintsUsed = mode === "daily" ? dailyState.hintsUsed : mode === "archive" ? archiveState?.hintsUsed ?? 0 : practiceHintsUsed
 
+  const hintableProfile = profile.filter(e => e.property !== "category")
   const guessStatusRows = answer
     ? guesses.map(guess => {
-        const statuses: ComparisonStatus[] = profile
-          .filter(e => e.property !== "category")
-          .map(e => compareProperty((guess as any)[e.property], (answer as any)[e.property], e.kind).status)
+        const statuses: ComparisonStatus[] = hintableProfile.map(
+          e => compareProperty((guess as any)[e.property], (answer as any)[e.property], e.kind).status
+        )
         return { statuses, isWinningGuess: guess.id === answer.id }
       })
     : []
+  const correctProperties = new Set<string>()
+  for (const row of guessStatusRows) {
+    row.statuses.forEach((status, i) => {
+      if (status === "correct") correctProperties.add(hintableProfile[i].property)
+    })
+  }
 
   const displayDayNumber = mode === "archive" ? archiveDayNumber ?? todayDayNumber : todayDayNumber
   const showingArchiveList = mode === "archive" && archiveDayNumber === null
@@ -192,6 +199,7 @@ export function GameBoard() {
                   hintsUsed={hintsUsed}
                   maxHints={MAX_HINTS}
                   onUseHint={handleUseHint}
+                  correctProperties={correctProperties}
                   showStreakWarning={mode !== "practice"}
                 />
                 <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />
@@ -200,7 +208,7 @@ export function GameBoard() {
                 </div>
               </>
             )}
-            <div className="mt-4">
+            <div className="mt-4 flex justify-center">
               <GuessTable profile={profile} guesses={guesses} answer={answer} />
             </div>
             {gameOver && !showResultModal && (
