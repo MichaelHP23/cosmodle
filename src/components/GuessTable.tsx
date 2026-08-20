@@ -16,11 +16,11 @@ export function GuessTable({
   if (guesses.length === 0) return null
 
   return (
-    <div className="overflow-x-auto rounded-xl border-2 border-[#4d4d4d] bg-white">
+    <div className="inline-block max-w-full overflow-x-auto rounded-xl border-2 border-[#4d4d4d] bg-[#fff8e7]/70">
       <table className="border-collapse text-sm">
         <thead>
           <tr className="border-b-2 border-[#4d4d4d]">
-            <th className="sticky left-0 z-10 w-[110px] min-w-[110px] border-r border-[#e0e0e0] bg-[#f7f7f7] px-3 py-2 text-left font-semibold text-[#4d4d4d] sm:w-[140px] sm:min-w-[140px]">
+            <th className="sticky left-0 z-10 w-[110px] min-w-[110px] border-r border-[#e0e0e0] bg-[#fff8e7] px-3 py-2 text-left font-semibold text-[#4d4d4d] sm:w-[140px] sm:min-w-[140px]">
               Guess
             </th>
             {profile.map(entry => (
@@ -39,7 +39,7 @@ export function GuessTable({
               <th
                 scope="row"
                 title={guess.name}
-                className="sticky left-0 z-10 w-[110px] break-words border-r border-[#e0e0e0] bg-white px-3 py-2 text-left text-sm font-bold leading-tight text-[#1a1a1a] underline decoration-dotted decoration-2 underline-offset-2 sm:w-[140px]"
+                className="sticky left-0 z-10 w-[110px] break-words border-r border-[#e0e0e0] bg-[#fff8e7] px-3 py-2 text-left text-sm font-bold leading-tight text-[#1a1a1a] underline decoration-dotted decoration-2 underline-offset-2 sm:w-[140px]"
               >
                 {guess.name}
               </th>

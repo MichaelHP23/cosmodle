@@ -15,14 +15,14 @@ export function StatsPanel({ statistics, highlightGuessCount }: { statistics: St
 
   return (
     <div className="mb-4">
-      <div className="mb-3 flex items-center justify-center gap-6 rounded-lg border border-[#e0e0e0] bg-white py-3">
+      <div className="mb-3 flex items-center justify-center gap-6 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] py-3">
         <StatBlock value={statistics.gamesPlayed} label="Played" />
         <StatBlock value={getWinPercentage(statistics)} label="Win %" />
         <StatBlock value={statistics.currentStreak} label="Streak" />
         <StatBlock value={statistics.longestStreak} label="Max Streak" />
       </div>
 
-      <div className="rounded-lg border border-[#e0e0e0] bg-white p-3">
+      <div className="rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3">
         <div className="mb-2 text-center text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">
           Guess Distribution
         </div>
