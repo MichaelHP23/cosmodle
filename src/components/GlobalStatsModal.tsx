@@ -33,7 +33,7 @@ export function GlobalStatsModal({ onClose }: { onClose: () => void }) {
 
         {stats && (
           <>
-            <div className="mb-3 flex items-center justify-center gap-6 rounded-lg border border-[#e0e0e0] bg-white py-3">
+            <div className="mb-3 flex items-center justify-center gap-6 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] py-3">
               <StatBlock value={stats.totalPlayers} label="Players" />
               <StatBlock value={stats.playedToday} label="Played Today" />
               <StatBlock value={stats.winRate} label="Win %" />

@@ -20,14 +20,14 @@ export function ArchiveList({
 
   if (pastDayNumbers.length === 0) {
     return (
-      <div className="rounded-xl border-2 border-[#4d4d4d] bg-white p-6 text-center text-[#4d4d4d]">
+      <div className="rounded-xl border-2 border-[#4d4d4d] bg-[#fff8e7]/70 p-6 text-center text-[#4d4d4d]">
         No previous puzzles yet — check back tomorrow for Cosmodle #{todayDayNumber + 1}.
       </div>
     )
   }
 
   return (
-    <div className="max-h-[60vh] overflow-y-auto rounded-xl border-2 border-[#4d4d4d] bg-white">
+    <div className="max-h-[60vh] overflow-y-auto rounded-xl border-2 border-[#4d4d4d] bg-[#fff8e7]/70">
       <ul className="divide-y divide-[#e0e0e0]">
         {pastDayNumbers.map(dayNumber => (
           <li key={dayNumber}>

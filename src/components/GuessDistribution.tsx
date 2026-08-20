@@ -8,7 +8,7 @@ export function GuessDistribution({
   const maxCount = Math.max(1, ...distribution)
 
   return (
-    <div className="rounded-lg border border-[#e0e0e0] bg-white p-3">
+    <div className="rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3">
       <div className="mb-2 text-center text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">
         Guess Distribution
       </div>

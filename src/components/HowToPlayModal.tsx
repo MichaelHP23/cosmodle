@@ -41,7 +41,7 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
           <li>Guess the exact object, or run out of guesses and see the answer revealed.</li>
         </ol>
 
-        <div className="mb-4 rounded-lg border border-[#e0e0e0] bg-white p-3">
+        <div className="mb-4 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3">
           <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Legend</div>
           <div className="space-y-2.5">
             {LEGEND.map(({ status, label, detail }) => (
@@ -56,7 +56,7 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
           </div>
         </div>
 
-        <div className="mb-4 rounded-lg border border-[#e0e0e0] bg-white p-3 text-sm text-[#4d4d4d]">
+        <div className="mb-4 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3 text-sm text-[#4d4d4d]">
           <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Hints</div>
           <p>
             Stuck? The Hint button reveals one of the mystery object's actual properties. You get 3 per
@@ -65,7 +65,7 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
           </p>
         </div>
 
-        <div className="rounded-lg border border-[#e0e0e0] bg-white p-3 text-sm text-[#4d4d4d]">
+        <div className="rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3 text-sm text-[#4d4d4d]">
           <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Modes</div>
           <ul className="space-y-1.5">
             <li><span className="font-semibold text-[#1a1a1a]">Daily:</span> one puzzle a day, same for everyone. Wins/losses count toward your Played, Win %, and Streak stats.</li>
