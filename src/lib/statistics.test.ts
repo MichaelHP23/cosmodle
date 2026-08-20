@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, it, expect, beforeEach } from "vitest"
-import { getStatistics, recordDailyResult, getWinPercentage } from "./statistics"
+import { getStatistics, recordDailyResult, getWinPercentage, mergeServerStatistics } from "./statistics"
 
 beforeEach(() => {
   localStorage.clear()
@@ -134,6 +134,37 @@ describe("recordDailyResult - losses", () => {
     recordDailyResult(5, false, 7)
     const stats = recordDailyResult(5, false, 7)
     expect(stats.gamesPlayed).toBe(1)
+  })
+})
+
+describe("mergeServerStatistics", () => {
+  it("uses the server stats and persists them when the server is ahead of local", () => {
+    recordDailyResult(1, true, 3)
+    const server = { gamesPlayed: 5, wins: 5, currentStreak: 5, longestStreak: 5, lastDayNumber: 5, guessDistribution: [0, 0, 1, 1, 1, 1, 1] }
+    const merged = mergeServerStatistics(server)
+    expect(merged).toEqual(server)
+    expect(getStatistics()).toEqual(server)
+  })
+
+  it("keeps local stats and leaves localStorage untouched when the server is behind local", () => {
+    recordDailyResult(1, true, 3)
+    const localBefore = getStatistics()
+    const server = { gamesPlayed: 1, wins: 1, currentStreak: 1, longestStreak: 1, lastDayNumber: 1, guessDistribution: [0, 0, 1, 0, 0, 0, 0] }
+    const merged = mergeServerStatistics(server)
+    expect(merged).toEqual(localBefore)
+    expect(getStatistics()).toEqual(localBefore)
+  })
+
+  it("keeps the higher longestStreak when gamesPlayed is equal but local has a higher longestStreak", () => {
+    recordDailyResult(1, true, 1)
+    recordDailyResult(2, true, 1)
+    recordDailyResult(9, true, 1)
+    const local = getStatistics()
+    expect(local.longestStreak).toBe(2)
+    const server = { gamesPlayed: local.gamesPlayed, wins: local.gamesPlayed, currentStreak: 1, longestStreak: 1, lastDayNumber: 9, guessDistribution: [3, 0, 0, 0, 0, 0, 0] }
+    const merged = mergeServerStatistics(server)
+    expect(merged.longestStreak).toBe(2)
+    expect(getStatistics().longestStreak).toBe(2)
   })
 })
 

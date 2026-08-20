@@ -29,3 +29,12 @@ export function applyServerStatistics(stats: Statistics): Statistics {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(stats))
   return stats
 }
+
+export function mergeServerStatistics(server: Statistics): Statistics {
+  const local = getStatistics()
+  if (server.gamesPlayed < local.gamesPlayed) return local
+  return applyServerStatistics({
+    ...server,
+    longestStreak: Math.max(server.longestStreak, local.longestStreak),
+  })
+}

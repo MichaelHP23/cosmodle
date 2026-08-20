@@ -6,7 +6,7 @@ import { getDailyObject, pickRandomObject, daysSinceEpoch, dateForDayNumber, LAU
 import { createInitialState, applyGuess, useHint, loadDailyState, saveDailyState, MAX_GUESSES, MAX_HINTS } from "../lib/gameState"
 import { getProfileForCategory } from "../lib/objectProfiles"
 import { compareProperty } from "../lib/comparison"
-import { getStatistics, recordDailyResult, applyServerStatistics, type Statistics } from "../lib/statistics"
+import { getStatistics, recordDailyResult, mergeServerStatistics, type Statistics } from "../lib/statistics"
 import { getOrCreatePlayerId } from "../lib/playerId"
 import { postResult, getPlayerStats } from "../lib/api"
 import { DailyHeader } from "./DailyHeader"
@@ -64,11 +64,7 @@ export function GameBoard() {
 
   useEffect(() => {
     getPlayerStats(playerId).then(server => {
-      if (!server) return
-      const local = getStatistics()
-      if (server.gamesPlayed >= local.gamesPlayed) {
-        setStatistics(applyServerStatistics(server))
-      }
+      if (server) setStatistics(mergeServerStatistics(server))
     })
   }, [playerId])
 
@@ -94,7 +90,7 @@ export function GameBoard() {
         setStatistics(recordDailyResult(todayDayNumber, next.won, next.guessIds.length, next.hintsUsed))
         setShowResultModal(true)
         postResult(playerId, todayDayNumber, next.won, next.guessIds.length, next.hintsUsed).then(server => {
-          if (server) setStatistics(applyServerStatistics(server))
+          if (server) setStatistics(mergeServerStatistics(server))
         })
       }
     } else if (mode === "practice") {
