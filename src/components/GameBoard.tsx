@@ -16,6 +16,7 @@ import { ResultModal } from "./ResultModal"
 import { LossModal } from "./LossModal"
 import { Footer } from "./Footer"
 import { HowToPlayModal } from "./HowToPlayModal"
+import { GlobalStatsModal } from "./GlobalStatsModal"
 import { ArchiveList } from "./ArchiveList"
 import { HintPanel } from "./HintPanel"
 
@@ -45,6 +46,7 @@ export function GameBoard() {
   const [archiveState, setArchiveState] = useState<DailyGameState | null>(null)
   const [showResultModal, setShowResultModal] = useState(false)
   const [showHowToPlay, setShowHowToPlay] = useState(() => !localStorage.getItem(HOW_TO_PLAY_SEEN_KEY))
+  const [showGlobalStats, setShowGlobalStats] = useState(false)
   const [statistics, setStatistics] = useState<Statistics | null>(() => (dailyState.won ? getStatistics() : null))
 
   function closeHowToPlay() {
@@ -247,8 +249,9 @@ export function GameBoard() {
             )}
           </>
         )}
-        <Footer />
+        <Footer onGlobalStatsClick={() => setShowGlobalStats(true)} />
         {showHowToPlay && <HowToPlayModal onClose={closeHowToPlay} />}
+        {showGlobalStats && <GlobalStatsModal onClose={() => setShowGlobalStats(false)} />}
       </div>
     </div>
   )
