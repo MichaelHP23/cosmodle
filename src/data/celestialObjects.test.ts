@@ -40,6 +40,22 @@ describe("celestialObjects dataset", () => {
     expect(missing).toEqual([])
   })
 
+  it("every object outside constellation/exoplanet has a redshift, so cross-category guesses against a quasar's redshift column are never blank", () => {
+    const missing = (dataset as CelestialObject[])
+      .filter(o => o.category !== "constellation" && o.category !== "exoplanet" && o.category !== "quasar")
+      .filter(o => o.redshift === undefined)
+      .map(o => o.id)
+    expect(missing).toEqual([])
+  })
+
+  it("every object outside constellation/exoplanet/black_hole/milky_way has an apparentMagnitude, so cross-category guesses against a quasar or nebula's magnitude column are never blank", () => {
+    const missing = (dataset as CelestialObject[])
+      .filter(o => !["constellation", "exoplanet", "black_hole", "quasar", "nebula"].includes(o.category) && o.id !== "milky_way")
+      .filter(o => o.apparentMagnitude === undefined)
+      .map(o => o.id)
+    expect(missing).toEqual([])
+  })
+
   it("every moon has a parentBodyId that exists in the dataset", () => {
     const ids = new Set((dataset as CelestialObject[]).map(o => o.id))
     for (const obj of dataset as CelestialObject[]) {
