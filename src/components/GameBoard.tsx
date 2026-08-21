@@ -3,7 +3,7 @@ import dataset from "../data/celestialObjects.json"
 import type { CelestialObject } from "../types/celestial"
 import type { ComparisonStatus, DailyGameState, GameMode } from "../types/game"
 import { getDailyObject, pickRandomObject, daysSinceEpoch, dateForDayNumber, LAUNCH_DATE } from "../lib/dailyObject"
-import { createInitialState, applyGuess, useHint, loadDailyState, saveDailyState, MAX_GUESSES, MAX_HINTS } from "../lib/gameState"
+import { createInitialState, applyGuess, applyHint, loadDailyState, saveDailyState, MAX_GUESSES, MAX_HINTS } from "../lib/gameState"
 import { getProfileForCategory, getComparableValue } from "../lib/objectProfiles"
 import { compareProperty } from "../lib/comparison"
 import { getStatistics, recordDailyResult, mergeServerStatistics, type Statistics } from "../lib/statistics"
@@ -110,9 +110,9 @@ export function GameBoard() {
 
   function handleUseHint() {
     if (mode === "daily") {
-      setDailyState(s => useHint(s).state)
+      setDailyState(s => applyHint(s).state)
     } else if (mode === "archive") {
-      setArchiveState(s => (s ? useHint(s).state : s))
+      setArchiveState(s => (s ? applyHint(s).state : s))
     } else if (mode === "practice") {
       setPracticeHintsUsed(h => (practiceWon || h >= MAX_HINTS ? h : h + 1))
     }

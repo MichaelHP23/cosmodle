@@ -24,7 +24,7 @@ export function applyGuess(
   return { state: { ...state, guessIds, won } }
 }
 
-export function useHint(
+export function applyHint(
   state: DailyGameState
 ): { state: DailyGameState; error?: "already_won" | "no_hints_left" } {
   if (state.won) return { state, error: "already_won" }
