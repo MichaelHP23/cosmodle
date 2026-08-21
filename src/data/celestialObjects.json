@@ -861,7 +861,7 @@
     "apparentMagnitude": -26.74,
     "redshift": 0,
     "color": "#ffd54a",
-    "distanceFromEarthLy": 1.58e-05,
+    "distanceFromEarthLy": 0.0000158,
     "diameterKm": 1391000,
     "massKg": 1.989e+30,
     "temperatureK": 5778,
@@ -1588,7 +1588,8 @@
     "description": "The third-largest constellation, home to the Big Dipper asterism used for centuries to find true north.",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Ursa_Major_IAU.svg/330px-Ursa_Major_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alioth"
   },
   {
     "id": "ursa_minor",
@@ -1617,7 +1618,8 @@
     "description": "Named for a vain queen in Greek mythology, easily spotted by its distinctive W or M shape of five bright stars.",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Cassiopeia_IAU.svg/330px-Cassiopeia_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "schedar"
   },
   {
     "id": "leo",
@@ -1631,7 +1633,8 @@
     "description": "A zodiac constellation resembling a crouching lion, with a curved 'sickle' of stars marking its head and mane.",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Leo_IAU.svg/330px-Leo_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": true
+    "isZodiac": true,
+    "brightestStarId": "regulus"
   },
   {
     "id": "scorpius",
@@ -1660,7 +1663,8 @@
     "description": "The smallest of all 88 official constellations, known as the Southern Cross and featured on several national flags.",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Crux_IAU.svg/330px-Crux_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1679,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "acrux"
   },
   {
     "id": "cygnus",
@@ -1689,7 +1693,8 @@
     "description": "Named for a mythological princess, this constellation is best known as the location of the Andromeda Galaxy.",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Andromeda_IAU.svg/330px-Andromeda_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alpheratz"
   },
   {
     "id": "sagittarius_constellation",
@@ -1703,7 +1708,8 @@
     "description": "A zodiac constellation shaped like a teapot, pointing toward the center of the Milky Way galaxy.",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Sagittarius_IAU.svg/330px-Sagittarius_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": true
+    "isZodiac": true,
+    "brightestStarId": "kaus_australis"
   },
   {
     "id": "proxima_centauri_b",
@@ -1932,7 +1938,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Aries_IAU.svg/330px-Aries_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": true
+    "isZodiac": true,
+    "brightestStarId": "hamal"
   },
   {
     "id": "auriga",
@@ -2047,7 +2054,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Canis_Minor_IAU.svg/330px-Canis_Minor_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "procyon"
   },
   {
     "id": "capricornus",
@@ -2075,7 +2083,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Carina_IAU.svg/330px-Carina_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1756,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "canopus"
   },
   {
     "id": "centaurus",
@@ -2104,7 +2113,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Cepheus_IAU.svg/330px-Cepheus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alderamin"
   },
   {
     "id": "cetus",
@@ -2118,7 +2128,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Cetus_IAU.svg/330px-Cetus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "diphda"
   },
   {
     "id": "chamaeleon",
@@ -2202,7 +2213,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Corona_Borealis_IAU.svg/330px-Corona_Borealis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alphecca"
   },
   {
     "id": "corvus",
@@ -2272,7 +2284,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Draco_IAU.svg/330px-Draco_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "eltanin"
   },
   {
     "id": "equuleus",
@@ -2329,7 +2342,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gemini_IAU.svg/330px-Gemini_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": true
+    "isZodiac": true,
+    "brightestStarId": "pollux"
   },
   {
     "id": "grus",
@@ -2343,7 +2357,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Grus_IAU.svg/330px-Grus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1597,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alnair"
   },
   {
     "id": "hercules",
@@ -2385,7 +2400,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Hydra_IAU.svg/330px-Hydra_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alphard"
   },
   {
     "id": "hydrus",
@@ -2610,7 +2626,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Ophiuchus_IAU.svg/330px-Ophiuchus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "rasalhague"
   },
   {
     "id": "pavo",
@@ -2624,7 +2641,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Pavo_IAU.svg/330px-Pavo_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1597,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "peacock"
   },
   {
     "id": "pegasus",
@@ -2638,7 +2656,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lakonian_Black-Figure_Kylix%3B_detached_fragments.jpg/330px-Lakonian_Black-Figure_Kylix%3B_detached_fragments.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "enif"
   },
   {
     "id": "perseus",
@@ -2652,7 +2671,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Perseo_con_la_testa_di_medusa%2C_originale_di_et%C3%A0_flavia_o_traianea%2C_dalle_terme_presso_porta_laurentina%2C_01.JPG/330px-Perseo_con_la_testa_di_medusa%2C_originale_di_et%C3%A0_flavia_o_traianea%2C_dalle_terme_presso_porta_laurentina%2C_01.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "mirfak"
   },
   {
     "id": "phoenix",
@@ -2666,7 +2686,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Phoenix_IAU.svg/330px-Phoenix_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1597,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "ankaa"
   },
   {
     "id": "pictor",
@@ -2723,7 +2744,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Puppis_IAU.svg/330px-Puppis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1756,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "naos"
   },
   {
     "id": "pyxis",
@@ -2878,7 +2900,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Triangulum_Australe_IAU.svg/330px-Triangulum_Australe_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1597,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "atria"
   },
   {
     "id": "tucana",
@@ -3797,5 +3820,373 @@
     "difficulty": 4,
     "description": "The first Earth-sized habitable-zone planet discovered by NASA's TESS mission.",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/PIA23408-Exoplanet-TOI700d-20200106.jpg/330px-PIA23408-Exoplanet-TOI700d-20200106.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "canopus",
+    "name": "Canopus",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": -0.74,
+    "redshift": 0,
+    "color": "#f4f6ff",
+    "distanceFromEarthLy": 310,
+    "diameterKm": 98789400,
+    "massKg": 1.691e+31,
+    "temperatureK": 7520,
+    "difficulty": 3,
+    "description": "The second-brightest star in the night sky, a yellow-white supergiant used for spacecraft navigation.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "procyon",
+    "name": "Procyon",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 0.34,
+    "redshift": 0,
+    "color": "#fff8f0",
+    "distanceFromEarthLy": 11,
+    "diameterKm": 2852370,
+    "massKg": 2.978e+30,
+    "temperatureK": 6530,
+    "difficulty": 3,
+    "description": "A nearby yellow-white subgiant, one of the closest bright stars to the Sun.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "acrux",
+    "name": "Acrux",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 0.76,
+    "redshift": 0,
+    "color": "#aabfff",
+    "distanceFromEarthLy": 320,
+    "diameterKm": 10852920,
+    "massKg": 3.54e+31,
+    "temperatureK": 24000,
+    "difficulty": 3,
+    "description": "The brightest star of the Southern Cross and the southernmost first-magnitude star.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "pollux",
+    "name": "Pollux",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 1.14,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 34,
+    "diameterKm": 12244320,
+    "massKg": 3.799e+30,
+    "temperatureK": 4586,
+    "difficulty": 4,
+    "description": "An orange giant and the closest giant star to the Sun, host to a confirmed exoplanet.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "regulus",
+    "name": "Regulus",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 1.39,
+    "redshift": 0,
+    "color": "#cad7ff",
+    "distanceFromEarthLy": 79,
+    "diameterKm": 4299426,
+    "massKg": 7.558e+30,
+    "temperatureK": 12460,
+    "difficulty": 4,
+    "description": "A rapidly spinning blue-white star flattened into an oval by its own rotation.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "alnair",
+    "name": "Alnair",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 1.74,
+    "redshift": 0,
+    "color": "#cad7ff",
+    "distanceFromEarthLy": 100,
+    "diameterKm": 4730760,
+    "massKg": 7.956e+30,
+    "temperatureK": 13920,
+    "difficulty": 4,
+    "description": "A hot blue-white star and the brightest in the crane constellation Grus.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "alioth",
+    "name": "Alioth",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 1.77,
+    "redshift": 0,
+    "color": "#f4f6ff",
+    "distanceFromEarthLy": 83,
+    "diameterKm": 5969106,
+    "massKg": 5.788e+30,
+    "temperatureK": 8908,
+    "difficulty": 4,
+    "description": "The brightest star in the Big Dipper, with an unusual chemically peculiar spectrum.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "mirfak",
+    "name": "Mirfak",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 1.82,
+    "redshift": 0,
+    "color": "#fff8f0",
+    "distanceFromEarthLy": 510,
+    "diameterKm": 94615200,
+    "massKg": 1.691e+31,
+    "temperatureK": 6350,
+    "difficulty": 4,
+    "description": "A yellow supergiant that dominates the Perseus moving cluster.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "kaus_australis",
+    "name": "Kaus Australis",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 1.85,
+    "redshift": 0,
+    "color": "#f4f6ff",
+    "distanceFromEarthLy": 140,
+    "diameterKm": 9461520,
+    "massKg": 6.962e+30,
+    "temperatureK": 9960,
+    "difficulty": 4,
+    "description": "The brightest star in Sagittarius, marking the base of the archer's bow.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "atria",
+    "name": "Atria",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 1.91,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 390,
+    "diameterKm": 180882000,
+    "massKg": 1.392e+31,
+    "temperatureK": 4150,
+    "difficulty": 4,
+    "description": "An orange giant far more luminous than the Sun, brightest in the Southern Triangle.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "peacock",
+    "name": "Peacock",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 1.94,
+    "redshift": 0,
+    "color": "#cad7ff",
+    "distanceFromEarthLy": 180,
+    "diameterKm": 8348400,
+    "massKg": 1.193e+31,
+    "temperatureK": 17700,
+    "difficulty": 4,
+    "description": "A hot blue-white binary and the only named star in the constellation Pavo.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "alphard",
+    "name": "Alphard",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 2,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 180,
+    "diameterKm": 70265700,
+    "massKg": 6.027e+30,
+    "temperatureK": 4120,
+    "difficulty": 5,
+    "description": "An orange giant whose name means 'the solitary one', isolated in a dim region of sky.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "hamal",
+    "name": "Hamal",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 2,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 66,
+    "diameterKm": 20731860,
+    "massKg": 2.983e+30,
+    "temperatureK": 4480,
+    "difficulty": 5,
+    "description": "An orange giant with a known exoplanet, once marking the vernal equinox.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "diphda",
+    "name": "Diphda",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 2.02,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 96,
+    "diameterKm": 23347692,
+    "massKg": 5.569e+30,
+    "temperatureK": 4797,
+    "difficulty": 5,
+    "description": "An orange giant brighter than Cetus's alpha star, with an unusually strong X-ray corona.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "alpheratz",
+    "name": "Alpheratz",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 2.06,
+    "redshift": 0,
+    "color": "#cad7ff",
+    "distanceFromEarthLy": 97,
+    "diameterKm": 3756780,
+    "massKg": 7.16e+30,
+    "temperatureK": 13800,
+    "difficulty": 5,
+    "description": "A mercury-manganese star shared historically between Andromeda and Pegasus.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "rasalhague",
+    "name": "Rasalhague",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 2.07,
+    "redshift": 0,
+    "color": "#f4f6ff",
+    "distanceFromEarthLy": 47,
+    "diameterKm": 3617640,
+    "massKg": 4.774e+30,
+    "temperatureK": 8000,
+    "difficulty": 5,
+    "description": "A rapidly rotating white star at the head of the serpent-bearer.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "alphecca",
+    "name": "Alphecca",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 2.23,
+    "redshift": 0,
+    "color": "#f4f6ff",
+    "distanceFromEarthLy": 75,
+    "diameterKm": 4174200,
+    "massKg": 5.132e+30,
+    "temperatureK": 9700,
+    "difficulty": 5,
+    "description": "The jewel of the Northern Crown, an eclipsing binary surrounded by a dust disk.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "eltanin",
+    "name": "Eltanin",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 2.23,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 150,
+    "diameterKm": 66995910,
+    "massKg": 3.421e+30,
+    "temperatureK": 3930,
+    "difficulty": 5,
+    "description": "An orange giant that will pass close to the Sun in 1.5 million years.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "schedar",
+    "name": "Schedar",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 2.24,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 230,
+    "diameterKm": 58577940,
+    "massKg": 8.95e+30,
+    "temperatureK": 4530,
+    "difficulty": 5,
+    "description": "An orange giant marking the queen's breast in the W-shape of Cassiopeia.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "naos",
+    "name": "Naos",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 2.25,
+    "redshift": 0,
+    "color": "#aabfff",
+    "distanceFromEarthLy": 1080,
+    "diameterKm": 19479600,
+    "massKg": 4.475e+31,
+    "temperatureK": 40000,
+    "difficulty": 5,
+    "description": "One of the hottest and most luminous naked-eye stars, racing through space at high speed.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "ankaa",
+    "name": "Ankaa",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 2.38,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 77,
+    "diameterKm": 18088200,
+    "massKg": 4.972e+30,
+    "temperatureK": 4800,
+    "difficulty": 5,
+    "description": "An orange giant binary and the brightest star of the Phoenix constellation.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "enif",
+    "name": "Enif",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 2.4,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 670,
+    "diameterKm": 257409000,
+    "massKg": 2.327e+31,
+    "temperatureK": 4379,
+    "difficulty": 5,
+    "description": "An orange supergiant marking the nose of the winged horse, prone to sudden flares.",
+    "discoveredYear": -3000
+  },
+  {
+    "id": "alderamin",
+    "name": "Alderamin",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 2.46,
+    "redshift": 0,
+    "color": "#f4f6ff",
+    "distanceFromEarthLy": 49,
+    "diameterKm": 3200220,
+    "massKg": 3.461e+30,
+    "temperatureK": 7740,
+    "difficulty": 5,
+    "description": "A fast-spinning white star that will become the pole star in about 5,500 years.",
+    "discoveredYear": -3000
   }
 ]
