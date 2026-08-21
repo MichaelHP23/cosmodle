@@ -85,6 +85,12 @@ const TITLE_OVERRIDE = {
   nix: "Nix (moon)",
   hydra_moon: "Hydra (moon)",
   ngc4889_black_hole: "NGC 4889",
+  // Bare star names that land on a Wikipedia disambiguation page rather than the star.
+  pollux: "Pollux (star)",
+  alnair: "Alpha Gruis",
+  atria: "Alpha Trianguli Australis",
+  naos: "Zeta Puppis",
+  gienah: "Gamma Corvi",
 }
 
 const UA = "CelestialGame/1.0 (contact: mpink2491@gmail.com)"

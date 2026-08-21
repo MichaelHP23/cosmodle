@@ -56,6 +56,25 @@ describe("celestialObjects dataset", () => {
     expect(missing).toEqual([])
   })
 
+  // A constellation borrows its physical properties from its brightest star, so a link to the wrong
+  // star quietly gives it someone else's distance and mass. The magnitude it already records is the
+  // independent check that the pair belongs together.
+  it("every constellation linked to a brightest star points at a real star of the right brightness", () => {
+    const objects = dataset as CelestialObject[]
+    const problems: string[] = []
+    for (const obj of objects.filter(o => o.category === "constellation" && o.brightestStarId)) {
+      const star = objects.find(o => o.id === obj.brightestStarId)
+      if (!star) { problems.push(`${obj.id} -> ${obj.brightestStarId} (no such object)`); continue }
+      if (star.category !== "star") { problems.push(`${obj.id} -> ${star.id} (not a star)`); continue }
+      const recorded = obj.brightestStarMagnitude
+      const actual = star.apparentMagnitude
+      if (recorded === undefined || actual === undefined || Math.abs(recorded - actual) > 0.35) {
+        problems.push(`${obj.id} -> ${star.id} (magnitude ${actual} vs recorded ${recorded})`)
+      }
+    }
+    expect(problems).toEqual([])
+  })
+
   it("every moon has a parentBodyId that exists in the dataset", () => {
     const ids = new Set((dataset as CelestialObject[]).map(o => o.id))
     for (const obj of dataset as CelestialObject[]) {
