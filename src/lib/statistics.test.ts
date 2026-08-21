@@ -25,6 +25,22 @@ describe("getStatistics", () => {
     expect(stats.guessDistribution).toEqual([0, 0, 0, 0, 0, 0, 0])
     expect(stats.gamesPlayed).toBe(2)
   })
+
+  it("reshapes a guessDistribution saved under a smaller STATS_BUCKET_COUNT, folding overflow into the last bucket", () => {
+    localStorage.setItem(
+      "celestial:statistics",
+      JSON.stringify({ gamesPlayed: 3, wins: 3, currentStreak: 3, longestStreak: 3, lastDayNumber: 5, guessDistribution: [0, 1, 2] })
+    )
+    expect(getStatistics().guessDistribution).toEqual([0, 1, 2, 0, 0, 0, 0])
+  })
+
+  it("reshapes a guessDistribution saved under a larger STATS_BUCKET_COUNT, summing overflow into the 7+ bucket", () => {
+    localStorage.setItem(
+      "celestial:statistics",
+      JSON.stringify({ gamesPlayed: 5, wins: 5, currentStreak: 0, longestStreak: 5, lastDayNumber: 5, guessDistribution: [0, 1, 1, 1, 1, 1, 1, 1, 1] })
+    )
+    expect(getStatistics().guessDistribution).toEqual([0, 1, 1, 1, 1, 1, 3])
+  })
 })
 
 describe("recordDailyResult - wins", () => {

@@ -121,6 +121,31 @@ export function getProfileForCategory(category: CelestialCategory): ProfileEntry
   return PROFILES_BY_CATEGORY[category]
 }
 
+const AU_PER_LY = 63241.077
+
+// ponytail: distanceFromSunAU and distanceFromEarthLy are the same "how far away" quantity at different
+// scales (solar-system bodies vs deep-space ones) — convert across so cross-category guesses stay comparable.
+// A moon has neither field directly (only distanceFromParentKm, negligible next to interstellar scales), so
+// fall back to its parent body's distance via the optional dataset lookup.
+export function getComparableValue(object: CelestialObject, property: string, dataset?: CelestialObject[]): unknown {
+  const raw = (object as Record<string, unknown>)[property]
+  if (raw !== undefined && raw !== null) return raw
+
+  if (property === "distanceFromEarthLy" || property === "distanceFromSunAU") {
+    if (property === "distanceFromEarthLy" && object.distanceFromSunAU !== undefined) {
+      return object.distanceFromSunAU / AU_PER_LY
+    }
+    if (property === "distanceFromSunAU" && object.distanceFromEarthLy !== undefined) {
+      return object.distanceFromEarthLy * AU_PER_LY
+    }
+    if (object.parentBodyId && dataset) {
+      const parent = dataset.find(o => o.id === object.parentBodyId)
+      if (parent) return getComparableValue(parent, property, dataset)
+    }
+  }
+  return undefined
+}
+
 export function getSearchHint(object: CelestialObject): string {
   const profile = getProfileForCategory(object.category).filter(e => e.property !== "category")
   const stats = profile

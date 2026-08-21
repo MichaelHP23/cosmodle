@@ -25,6 +25,15 @@ export const ZERO_STATISTICS: Statistics = {
   guessDistribution: new Array(STATS_BUCKET_COUNT).fill(0),
 }
 
+// ponytail: reconciles distributions saved under an older STATS_BUCKET_COUNT (overflow folds into the last bucket)
+export function normalizeDistribution(distribution: number[]): number[] {
+  const result = new Array(STATS_BUCKET_COUNT).fill(0)
+  distribution.forEach((count, i) => {
+    result[Math.min(i, STATS_BUCKET_COUNT - 1)] += count
+  })
+  return result
+}
+
 export function applyResult(
   previous: Statistics,
   dayNumber: number,

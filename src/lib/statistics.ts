@@ -1,4 +1,4 @@
-import { ZERO_STATISTICS, applyResult } from "./statisticsCore"
+import { ZERO_STATISTICS, applyResult, normalizeDistribution } from "./statisticsCore"
 import type { Statistics } from "./statisticsCore"
 
 export type { Statistics, DailyResult } from "./statisticsCore"
@@ -11,7 +11,8 @@ export function getStatistics(): Statistics {
   if (!raw) return ZERO_STATISTICS
   try {
     const parsed = JSON.parse(raw)
-    return { ...ZERO_STATISTICS, ...parsed }
+    const merged = { ...ZERO_STATISTICS, ...parsed }
+    return { ...merged, guessDistribution: normalizeDistribution(merged.guessDistribution) }
   } catch {
     return ZERO_STATISTICS
   }

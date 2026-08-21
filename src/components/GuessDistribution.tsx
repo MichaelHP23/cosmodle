@@ -1,9 +1,11 @@
 export function GuessDistribution({
   distribution,
   highlightGuessCount,
+  subtitle,
 }: {
   distribution: number[]
   highlightGuessCount?: number
+  subtitle?: string
 }) {
   const maxCount = Math.max(1, ...distribution)
   const clampedHighlight =
@@ -14,6 +16,7 @@ export function GuessDistribution({
       <div className="mb-2 text-center text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">
         Guess Distribution
       </div>
+      {subtitle && <div className="mb-2 -mt-1 text-center text-xs text-[#8a8a8a]">{subtitle}</div>}
       <div className="space-y-1">
         {distribution.map((count, i) => {
           const guessNumber = i + 1

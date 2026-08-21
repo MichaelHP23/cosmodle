@@ -39,7 +39,7 @@ export function GlobalStatsModal({ onClose }: { onClose: () => void }) {
               <StatBlock value={stats.winRate} label="Win %" />
             </div>
 
-            <GuessDistribution distribution={stats.guessDistribution} />
+            <GuessDistribution distribution={stats.guessDistribution} subtitle="All-time wins" />
           </>
         )}
       </div>

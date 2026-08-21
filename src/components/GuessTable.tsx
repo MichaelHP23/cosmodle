@@ -1,6 +1,7 @@
 import type { CelestialObject } from "../types/celestial"
 import type { ProfileEntry } from "../types/game"
 import { compareProperty } from "../lib/comparison"
+import { getComparableValue } from "../lib/objectProfiles"
 import { formatPropertyValue } from "../lib/formatting"
 import { ResultIndicator } from "./ResultIndicator"
 
@@ -8,10 +9,12 @@ export function GuessTable({
   profile,
   guesses,
   answer,
+  dataset,
 }: {
   profile: ProfileEntry[]
   guesses: CelestialObject[]
   answer: CelestialObject
+  dataset: CelestialObject[]
 }) {
   if (guesses.length === 0) return null
 
@@ -44,8 +47,8 @@ export function GuessTable({
                 {guess.name}
               </th>
               {profile.map(entry => {
-                const guessValue = (guess as any)[entry.property]
-                const answerValue = (answer as any)[entry.property]
+                const guessValue = getComparableValue(guess, entry.property, dataset)
+                const answerValue = getComparableValue(answer, entry.property, dataset)
                 const result = compareProperty(guessValue, answerValue, entry.kind)
                 return (
                   <td key={entry.property} className="px-1 py-2 sm:px-2">

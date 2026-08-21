@@ -14,17 +14,22 @@ export async function postResult(
   guessCount: number,
   hintsUsed: number
 ): Promise<Statistics | null> {
-  try {
-    const res = await fetch("/api/result", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ uuid, dayNumber, won, guessCount, hintsUsed }),
-    })
-    if (!res.ok) return null
-    return (await res.json()) as Statistics
-  } catch {
-    return null
+  const body = JSON.stringify({ uuid, dayNumber, won, guessCount, hintsUsed })
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const res = await fetch("/api/result", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body,
+        keepalive: true,
+      })
+      if (res.ok) return (await res.json()) as Statistics
+    } catch {
+      // network hiccup — retry below
+    }
+    if (attempt < 2) await new Promise(resolve => setTimeout(resolve, 500 * 2 ** attempt))
   }
+  return null
 }
 
 export async function getPlayerStats(uuid: string): Promise<Statistics | null> {

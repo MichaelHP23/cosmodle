@@ -4,7 +4,7 @@ import type { CelestialObject } from "../types/celestial"
 import type { ComparisonStatus, DailyGameState, GameMode } from "../types/game"
 import { getDailyObject, pickRandomObject, daysSinceEpoch, dateForDayNumber, LAUNCH_DATE } from "../lib/dailyObject"
 import { createInitialState, applyGuess, useHint, loadDailyState, saveDailyState, MAX_GUESSES, MAX_HINTS } from "../lib/gameState"
-import { getProfileForCategory } from "../lib/objectProfiles"
+import { getProfileForCategory, getComparableValue } from "../lib/objectProfiles"
 import { compareProperty } from "../lib/comparison"
 import { getStatistics, recordDailyResult, mergeServerStatistics, type Statistics } from "../lib/statistics"
 import { getOrCreatePlayerId } from "../lib/playerId"
@@ -154,7 +154,12 @@ export function GameBoard() {
   const guessStatusRows = answer
     ? guesses.map(guess => {
         const statuses: ComparisonStatus[] = hintableProfile.map(
-          e => compareProperty((guess as any)[e.property], (answer as any)[e.property], e.kind).status
+          e =>
+            compareProperty(
+              getComparableValue(guess, e.property, typedDataset),
+              getComparableValue(answer, e.property, typedDataset),
+              e.kind
+            ).status
         )
         return { statuses, isWinningGuess: guess.id === answer.id }
       })
@@ -209,7 +214,7 @@ export function GameBoard() {
               </>
             )}
             <div className="mt-4 flex justify-center">
-              <GuessTable profile={profile} guesses={guesses} answer={answer} />
+              <GuessTable profile={profile} guesses={guesses} answer={answer} dataset={typedDataset} />
             </div>
             {gameOver && !showResultModal && (
               <div className="mt-4 text-center">

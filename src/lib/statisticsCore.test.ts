@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { deriveStatsFromResults } from "./statisticsCore"
+import { deriveStatsFromResults, normalizeDistribution } from "./statisticsCore"
 
 describe("deriveStatsFromResults", () => {
   it("returns zeroed stats for an empty history", () => {
@@ -61,5 +61,19 @@ describe("deriveStatsFromResults", () => {
     ])
     expect(stats.gamesPlayed).toBe(1)
     expect(stats.wins).toBe(1)
+  })
+})
+
+describe("normalizeDistribution", () => {
+  it("pads a shorter array to the current bucket count", () => {
+    expect(normalizeDistribution([1, 2])).toEqual([1, 2, 0, 0, 0, 0, 0])
+  })
+
+  it("folds a longer array's overflow into the last bucket", () => {
+    expect(normalizeDistribution([1, 0, 0, 0, 0, 0, 0, 5, 2])).toEqual([1, 0, 0, 0, 0, 0, 7])
+  })
+
+  it("is a no-op for an already-correct-length array", () => {
+    expect(normalizeDistribution([1, 2, 3, 4, 5, 6, 7])).toEqual([1, 2, 3, 4, 5, 6, 7])
   })
 })

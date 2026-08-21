@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { getProfileForCategory, getSearchHint } from "./objectProfiles"
+import { getProfileForCategory, getSearchHint, getComparableValue } from "./objectProfiles"
 import type { CelestialObject } from "../types/celestial"
 
 describe("getProfileForCategory", () => {
@@ -75,5 +75,39 @@ describe("getSearchHint", () => {
   it("uses the parent body and distance for moons", () => {
     const europa: CelestialObject = { id: "europa", name: "Europa", category: "moon", parentBodyId: "jupiter", distanceFromParentKm: 671100 }
     expect(getSearchHint(europa)).toBe("moon · Jupiter · 671,100 km")
+  })
+})
+
+describe("getComparableValue", () => {
+  it("converts distanceFromSunAU to ly when distanceFromEarthLy is asked for", () => {
+    const pluto: CelestialObject = { id: "pluto", name: "Pluto", category: "dwarf_planet", distanceFromSunAU: 39.48 }
+    expect(getComparableValue(pluto, "distanceFromEarthLy")).toBeCloseTo(39.48 / 63241.077, 10)
+  })
+
+  it("converts distanceFromEarthLy to AU when distanceFromSunAU is asked for", () => {
+    const quasar: CelestialObject = { id: "3c48", name: "3C 48", category: "quasar", distanceFromEarthLy: 4_500_000_000 }
+    expect(getComparableValue(quasar, "distanceFromSunAU")).toBeCloseTo(4_500_000_000 * 63241.077, 0)
+  })
+
+  it("prefers the object's own value over conversion", () => {
+    const star: CelestialObject = { id: "sun", name: "Sun", category: "star", distanceFromEarthLy: 0.0000158 }
+    expect(getComparableValue(star, "distanceFromEarthLy")).toBe(0.0000158)
+  })
+
+  it("returns undefined when there is no direct or convertible value", () => {
+    const constellation: CelestialObject = { id: "orion", name: "Orion", category: "constellation" }
+    expect(getComparableValue(constellation, "distanceFromEarthLy")).toBeUndefined()
+  })
+
+  it("falls back to a moon's parent body's distance when a dataset is provided", () => {
+    const jupiter: CelestialObject = { id: "jupiter", name: "Jupiter", category: "planet", distanceFromSunAU: 5.2 }
+    const europa: CelestialObject = { id: "europa", name: "Europa", category: "moon", parentBodyId: "jupiter", distanceFromParentKm: 671100 }
+    const dataset = [jupiter, europa]
+    expect(getComparableValue(europa, "distanceFromEarthLy", dataset)).toBeCloseTo(5.2 / 63241.077, 10)
+  })
+
+  it("does not resolve a moon's parent distance without a dataset", () => {
+    const europa: CelestialObject = { id: "europa", name: "Europa", category: "moon", parentBodyId: "jupiter", distanceFromParentKm: 671100 }
+    expect(getComparableValue(europa, "distanceFromEarthLy")).toBeUndefined()
   })
 })
