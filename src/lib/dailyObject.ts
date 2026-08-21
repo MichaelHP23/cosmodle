@@ -37,9 +37,26 @@ export function seededShuffle<T>(array: T[], seed: number): T[] {
   return result
 }
 
+// The rotation below is derived from dataset.length, so adding a single object reshuffles every day's
+// answer — including days people have already played, whose saved guesses would then grade against a
+// different object. Days that have already been played are pinned to the object they actually showed.
+// Pin every elapsed day before growing the dataset again; unplayed future days are free to reshuffle.
+const PINNED_ANSWERS: Record<number, string> = {
+  1: "cartwheel_galaxy",
+  2: "nix",
+  3: "3c48",
+}
+
 export function getDailyObject(date: Date, dataset: CelestialObject[]): CelestialObject {
   const n = dataset.length
   const days = daysSinceEpoch(date, LAUNCH_DATE)
+
+  const pinnedId = PINNED_ANSWERS[days + 1]
+  if (pinnedId) {
+    const pinned = dataset.find(o => o.id === pinnedId)
+    if (pinned) return pinned
+  }
+
   const cycle = Math.floor(days / n)
   const position = ((days % n) + n) % n
   const order = seededShuffle(

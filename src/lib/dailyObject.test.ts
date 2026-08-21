@@ -8,6 +8,21 @@ const dataset: CelestialObject[] = [
   { id: "c", name: "C", category: "planet" },
 ]
 
+describe("already-played days are pinned against dataset growth", () => {
+  // Adding objects reshuffles the whole rotation, which silently rewrote days people had already
+  // played. These lock the answers real players saw; if a dataset change moves one, pin it instead.
+  it("serves the answers players actually saw on days 1 to 3, whatever the dataset size", async () => {
+    const { default: real } = await import("../data/celestialObjects.json")
+    const full = real as unknown as CelestialObject[]
+    for (const [day, id] of [[1, "cartwheel_galaxy"], [2, "nix"], [3, "3c48"]] as const) {
+      expect(getDailyObject(dateForDayNumber(day), full).id).toBe(id)
+      // and still correct against a grown dataset
+      const grown = [...full, { id: "zz_new", name: "New", category: "star" } as CelestialObject]
+      expect(getDailyObject(dateForDayNumber(day), grown).id).toBe(id)
+    }
+  })
+})
+
 describe("daysSinceEpoch", () => {
   it("returns 0 for the epoch date itself", () => {
     expect(daysSinceEpoch(LAUNCH_DATE, LAUNCH_DATE)).toBe(0)
