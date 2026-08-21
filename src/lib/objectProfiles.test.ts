@@ -150,6 +150,23 @@ describe("getComparableValue", () => {
     expect(getComparableValue(titan, "rotationPeriodHours")).toBeCloseTo(15.95 * 24, 5)
   })
 
+  it("reports a constellation's physical properties through its brightest star", () => {
+    const rigel: CelestialObject = { id: "rigel", name: "Rigel", category: "star", distanceFromEarthLy: 860, massKg: 4.18e31, temperatureK: 12100 }
+    const orion: CelestialObject = { id: "orion", name: "Orion", category: "constellation", brightestStarId: "rigel", brightestStarMagnitude: 0.13 }
+    const data = [rigel, orion]
+    expect(getComparableValue(orion, "distanceFromEarthLy", data)).toBe(860)
+    expect(getComparableValue(orion, "massKg", data)).toBe(4.18e31)
+    expect(getComparableValue(orion, "temperatureK", data)).toBe(12100)
+  })
+
+  it("leaves a constellation blank when its brightest star is not in the dataset", () => {
+    const phoenix: CelestialObject = { id: "phoenix", name: "Phoenix", category: "constellation", brightestStarMagnitude: 2.38 }
+    expect(getComparableValue(phoenix, "massKg", [phoenix])).toBeUndefined()
+    expect(getComparableValue(phoenix, "distanceFromEarthLy", [phoenix])).toBeUndefined()
+    // its own recorded magnitude still resolves
+    expect(getComparableValue(phoenix, "apparentMagnitude", [phoenix])).toBe(2.38)
+  })
+
   it("leaves genuinely inapplicable properties undefined rather than inventing them", () => {
     const jupiter: CelestialObject = { id: "jupiter", name: "Jupiter", category: "planet", massKg: 1.9e27, diameterKm: 139820 }
     const orion: CelestialObject = { id: "orion", name: "Orion", category: "constellation" }

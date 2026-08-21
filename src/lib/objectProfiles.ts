@@ -130,6 +130,8 @@ const SCHWARZSCHILD_KM_PER_KG = 2.9706e-30
 
 const SOLAR_SYSTEM_CATEGORIES = ["planet", "dwarf_planet", "asteroid", "comet"]
 const MILKY_WAY_CATEGORIES = ["star", "nebula", "exoplanet", "constellation"]
+// Physical quantities a constellation can only report by standing in its brightest star.
+const STAR_BACKED_PROPERTIES = ["distanceFromEarthLy", "distanceFromSunAU", "massKg", "diameterKm", "temperatureK", "gravityMs2"]
 
 // A guess only shows useful information when the answer's property can be read off the guess too.
 // Every rule below derives a real quantity the guessed object genuinely has — either the same physical
@@ -140,6 +142,16 @@ const MILKY_WAY_CATEGORIES = ["star", "nebula", "exoplanet", "constellation"]
 export function getComparableValue(object: CelestialObject, property: string, dataset?: CelestialObject[]): unknown {
   const raw = (object as Record<string, unknown>)[property]
   if (raw !== undefined && raw !== null) return raw
+
+  // A constellation is a patch of sky, not a body, so it has no physical properties of its own. It is
+  // represented here by its brightest star — the same star its magnitude already comes from — which is a
+  // stated convention rather than an invented value. Only constellations whose brightest star is in the
+  // dataset can resolve these; the rest stay blank rather than guess.
+  if (object.category === "constellation" && STAR_BACKED_PROPERTIES.includes(property)) {
+    const star = object.brightestStarId ? dataset?.find(o => o.id === object.brightestStarId) : undefined
+    if (star) return getComparableValue(star, property, dataset)
+    return undefined
+  }
 
   // Use the derived diameter too, so a quasar's event horizon feeds the gravity calculation below.
   const diameterKm = property === "diameterKm" ? undefined : getComparableValue(object, "diameterKm", dataset)

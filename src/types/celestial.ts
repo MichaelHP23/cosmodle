@@ -48,6 +48,7 @@ export type CelestialObject = {
 
   areaSqDeg?: number
   brightestStarMagnitude?: number
+  brightestStarId?: string
   hemisphere?: Hemisphere
 
   redshift?: number

@@ -959,6 +959,7 @@
   },
   {
     "id": "m87_star",
+    "apparentMagnitude": 9.59,
     "name": "M87*",
     "category": "black_hole",
     "hemisphere": "northern",
@@ -975,6 +976,7 @@
   },
   {
     "id": "cygnus_x1",
+    "apparentMagnitude": 8.9,
     "name": "Cygnus X-1",
     "category": "black_hole",
     "hemisphere": "northern",
@@ -1095,6 +1097,7 @@
   },
   {
     "id": "ton_618",
+    "apparentMagnitude": 15.9,
     "name": "TON 618",
     "category": "black_hole",
     "hemisphere": "northern",
@@ -1111,6 +1114,7 @@
   },
   {
     "id": "oj_287",
+    "apparentMagnitude": 15.43,
     "name": "OJ 287",
     "category": "black_hole",
     "hemisphere": "northern",
@@ -1127,6 +1131,7 @@
   },
   {
     "id": "gro_j1655_40",
+    "apparentMagnitude": 14,
     "name": "GRO J1655-40",
     "category": "black_hole",
     "hemisphere": "southern",
@@ -1143,6 +1148,7 @@
   },
   {
     "id": "v404_cygni",
+    "apparentMagnitude": 11.2,
     "name": "V404 Cygni",
     "category": "black_hole",
     "hemisphere": "northern",
@@ -1557,6 +1563,7 @@
   },
   {
     "id": "orion",
+    "brightestStarId": "rigel",
     "name": "Orion",
     "category": "constellation",
     "color": "#dbe4ff",
@@ -1585,6 +1592,7 @@
   },
   {
     "id": "ursa_minor",
+    "brightestStarId": "polaris",
     "name": "Ursa Minor",
     "category": "constellation",
     "color": "#dbe4ff",
@@ -1627,6 +1635,7 @@
   },
   {
     "id": "scorpius",
+    "brightestStarId": "antares",
     "name": "Scorpius",
     "category": "constellation",
     "color": "#dbe4ff",
@@ -1655,6 +1664,7 @@
   },
   {
     "id": "cygnus",
+    "brightestStarId": "deneb",
     "name": "Cygnus",
     "category": "constellation",
     "color": "#dbe4ff",
@@ -1883,6 +1893,7 @@
   },
   {
     "id": "aquila",
+    "brightestStarId": "altair",
     "name": "Aquila",
     "hemisphere": "northern",
     "areaSqDeg": 652,
@@ -1925,6 +1936,7 @@
   },
   {
     "id": "auriga",
+    "brightestStarId": "capella",
     "name": "Auriga",
     "hemisphere": "northern",
     "areaSqDeg": 657,
@@ -1939,6 +1951,7 @@
   },
   {
     "id": "bootes",
+    "brightestStarId": "arcturus",
     "name": "Boötes",
     "hemisphere": "northern",
     "areaSqDeg": 907,
@@ -2009,6 +2022,7 @@
   },
   {
     "id": "canis_major",
+    "brightestStarId": "sirius",
     "name": "Canis Major",
     "hemisphere": "southern",
     "areaSqDeg": 380,
@@ -2065,6 +2079,7 @@
   },
   {
     "id": "centaurus",
+    "brightestStarId": "alpha_centauri_a",
     "name": "Centaurus",
     "hemisphere": "southern",
     "areaSqDeg": 1060,
@@ -2275,6 +2290,7 @@
   },
   {
     "id": "eridanus",
+    "brightestStarId": "achernar",
     "name": "Eridanus",
     "hemisphere": "southern",
     "areaSqDeg": 1138,
@@ -2485,6 +2501,7 @@
   },
   {
     "id": "lyra",
+    "brightestStarId": "vega",
     "name": "Lyra",
     "hemisphere": "northern",
     "areaSqDeg": 286,
@@ -2681,6 +2698,7 @@
   },
   {
     "id": "piscis_austrinus",
+    "brightestStarId": "fomalhaut",
     "name": "Piscis Austrinus",
     "hemisphere": "southern",
     "areaSqDeg": 245,
@@ -2807,6 +2825,7 @@
   },
   {
     "id": "taurus",
+    "brightestStarId": "aldebaran",
     "name": "Taurus",
     "hemisphere": "northern",
     "areaSqDeg": 797,
@@ -2891,6 +2910,7 @@
   },
   {
     "id": "virgo",
+    "brightestStarId": "spica",
     "name": "Virgo",
     "hemisphere": "southern",
     "areaSqDeg": 1294,
@@ -3388,6 +3408,7 @@
   },
   {
     "id": "a0620_00",
+    "apparentMagnitude": 11.2,
     "name": "A0620-00",
     "category": "black_hole",
     "hemisphere": "both",
@@ -3420,6 +3441,7 @@
   },
   {
     "id": "ngc4889_black_hole",
+    "apparentMagnitude": 12.9,
     "name": "NGC 4889 Black Hole",
     "category": "black_hole",
     "hemisphere": "northern",
@@ -3436,6 +3458,7 @@
   },
   {
     "id": "phoenix_a",
+    "apparentMagnitude": 18.2,
     "name": "Phoenix A",
     "category": "black_hole",
     "hemisphere": "southern",
