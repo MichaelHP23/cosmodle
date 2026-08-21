@@ -16,7 +16,7 @@ export function formatDays(v: number): string {
 }
 
 export function formatHours(v: number): string {
-  return `${v} hours`
+  return `${Number(v.toPrecision(4))} hours`
 }
 
 export function formatMassKg(v: number): string {
@@ -26,7 +26,10 @@ export function formatMassKg(v: number): string {
 }
 
 export function formatGravity(v: number): string {
-  return `${v} m/s²`
+  // Derived surface gravities span from ~1e-10 (a galaxy's outskirts) to ~1e12 (an event horizon),
+  // so keep small values in scientific notation rather than rounding them to a meaningless 0.
+  if (v !== 0 && Math.abs(v) < 0.01) return `${v.toExponential(2)} m/s²`
+  return `${Number(v.toPrecision(3)).toLocaleString("en-US")} m/s²`
 }
 
 export function formatLightYears(v: number): string {

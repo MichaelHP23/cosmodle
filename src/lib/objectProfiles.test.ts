@@ -110,4 +110,53 @@ describe("getComparableValue", () => {
     const europa: CelestialObject = { id: "europa", name: "Europa", category: "moon", parentBodyId: "jupiter", distanceFromParentKm: 671100 }
     expect(getComparableValue(europa, "distanceFromEarthLy")).toBeUndefined()
   })
+
+  it("derives surface gravity from mass and diameter, matching the published value", () => {
+    const earth: CelestialObject = { id: "earth", name: "Earth", category: "planet", massKg: 5.972e24, diameterKm: 12742 }
+    // published 9.81 m/s^2
+    expect(getComparableValue({ ...earth, gravityMs2: undefined }, "gravityMs2")).toBeCloseTo(9.81, 1)
+  })
+
+  it("derives a quasar's diameter as its event horizon, and a gravity from it", () => {
+    const quasar: CelestialObject = { id: "q", name: "Q", category: "quasar", massKg: 1.3e40 }
+    // M87*-scale mass -> ~3.9e10 km event horizon, matching the dataset's black-hole diameters
+    expect(getComparableValue(quasar, "diameterKm") as number).toBeCloseTo(3.86e10, -9)
+    expect(getComparableValue(quasar, "gravityMs2")).toBeGreaterThan(0)
+  })
+
+  it("treats a constellation's brightest star as its apparent magnitude and vice versa", () => {
+    const orion: CelestialObject = { id: "orion", name: "Orion", category: "constellation", brightestStarMagnitude: 0.13 }
+    const sirius: CelestialObject = { id: "sirius", name: "Sirius", category: "star", apparentMagnitude: -1.46 }
+    expect(getComparableValue(orion, "apparentMagnitude")).toBe(0.13)
+    expect(getComparableValue(sirius, "brightestStarMagnitude")).toBe(-1.46)
+  })
+
+  it("gives Milky Way objects zero redshift and non-constellations zero sky area and no zodiac", () => {
+    const star: CelestialObject = { id: "s", name: "S", category: "star" }
+    expect(getComparableValue(star, "redshift")).toBe(0)
+    expect(getComparableValue(star, "areaSqDeg")).toBe(0)
+    expect(getComparableValue(star, "isZodiac")).toBe(false)
+  })
+
+  it("puts solar-system bodies in both hemispheres and derives their parent and orbital radius", () => {
+    const vesta: CelestialObject = { id: "vesta", name: "Vesta", category: "asteroid", distanceFromSunAU: 2.36 }
+    expect(getComparableValue(vesta, "hemisphere")).toBe("both")
+    expect(getComparableValue(vesta, "parentBodyId")).toBe("sun")
+    expect(getComparableValue(vesta, "distanceFromParentKm") as number).toBeCloseTo(2.36 * 1.495978707e8, -3)
+  })
+
+  it("derives a tidally locked moon's rotation period from its orbit", () => {
+    const titan: CelestialObject = { id: "titan", name: "Titan", category: "moon", orbitalPeriodDays: 15.95 }
+    expect(getComparableValue(titan, "rotationPeriodHours")).toBeCloseTo(15.95 * 24, 5)
+  })
+
+  it("leaves genuinely inapplicable properties undefined rather than inventing them", () => {
+    const jupiter: CelestialObject = { id: "jupiter", name: "Jupiter", category: "planet", massKg: 1.9e27, diameterKm: 139820 }
+    const orion: CelestialObject = { id: "orion", name: "Orion", category: "constellation" }
+    const bh: CelestialObject = { id: "bh", name: "BH", category: "black_hole", massKg: 1e31, diameterKm: 30 }
+    expect(getComparableValue(jupiter, "galaxyType")).toBeUndefined()
+    expect(getComparableValue(jupiter, "nebulaType")).toBeUndefined()
+    expect(getComparableValue(orion, "massKg")).toBeUndefined()
+    expect(getComparableValue(bh, "apparentMagnitude")).toBeUndefined()
+  })
 })
