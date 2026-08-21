@@ -91,32 +91,28 @@ describe("recordDailyResult - wins", () => {
   })
 })
 
-describe("recordDailyResult - hint penalty", () => {
-  it("resets currentStreak to 0 on a win if all 5 hints were used", () => {
+describe("recordDailyResult - hints do not affect the streak", () => {
+  // Spending all your hints used to zero the streak on a win. That punished exactly the players who
+  // needed the help most, so a win now counts the same however many hints it took.
+  it("extends the streak on a win even if all 5 hints were used", () => {
     recordDailyResult(5, true, 2)
-    const stats = recordDailyResult(6, true, 3, 5)
-    expect(stats.currentStreak).toBe(0)
+    const stats = recordDailyResult(6, true, 3)
+    expect(stats.currentStreak).toBe(2)
   })
 
-  it("still counts a hint-penalized win as a win (gamesPlayed/wins/distribution unaffected)", () => {
-    const stats = recordDailyResult(1, true, 4, 3)
+  it("counts a win with hints as a full win (gamesPlayed/wins/distribution unaffected)", () => {
+    const stats = recordDailyResult(1, true, 4)
     expect(stats.wins).toBe(1)
     expect(stats.gamesPlayed).toBe(1)
     expect(stats.guessDistribution).toEqual([0, 0, 0, 1, 0, 0, 0])
   })
 
-  it("does not reset the streak for 1 or 2 hints", () => {
-    recordDailyResult(5, true, 2, 1)
-    const stats = recordDailyResult(6, true, 3, 2)
-    expect(stats.currentStreak).toBe(2)
-  })
-
-  it("does not bump longestStreak from a hint-penalized win", () => {
+  it("bumps longestStreak from a win regardless of hints", () => {
     recordDailyResult(5, true, 2)
     recordDailyResult(6, true, 2)
-    const stats = recordDailyResult(7, true, 3, 5)
-    expect(stats.currentStreak).toBe(0)
-    expect(stats.longestStreak).toBe(2)
+    const stats = recordDailyResult(7, true, 3)
+    expect(stats.currentStreak).toBe(3)
+    expect(stats.longestStreak).toBe(3)
   })
 })
 

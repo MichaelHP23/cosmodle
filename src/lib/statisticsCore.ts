@@ -1,4 +1,4 @@
-import { MAX_HINTS, STATS_BUCKET_COUNT } from "./gameConstants"
+import { STATS_BUCKET_COUNT } from "./gameConstants"
 
 export type Statistics = {
   gamesPlayed: number
@@ -38,11 +38,11 @@ export function applyResult(
   previous: Statistics,
   dayNumber: number,
   won: boolean,
-  guessCount: number,
-  hintsUsed: number
+  guessCount: number
 ): Statistics {
-  const streakEligible = won && hintsUsed < MAX_HINTS
-  const currentStreak = streakEligible
+  // Every win extends the streak. Hints used to cost you the streak if you spent all of them, which
+  // punished the players who most needed the help, so hints are now free of streak consequences.
+  const currentStreak = won
     ? (previous.lastDayNumber === dayNumber - 1 ? previous.currentStreak + 1 : 1)
     : 0
   const guessDistribution = [...previous.guessDistribution]
@@ -63,7 +63,7 @@ export function deriveStatsFromResults(results: DailyResult[]): Statistics {
   let stats = ZERO_STATISTICS
   for (const r of sorted) {
     if (stats.lastDayNumber === r.dayNumber) continue
-    stats = applyResult(stats, r.dayNumber, r.won, r.guessCount, r.hintsUsed)
+    stats = applyResult(stats, r.dayNumber, r.won, r.guessCount)
   }
   return stats
 }

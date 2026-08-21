@@ -39,11 +39,11 @@ describe("deriveStatsFromResults", () => {
     expect(stats.wins).toBe(3)
   })
 
-  it("does not extend the streak when all hints were used", () => {
+  it("extends the streak on a win even when all hints were used", () => {
     const stats = deriveStatsFromResults([
       { dayNumber: 1, won: true, guessCount: 4, hintsUsed: 5 },
     ])
-    expect(stats.currentStreak).toBe(0)
+    expect(stats.currentStreak).toBe(1)
     expect(stats.wins).toBe(1)
   })
 

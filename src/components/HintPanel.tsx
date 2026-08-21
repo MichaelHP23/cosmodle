@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import type { CelestialObject } from "../types/celestial"
 import type { ProfileEntry } from "../types/game"
 import { formatPropertyValue } from "../lib/formatting"
+import { orderHints } from "../lib/hintOrder"
 
 export function HintPanel({
   profile,
@@ -10,7 +11,7 @@ export function HintPanel({
   maxHints,
   onUseHint,
   correctProperties,
-  showStreakWarning = true,
+  dataset,
 }: {
   profile: ProfileEntry[]
   answer: CelestialObject
@@ -18,15 +19,18 @@ export function HintPanel({
   maxHints: number
   onUseHint: () => void
   correctProperties: Set<string>
-  showStreakWarning?: boolean
+  dataset: CelestialObject[]
 }) {
   const hintable = profile.filter(e => e.property !== "category")
-  // Properties the player hasn't nailed via a guess yet are more useful to reveal,
-  // so they go first; properties already confirmed correct go last.
-  const priorityOrder = [
-    ...hintable.filter(e => !correctProperties.has(e.property)),
-    ...hintable.filter(e => correctProperties.has(e.property)),
-  ]
+  // Reveal whichever property cuts the field down most, so a hint is worth spending; properties the
+  // player has already confirmed by guessing go last. Scoring walks the dataset, hence the memo.
+  // correctProperties is a fresh Set each render, so key the memo on its contents instead.
+  const correctKey = [...correctProperties].sort().join(",")
+  const priorityOrder = useMemo(
+    () => orderHints(hintable, answer, dataset, correctProperties),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [answer.id, dataset, profile, correctKey]
+  )
 
   // Reveal order is locked in incrementally as hints are used, so a chip already
   // shown never disappears or reorders just because a later guess changed priority.
@@ -63,11 +67,6 @@ export function HintPanel({
       >
         {allRevealed ? "All hints revealed" : `Hint (${hintsLeft} left)`}
       </button>
-      {hintsUsed > 0 && showStreakWarning && (
-        <span className="text-xs text-[#b8860b]">
-          Use all {maxHints} hints and still win, and your streak resets.
-        </span>
-      )}
       {revealed.map(entry => (
         <span
           key={entry.property}

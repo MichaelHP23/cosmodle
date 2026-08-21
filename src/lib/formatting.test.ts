@@ -61,3 +61,21 @@ describe("formatPropertyValue", () => {
     expect(formatPropertyValue("brightestStarMagnitude", 0.13)).toBe("mag 0.13")
   })
 })
+
+describe("large numbers carry thousands separators", () => {
+  it("groups temperatures", () => {
+    expect(formatKelvinAsCelsius(24300)).toBe("24,027°C")
+  })
+  it("groups light years", () => {
+    expect(formatLightYears(2537000)).toBe("2,540,000 ly")
+  })
+  it("groups hours", () => {
+    expect(formatHours(5832.5)).toBe("5,833 hours")
+  })
+  it("groups days", () => {
+    expect(formatDays(90560)).toBe("90,560 days")
+  })
+  it("still shows sub-decimal light years in full", () => {
+    expect(formatLightYears(0.0000158)).toBe("0.0000158 ly")
+  })
+})

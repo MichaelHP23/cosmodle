@@ -60,9 +60,10 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
         <div className="mb-4 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3 text-sm text-[#4d4d4d]">
           <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Hints</div>
           <p>
-            Stuck? The Hint button reveals one of the mystery object's actual properties, prioritizing
-            whatever your guesses haven't already told you. You get {MAX_HINTS} per puzzle, but if you use
-            all {MAX_HINTS} and still win, that day doesn't extend your streak (it still counts as a win).
+            Stuck? The Hint button reveals one of the mystery object's actual properties, starting with
+            whichever one narrows the field most and skipping anything your guesses have already pinned
+            down. You get {MAX_HINTS} per puzzle, and they cost you nothing: a win is a win and extends
+            your streak however many hints it took.
           </p>
         </div>
 

@@ -18,10 +18,10 @@ export function getStatistics(): Statistics {
   }
 }
 
-export function recordDailyResult(dayNumber: number, won: boolean, guessCount: number, hintsUsed: number = 0): Statistics {
+export function recordDailyResult(dayNumber: number, won: boolean, guessCount: number): Statistics {
   const previous = getStatistics()
   if (previous.lastDayNumber === dayNumber) return previous
-  const next = applyResult(previous, dayNumber, won, guessCount, hintsUsed)
+  const next = applyResult(previous, dayNumber, won, guessCount)
   localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
   return next
 }

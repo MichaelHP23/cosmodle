@@ -87,7 +87,7 @@ export function GameBoard() {
       setDailyState(next)
       const justEnded = (next.won || next.guessIds.length >= MAX_GUESSES) && !(dailyState.won || dailyState.guessIds.length >= MAX_GUESSES)
       if (justEnded) {
-        setStatistics(recordDailyResult(todayDayNumber, next.won, next.guessIds.length, next.hintsUsed))
+        setStatistics(recordDailyResult(todayDayNumber, next.won, next.guessIds.length))
         setShowResultModal(true)
         postResult(playerId, todayDayNumber, next.won, next.guessIds.length, next.hintsUsed).then(server => {
           if (server) setStatistics(mergeServerStatistics(server))
@@ -202,10 +202,10 @@ export function GameBoard() {
                   profile={profile}
                   answer={answer}
                   hintsUsed={hintsUsed}
+                  dataset={typedDataset}
                   maxHints={MAX_HINTS}
                   onUseHint={handleUseHint}
                   correctProperties={correctProperties}
-                  showStreakWarning={mode !== "practice"}
                 />
                 <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />
                 <div className="mt-2 text-sm text-[#4d4d4d]">

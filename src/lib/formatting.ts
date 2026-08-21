@@ -1,22 +1,28 @@
+// Thousands separators. The explicit fraction-digit ceiling matters: toLocaleString defaults to at
+// most 3 decimals, which would flatten a value like 0.0000158 ly to "0".
+function group(v: number): string {
+  return v.toLocaleString("en-US", { maximumFractionDigits: 20 })
+}
+
 export function formatAU(v: number): string {
   return `${v.toFixed(2)} AU`
 }
 
 export function formatKm(v: number): string {
-  return `${Math.round(v).toLocaleString("en-US")} km`
+  return `${group(Math.round(v))} km`
 }
 
 export function formatKelvinAsCelsius(k: number): string {
   const c = Math.round(k - 273.15)
-  return `${c}°C`
+  return `${group(c)}°C`
 }
 
 export function formatDays(v: number): string {
-  return `${Math.round(v).toLocaleString("en-US")} days`
+  return `${group(Math.round(v))} days`
 }
 
 export function formatHours(v: number): string {
-  return `${Number(v.toPrecision(4))} hours`
+  return `${group(Number(v.toPrecision(4)))} hours`
 }
 
 export function formatMassKg(v: number): string {
@@ -29,15 +35,15 @@ export function formatGravity(v: number): string {
   // Derived surface gravities span from ~1e-10 (a galaxy's outskirts) to ~1e12 (an event horizon),
   // so keep small values in scientific notation rather than rounding them to a meaningless 0.
   if (v !== 0 && Math.abs(v) < 0.01) return `${v.toExponential(2)} m/s²`
-  return `${Number(v.toPrecision(3)).toLocaleString("en-US")} m/s²`
+  return `${group(Number(v.toPrecision(3)))} m/s²`
 }
 
 export function formatLightYears(v: number): string {
-  return `${Number(v.toPrecision(3))} ly`
+  return `${group(Number(v.toPrecision(3)))} ly`
 }
 
 export function formatAreaSqDeg(v: number): string {
-  return `${v.toLocaleString("en-US")} sq°`
+  return `${group(v)} sq°`
 }
 
 export function formatMagnitude(v: number): string {
