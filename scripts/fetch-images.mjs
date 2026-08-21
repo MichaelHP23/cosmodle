@@ -91,6 +91,10 @@ const TITLE_OVERRIDE = {
   atria: "Alpha Trianguli Australis",
   naos: "Zeta Puppis",
   gienah: "Gamma Corvi",
+  // Stars carrying an IAU proper name whose Wikipedia article sits at the Bayer designation.
+  alpha_apodis: "Alpha Apodis",
+  alpha_coronae_australis: "Alpha Coronae Australis",
+  alpha_vulpeculae: "Alpha Vulpeculae",
 }
 
 const UA = "CelestialGame/1.0 (contact: mpink2491@gmail.com)"

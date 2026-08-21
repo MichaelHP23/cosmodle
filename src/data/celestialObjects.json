@@ -1867,7 +1867,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Antlia_IAU.svg/330px-Antlia_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1756,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alpha_antliae"
   },
   {
     "id": "apus",
@@ -1881,7 +1882,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Apus_IAU.svg/330px-Apus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1597,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alpha_apodis"
   },
   {
     "id": "aquarius",
@@ -2000,7 +2002,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Camelopardalis_IAU.svg/330px-Camelopardalis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1613,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "beta_camelopardalis"
   },
   {
     "id": "cancer",
@@ -2209,7 +2212,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Corona_Australis_IAU.svg/330px-Corona_Australis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alpha_coronae_australis"
   },
   {
     "id": "corona_borealis",
@@ -2282,7 +2286,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Dorado_IAU.svg/330px-Dorado_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1597,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alpha_doradus"
   },
   {
     "id": "draco",
@@ -2401,7 +2406,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Horologium_IAU.svg/330px-Horologium_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1756,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alpha_horologii"
   },
   {
     "id": "hydra",
@@ -2579,7 +2585,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Microscopium_IAU.svg/330px-Microscopium_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1756,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "gamma_microscopii"
   },
   {
     "id": "monoceros",
@@ -2622,7 +2629,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Norma_IAU.svg/330px-Norma_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1756,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "gamma2_normae"
   },
   {
     "id": "octans",
@@ -2726,7 +2734,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Pictor_IAU.svg/330px-Pictor_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1756,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alpha_pictoris"
   },
   {
     "id": "pisces",
@@ -2919,7 +2928,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Triangulum_IAU.svg/330px-Triangulum_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 150,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "beta_trianguli"
   },
   {
     "id": "triangulum_australe",
@@ -2992,7 +3002,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Volans_IAU.svg/330px-Volans_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1597,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "gamma2_volantis"
   },
   {
     "id": "vulpecula",
@@ -3006,7 +3017,8 @@
     "color": "#dbe4ff",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Vulpecula_IAU.svg/330px-Vulpecula_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "discoveredYear": 1690,
-    "isZodiac": false
+    "isZodiac": false,
+    "brightestStarId": "alpha_vulpeculae"
   },
   {
     "id": "himalia",
@@ -4823,5 +4835,209 @@
     "description": "An orange giant binary and the brightest star in Tucana, the constellation that hosts the Small Magellanic Cloud.",
     "discoveredYear": -3000,
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Tucana_constellation_map.svg/330px-Tucana_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "alpha_antliae",
+    "name": "Alpha Antliae",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 4.25,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 366,
+    "diameterKm": 57099900,
+    "massKg": 4.376e+30,
+    "temperatureK": 4070,
+    "difficulty": 5,
+    "description": "An orange giant and the brightest star in Antlia, suspected of varying slowly as it nears the end of its life.",
+    "discoveredYear": -3000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Antlia_constellation_map.svg/330px-Antlia_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "alpha_apodis",
+    "name": "Paradys",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 3.83,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 498,
+    "diameterKm": 82878400,
+    "massKg": 8.871e+30,
+    "temperatureK": 4090,
+    "difficulty": 5,
+    "description": "An orange giant and the brightest star in Apus, some sixty times the radius of the Sun.",
+    "discoveredYear": -3000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Apus_IAU.svg/330px-Apus_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "beta_camelopardalis",
+    "name": "Beta Camelopardalis",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 4.03,
+    "redshift": 0,
+    "color": "#fff2d0",
+    "distanceFromEarthLy": 840,
+    "diameterKm": 80775400,
+    "massKg": 1.293e+31,
+    "temperatureK": 5300,
+    "difficulty": 5,
+    "description": "A yellow supergiant and the brightest star in Camelopardalis, a large but famously dim northern constellation.",
+    "discoveredYear": -3000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Camelopardalis_constellation_map.svg/330px-Camelopardalis_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "alpha_coronae_australis",
+    "name": "Meridiana",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 4.09,
+    "redshift": 0,
+    "color": "#f4f6ff",
+    "distanceFromEarthLy": 125,
+    "diameterKm": 3077820,
+    "massKg": 5.112e+30,
+    "temperatureK": 9916,
+    "difficulty": 5,
+    "description": "A white main-sequence star and the only named star in Corona Australis.",
+    "discoveredYear": -3000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Corona_Australis_IAU.svg/330px-Corona_Australis_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "alpha_doradus",
+    "name": "Alpha Doradus",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 3.27,
+    "redshift": 0,
+    "color": "#cad7ff",
+    "distanceFromEarthLy": 169,
+    "diameterKm": 4874380,
+    "massKg": 6.623e+30,
+    "temperatureK": 11588,
+    "difficulty": 5,
+    "description": "A blue-white binary and the brightest star in Dorado, whose primary is a giant three and a half times the radius of the Sun.",
+    "discoveredYear": -3000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Dorado_IAU.svg/330px-Dorado_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "alpha_horologii",
+    "name": "Alpha Horologii",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 3.85,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 117.6,
+    "diameterKm": 13830700,
+    "massKg": 2.803e+30,
+    "temperatureK": 4695,
+    "difficulty": 5,
+    "description": "An orange giant and the brightest star in Horologium, swollen to nearly ten times the diameter of the Sun.",
+    "discoveredYear": -3000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Horologium_constellation_map.svg/330px-Horologium_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "gamma_microscopii",
+    "name": "Gamma Microscopii",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 4.68,
+    "redshift": 0,
+    "color": "#fff2d0",
+    "distanceFromEarthLy": 223,
+    "diameterKm": 13216500,
+    "massKg": 5.569e+30,
+    "temperatureK": 5227,
+    "difficulty": 5,
+    "description": "A yellow giant and the brightest star in Microscopium, long since evolved off the main sequence.",
+    "discoveredYear": -3000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Microscopium_IAU.svg/330px-Microscopium_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "gamma2_normae",
+    "name": "Gamma2 Normae",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 4.02,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 138.4,
+    "diameterKm": 14414200,
+    "massKg": 4.097e+30,
+    "temperatureK": 4763,
+    "difficulty": 5,
+    "description": "An orange giant and the brightest star in Norma, a helium-fusing red clump star about ten times the radius of the Sun.",
+    "discoveredYear": -3000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Norma_constellation_map.svg/330px-Norma_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "alpha_pictoris",
+    "name": "Alpha Pictoris",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 3.27,
+    "redshift": 0,
+    "color": "#fff8f0",
+    "distanceFromEarthLy": 97,
+    "diameterKm": 4944010,
+    "massKg": 3.182e+30,
+    "temperatureK": 7451,
+    "difficulty": 5,
+    "description": "A fast-spinning white star and the brightest in Pictor, orbited by a companion every three and a half years.",
+    "discoveredYear": -3000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Pictor_constellation_map.svg/330px-Pictor_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "beta_trianguli",
+    "name": "Alaybasan",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 3,
+    "redshift": 0,
+    "color": "#f4f6ff",
+    "distanceFromEarthLy": 141,
+    "diameterKm": 6099940,
+    "massKg": 7.001e+30,
+    "temperatureK": 7683,
+    "difficulty": 5,
+    "description": "A white giant and the brightest star in Triangulum, locked in a 31-day orbit with a smaller companion.",
+    "discoveredYear": -3000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Triangulum_constellation_map.svg/330px-Triangulum_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "gamma2_volantis",
+    "name": "Gamma2 Volantis",
+    "category": "star",
+    "hemisphere": "southern",
+    "apparentMagnitude": 3.78,
+    "redshift": 0,
+    "color": "#ffd2a1",
+    "distanceFromEarthLy": 133.2,
+    "diameterKm": 14205300,
+    "massKg": 4.276e+30,
+    "temperatureK": 4892,
+    "difficulty": 5,
+    "description": "An orange giant and the brighter half of the wide double star that marks Volans.",
+    "discoveredYear": -3000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Volans_IAU.svg/330px-Volans_IAU.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+  },
+  {
+    "id": "alpha_vulpeculae",
+    "name": "Anser",
+    "category": "star",
+    "hemisphere": "northern",
+    "apparentMagnitude": 4.4,
+    "redshift": 0,
+    "color": "#ffb680",
+    "distanceFromEarthLy": 291,
+    "diameterKm": 57768400,
+    "massKg": 1.929e+30,
+    "temperatureK": 3967,
+    "difficulty": 5,
+    "description": "A red giant and the brightest star in Vulpecula, forming a chance line-of-sight pair with the unrelated 8 Vulpeculae.",
+    "discoveredYear": -3000,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Vulpecula_constellation_map.svg/330px-Vulpecula_constellation_map.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   }
 ]
