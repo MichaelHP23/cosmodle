@@ -9,6 +9,7 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "vitest run",
+    "schedule": "node scripts/extend-schedule.mjs",
     "dev:api": "wrangler pages dev --proxy 5173 -- npm run dev",
     "typecheck:functions": "tsc --noEmit -p functions/tsconfig.json"
   },

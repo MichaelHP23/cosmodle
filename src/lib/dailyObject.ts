@@ -1,3 +1,4 @@
+import schedule from "../data/dailySchedule.json"
 import type { CelestialObject } from "../types/celestial"
 
 export const LAUNCH_DATE = new Date(2026, 7, 18) // local calendar date, not UTC
@@ -37,26 +38,24 @@ export function seededShuffle<T>(array: T[], seed: number): T[] {
   return result
 }
 
-// The rotation below is derived from dataset.length, so adding a single object reshuffles every day's
-// answer — including days people have already played, whose saved guesses would then grade against a
-// different object. Days that have already been played are pinned to the object they actually showed.
-// Pin every elapsed day before growing the dataset again; unplayed future days are free to reshuffle.
-const PINNED_ANSWERS: Record<number, string> = {
-  1: "cartwheel_galaxy",
-  2: "nix",
-  3: "3c48",
-}
-
+// Which object each day serves is committed data, not a function of the dataset. The old rotation
+// derived every day's answer from dataset.length, so adding a single object reshuffled days people
+// had already played, grading their saved guesses against a different object. dailySchedule.json is
+// append-only, so dataset growth can never rewrite a day that is already in it.
+// Extend it with `npm run schedule`; a test fails once it runs close to its end.
 export function getDailyObject(date: Date, dataset: CelestialObject[]): CelestialObject {
-  const n = dataset.length
   const days = daysSinceEpoch(date, LAUNCH_DATE)
 
-  const pinnedId = PINNED_ANSWERS[days + 1]
-  if (pinnedId) {
-    const pinned = dataset.find(o => o.id === pinnedId)
-    if (pinned) return pinned
+  const scheduledId = (schedule as string[])[days]
+  if (scheduledId) {
+    const scheduled = dataset.find(o => o.id === scheduledId)
+    if (scheduled) return scheduled
   }
 
+  // ponytail: past the end of the schedule this falls back to the old dataset.length-derived
+  // rotation, which is unstable across dataset growth. It is only reachable if the schedule was
+  // left unextended for HORIZON_DAYS after the test started failing. Run `npm run schedule`.
+  const n = dataset.length
   const cycle = Math.floor(days / n)
   const position = ((days % n) + n) % n
   const order = seededShuffle(
