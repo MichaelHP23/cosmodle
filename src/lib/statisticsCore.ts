@@ -14,6 +14,7 @@ export type DailyResult = {
   won: boolean
   guessCount: number
   hintsUsed: number
+  gaveUp?: boolean
 }
 
 export const ZERO_STATISTICS: Statistics = {
@@ -32,6 +33,13 @@ export function normalizeDistribution(distribution: number[]): number[] {
     result[Math.min(i, STATS_BUCKET_COUNT - 1)] += count
   })
   return result
+}
+
+// Giving up breaks the streak and nothing else. It is not a game played, so it leaves the win rate,
+// the games total and the guess distribution untouched: a player who bails out has not lost a game so
+// much as declined to finish one. lastDayNumber still advances, so tomorrow's win starts a fresh streak.
+export function applyGiveUp(previous: Statistics, dayNumber: number): Statistics {
+  return { ...previous, currentStreak: 0, lastDayNumber: dayNumber }
 }
 
 export function applyResult(
@@ -63,7 +71,9 @@ export function deriveStatsFromResults(results: DailyResult[]): Statistics {
   let stats = ZERO_STATISTICS
   for (const r of sorted) {
     if (stats.lastDayNumber === r.dayNumber) continue
-    stats = applyResult(stats, r.dayNumber, r.won, r.guessCount)
+    stats = r.gaveUp
+      ? applyGiveUp(stats, r.dayNumber)
+      : applyResult(stats, r.dayNumber, r.won, r.guessCount)
   }
   return stats
 }

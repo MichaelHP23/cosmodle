@@ -1,4 +1,4 @@
-import { ZERO_STATISTICS, applyResult, normalizeDistribution } from "./statisticsCore"
+import { ZERO_STATISTICS, applyResult, applyGiveUp, normalizeDistribution } from "./statisticsCore"
 import type { Statistics } from "./statisticsCore"
 
 export type { Statistics, DailyResult } from "./statisticsCore"
@@ -22,6 +22,14 @@ export function recordDailyResult(dayNumber: number, won: boolean, guessCount: n
   const previous = getStatistics()
   if (previous.lastDayNumber === dayNumber) return previous
   const next = applyResult(previous, dayNumber, won, guessCount)
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
+  return next
+}
+
+export function recordDailyGiveUp(dayNumber: number): Statistics {
+  const previous = getStatistics()
+  if (previous.lastDayNumber === dayNumber) return previous
+  const next = applyGiveUp(previous, dayNumber)
   localStorage.setItem(STORAGE_KEY, JSON.stringify(next))
   return next
 }

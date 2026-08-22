@@ -14,7 +14,9 @@ export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
   const playedTodayRow = await env.DB.prepare("SELECT COUNT(DISTINCT uuid) as n FROM results WHERE day_number = ?")
     .bind(today)
     .first<{ n: number }>()
-  const winRow = await env.DB.prepare("SELECT SUM(won) as wins, COUNT(*) as total FROM results").first<{
+  // Days a player gave up on are not games played, the same rule the per-player stats use, so they
+  // must not drag the global win rate down.
+  const winRow = await env.DB.prepare("SELECT SUM(won) as wins, COUNT(*) as total FROM results WHERE gave_up = 0").first<{
     wins: number | null
     total: number
   }>()

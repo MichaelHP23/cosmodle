@@ -12,9 +12,10 @@ export async function postResult(
   dayNumber: number,
   won: boolean,
   guessCount: number,
-  hintsUsed: number
+  hintsUsed: number,
+  gaveUp = false
 ): Promise<Statistics | null> {
-  const body = JSON.stringify({ uuid, dayNumber, won, guessCount, hintsUsed })
+  const body = JSON.stringify({ uuid, dayNumber, won, guessCount, hintsUsed, gaveUp })
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
       const res = await fetch("/api/result", {

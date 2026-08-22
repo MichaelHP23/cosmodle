@@ -15,15 +15,20 @@ function bucketGuessEmoji(statuses: ComparisonStatus[], isWinningGuess: boolean)
 export function Share({
   dayNumber,
   guessStatusRows,
+  gaveUp = false,
 }: {
   dayNumber: number
   guessStatusRows: { statuses: ComparisonStatus[]; isWinningGuess: boolean }[]
+  gaveUp?: boolean
 }) {
   const [status, setStatus] = useState<"idle" | "copied" | "shared" | "error">("idle")
 
   function buildShareText(): string {
     const emojiLine = guessStatusRows.map(row => bucketGuessEmoji(row.statuses, row.isWinningGuess)).join(" ")
-    return `Cosmodle #${dayNumber}\n\n${emojiLine}\n${guessStatusRows.length} guesses\n\nhttps://cosmodle.com`
+    // A give-up can happen with no guesses at all, so the emoji line may be empty; the tally still
+    // has to say what happened rather than leaving a bare "0 guesses".
+    const tally = gaveUp ? `gave up after ${guessStatusRows.length} guesses` : `${guessStatusRows.length} guesses`
+    return `Cosmodle #${dayNumber}\n\n${emojiLine}\n${tally}\n\nhttps://cosmodle.com`
   }
 
   async function handleShare() {

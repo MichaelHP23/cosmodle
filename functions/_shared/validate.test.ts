@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { isValidUuid, isValidGuessCount, isValidHintsUsed } from "./validate"
+import { MAX_HINTS } from "../../src/lib/gameConstants"
 
 describe("isValidUuid", () => {
   it("accepts a well-formed v4-shaped uuid", () => {
@@ -16,6 +17,8 @@ describe("isValidUuid", () => {
 })
 
 describe("isValidGuessCount", () => {
+  // The bound is the highest guess limit ever shipped, not the current one, so results from an
+  // older cached client are still accepted.
   it("accepts integers 1 through 20", () => {
     expect(isValidGuessCount(1)).toBe(true)
     expect(isValidGuessCount(20)).toBe(true)
@@ -29,13 +32,13 @@ describe("isValidGuessCount", () => {
 })
 
 describe("isValidHintsUsed", () => {
-  it("accepts integers 0 through 5", () => {
+  it("accepts every integer the client can actually send", () => {
     expect(isValidHintsUsed(0)).toBe(true)
-    expect(isValidHintsUsed(5)).toBe(true)
+    expect(isValidHintsUsed(MAX_HINTS)).toBe(true)
   })
   it("rejects negative numbers, out-of-range values, and non-integers", () => {
     expect(isValidHintsUsed(-5)).toBe(false)
-    expect(isValidHintsUsed(6)).toBe(false)
+    expect(isValidHintsUsed(MAX_HINTS + 1)).toBe(false)
     expect(isValidHintsUsed(999999)).toBe(false)
     expect(isValidHintsUsed(1.5)).toBe(false)
     expect(isValidHintsUsed("1")).toBe(false)

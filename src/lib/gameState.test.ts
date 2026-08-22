@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import { createInitialState, applyGuess, applyHint, MAX_GUESSES, MAX_HINTS } from "./gameState"
+import { createInitialState, applyGuess, applyHint, applyGiveUp, MAX_GUESSES, MAX_HINTS } from "./gameState"
 import type { CelestialObject } from "../types/celestial"
 
 const dataset: CelestialObject[] = [
@@ -127,5 +127,43 @@ describe("applyHint", () => {
     const { state: next, error } = applyHint(state)
     expect(error).toBe("already_won")
     expect(next.hintsUsed).toBe(0)
+  })
+})
+
+describe("applyGiveUp", () => {
+  it("ends the day and leaves the guesses that were made", () => {
+    let state = createInitialState("2026-09-01")
+    state = applyGuess(state, "decoy-0", dataset, "jupiter").state
+    const { state: next, error } = applyGiveUp(state)
+    expect(error).toBeUndefined()
+    expect(next.gaveUp).toBe(true)
+    expect(next.won).toBe(false)
+    expect(next.guessIds).toEqual(["decoy-0"])
+  })
+
+  it("can be used before any guess at all", () => {
+    const { state: next, error } = applyGiveUp(createInitialState("2026-09-01"))
+    expect(error).toBeUndefined()
+    expect(next.gaveUp).toBe(true)
+    expect(next.guessIds).toEqual([])
+  })
+
+  it("rejects giving up on a day already won", () => {
+    let state = createInitialState("2026-09-01")
+    state = applyGuess(state, "jupiter", dataset, "jupiter").state
+    const { state: next, error } = applyGiveUp(state)
+    expect(error).toBe("already_won")
+    expect(next.gaveUp).toBe(false)
+  })
+
+  it("rejects giving up twice", () => {
+    const state = applyGiveUp(createInitialState("2026-09-01")).state
+    expect(applyGiveUp(state).error).toBe("already_gave_up")
+  })
+
+  it("blocks further guessing and further hints once used", () => {
+    const state = applyGiveUp(createInitialState("2026-09-01")).state
+    expect(applyGuess(state, "decoy-0", dataset, "jupiter").error).toBe("game_over")
+    expect(applyHint(state).error).toBe("already_won")
   })
 })

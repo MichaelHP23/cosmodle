@@ -60,10 +60,13 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
         <div className="mb-4 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3 text-sm text-[#4d4d4d]">
           <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Hints</div>
           <p>
-            Stuck? The Hint button reveals one of the mystery object's actual properties, starting with
-            whichever one narrows the field most and skipping anything your guesses have already pinned
-            down. You get {MAX_HINTS} per puzzle, and they cost you nothing: a win is a win and extends
-            your streak however many hints it took.
+            Your first hint is free and shows up before you guess anything. After that the Hint button
+            reveals another of the mystery object's properties, starting with whichever one narrows the
+            field most and skipping anything your guesses have already pinned down. Numbers come back as
+            a range rather than the exact value, so a hint points you at the right scale without handing
+            you the answer. You get {MAX_HINTS} on top of the free one, plus another free reveal every
+            four wrong guesses, and none of them cost you anything: a win is a win and extends your
+            streak however many hints it took.
           </p>
         </div>
 
@@ -74,6 +77,15 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
             <li><span className="font-semibold text-[#1a1a1a]">Practice:</span> unlimited random rounds, anytime. Doesn't affect your stats.</li>
             <li><span className="font-semibold text-[#1a1a1a]">Archive:</span> replay any past daily puzzle you missed.</li>
           </ul>
+        </div>
+
+        <div className="mt-4 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3 text-sm text-[#4d4d4d]">
+          <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Giving up</div>
+          <p>
+            I Give Up ends the day and shows you the answer. On the daily puzzle it resets your streak to
+            zero, but that is the whole cost: it is not recorded as a loss, so your Played count and Win %
+            stay where they were.
+          </p>
         </div>
 
         <button

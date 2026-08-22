@@ -54,3 +54,39 @@ describe("orderHints", () => {
     expect(order.map(e => e.property)).toEqual(["temperatureK", "hemisphere", "diameterKm"])
   })
 })
+
+// Hints may reveal the category, which the guess table leaves out of its own columns. Nothing in the
+// scoring is category-aware, so it has to earn its place in the order like any other property.
+const mixedDataset: CelestialObject[] = [
+  { id: "a", name: "A", category: "star", hemisphere: "northern", temperatureK: 5000 },
+  { id: "b", name: "B", category: "galaxy", hemisphere: "northern", temperatureK: 5000 },
+  { id: "c", name: "C", category: "galaxy", hemisphere: "northern", temperatureK: 6000 },
+  { id: "d", name: "D", category: "galaxy", hemisphere: "southern", temperatureK: 6000 },
+]
+
+describe("category as a hint", () => {
+  it("scores category like any other property", () => {
+    expect(narrowingScore("category", mixedDataset[0], mixedDataset)).toBe(0.25)
+    expect(narrowingScore("category", mixedDataset[1], mixedDataset)).toBe(0.75)
+  })
+
+  it("puts category first when it narrows the field most", () => {
+    const order = orderHints(
+      [entry("category"), entry("hemisphere"), entry("temperatureK")],
+      mixedDataset[0],
+      mixedDataset,
+      new Set()
+    )
+    expect(order.map(e => e.property)).toEqual(["category", "temperatureK", "hemisphere"])
+  })
+
+  it("does not put category first when the answer shares it with most of the dataset", () => {
+    const order = orderHints(
+      [entry("category"), entry("hemisphere"), entry("temperatureK")],
+      mixedDataset[3],
+      mixedDataset,
+      new Set()
+    )
+    expect(order.map(e => e.property)).toEqual(["hemisphere", "temperatureK", "category"])
+  })
+})

@@ -12,7 +12,7 @@ export const onRequestGet: PagesFunction<Env> = async ({ params, env }) => {
   if (!isValidUuid(uuid)) return json({ error: "invalid_uuid" }, 400)
 
   const { results } = await env.DB.prepare(
-    "SELECT day_number, won, guess_count, hints_used FROM results WHERE uuid = ? ORDER BY day_number ASC"
+    "SELECT day_number, won, guess_count, hints_used, gave_up FROM results WHERE uuid = ? ORDER BY day_number ASC"
   )
     .bind(uuid)
     .all<ResultRow>()

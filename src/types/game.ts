@@ -28,4 +28,5 @@ export type DailyGameState = {
   guessIds: string[]
   won: boolean
   hintsUsed: number
+  gaveUp: boolean
 }

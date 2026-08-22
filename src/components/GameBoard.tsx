@@ -3,10 +3,10 @@ import dataset from "../data/celestialObjects.json"
 import type { CelestialObject } from "../types/celestial"
 import type { ComparisonStatus, DailyGameState, GameMode } from "../types/game"
 import { getDailyObject, pickRandomObject, daysSinceEpoch, dateForDayNumber, LAUNCH_DATE } from "../lib/dailyObject"
-import { createInitialState, applyGuess, applyHint, loadDailyState, saveDailyState, MAX_GUESSES, MAX_HINTS } from "../lib/gameState"
+import { createInitialState, applyGuess, applyHint, applyGiveUp, loadDailyState, saveDailyState, MAX_GUESSES, MAX_HINTS } from "../lib/gameState"
 import { getProfileForCategory, getComparableValue } from "../lib/objectProfiles"
 import { compareProperty } from "../lib/comparison"
-import { getStatistics, recordDailyResult, mergeServerStatistics, type Statistics } from "../lib/statistics"
+import { getStatistics, recordDailyResult, recordDailyGiveUp, mergeServerStatistics, type Statistics } from "../lib/statistics"
 import { getOrCreatePlayerId } from "../lib/playerId"
 import { postResult, getPlayerStats } from "../lib/api"
 import { DailyHeader } from "./DailyHeader"
@@ -42,11 +42,13 @@ export function GameBoard() {
   const [practiceGuessIds, setPracticeGuessIds] = useState<string[]>([])
   const [practiceWon, setPracticeWon] = useState(false)
   const [practiceHintsUsed, setPracticeHintsUsed] = useState(0)
+  const [practiceGaveUp, setPracticeGaveUp] = useState(false)
   const [archiveDayNumber, setArchiveDayNumber] = useState<number | null>(null)
   const [archiveState, setArchiveState] = useState<DailyGameState | null>(null)
   const [showResultModal, setShowResultModal] = useState(false)
   const [showHowToPlay, setShowHowToPlay] = useState(() => !localStorage.getItem(HOW_TO_PLAY_SEEN_KEY))
   const [showGlobalStats, setShowGlobalStats] = useState(false)
+  const [confirmingGiveUp, setConfirmingGiveUp] = useState(false)
   const [statistics, setStatistics] = useState<Statistics | null>(() => (dailyState.won ? getStatistics() : null))
 
   function closeHowToPlay() {
@@ -76,7 +78,8 @@ export function GameBoard() {
   const answer = mode === "daily" ? dailyAnswer : mode === "practice" ? practiceAnswer : archiveAnswer
   const guessIds = mode === "daily" ? dailyState.guessIds : mode === "practice" ? practiceGuessIds : archiveState?.guessIds ?? []
   const won = mode === "daily" ? dailyState.won : mode === "practice" ? practiceWon : archiveState?.won ?? false
-  const lost = guessIds.length >= MAX_GUESSES && !won
+  const gaveUp = mode === "daily" ? dailyState.gaveUp : mode === "practice" ? practiceGaveUp : archiveState?.gaveUp ?? false
+  const lost = !won && (gaveUp || guessIds.length >= MAX_GUESSES)
   const guesses = guessIds.map(id => typedDataset.find(o => o.id === id)!).filter(Boolean)
   const profile = answer ? getProfileForCategory(answer.category) : []
   const gameOver = won || lost
@@ -118,12 +121,38 @@ export function GameBoard() {
     }
   }
 
+  // Giving up costs the streak and nothing else, so it records a give-up rather than a loss. Practice
+  // and archive days carry no streak, so there they only reveal the answer.
+  function handleGiveUp() {
+    if (gameOver) return
+    if (mode === "daily") {
+      const { state: next, error } = applyGiveUp(dailyState)
+      if (error) return
+      setDailyState(next)
+      setStatistics(recordDailyGiveUp(todayDayNumber))
+      setShowResultModal(true)
+      postResult(playerId, todayDayNumber, false, next.guessIds.length, next.hintsUsed, true).then(server => {
+        if (server) setStatistics(mergeServerStatistics(server))
+      })
+    } else if (mode === "archive" && archiveState) {
+      const { state: next, error } = applyGiveUp(archiveState)
+      if (error) return
+      setArchiveState(next)
+      setShowResultModal(true)
+    } else if (mode === "practice") {
+      setPracticeGaveUp(true)
+      setShowResultModal(true)
+    }
+  }
+
   function startNewPractice() {
     setPracticeAnswer(pickRandomObject(typedDataset))
     setPracticeGuessIds([])
     setPracticeWon(false)
     setPracticeHintsUsed(0)
+    setPracticeGaveUp(false)
     setShowResultModal(false)
+    setConfirmingGiveUp(false)
   }
 
   function selectArchiveDay(dayNumber: number) {
@@ -141,6 +170,7 @@ export function GameBoard() {
   function changeMode(next: GameMode) {
     setMode(next)
     setShowResultModal(false)
+    setConfirmingGiveUp(false)
     if (next === "practice" && practiceGuessIds.length === 0) startNewPractice()
     if (next === "archive") {
       setArchiveDayNumber(null)
@@ -206,10 +236,39 @@ export function GameBoard() {
                   maxHints={MAX_HINTS}
                   onUseHint={handleUseHint}
                   correctProperties={correctProperties}
+                  wrongGuessCount={guessIds.length}
                 />
                 <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />
-                <div className="mt-2 text-sm text-[#4d4d4d]">
-                  {MAX_GUESSES - guessIds.length} of {MAX_GUESSES} guesses left
+                <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-sm text-[#4d4d4d]">
+                  <span>
+                    {MAX_GUESSES - guessIds.length} of {MAX_GUESSES} guesses left
+                  </span>
+                  {confirmingGiveUp ? (
+                    <span className="flex items-center gap-2">
+                      <span className="text-[#b33]">
+                        {mode === "daily" ? "This resets your streak. Sure?" : "Reveal the answer?"}
+                      </span>
+                      <button
+                        className="rounded-lg border-2 border-[#b33] bg-[#b33] px-3 py-1 font-semibold text-white hover:bg-[#a02c2c]"
+                        onClick={handleGiveUp}
+                      >
+                        Give Up
+                      </button>
+                      <button
+                        className="rounded-lg border-2 border-[#8a8a8a] bg-white px-3 py-1 font-semibold text-[#4d4d4d] hover:bg-[#f0f0f0]"
+                        onClick={() => setConfirmingGiveUp(false)}
+                      >
+                        Keep Playing
+                      </button>
+                    </span>
+                  ) : (
+                    <button
+                      className="rounded-lg border-2 border-[#c9c9c9] bg-white px-3 py-1 font-semibold text-[#8a5050] hover:border-[#b33] hover:text-[#b33]"
+                      onClick={() => setConfirmingGiveUp(true)}
+                    >
+                      I Give Up
+                    </button>
+                  )}
                 </div>
               </>
             )}
@@ -239,6 +298,7 @@ export function GameBoard() {
             {lost && showResultModal && (
               <LossModal
                 answer={answer}
+                gaveUp={gaveUp}
                 guessCount={guessIds.length}
                 dayNumber={displayDayNumber}
                 guessStatusRows={guessStatusRows}

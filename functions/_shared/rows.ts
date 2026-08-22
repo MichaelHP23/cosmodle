@@ -5,6 +5,7 @@ export type ResultRow = {
   won: number
   guess_count: number
   hints_used: number
+  gave_up: number
 }
 
 export function rowsToResults(rows: ResultRow[]): DailyResult[] {
@@ -13,5 +14,6 @@ export function rowsToResults(rows: ResultRow[]): DailyResult[] {
     won: r.won === 1,
     guessCount: r.guess_count,
     hintsUsed: r.hints_used,
+    gaveUp: r.gave_up === 1,
   }))
 }
