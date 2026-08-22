@@ -218,6 +218,25 @@ describe("imagery", () => {
 })
 
 describe("new categories", () => {
+  it("never derives a size, mass or temperature for an event that has none", () => {
+    const objects = dataset as CelestialObject[]
+    const transients = objects.filter(o => o.category === "transient")
+    expect(transients.length).toBeGreaterThan(0)
+    for (const t of transients) {
+      for (const field of ["diameterKm", "massKg", "temperatureK", "gravityMs2"]) {
+        expect(getComparableValue(t, field, objects)).toBeUndefined()
+      }
+    }
+  })
+
+  it("still lets a transient compare on distance and redshift", () => {
+    const objects = dataset as CelestialObject[]
+    for (const t of objects.filter(o => o.category === "transient")) {
+      expect(typeof getComparableValue(t, "distanceFromEarthLy", objects)).toBe("number")
+      expect(typeof getComparableValue(t, "redshift", objects)).toBe("number")
+    }
+  })
+
   it("gives every star cluster the columns its profile promises", () => {
     const clusters = (dataset as CelestialObject[]).filter(o => o.category === "star_cluster")
     expect(clusters.length).toBeGreaterThan(0)

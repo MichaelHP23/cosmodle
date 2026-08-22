@@ -112,6 +112,15 @@ const STAR_CLUSTER_PROFILE: ProfileEntry[] = [
   { property: "discoveredYear", label: "First Recorded", kind: "numeric" },
 ]
 
+const TRANSIENT_PROFILE: ProfileEntry[] = [
+  { property: "category", label: "Type", kind: "exact" },
+  { property: "distanceFromEarthLy", label: "Distance from Earth", kind: "numeric" },
+  { property: "redshift", label: "Redshift", kind: "numeric" },
+  { property: "apparentMagnitude", label: "Peak Apparent Magnitude", kind: "numeric" },
+  { property: "eventType", label: "Event Type", kind: "exact" },
+  { property: "discoveredYear", label: "Discovered", kind: "numeric" },
+]
+
 const PROFILES_BY_CATEGORY: Record<CelestialCategory, ProfileEntry[]> = {
   planet: PLANET_PROFILE,
   dwarf_planet: DWARF_PLANET_PROFILE,
@@ -126,6 +135,7 @@ const PROFILES_BY_CATEGORY: Record<CelestialCategory, ProfileEntry[]> = {
   constellation: CONSTELLATION_PROFILE,
   exoplanet: EXOPLANET_PROFILE,
   star_cluster: STAR_CLUSTER_PROFILE,
+  transient: TRANSIENT_PROFILE,
 }
 
 export function getProfileForCategory(category: CelestialCategory): ProfileEntry[] {
@@ -151,6 +161,11 @@ const STAR_BACKED_PROPERTIES = ["distanceFromEarthLy", "distanceFromSunAU", "mas
 // genuinely does not possess (a constellation's mass, a black hole's visible magnitude, a planet's
 // galaxy type) still return undefined and render as "not applicable".
 export function getComparableValue(object: CelestialObject, property: string, dataset?: CelestialObject[]): unknown {
+  // A transient is an event, not a body. It genuinely has no diameter, mass, gravity or surface
+  // temperature, so those must stay blank rather than being derived into a misleading number.
+  const BODILESS_FIELDS = ["diameterKm", "massKg", "temperatureK", "gravityMs2", "moons", "rings"]
+  if (object.category === "transient" && BODILESS_FIELDS.includes(property)) return undefined
+
   const raw = (object as Record<string, unknown>)[property]
   if (raw !== undefined && raw !== null) return raw
 

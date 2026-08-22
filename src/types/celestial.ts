@@ -12,6 +12,7 @@ export type CelestialCategory =
   | "constellation"
   | "exoplanet"
   | "star_cluster"
+  | "transient"
 
 export type Hemisphere = "northern" | "southern" | "both"
 
@@ -58,6 +59,7 @@ export type CelestialObject = {
   blackHoleType?: string
   nebulaType?: string
   clusterType?: "Open" | "Globular"
+  eventType?: string
   isZodiac?: boolean
 
   difficulty?: 1 | 2 | 3 | 4 | 5

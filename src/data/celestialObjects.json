@@ -5034,5 +5034,27 @@
     "clusterType": "Globular",
     "discoveredYear": 1751,
     "description": "The second brightest globular cluster in the sky, dense enough at its core that its stars are separated by only a fraction of a light year."
+  },
+  {
+    "id": "grb_221009a",
+    "name": "GRB 221009A",
+    "category": "transient",
+    "apparentMagnitude": 12.0,
+    "redshift": 0.151,
+    "distanceFromEarthLy": 1900000000.0,
+    "eventType": "Gamma-Ray Burst",
+    "discoveredYear": 2022,
+    "description": "The brightest gamma-ray burst ever recorded, so bright it saturated every detector pointed at it and disturbed Earth's ionosphere from two billion light years away."
+  },
+  {
+    "id": "sn_1987a",
+    "name": "SN 1987A",
+    "category": "transient",
+    "apparentMagnitude": 2.9,
+    "redshift": 0.0009,
+    "distanceFromEarthLy": 168000,
+    "eventType": "Supernova",
+    "discoveredYear": 1987,
+    "description": "The nearest supernova seen since the invention of the telescope, and the first whose neutrinos were detected on Earth, three hours before the light arrived."
   }
 ]

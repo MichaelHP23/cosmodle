@@ -14,6 +14,7 @@ const CATEGORY_DEFAULT_COLOR: Record<CelestialCategory, string> = {
   constellation: "#dbe4ff",
   exoplanet: "#7a9e7e",
   star_cluster: "#ffe9a8",
+  transient: "#ff8f6b",
 }
 
 export function getObjectColor(object: CelestialObject): string {
