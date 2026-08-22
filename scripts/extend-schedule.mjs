@@ -35,8 +35,14 @@ function mulberry32(seed) {
 // Appends days until the schedule is `targetLength` long, never touching existing entries.
 // Each new day draws from the objects used least so far, so nothing repeats until every
 // object has had a turn and newly added objects (used zero times) come up straight away.
-export function extendSchedule(existing, datasetIds, targetLength) {
+//
+// Within that pool it also avoids the category that played yesterday. Constellations are 30% of the
+// dataset, so without this they clump into runs of two and three days that all look alike, which is
+// what makes the rotation feel repetitive even though it never actually repeats an object.
+export function extendSchedule(existing, dataset, targetLength) {
   const schedule = [...existing]
+  const categoryOf = new Map(dataset.map(o => [o.id, o.category]))
+  const datasetIds = dataset.map(o => o.id)
   const counts = new Map(datasetIds.map(id => [id, 0]))
   for (const id of schedule) {
     if (counts.has(id)) counts.set(id, counts.get(id) + 1)
@@ -46,9 +52,14 @@ export function extendSchedule(existing, datasetIds, targetLength) {
     const day = schedule.length + 1
     const min = Math.min(...counts.values())
     const previous = schedule[schedule.length - 1]
+    const previousCategory = categoryOf.get(previous)
     let pool = datasetIds.filter(id => counts.get(id) === min).sort()
     // Only bites when the pool is down to the single object that just played.
     if (pool.length > 1) pool = pool.filter(id => id !== previous)
+    // Skipped when every remaining candidate shares yesterday's category, because holding the
+    // no-repeat guarantee matters more than the variety this adds.
+    const varied = pool.filter(id => categoryOf.get(id) !== previousCategory)
+    if (varied.length > 0) pool = varied
     const pick = pool[Math.floor(mulberry32(day)() * pool.length)]
     schedule.push(pick)
     counts.set(pick, counts.get(pick) + 1)
@@ -90,7 +101,7 @@ function main() {
     return
   }
 
-  const next = extendSchedule(existing, datasetIds, target)
+  const next = extendSchedule(existing, dataset, target)
   fs.writeFileSync(SCHEDULE_PATH, JSON.stringify(next, null, 2) + "\n")
   console.log(`Extended schedule from day ${existing.length} to day ${next.length} (today is day ${today}).`)
 }
