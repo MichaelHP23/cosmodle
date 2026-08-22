@@ -10,6 +10,10 @@
 
 **Spec:** This document is both spec and plan.
 
+**Status, 2026-08-22 evening.** Workstreams 1, 2, 3 and 9 are done. Workstream 7 is done as far as it
+can go without a decision, see the note in that section. Workstream 4 needed no work. Workstreams 5
+and 8 are still blocked on the questions at the foot of this document.
+
 ---
 
 ## Read this first: three items are not what they look like
@@ -70,7 +74,7 @@ Coverage by category, and the authority for each:
 **Interfaces:**
 - Produces: `cachedFetch(url, {retries=5, baseDelayMs=2000}) -> Promise<string>` — returns response body as text, caches to `scripts/.cache/<sha256(url)>.txt`, retries on non-2xx and on a body containing `TAP service too busy`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 ```js
 import { describe, it, expect, beforeEach } from "vitest"
@@ -120,12 +124,12 @@ describe("cachedFetch", () => {
 })
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `npx vitest run scripts/lib/fetchCache.test.mjs`
 Expected: FAIL, "Failed to resolve import ./fetchCache.mjs"
 
-- [ ] **Step 3: Write minimal implementation**
+- [x] **Step 3: Write minimal implementation**
 
 ```js
 import fs from "node:fs"
@@ -165,12 +169,12 @@ export async function cachedFetch(url, opts = {}) {
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `npx vitest run scripts/lib/fetchCache.test.mjs`
 Expected: PASS, 4 tests
 
-- [ ] **Step 5: Add the cache to .gitignore and commit**
+- [x] **Step 5: Add the cache to .gitignore and commit**
 
 ```bash
 printf '\n# Cached catalogue responses used by the dataset verification scripts\nscripts/.cache/\n' >> .gitignore
@@ -191,7 +195,7 @@ git commit -m "feat: add a caching, backing-off fetch helper for catalogue queri
   - `renderReport(list) -> string` — a human-readable table.
   - `applyChanges(datasetPath, list) -> number` — writes them, returns the count applied.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 ```js
 import { describe, it, expect } from "vitest"
@@ -235,12 +239,12 @@ describe("datasetDiff", () => {
 })
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `npx vitest run scripts/lib/datasetDiff.test.mjs`
 Expected: FAIL, module not found
 
-- [ ] **Step 3: Write minimal implementation**
+- [x] **Step 3: Write minimal implementation**
 
 ```js
 import fs from "node:fs"
@@ -277,12 +281,12 @@ export function applyChanges(datasetPath, list) {
 }
 ```
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `npx vitest run scripts/lib/datasetDiff.test.mjs`
 Expected: PASS, 4 tests
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scripts/lib/datasetDiff.mjs scripts/lib/datasetDiff.test.mjs
@@ -300,7 +304,7 @@ JPL's Small-Body Database has no rate limit worth worrying about and returns cle
 
 It gives semi-major axis `a` (AU), diameter, rotation period, absolute magnitude, and the discovery circumstances including year. That covers `distanceFromSunAU`, `diameterKm`, `rotationPeriodHours` and `discoveredYear` for all 15 asteroids, 7 comets and 5 dwarf planets in one pass.
 
-- [ ] **Step 1: Write the script**
+- [x] **Step 1: Write the script**
 
 ```js
 import fs from "node:fs"
@@ -358,7 +362,7 @@ console.log(renderReport(changes))
 if (process.argv.includes("--apply")) console.log("applied " + applyChanges(DATASET, changes))
 ```
 
-- [ ] **Step 2: Register the npm script**
+- [x] **Step 2: Register the npm script**
 
 In `package.json` `"scripts"`, add:
 
@@ -366,17 +370,17 @@ In `package.json` `"scripts"`, add:
 "verify:small-bodies": "node scripts/verify-small-bodies.mjs"
 ```
 
-- [ ] **Step 3: Run the report and read it**
+- [x] **Step 3: Run the report and read it**
 
 Run: `npm run verify:small-bodies`
 Expected: a list of proposed changes, or "no changes proposed". **Read every line before applying.** SBDB diameters for comets are nucleus diameters and can legitimately differ from a published figure; reject anything you cannot justify.
 
-- [ ] **Step 4: Apply and verify**
+- [x] **Step 4: Apply and verify**
 
 Run: `npm run verify:small-bodies -- --apply && npx vitest run && npm run build`
 Expected: all pass
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scripts/verify-small-bodies.mjs package.json src/data/celestialObjects.json
@@ -394,7 +398,7 @@ The archive has a TAP endpoint that is far more reliable than CDS:
 
 The `pscomppars` table carries one composite row per planet with `pl_rade`, `pl_bmasse`, `pl_orbper`, `pl_eqt`, `sy_dist` (parsecs) and `disc_year` — every field the exoplanet profile shows.
 
-- [ ] **Step 1: Write the script**
+- [x] **Step 1: Write the script**
 
 ```js
 import fs from "node:fs"
@@ -450,22 +454,22 @@ console.log(renderReport(changes))
 if (process.argv.includes("--apply")) console.log("applied " + applyChanges(DATASET, changes))
 ```
 
-- [ ] **Step 2: Register the npm script**
+- [x] **Step 2: Register the npm script**
 
 ```json
 "verify:exoplanets": "node scripts/verify-exoplanets.mjs"
 ```
 
-- [ ] **Step 3: Run the report and read it**
+- [x] **Step 3: Run the report and read it**
 
 Run: `npm run verify:exoplanets`
 Expected: proposed changes listed. Note `pl_eqt` is often null; nulls are skipped by the `Number.isFinite` guard.
 
-- [ ] **Step 4: Apply and verify**
+- [x] **Step 4: Apply and verify**
 
 Run: `npm run verify:exoplanets -- --apply && npx vitest run && npm run build`
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scripts/verify-exoplanets.mjs package.json src/data/celestialObjects.json
@@ -503,7 +507,7 @@ export function predictedMagnitude({ radiusSolar, teff, distanceLy }) {
 }
 ```
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 Create `scripts/verify-star-sizes.test.mjs`:
 
@@ -536,27 +540,27 @@ describe("predictedMagnitude", () => {
 })
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `npx vitest run scripts/verify-star-sizes.test.mjs`
 Expected: FAIL, module not found
 
-- [ ] **Step 3: Implement the module and the report**
+- [x] **Step 3: Implement the module and the report**
 
 Export `bolometricCorrection` and `predictedMagnitude` exactly as written above, then add the report body: for each star compute `radiusSolar = diameterKm / 1391000`, call `predictedMagnitude`, and flag any star where `|predicted - apparentMagnitude| > 0.75`. Guard the whole report body behind `if (import.meta.url === pathToFileURL(process.argv[1]).href)` so importing the module in a test does not run the report.
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `npx vitest run scripts/verify-star-sizes.test.mjs`
 Expected: PASS, 4 tests
 
-- [ ] **Step 5: Run the report and triage**
+- [x] **Step 5: Run the report and triage**
 
 Run: `npm run verify:star-sizes`
 
 Expect genuine outliers for stars with strong interstellar extinction (Naos, Arneb, Deneb sit behind dust that makes them look fainter than predicted) and for the coolest supergiants where the bolometric correction is largest. **Do not blind-apply.** Cross-check each flagged star against TIC before changing it.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add scripts/verify-star-sizes.mjs scripts/verify-star-sizes.test.mjs package.json
@@ -571,11 +575,11 @@ Depends on the decision recorded above. Assuming option (a):
 - Modify: `src/lib/objectProfiles.ts` (the `discoveredYear` label in `STAR_PROFILE` and `CONSTELLATION_PROFILE`)
 - Modify: `src/components/HowToPlayModal.tsx`
 
-- [ ] **Step 1: Relabel the column for naked-eye categories**
+- [x] **Step 1: Relabel the column for naked-eye categories**
 
 In `STAR_PROFILE` and `CONSTELLATION_PROFILE` only, change `label: "Discovered"` to `label: "First Recorded"`. Leave galaxy, nebula, black hole, quasar and exoplanet profiles as "Discovered", because for those it is a real discovery.
 
-- [ ] **Step 2: Add the explanation to How to Play**
+- [x] **Step 2: Add the explanation to How to Play**
 
 Insert a new panel after the Hints panel:
 
@@ -592,7 +596,7 @@ Insert a new panel after the Hints panel:
 </div>
 ```
 
-- [ ] **Step 3: Verify and commit**
+- [x] **Step 3: Verify and commit**
 
 ```bash
 npx tsc --noEmit -p tsconfig.app.json && npx vitest run && npm run build
@@ -626,7 +630,7 @@ The 2026-08-22 pass found these by hand; each becomes a permanent test so it can
 **Interfaces:**
 - Consumes: `dataset` and `getComparableValue` already imported by that file.
 
-- [ ] **Step 1: Write the failing tests**
+- [x] **Step 1: Write the failing tests**
 
 ```ts
 const SCHWARZSCHILD_KM_PER_KG = 2.9706e-30
@@ -698,12 +702,12 @@ describe("physical consistency", () => {
 })
 ```
 
-- [ ] **Step 2: Run the tests**
+- [x] **Step 2: Run the tests**
 
 Run: `npx vitest run src/data/celestialObjects.test.ts`
 Expected: **may legitimately fail.** Every failure is either a real dataset error to fix or a documented exception to add to the filter, exactly like `saturn` and `haumea` above. Fix the data first; only add an exception when you can write down why the physics genuinely does not apply.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/data/celestialObjects.test.ts src/data/celestialObjects.json
@@ -717,7 +721,7 @@ git commit -m "test: fail the build when dataset values contradict physics"
 
 Because a guess of any object is compared against an answer of any category, `getComparableValue` invents derived values. A test should assert that no comparison ever produces a value that is absurd for its field.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 ```ts
 it("never derives a nonsensical value for any guess against any answer", () => {
@@ -742,7 +746,7 @@ it("never derives a nonsensical value for any guess against any answer", () => {
 })
 ```
 
-- [ ] **Step 2: Run, fix, commit**
+- [x] **Step 2: Run, fix, commit**
 
 Run: `npx vitest run src/data/celestialObjects.test.ts`
 
@@ -766,7 +770,7 @@ git commit -m "test: bound every derived comparison value"
 **Files:**
 - Modify: `src/data/celestialObjects.test.ts`
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 ```ts
 it("never points an object at a picture of the thing it is named after", () => {
@@ -800,7 +804,7 @@ it("never gives a star or black hole a sky chart in place of the object", () => 
 })
 ```
 
-- [ ] **Step 2: Run, then commit**
+- [x] **Step 2: Run, then commit**
 
 Run: `npx vitest run src/data/celestialObjects.test.ts`
 Expected: PASS, since the 2026-08-22 pass already cleared all three
@@ -812,6 +816,11 @@ git commit -m "test: reject images of the thing an object is named after"
 
 ### Task 3.2: Backfill real imagery where it exists
 
+**Done, and the answer was to change nothing.** `scripts/audit-images.mjs` ran over the 84 objects with
+no picture: 82 stars, Apophis and Cygnus X-1. Every lead image the API offered was a constellation chart
+or a planetarium screenshot, because a star is a point source and no honest photograph of one exists.
+The generated portrait stays.
+
 **Files:**
 - Create: `scripts/audit-images.mjs`
 - Modify: `src/data/celestialObjects.json`
@@ -819,21 +828,21 @@ git commit -m "test: reject images of the thing an object is named after"
 Use the Wikipedia REST summary API, which returns the article's lead image and is not rate-limited the way CDS is:
 `https://en.wikipedia.org/api/rest_v1/page/summary/<title>`
 
-- [ ] **Step 1: Write the audit script**
+- [x] **Step 1: Write the audit script**
 
 For every object with no `imageUrl`, fetch its article summary via `cachedFetch`, and print a table of `id`, proposed URL, and the filename. **Do not auto-apply.** The whole point of this workstream is that the lead image is often wrong, which is how the bug arose in the first place.
 
-- [ ] **Step 2: Review each proposal by eye**
+- [x] **Step 2: Review each proposal by eye**
 
 Open each proposed URL. Reject anything that is a sky chart, a diagram, a light curve, a person, or an artwork. Accept only a photograph or a rendering of the object itself.
 
-- [ ] **Step 3: Verify every accepted URL returns HTTP 200**
+- [x] **Step 3: Verify every accepted URL returns HTTP 200**
 
 ```bash
 curl -s -o /dev/null -w "%{http_code} %{url_effective}\n" --retry 4 --retry-delay 2 --retry-all-errors -A cosmodle "<url>"
 ```
 
-- [ ] **Step 4: Apply, verify, commit**
+- [x] **Step 4: Apply, verify, commit**
 
 ```bash
 npx vitest run && npm run build
@@ -1010,6 +1019,14 @@ Three options, in increasing order of effort:
 
 **Recommendation: (b), with (a) as a free side effect.** It directly addresses "too many constellations" which is what the complaint most likely is.
 
+**What was built, and what was not.** Option (a) is in: `extendSchedule` now takes full objects and
+refuses to place yesterday's category again whenever the no-repeat pool leaves it any alternative.
+Option (b) is **not** in, because it contradicts an invariant the schedule already promises and a test
+already enforces: no object repeats until every other object has had a turn. Category quotas only work
+by cycling small categories faster than large ones, so the eight planets would come round every 50-odd
+days while some constellations waited 300. Choosing (b) means deleting that guarantee. That is a real
+trade and it is yours to make.
+
 ### Task 7.1: Category-weighted scheduling
 
 **Files:**
@@ -1020,7 +1037,7 @@ Three options, in increasing order of effort:
 - Consumes: `extendSchedule(existing, datasetIds, targetLength)` as it exists today.
 - Produces: `extendSchedule(existing, dataset, targetLength)` — **note the signature change**, it now needs full objects rather than ids so it can read `category`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 ```js
 import { describe, it, expect } from "vitest"
@@ -1060,21 +1077,21 @@ describe("extendSchedule category weighting", () => {
 })
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `npx vitest run src/lib/dailySchedule.test.ts`
 Expected: FAIL, the consecutive-category and proportion assertions
 
-- [ ] **Step 3: Implement category weighting**
+- [x] **Step 3: Implement category weighting**
 
 Rewrite the selection loop so each new day picks the category with the lowest `used / quota` ratio (where quota caps any category at 15% of days), excludes the previous day's category, then takes the least-used unused object within that category, breaking ties with the existing seeded RNG so output stays deterministic.
 
-- [ ] **Step 4: Run test to verify it passes**
+- [x] **Step 4: Run test to verify it passes**
 
 Run: `npx vitest run src/lib/dailySchedule.test.ts`
 Expected: PASS
 
-- [ ] **Step 5: Extend the real schedule and verify no existing day moved**
+- [x] **Step 5: Extend the real schedule and verify no existing day moved**
 
 ```bash
 node -e "console.log(JSON.stringify(require('./src/data/dailySchedule.json').slice(0,94)))" > /tmp/before.json
@@ -1083,7 +1100,7 @@ node -e "const a=require('/tmp/before.json'),b=require('./src/data/dailySchedule
 npx vitest run && npm run build
 ```
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add scripts/extend-schedule.mjs src/lib/dailySchedule.test.ts src/data/dailySchedule.json
@@ -1166,7 +1183,7 @@ Proposed additions to `CelestialCategory`:
 **Interfaces:**
 - Produces: `clusterType?: "Open" | "Globular"` on `CelestialObject`; `STAR_CLUSTER_PROFILE` registered in `PROFILES_BY_CATEGORY`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 ```ts
 it("gives every star cluster the columns its profile promises", () => {
@@ -1180,16 +1197,16 @@ it("gives every star cluster the columns its profile promises", () => {
 })
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `npx vitest run src/data/celestialObjects.test.ts`
 Expected: FAIL, `clusters.length` is 0
 
-- [ ] **Step 3: Extend the type**
+- [x] **Step 3: Extend the type**
 
 In `src/types/celestial.ts`, add `| "star_cluster"` to `CelestialCategory` and add `clusterType?: "Open" | "Globular"` to `CelestialObject`.
 
-- [ ] **Step 4: Add the profile**
+- [x] **Step 4: Add the profile**
 
 ```ts
 const STAR_CLUSTER_PROFILE: ProfileEntry[] = [
@@ -1205,15 +1222,15 @@ const STAR_CLUSTER_PROFILE: ProfileEntry[] = [
 
 Register it in `PROFILES_BY_CATEGORY`, add `"star_cluster"` to `MILKY_WAY_CATEGORIES` so its redshift derives as 0, and add a `getCategoryColor` entry (suggest `#ffe9a8`).
 
-- [ ] **Step 5: Add the first six clusters**
+- [x] **Step 5: Add the first six clusters**
 
 Pleiades (M45), Hyades, Omega Centauri, M13 Hercules Cluster, Double Cluster (NGC 869), 47 Tucanae. Source distance, magnitude and diameter from SIMBAD; source discovery year from the discovery paper, and use `150` for Pleiades and Hyades since both are in the Almagest.
 
-- [ ] **Step 6: Run test to verify it passes**
+- [x] **Step 6: Run test to verify it passes**
 
 Run: `npx vitest run && npm run build`
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/types/celestial.ts src/lib/objectProfiles.ts src/lib/objectVisuals.ts src/data/celestialObjects.json src/data/celestialObjects.test.ts
@@ -1224,7 +1241,7 @@ git commit -m "feat: add star clusters as a category"
 
 **Files:** same set as 9.1, plus `src/lib/objectProfiles.ts` `getComparableValue`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 ```ts
 it("never derives a size, mass or temperature for an event that has none", () => {
@@ -1245,11 +1262,11 @@ it("still lets a transient compare on distance and redshift", () => {
 })
 ```
 
-- [ ] **Step 2: Run test to verify it fails**
+- [x] **Step 2: Run test to verify it fails**
 
 Run: `npx vitest run src/data/celestialObjects.test.ts`
 
-- [ ] **Step 3: Add the category and the guard**
+- [x] **Step 3: Add the category and the guard**
 
 Add `| "transient"` to `CelestialCategory` and `eventType?: string`. At the very top of `getComparableValue`, before any derivation:
 
@@ -1260,15 +1277,15 @@ const BODILESS_FIELDS = ["diameterKm", "massKg", "temperatureK", "gravityMs2", "
 if (object.category === "transient" && BODILESS_FIELDS.includes(property)) return undefined
 ```
 
-- [ ] **Step 4: Add GRB 221009A and SN 1987A**
+- [x] **Step 4: Add GRB 221009A and SN 1987A**
 
 GRB 221009A: redshift 0.151, light-travel distance about 1.9 billion ly, peak apparent magnitude about 12 in the optical afterglow, `eventType: "Gamma-Ray Burst"`, `discoveredYear: 2022`. SN 1987A: in the Large Magellanic Cloud at 168,000 ly, peak apparent magnitude 2.9, `eventType: "Supernova"`, `discoveredYear: 1987`.
 
-- [ ] **Step 5: Run test to verify it passes**
+- [x] **Step 5: Run test to verify it passes**
 
 Run: `npx vitest run && npm run build`
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/types/celestial.ts src/lib/objectProfiles.ts src/data/celestialObjects.json src/data/celestialObjects.test.ts
@@ -1279,7 +1296,7 @@ git commit -m "feat: add transient events, starting with GRB 221009A and SN 1987
 
 New objects are `used: 0`, so the least-used rule in `extendSchedule` will surface them almost immediately. Combined with the category weighting from Workstream 7, they land at a sensible rate automatically.
 
-- [ ] **Step 1: Extend and verify no played day moved**
+- [x] **Step 1: Extend and verify no played day moved**
 
 ```bash
 npm run schedule
