@@ -70,6 +70,17 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
           </p>
         </div>
 
+        <div className="mb-4 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3 text-sm text-[#4d4d4d]">
+          <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Dates</div>
+          <p>
+            Telescopic objects show the year they were discovered. Stars and constellations you can see with
+            the naked eye were never discovered, so they show the earliest catalogue that records them
+            instead: AD 150 for anything in Ptolemy's Almagest, otherwise the year their constellation was
+            introduced. A few objects, like the Sun and the naked-eye planets, have no first record at all
+            and simply read Prehistoric.
+          </p>
+        </div>
+
         <div className="rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3 text-sm text-[#4d4d4d]">
           <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Modes</div>
           <ul className="space-y-1.5">

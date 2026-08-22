@@ -43,7 +43,7 @@ const STAR_PROFILE: ProfileEntry[] = [
   { property: "temperatureK", label: "Surface Temperature", kind: "temperature" },
   { property: "diameterKm", label: "Diameter", kind: "numeric" },
   { property: "massKg", label: "Mass", kind: "numeric" },
-  { property: "discoveredYear", label: "Discovered", kind: "numeric" },
+  { property: "discoveredYear", label: "First Recorded", kind: "numeric" },
 ]
 
 const GALAXY_PROFILE: ProfileEntry[] = [
@@ -88,7 +88,7 @@ const CONSTELLATION_PROFILE: ProfileEntry[] = [
   { property: "areaSqDeg", label: "Sky Area", kind: "numeric" },
   { property: "brightestStarMagnitude", label: "Brightest Star Magnitude", kind: "numeric" },
   { property: "isZodiac", label: "Zodiac Constellation", kind: "exact" },
-  { property: "discoveredYear", label: "Discovered", kind: "numeric" },
+  { property: "discoveredYear", label: "First Recorded", kind: "numeric" },
 ]
 
 const EXOPLANET_PROFILE: ProfileEntry[] = [
