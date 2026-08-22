@@ -28,3 +28,9 @@ dist-ssr
 
 # Cached catalogue responses used by the dataset verification scripts
 scripts/.cache/
+
+# Working notes, not part of the build
+docs/superpowers/
+
+# D1 migrations, kept out of the repo by choice; the schema is recorded in the README instead
+migrations/

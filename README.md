@@ -32,6 +32,28 @@ No account or login is ever required. Your identity is just a random id stored i
 
 React + TypeScript + Vite, styled with Tailwind CSS, backed by Cloudflare Pages Functions + D1. Tests run on Vitest.
 
+## Database schema
+
+The D1 migrations are deliberately **not** tracked in this repository, so a fresh clone cannot
+provision the database from `wrangler d1 migrations apply` and has to create the table by hand. The
+whole schema is one table, recorded here so it is not lost with the working copy:
+
+```sql
+CREATE TABLE results (
+  uuid TEXT NOT NULL,
+  day_number INTEGER NOT NULL,
+  won INTEGER NOT NULL,
+  guess_count INTEGER NOT NULL,
+  hints_used INTEGER NOT NULL,
+  created_at INTEGER NOT NULL,
+  gave_up INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (uuid, day_number)
+);
+```
+
+`gave_up` arrived after the table did, so an existing database needs
+`ALTER TABLE results ADD COLUMN gave_up INTEGER NOT NULL DEFAULT 0;` rather than the full CREATE.
+
 ## Development
 
 ```bash
