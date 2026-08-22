@@ -205,8 +205,8 @@ export function GameBoard() {
   const showingArchiveList = mode === "archive" && archiveDayNumber === null
 
   return (
-    <div className="starfield min-h-screen">
-      <div className="mx-auto max-w-[1200px] px-4 py-8">
+    <div className="starfield flex min-h-screen flex-col">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-1 flex-col px-4 py-8">
         <DailyHeader mode={mode} onModeChange={changeMode} dayNumber={displayDayNumber} onHelpClick={() => setShowHowToPlay(true)} />
 
         {mode === "archive" && (
@@ -318,6 +318,11 @@ export function GameBoard() {
             )}
           </>
         )}
+        {/* Before the first guess the board is short, so without this the footer sat halfway up the
+            screen on a phone with a screenful of nothing under it. The spacer takes the slack, which
+            leaves the footer's own top margin intact once the guess table is tall enough to fill the
+            page on its own. */}
+        <div className="flex-1" aria-hidden="true" />
         <Footer onGlobalStatsClick={() => setShowGlobalStats(true)} />
         {showHowToPlay && <HowToPlayModal onClose={closeHowToPlay} />}
         {showGlobalStats && <GlobalStatsModal onClose={() => setShowGlobalStats(false)} />}
