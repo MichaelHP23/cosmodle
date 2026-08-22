@@ -19,6 +19,7 @@ export function Footer({ onGlobalStatsClick }: { onGlobalStatsClick: () => void 
       <button className="hover:text-[#00998a] hover:underline" onClick={onGlobalStatsClick}>
         Global Stats
       </button>
+      <KofiWidget />
       <a
         href="https://playlin.io/game/cosmodle/"
         target="_blank"
@@ -34,7 +35,6 @@ export function Footer({ onGlobalStatsClick }: { onGlobalStatsClick: () => void 
           decoding="async"
         />
       </a>
-      <KofiWidget />
     </footer>
   )
 }
