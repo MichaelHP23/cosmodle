@@ -184,3 +184,35 @@ describe("physical consistency", () => {
     expect(problems).toEqual([])
   })
 })
+
+describe("imagery", () => {
+  it("never points an object at a picture of the thing it is named after", () => {
+    // Every one of these words appeared in a real wrong image in this dataset.
+    const BANNED = [
+      "deity", "god", "mytholog", "statue", "vase", "lekythos", "herm", "painting",
+      "fresco", "sculpture", "logo", "software", "bird", "collage", "plumage",
+      "tumor", "tumour", "mesothelioma", "crater_aerial", "emblem", "alciato", "farnese",
+    ]
+    const problems = (dataset as CelestialObject[])
+      .filter(o => o.imageUrl)
+      .filter(o => BANNED.some(w => decodeURIComponent(o.imageUrl!).toLowerCase().includes(w)))
+      .map(o => `${o.id}: ${decodeURIComponent(o.imageUrl!)}`)
+    expect(problems).toEqual([])
+  })
+
+  it("gives every constellation its IAU chart and nothing else", () => {
+    const problems = (dataset as CelestialObject[])
+      .filter(o => o.category === "constellation")
+      .filter(o => !/_IAU\.svg/i.test(o.imageUrl ?? ""))
+      .map(o => o.id)
+    expect(problems).toEqual([])
+  })
+
+  it("never gives a star or black hole a sky chart in place of the object", () => {
+    const problems = (dataset as CelestialObject[])
+      .filter(o => ["star", "black_hole"].includes(o.category))
+      .filter(o => /constellation_map|_IAU\.svg/i.test(o.imageUrl ?? ""))
+      .map(o => o.id)
+    expect(problems).toEqual([])
+  })
+})
