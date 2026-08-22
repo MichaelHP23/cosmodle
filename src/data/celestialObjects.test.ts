@@ -216,3 +216,15 @@ describe("imagery", () => {
     expect(problems).toEqual([])
   })
 })
+
+describe("new categories", () => {
+  it("gives every star cluster the columns its profile promises", () => {
+    const clusters = (dataset as CelestialObject[]).filter(o => o.category === "star_cluster")
+    expect(clusters.length).toBeGreaterThan(0)
+    for (const c of clusters) {
+      expect(c.clusterType === "Open" || c.clusterType === "Globular").toBe(true)
+      expect(typeof c.distanceFromEarthLy).toBe("number")
+      expect(typeof c.apparentMagnitude).toBe("number")
+    }
+  })
+})

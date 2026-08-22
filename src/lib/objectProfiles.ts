@@ -102,6 +102,16 @@ const EXOPLANET_PROFILE: ProfileEntry[] = [
   { property: "discoveredYear", label: "Discovered", kind: "numeric" },
 ]
 
+const STAR_CLUSTER_PROFILE: ProfileEntry[] = [
+  { property: "category", label: "Type", kind: "exact" },
+  { property: "distanceFromEarthLy", label: "Distance from Earth", kind: "numeric" },
+  { property: "diameterKm", label: "Diameter", kind: "numeric" },
+  { property: "massKg", label: "Estimated Mass", kind: "numeric" },
+  { property: "clusterType", label: "Cluster Type", kind: "exact" },
+  { property: "apparentMagnitude", label: "Apparent Magnitude", kind: "numeric" },
+  { property: "discoveredYear", label: "First Recorded", kind: "numeric" },
+]
+
 const PROFILES_BY_CATEGORY: Record<CelestialCategory, ProfileEntry[]> = {
   planet: PLANET_PROFILE,
   dwarf_planet: DWARF_PLANET_PROFILE,
@@ -115,6 +125,7 @@ const PROFILES_BY_CATEGORY: Record<CelestialCategory, ProfileEntry[]> = {
   quasar: QUASAR_PROFILE,
   constellation: CONSTELLATION_PROFILE,
   exoplanet: EXOPLANET_PROFILE,
+  star_cluster: STAR_CLUSTER_PROFILE,
 }
 
 export function getProfileForCategory(category: CelestialCategory): ProfileEntry[] {
@@ -129,7 +140,7 @@ const GRAVITATIONAL_CONSTANT = 6.674e-11
 const SCHWARZSCHILD_KM_PER_KG = 2.9706e-30
 
 const SOLAR_SYSTEM_CATEGORIES = ["planet", "dwarf_planet", "asteroid", "comet"]
-const MILKY_WAY_CATEGORIES = ["star", "nebula", "exoplanet", "constellation"]
+const MILKY_WAY_CATEGORIES = ["star", "nebula", "exoplanet", "constellation", "star_cluster"]
 // Physical quantities a constellation can only report by standing in its brightest star.
 const STAR_BACKED_PROPERTIES = ["distanceFromEarthLy", "distanceFromSunAU", "massKg", "diameterKm", "temperatureK", "gravityMs2"]
 

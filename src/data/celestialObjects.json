@@ -4956,5 +4956,83 @@
     "difficulty": 5,
     "description": "A red giant and the brightest star in Vulpecula, forming a chance line-of-sight pair with the unrelated 8 Vulpeculae.",
     "discoveredYear": 1687
+  },
+  {
+    "id": "pleiades",
+    "name": "Pleiades",
+    "category": "star_cluster",
+    "apparentMagnitude": 1.6,
+    "redshift": 0,
+    "distanceFromEarthLy": 444,
+    "diameterKm": 473000000000000.0,
+    "massKg": 1.591e+33,
+    "clusterType": "Open",
+    "discoveredYear": 150,
+    "description": "The brightest open cluster in the sky, a knot of hot blue stars that most people can pick out with the naked eye as six or seven points."
+  },
+  {
+    "id": "hyades",
+    "name": "Hyades",
+    "category": "star_cluster",
+    "apparentMagnitude": 0.5,
+    "redshift": 0,
+    "distanceFromEarthLy": 153,
+    "diameterKm": 331100000000000.0,
+    "massKg": 7.956e+32,
+    "clusterType": "Open",
+    "discoveredYear": 150,
+    "description": "The nearest open cluster to the Sun, forming the V-shaped face of Taurus, though Aldebaran only appears to belong to it and lies much closer."
+  },
+  {
+    "id": "omega_centauri",
+    "name": "Omega Centauri",
+    "category": "star_cluster",
+    "apparentMagnitude": 3.9,
+    "redshift": 0,
+    "distanceFromEarthLy": 15800,
+    "diameterKm": 1419000000000000.0,
+    "massKg": 7.956e+36,
+    "clusterType": "Globular",
+    "discoveredYear": 1677,
+    "description": "The largest globular cluster in the galaxy, holding millions of stars, and possibly the stripped core of a galaxy the Milky Way swallowed."
+  },
+  {
+    "id": "m13",
+    "name": "Hercules Cluster (M13)",
+    "category": "star_cluster",
+    "apparentMagnitude": 5.8,
+    "redshift": 0,
+    "distanceFromEarthLy": 22200,
+    "diameterKm": 1372000000000000.0,
+    "massKg": 1.193e+36,
+    "clusterType": "Globular",
+    "discoveredYear": 1714,
+    "description": "The finest globular cluster visible from northern latitudes, and the target of the 1974 Arecibo radio message."
+  },
+  {
+    "id": "double_cluster",
+    "name": "Double Cluster",
+    "category": "star_cluster",
+    "apparentMagnitude": 4.3,
+    "redshift": 0,
+    "distanceFromEarthLy": 7500,
+    "diameterKm": 331100000000000.0,
+    "massKg": 7.359e+33,
+    "clusterType": "Open",
+    "discoveredYear": 150,
+    "description": "A pair of open clusters in Perseus that sit close enough together to share one telescope field, both only a few million years old."
+  },
+  {
+    "id": "47_tucanae",
+    "name": "47 Tucanae",
+    "category": "star_cluster",
+    "apparentMagnitude": 4.09,
+    "redshift": 0,
+    "distanceFromEarthLy": 14500,
+    "diameterKm": 1135000000000000.0,
+    "massKg": 1.392e+36,
+    "clusterType": "Globular",
+    "discoveredYear": 1751,
+    "description": "The second brightest globular cluster in the sky, dense enough at its core that its stars are separated by only a fraction of a light year."
   }
 ]

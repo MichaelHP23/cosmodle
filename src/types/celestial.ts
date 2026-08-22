@@ -11,6 +11,7 @@ export type CelestialCategory =
   | "quasar"
   | "constellation"
   | "exoplanet"
+  | "star_cluster"
 
 export type Hemisphere = "northern" | "southern" | "both"
 
@@ -56,6 +57,7 @@ export type CelestialObject = {
   galaxyType?: string
   blackHoleType?: string
   nebulaType?: string
+  clusterType?: "Open" | "Globular"
   isZodiac?: boolean
 
   difficulty?: 1 | 2 | 3 | 4 | 5
