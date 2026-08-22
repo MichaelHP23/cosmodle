@@ -10,6 +10,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "schedule": "node scripts/extend-schedule.mjs",
+    "verify:small-bodies": "node scripts/verify-small-bodies.mjs",
+    "verify:exoplanets": "node scripts/verify-exoplanets.mjs",
     "dev:api": "wrangler pages dev --proxy 5173 -- npm run dev",
     "typecheck:functions": "tsc --noEmit -p functions/tsconfig.json"
   },
