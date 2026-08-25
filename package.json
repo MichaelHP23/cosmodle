@@ -11,6 +11,7 @@
     "test": "vitest run",
     "schedule": "node scripts/extend-schedule.mjs",
     "verify:small-bodies": "node scripts/verify-small-bodies.mjs",
+    "verify:constellations": "node scripts/verify-constellations.mjs",
     "verify:exoplanets": "node scripts/verify-exoplanets.mjs",
     "verify:star-sizes": "node scripts/verify-star-sizes.mjs",
     "dev:api": "wrangler pages dev --proxy 5173 -- npm run dev",

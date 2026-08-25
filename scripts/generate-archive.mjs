@@ -101,9 +101,10 @@ const SKIPPED_PROPERTIES = new Set(["id", "name", "description", "imageUrl", "co
 // generated page states its numbers as fact to a search engine and to anyone who reads it. Planets
 // are here on their own authority; the rest are covered by the verify scripts:
 // dwarf planets, asteroids and comets by `npm run verify:small-bodies`, exoplanets by
-// `npm run verify:exoplanets`, stars by `npm run verify:star-sizes`. Moons, galaxies, nebulae,
-// black holes, quasars, constellations, star clusters and transients are still unverified. Add a
-// category here once a verify script covers it, and the pages, index and sitemap follow.
+// `npm run verify:exoplanets`, stars by `npm run verify:star-sizes`, constellations by
+// `npm run verify:constellations`. Moons, galaxies, nebulae, black holes, quasars, star clusters
+// and transients are still unverified. Add a category here once a verify script covers it, and the
+// pages, index and sitemap follow.
 export const PUBLISHED_CATEGORIES = new Set([
   "planet",
   "dwarf_planet",
@@ -111,6 +112,7 @@ export const PUBLISHED_CATEGORIES = new Set([
   "comet",
   "star",
   "exoplanet",
+  "constellation",
 ])
 
 // ponytail: no <img> tags anywhere in these pages. Most imageUrl values are hotlinked Wikimedia

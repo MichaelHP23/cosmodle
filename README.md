@@ -94,9 +94,9 @@ Two rules the script keeps, both covered by `scripts/generate-archive.test.mjs`:
   days, so an index of past answers, or even a "featured on day N" line, would solve them for free.
   These pages are reference material about the objects and say nothing about the schedule.
 - Only categories listed in `PUBLISHED_CATEGORIES` get a page, because a generated page states its
-  figures as fact. That is currently planets, dwarf planets, asteroids, comets, stars and exoplanets,
-  the ones the `verify:` scripts cover. Add a category once its figures have been checked against a
-  catalogue and its pages, index entries and sitemap URLs follow.
+  figures as fact. That is currently planets, dwarf planets, asteroids, comets, stars, exoplanets and
+  constellations, the ones the `verify:` scripts cover. Add a category once its figures have been
+  checked against a catalogue and its pages, index entries and sitemap URLs follow.
 
 The schedule itself is a separate problem: `dailySchedule.json` is imported by the app, so every
 scheduled day already ships in the JavaScript bundle and anyone reading it can see future answers.
