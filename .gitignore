@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Build-time configuration; only the example is tracked
+.env
+.env.*
+!.env.example
+
 # Wrangler local dev state / build cache
 .wrangler/
 

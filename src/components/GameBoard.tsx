@@ -19,6 +19,7 @@ import { HowToPlayModal } from "./HowToPlayModal"
 import { GlobalStatsModal } from "./GlobalStatsModal"
 import { ArchiveList } from "./ArchiveList"
 import { HintPanel } from "./HintPanel"
+import { AdSlot } from "./AdSlot"
 
 const typedDataset = dataset as CelestialObject[]
 const HOW_TO_PLAY_SEEN_KEY = "cosmodle:hasSeenHowToPlay"
@@ -318,6 +319,10 @@ export function GameBoard() {
             )}
           </>
         )}
+        {/* Outside the board's own conditional so the reserved height exists in every mode and from
+            the first paint, which is what keeps the layout shift at zero whether an ad ever fills or
+            not. Below the guess table, so it can never come between a player and their next guess. */}
+        <AdSlot id="board-ad" />
         {/* Before the first guess the board is short, so without this the footer sat halfway up the
             screen on a phone with a screenful of nothing under it. The spacer takes the slack, which
             leaves the footer's own top margin intact once the guess table is tall enough to fill the

@@ -1,3 +1,6 @@
+// This records our own first-party preference and is not the consent management platform for ads.
+// Google Funding Choices is the certified CMP and gates advertising on its own, so nothing here
+// should ever be wired up to decide whether an ad script loads.
 export type Consent = "granted" | "denied" | "unset"
 
 const KEY = "cosmodle:consent"

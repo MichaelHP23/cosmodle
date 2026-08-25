@@ -54,6 +54,50 @@ CREATE TABLE results (
 `gave_up` arrived after the table did, so an existing database needs
 `ALTER TABLE results ADD COLUMN gave_up INTEGER NOT NULL DEFAULT 0;` rather than the full CREATE.
 
+## Advertising
+
+There is one ad slot, below the guess table and above the footer. It is off by default and stays off
+until the environment variables in `.env.example` are filled in, so a build without them contains no
+Google script, makes no ad request, and renders the slot as an empty reserved box.
+
+The two variables are set at different points, because AdSense issues the publisher id at sign-up
+but the ad unit only exists after the site is approved:
+
+1. On sign-up, set `VITE_ADSENSE_CLIENT` to the publisher id, `ca-pub-` plus sixteen digits, and
+   redeploy. That puts the tag in the page and publishes `ads.txt`, which is how Google verifies the
+   site for review. With no `VITE_ADSENSE_SLOT` yet, nothing renders and no ad is requested.
+2. On approval, create a display ad unit and set `VITE_ADSENSE_SLOT` to its `data-ad-slot` value.
+   Ads start serving on the next deploy.
+
+Both have to be set as build environment variables on the Cloudflare Pages project, not only in a
+local `.env`, since they are baked in at build time rather than read by the browser.
+
+Consent is handled by Google Funding Choices, Google's own certified CMP, which the app loads for the
+same publisher id just before the AdSense tag. It is configured in the AdSense UI (Privacy and
+messaging), not in this repository, so the message text, regions, and vendor list are changed there
+and take effect without a deploy. There is deliberately no second cookie banner in the app.
+`src/lib/consent.ts` records our own first-party preference and has nothing to do with ads.
+
+The reserved height of the slot exists before anything loads and does not change when an ad arrives,
+so enabling advertising causes no layout shift.
+
+## Generated pages
+
+`npm run build` ends by running `scripts/generate-archive.mjs`, which writes static HTML into
+`dist/` from the dataset: a page per object under `/objects/`, the played-days list at `/archive/`,
+plus `/about.html`, `/privacy.html`, `sitemap.xml` and `robots.txt`. These exist so the site has
+crawlable content of its own; the game itself is a single page and shows search engines nothing.
+
+Two rules the script keeps, both covered by `scripts/generate-archive.test.mjs`:
+
+- No page may name the answer for today or any later scheduled day.
+- Only categories listed in `PUBLISHED_CATEGORIES` get a page, because a generated page states its
+  figures as fact. That is currently planets, dwarf planets, asteroids, comets, stars and exoplanets,
+  the ones the `verify:` scripts cover. Add a category once its figures have been checked against a
+  catalogue and its pages, index entries and sitemap URLs follow.
+
+The pages are regenerated per build, so the archive only grows on deploy.
+
 ## Development
 
 ```bash
