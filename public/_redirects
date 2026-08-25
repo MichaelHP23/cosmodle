@@ -1,0 +1,4 @@
+# /archive/ used to list the answer to every past puzzle, which is what the in-app archive asks
+# players to work out. The page is gone; this points anything still holding the URL at the object
+# pages rather than letting it fall through to the app shell as a soft 404.
+/archive/* /objects/ 301
