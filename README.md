@@ -84,19 +84,23 @@ so enabling advertising causes no layout shift.
 ## Generated pages
 
 `npm run build` ends by running `scripts/generate-archive.mjs`, which writes static HTML into
-`dist/` from the dataset: a page per object under `/objects/`, the played-days list at `/archive/`,
-plus `/about.html`, `/privacy.html`, `sitemap.xml` and `robots.txt`. These exist so the site has
+`dist/` from the dataset: a page per object under `/objects/`, plus `/objects/` itself,
+`/about.html`, `/privacy.html`, `sitemap.xml` and `robots.txt`. These exist so the site has
 crawlable content of its own; the game itself is a single page and shows search engines nothing.
 
 Two rules the script keeps, both covered by `scripts/generate-archive.test.mjs`:
 
-- No page may name the answer for today or any later scheduled day.
+- No generated page ties an object to a puzzle day. The in-app archive asks players to solve past
+  days, so an index of past answers, or even a "featured on day N" line, would solve them for free.
+  These pages are reference material about the objects and say nothing about the schedule.
 - Only categories listed in `PUBLISHED_CATEGORIES` get a page, because a generated page states its
   figures as fact. That is currently planets, dwarf planets, asteroids, comets, stars and exoplanets,
   the ones the `verify:` scripts cover. Add a category once its figures have been checked against a
   catalogue and its pages, index entries and sitemap URLs follow.
 
-The pages are regenerated per build, so the archive only grows on deploy.
+The schedule itself is a separate problem: `dailySchedule.json` is imported by the app, so every
+scheduled day already ships in the JavaScript bundle and anyone reading it can see future answers.
+Keeping it out of these pages does not fix that, it just declines to make it a one-click affair.
 
 ## Development
 

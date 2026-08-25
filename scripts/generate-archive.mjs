@@ -13,19 +13,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..")
 export const ORIGIN = "https://cosmodle.com"
 export const CONTACT_EMAIL = "mpink2491@gmail.com"
 
-// Mirrors src/lib/dailyObject.ts. Day 1 is the launch date, counted in local calendar days.
+// The day the game launched, which the about page states. Mirrors src/lib/dailyObject.ts.
 export const LAUNCH_DATE = new Date(2026, 7, 18)
-const MS_PER_DAY = 24 * 60 * 60 * 1000
-
-export function dayNumberFor(date, epoch = LAUNCH_DATE) {
-  const dateLocal = new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime()
-  const epochLocal = new Date(epoch.getFullYear(), epoch.getMonth(), epoch.getDate()).getTime()
-  return Math.round((dateLocal - epochLocal) / MS_PER_DAY) + 1
-}
-
-export function dateForDayNumber(dayNumber, epoch = LAUNCH_DATE) {
-  return new Date(epoch.getFullYear(), epoch.getMonth(), epoch.getDate() + (dayNumber - 1))
-}
 
 const DATE_FORMAT = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "long", day: "numeric" })
 
@@ -185,7 +174,6 @@ footer a{margin-right:1rem;display:inline-block}`
 const NAV = [
   ["/", "Play"],
   ["/objects/", "All objects"],
-  ["/archive/", "Archive"],
   ["/about.html", "About"],
   ["/privacy.html", "Privacy"],
 ]
@@ -218,7 +206,7 @@ function truncate(s, max) {
   return `${s.slice(0, max - 1).trimEnd()}…`
 }
 
-export function renderObjectPage(object, { featuredDay, featuredDate, byId, published }) {
+export function renderObjectPage(object, { byId, published }) {
   const categoryName = capitalizeWords(object.category)
   const rows = []
   const ordered = PROPERTY_LABELS.filter(([key]) => object[key] !== undefined && object[key] !== null)
@@ -238,11 +226,6 @@ export function renderObjectPage(object, { featuredDay, featuredDate, byId, publ
     rows.push(`<tr><th scope="row">${escapeHtml(label)}</th><td>${value}</td></tr>`)
   }
 
-  const featured =
-    featuredDay === undefined
-      ? ""
-      : `<p class="muted">Featured as Cosmodle #${featuredDay} on ${escapeHtml(formatDate(featuredDate))}.</p>`
-
   const description = object.description
     ? `${object.name}: ${object.description}`
     : `${object.name} is a ${categoryName.toLowerCase()} featured in Cosmodle, the daily astronomy guessing game.`
@@ -250,7 +233,6 @@ export function renderObjectPage(object, { featuredDay, featuredDate, byId, publ
   const body = `<h1>${escapeHtml(object.name)}</h1>
 <p class="lede">${escapeHtml(categoryName)}</p>
 ${object.description ? `<p>${escapeHtml(object.description)}</p>` : ""}
-${featured}
 <h2>Facts</h2>
 <table><tbody>
 ${rows.join("\n")}
@@ -291,34 +273,6 @@ function renderObjectIndex(objects) {
     body: `<h1>Objects in Cosmodle</h1>
 <p class="lede">Fact pages for ${objects.length} of the celestial objects that can turn up as a guess or an answer, grouped by type. More are added as their figures are checked against a catalogue.</p>
 ${sections}`,
-  })
-}
-
-function renderArchiveIndex(pastDays, published) {
-  const rows = pastDays
-    .map(({ dayNumber, date, object }) => {
-      // Every played day is listed whether or not its answer has a page, so the numbering stays
-      // unbroken. Naming an answer gives away nothing the players of that day do not already know.
-      const name = published.has(object.id)
-        ? `<a href="/objects/${encodeURIComponent(object.id)}.html">${escapeHtml(object.name)}</a>`
-        : escapeHtml(object.name)
-      return `<li value="${dayNumber}">${name} <span class="muted">— ${escapeHtml(formatDate(date))}</span></li>`
-    })
-    .reverse()
-    .join("\n")
-
-  const body = pastDays.length
-    ? `<ol class="days" reversed>\n${rows}\n</ol>`
-    : `<p class="muted">The first puzzle has not been solved yet. Check back tomorrow.</p>`
-
-  return page({
-    path: "/archive/",
-    title: "Cosmodle archive — every past daily answer",
-    description: "Every Cosmodle daily puzzle that has already been played, with its date and the celestial object that was the answer.",
-    body: `<h1>Cosmodle archive</h1>
-<p class="lede">Every daily puzzle that has already been played, newest first. Today's answer is not listed here.</p>
-${body}
-<a class="play" href="/">Play today's Cosmodle</a>`,
   })
 }
 
@@ -458,40 +412,25 @@ ${urls}
  * Builds every static page as a map of dist-relative path to file contents, so the spoiler rule can
  * be tested against the real output without touching the filesystem.
  */
-export function generateSite({ objects, schedule, today }) {
+// No page here says which object belongs to which day. The in-app archive asks players to solve
+// past puzzles, and an index of past answers would hand them every one, so these pages are reference
+// material about the objects and say nothing about the schedule at all.
+export function generateSite({ objects }) {
   const byId = new Map(objects.map(o => [o.id, o]))
   const publishable = objects.filter(o => PUBLISHED_CATEGORIES.has(o.category))
   const published = new Set(publishable.map(o => o.id))
-  const todayNumber = dayNumberFor(today)
-
-  // Only days strictly before today may be named anywhere. Today's answer and every scheduled day
-  // after it are the whole secret the game is built on.
-  const pastDays = []
-  for (let dayNumber = 1; dayNumber < todayNumber; dayNumber++) {
-    const object = byId.get(schedule[dayNumber - 1])
-    if (object) pastDays.push({ dayNumber, date: dateForDayNumber(dayNumber), object })
-  }
-  const featuredById = new Map(pastDays.map(day => [day.object.id, day]))
 
   const files = {}
   for (const object of publishable) {
-    const featured = featuredById.get(object.id)
-    files[`objects/${object.id}.html`] = renderObjectPage(object, {
-      featuredDay: featured?.dayNumber,
-      featuredDate: featured?.date,
-      byId,
-      published,
-    })
+    files[`objects/${object.id}.html`] = renderObjectPage(object, { byId, published })
   }
   files["objects/index.html"] = renderObjectIndex(publishable)
-  files["archive/index.html"] = renderArchiveIndex(pastDays, published)
   files["about.html"] = renderAbout()
   files["privacy.html"] = renderPrivacy()
 
   const sitemapPaths = [
     "/",
     "/objects/",
-    "/archive/",
     "/about.html",
     "/privacy.html",
     ...publishable.map(o => `/objects/${encodeURIComponent(o.id)}.html`),
@@ -511,8 +450,7 @@ export function generateSite({ objects, schedule, today }) {
 
 function main() {
   const objects = JSON.parse(readFileSync(join(ROOT, "src/data/celestialObjects.json"), "utf8"))
-  const schedule = JSON.parse(readFileSync(join(ROOT, "src/data/dailySchedule.json"), "utf8"))
-  const files = generateSite({ objects, schedule, today: new Date() })
+  const files = generateSite({ objects })
 
   for (const [relative, contents] of Object.entries(files)) {
     const target = join(ROOT, "dist", relative)
@@ -521,7 +459,7 @@ function main() {
   }
 
   const pages = Object.keys(files).length
-  console.log(`generate-archive: wrote ${pages} files to dist/ (${pages - 6} object pages)`)
+  console.log(`generate-archive: wrote ${pages} files to dist/ (${pages - 5} object pages)`)
 }
 
 if (process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url) main()
