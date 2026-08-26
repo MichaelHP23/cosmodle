@@ -66,11 +66,13 @@ but the ad unit only exists after the site is approved:
 1. On sign-up, set `VITE_ADSENSE_CLIENT` to the publisher id, `ca-pub-` plus sixteen digits, and
    redeploy. That puts the tag in the page and publishes `ads.txt`, which is how Google verifies the
    site for review. With no `VITE_ADSENSE_SLOT` yet, nothing renders and no ad is requested.
-2. On approval, create a display ad unit and set `VITE_ADSENSE_SLOT` to its `data-ad-slot` value.
-   Ads start serving on the next deploy.
+2. On approval, create a display ad unit. Its `data-ad-slot` value is the default in `ads.ts`, so
+   ads start serving on the next deploy; `VITE_ADSENSE_SLOT` only has to be set to point a build
+   at a different unit.
 
-Both have to be set as build environment variables on the Cloudflare Pages project, not only in a
-local `.env`, since they are baked in at build time rather than read by the browser.
+`VITE_ADSENSE_CLIENT` has to be set as a build environment variable on the Cloudflare Pages
+project, not only in a local `.env`, since it is baked in at build time rather than read by the
+browser.
 
 Consent is handled by Google Funding Choices, Google's own certified CMP, which the app loads for the
 same publisher id just before the AdSense tag. It is configured in the AdSense UI (Privacy and

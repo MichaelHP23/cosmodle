@@ -2,7 +2,9 @@
 // third-party tag at all rather than an inert one. The id arrives at build time from the environment
 // so that the same source can be deployed before and after AdSense approves the site.
 const CLIENT: string = import.meta.env.VITE_ADSENSE_CLIENT ?? ""
-const SLOT: string = import.meta.env.VITE_ADSENSE_SLOT ?? ""
+// The ad unit id is not a secret: it ships in the data-ad-slot attribute of every rendered page, so
+// the live unit is the default and the environment only has to override it for a test unit.
+const SLOT: string = import.meta.env.VITE_ADSENSE_SLOT ?? "8774991443"
 
 // A publisher id is "ca-pub-" followed by sixteen digits, and an ad unit id is digits. Anything else
 // is a placeholder left in an .env by mistake, and requesting ads for one earns a policy warning
