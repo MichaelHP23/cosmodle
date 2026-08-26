@@ -19,10 +19,10 @@ export function Footer({ onGlobalStatsClick }: { onGlobalStatsClick: () => void 
       <button className="hover:text-[#00998a] hover:underline" onClick={onGlobalStatsClick}>
         Global Stats
       </button>
-      <a href="/about.html" className="hover:text-[#00998a] hover:underline">
+      <a href="/about" className="hover:text-[#00998a] hover:underline">
         About
       </a>
-      <a href="/privacy.html" className="hover:text-[#00998a] hover:underline">
+      <a href="/privacy" className="hover:text-[#00998a] hover:underline">
         Privacy
       </a>
       <KofiWidget />

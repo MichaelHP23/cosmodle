@@ -173,11 +173,19 @@ footer{margin-top:3rem;border-top:1px solid #4d4d4d;padding-top:1rem;
 font-size:.875rem;color:#4d4d4d}
 footer a{margin-right:1rem;display:inline-block}`
 
+// Cloudflare Pages answers a request for a page's .html file with a 308 to the extensionless URL, so
+// the .html form is never the address a visitor or a crawler ends up on. Every link, canonical and
+// sitemap entry therefore names the extensionless URL directly; only the file written to dist/ keeps
+// the extension.
+function urlFor(id) {
+  return `/objects/${encodeURIComponent(id)}`
+}
+
 const NAV = [
   ["/", "Play"],
   ["/objects/", "All objects"],
-  ["/about.html", "About"],
-  ["/privacy.html", "Privacy"],
+  ["/about", "About"],
+  ["/privacy", "Privacy"],
 ]
 
 function page({ path, title, description, body }) {
@@ -222,7 +230,7 @@ export function renderObjectPage(object, { byId, published }) {
     // be a dead link, so it degrades to plain text rather than disappearing.
     const value = related
       ? published.has(related.id)
-        ? `<a href="/objects/${encodeURIComponent(related.id)}.html">${escapeHtml(related.name)}</a>`
+        ? `<a href="${urlFor(related.id)}">${escapeHtml(related.name)}</a>`
         : escapeHtml(related.name)
       : escapeHtml(formatPropertyValue(key, object[key]))
     rows.push(`<tr><th scope="row">${escapeHtml(label)}</th><td>${value}</td></tr>`)
@@ -242,7 +250,7 @@ ${rows.join("\n")}
 <a class="play" href="/">Play today's Cosmodle</a>`
 
   return page({
-    path: `/objects/${encodeURIComponent(object.id)}.html`,
+    path: urlFor(object.id),
     title: `${object.name} — ${categoryName} facts | Cosmodle`,
     description: truncate(description, 155),
     body,
@@ -261,7 +269,7 @@ function renderObjectIndex(objects) {
     .map(([category, members]) => {
       const items = [...members]
         .sort((a, b) => a.name.localeCompare(b.name))
-        .map(o => `<li><a href="/objects/${encodeURIComponent(o.id)}.html">${escapeHtml(o.name)}</a></li>`)
+        .map(o => `<li><a href="${urlFor(o.id)}">${escapeHtml(o.name)}</a></li>`)
         .join("")
       const heading = CATEGORY_PLURALS[category] ?? capitalizeWords(category)
       return `<h2>${escapeHtml(heading)} <span class="muted">(${members.length})</span></h2>\n<ul class="list">${items}</ul>`
@@ -280,7 +288,7 @@ ${sections}`,
 
 function renderAbout() {
   return page({
-    path: "/about.html",
+    path: "/about",
     title: "About Cosmodle",
     description: "What Cosmodle is, how the daily celestial object is chosen, and where its astronomical data comes from.",
     body: `<h1>About Cosmodle</h1>
@@ -321,7 +329,7 @@ something that looks wrong, please say so.</p>
 
 function renderPrivacy() {
   return page({
-    path: "/privacy.html",
+    path: "/privacy",
     title: "Privacy policy | Cosmodle",
     description: "How Cosmodle handles game data stored in your browser, the anonymous player id behind its statistics, and third-party advertising cookies.",
     body: `<h1>Privacy policy</h1>
@@ -433,9 +441,9 @@ export function generateSite({ objects }) {
   const sitemapPaths = [
     "/",
     "/objects/",
-    "/about.html",
-    "/privacy.html",
-    ...publishable.map(o => `/objects/${encodeURIComponent(o.id)}.html`),
+    "/about",
+    "/privacy",
+    ...publishable.map(o => urlFor(o.id)),
   ]
   files["sitemap.xml"] = renderSitemap(sitemapPaths)
   files["robots.txt"] = `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`
