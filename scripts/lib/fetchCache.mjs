@@ -12,8 +12,13 @@ const BUSY = "TAP service too busy"
 
 const sleep = ms => new Promise(r => setTimeout(r, ms))
 
+// Wikipedia's API returns a 429 to requests with no identifying User-Agent even well under its
+// documented rate limits; a contact-bearing one clears it. Harmless to send to JPL/NED too.
+const DEFAULT_HEADERS = { "User-Agent": "cosmodle-dataset-verifier/1.0 (+https://cosmodle.com)" }
+const defaultFetchImpl = url => fetch(url, { headers: DEFAULT_HEADERS })
+
 export async function cachedFetch(url, opts = {}) {
-  const { retries = 5, baseDelayMs = 2000, fetchImpl = fetch } = opts
+  const { retries = 5, baseDelayMs = 2000, fetchImpl = defaultFetchImpl } = opts
   const key = crypto.createHash("sha256").update(url).digest("hex")
   const file = path.join(CACHE_DIR, key + ".txt")
   if (fs.existsSync(file)) return fs.readFileSync(file, "utf8")

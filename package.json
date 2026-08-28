@@ -14,6 +14,11 @@
     "verify:constellations": "node scripts/verify-constellations.mjs",
     "verify:exoplanets": "node scripts/verify-exoplanets.mjs",
     "verify:star-sizes": "node scripts/verify-star-sizes.mjs",
+    "verify:moons": "node scripts/verify-moons.mjs",
+    "verify:black-holes": "node scripts/verify-black-holes.mjs",
+    "verify:galaxies": "node scripts/verify-galaxies.mjs",
+    "verify:star-clusters": "node scripts/verify-star-clusters.mjs",
+    "verify:transients": "node scripts/verify-transients.mjs",
     "dev:api": "wrangler pages dev --proxy 5173 -- npm run dev",
     "typecheck:functions": "tsc --noEmit -p functions/tsconfig.json"
   },

@@ -1,6 +1,11 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
+// Node strips the type annotations, so the pages format their figures through the very same code
+// the game does rather than a copy of it that has to be kept in step.
+import { formatPropertyValue, group, capitalizeWords, PREHISTORIC_YEAR } from "../src/lib/formatting.ts"
+
+export { formatPropertyValue }
 
 // The game itself is a single-page app with no router, so search engines and the AdSense crawler see
 // one empty shell. These pages are written straight into dist/ after vite build to give both of them
@@ -20,44 +25,6 @@ const DATE_FORMAT = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "
 
 function formatDate(date) {
   return DATE_FORMAT.format(date)
-}
-
-// Ported from src/lib/formatting.ts rather than imported, because this script is plain Node ESM and
-// cannot read TypeScript. Keep the two in step if the units there change.
-function group(v) {
-  return v.toLocaleString("en-US", { maximumFractionDigits: 20 })
-}
-
-const PREHISTORIC_YEAR = -3000
-
-function capitalizeWords(s) {
-  return s.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())
-}
-
-export function formatPropertyValue(property, value) {
-  if (property === "discoveredYear" && value === PREHISTORIC_YEAR) return "Prehistoric"
-  if (value === undefined || value === null) return "—"
-  if (typeof value === "boolean") return value ? "Yes" : "No"
-  if (property === "distanceFromSunAU") return `${value.toFixed(2)} AU`
-  if (property === "distanceFromEarthLy") return `${group(Number(value.toPrecision(3)))} ly`
-  if (property === "distanceFromParentKm" || property === "diameterKm") return `${group(Math.round(value))} km`
-  if (property === "temperatureK") return `${group(Math.round(value - 273.15))}°C`
-  if (property === "orbitalPeriodDays") return `${group(Math.round(value))} days`
-  if (property === "rotationPeriodHours") return `${group(Number(value.toPrecision(4)))} hours`
-  if (property === "massKg") {
-    const exponent = Math.floor(Math.log10(Math.abs(value)))
-    return `${(value / Math.pow(10, exponent)).toFixed(2)} × 10^${exponent} kg`
-  }
-  if (property === "gravityMs2") {
-    if (value !== 0 && Math.abs(value) < 0.01) return `${value.toExponential(2)} m/s²`
-    return `${group(Number(value.toPrecision(3)))} m/s²`
-  }
-  if (property === "areaSqDeg") return `${group(value)} sq°`
-  if (property === "brightestStarMagnitude") return `mag ${value}`
-  if (property === "category" || property === "parentBodyId" || property === "hemisphere") {
-    return capitalizeWords(String(value))
-  }
-  return String(value)
 }
 
 // Row order for the fact table, and the human label for each field. Anything populated but missing
@@ -102,9 +69,10 @@ const SKIPPED_PROPERTIES = new Set(["id", "name", "description", "imageUrl", "co
 // are here on their own authority; the rest are covered by the verify scripts:
 // dwarf planets, asteroids and comets by `npm run verify:small-bodies`, exoplanets by
 // `npm run verify:exoplanets`, stars by `npm run verify:star-sizes`, constellations by
-// `npm run verify:constellations`. Moons, galaxies, nebulae, black holes, quasars, star clusters
-// and transients are still unverified. Add a category here once a verify script covers it, and the
-// pages, index and sitemap follow.
+// `npm run verify:constellations`, moons by `npm run verify:moons`, black holes and quasars
+// by `npm run verify:black-holes`, galaxies and nebulae by `npm run verify:galaxies`, star
+// clusters by `npm run verify:star-clusters`, transients by `npm run verify:transients`. Every
+// category is now covered; add a new one here only once a verify script covers it.
 export const PUBLISHED_CATEGORIES = new Set([
   "planet",
   "dwarf_planet",
@@ -113,6 +81,13 @@ export const PUBLISHED_CATEGORIES = new Set([
   "star",
   "exoplanet",
   "constellation",
+  "moon",
+  "black_hole",
+  "quasar",
+  "galaxy",
+  "nebula",
+  "star_cluster",
+  "transient",
 ])
 
 // ponytail: no <img> tags anywhere in these pages. Most imageUrl values are hotlinked Wikimedia
@@ -216,8 +191,144 @@ function truncate(s, max) {
   return `${s.slice(0, max - 1).trimEnd()}…`
 }
 
-export function renderObjectPage(object, { byId, published }) {
+// A page whose only prose is one borrowed sentence is thin however true it is, and two hundred of
+// them built from the same template read as filler to a search engine and to a reader. These
+// paragraphs are arithmetic on the figures already in the table above, so they add length without
+// adding a claim: every comparison is derived, never researched, and a field the object lacks drops
+// its sentence rather than inventing one.
+const EARTH = { diameterKm: 12742, massKg: 5.972e24, temperatureK: 288 }
+const SUN = { diameterKm: 1.3927e6, massKg: 1.989e30, temperatureK: 5772 }
+const MOON = { diameterKm: 3475, distanceKm: 384400 }
+const SKY_SQ_DEG = 41253
+const LIGHT_KM_PER_MINUTE = 1.799e7
+const AU_KM = 1.496e8
+
+// Multiples read naturally upwards and badly downwards: an object a thirty-billionth of Earth's mass
+// is unreadable as "30,000,000,000 times less", so anything below parity switches to a percentage
+// and anything vanishingly small stops quoting a figure at all.
+function comparison(subject, value, reference, referenceName) {
+  const r = value / reference
+  if (r >= 10) return `${subject} is ${group(Math.round(r))} times ${referenceName}.`
+  if (r >= 1.05) return `${subject} is ${r.toFixed(1)} times ${referenceName}.`
+  if (r > 0.95) return `${subject} is close to ${referenceName}.`
+  if (r >= 0.1) return `${subject} is ${Math.round(r * 100)} percent of ${referenceName}.`
+  if (r >= 0.001) return `${subject} is ${(r * 100).toFixed(1)} percent of ${referenceName}.`
+  return `${subject} is less than a thousandth of ${referenceName}.`
+}
+
+// Where an object stands among its own kind is a fact about this dataset rather than about the
+// universe, so it is phrased as a rank among the objects these pages cover.
+function rankAmong(object, objects, field, largestFirst) {
+  const peers = objects
+    .filter(o => o.category === object.category && typeof o[field] === "number")
+    .sort((a, b) => (largestFirst ? b[field] - a[field] : a[field] - b[field]))
+  const index = peers.findIndex(o => o.id === object.id)
+  if (index === -1 || peers.length < 5) return null
+  return { position: index + 1, total: peers.length }
+}
+
+const ORDINAL_RULES = new Intl.PluralRules("en-US", { type: "ordinal" })
+const ORDINAL_SUFFIX = { one: "st", two: "nd", few: "rd", other: "th" }
+
+function ordinal(n) {
+  return `${n}${ORDINAL_SUFFIX[ORDINAL_RULES.select(n)]}`
+}
+
+function period(days) {
+  if (days < 1) return `${(days * 24).toFixed(1)} hours`
+  if (days < 365.25) return `${group(Number(days.toFixed(1)))} days`
+  const y = days / 365.25
+  return `${y < 10 ? y.toFixed(1) : group(Math.round(y))} years`
+}
+
+function contextSentences(object, objects, categoryName) {
+  const out = []
+  const name = object.name
+
+  if (object.category === "constellation") {
+    if (typeof object.areaSqDeg === "number") {
+      const share = (object.areaSqDeg / SKY_SQ_DEG) * 100
+      out.push(`${name} covers ${group(object.areaSqDeg)} square degrees of sky, which is ${share.toFixed(1)} percent of the whole celestial sphere.`)
+      const rank = rankAmong(object, objects, "areaSqDeg", true)
+      if (rank) out.push(`That makes it the ${ordinal(rank.position)} largest of the ${rank.total} constellations the International Astronomical Union recognises.`)
+    }
+    if (object.hemisphere) {
+      out.push(`It sits in the ${String(object.hemisphere).toLowerCase()} sky${object.isZodiac ? ", and it is one of the twelve constellations the Sun passes through over a year" : ""}.`)
+    }
+    if (typeof object.brightestStarMagnitude === "number") {
+      const naked = object.brightestStarMagnitude < 6
+      out.push(`Its brightest star reaches magnitude ${object.brightestStarMagnitude}, ${naked ? "bright enough to pick out with the naked eye under a dark sky" : "too faint to see without a telescope"}.`)
+    }
+    return out
+  }
+
+  if (typeof object.diameterKm === "number" && object.category !== "black_hole") {
+    const reference = object.category === "star" ? ["the Sun", SUN.diameterKm]
+      : object.category === "moon" ? ["Earth's Moon", MOON.diameterKm]
+      : ["Earth", EARTH.diameterKm]
+    out.push(comparison(`At ${group(Math.round(object.diameterKm))} km across, ${name}`, object.diameterKm, reference[1], `the diameter of ${reference[0]}`))
+  }
+
+  if (typeof object.massKg === "number") {
+    const stellar = ["star", "galaxy", "quasar", "black_hole", "star_cluster"].includes(object.category)
+    const reference = stellar ? ["the Sun", SUN.massKg] : ["Earth", EARTH.massKg]
+    out.push(comparison("Its mass", object.massKg, reference[1], `the mass of ${reference[0]}`))
+  }
+
+  if (typeof object.distanceFromSunAU === "number") {
+    const minutes = (object.distanceFromSunAU * AU_KM) / LIGHT_KM_PER_MINUTE
+    const travel = minutes < 90 ? `${minutes.toFixed(0)} minutes` : `${(minutes / 60).toFixed(1)} hours`
+    out.push(`It keeps an average distance of ${object.distanceFromSunAU} AU from the Sun, so sunlight takes ${travel} to reach it.`)
+  }
+
+  if (object.category === "moon" && typeof object.distanceFromParentKm === "number") {
+    const parent = objects.find(o => o.id === object.parentBodyId)
+    const further = object.distanceFromParentKm > MOON.distanceKm
+    out.push(`It orbits ${parent ? parent.name : "its planet"} at ${group(Math.round(object.distanceFromParentKm))} km, ${further ? "further out than" : "closer in than"} the Moon orbits Earth.`)
+  }
+
+  if (typeof object.orbitalPeriodDays === "number") {
+    out.push(`A single orbit takes ${period(object.orbitalPeriodDays)}.`)
+  }
+
+  if (typeof object.distanceFromEarthLy === "number") {
+    out.push(`The light reaching us from ${name} tonight left it around ${group(Math.round(object.distanceFromEarthLy))} years ago.`)
+    const rank = rankAmong(object, objects, "distanceFromEarthLy", false)
+    if (rank && rank.position <= 3) {
+      out.push(`Of the ${rank.total} ${categoryName.toLowerCase()}s these pages cover, only ${rank.position - 1} lie closer to us.`)
+    }
+  }
+
+  if (typeof object.temperatureK === "number") {
+    if (object.category === "star") {
+      out.push(`Its surface sits at ${group(object.temperatureK)} K, ${object.temperatureK > SUN.temperatureK ? "hotter" : "cooler"} than the Sun at 5,772 K, which is what sets its colour.`)
+    } else {
+      const celsius = Math.round(object.temperatureK - 273.15)
+      out.push(`An average temperature of ${group(object.temperatureK)} K works out at ${group(celsius)} degrees Celsius, ${object.temperatureK > EARTH.temperatureK ? "warmer" : "colder"} than the 15 degrees Earth averages.`)
+    }
+  }
+
+  if (typeof object.moons === "number" && object.moons > 0) {
+    out.push(`${object.moons === 1 ? "One moon is" : `${group(object.moons)} moons are`} known to orbit it.`)
+  }
+
+  if (typeof object.redshift === "number" && object.redshift > 0) {
+    out.push(`Its light arrives redshifted by z = ${object.redshift}, stretched on the way here by the universe's expansion.`)
+  }
+
+  if (typeof object.discoveredYear === "number" && object.discoveredYear !== PREHISTORIC_YEAR) {
+    const year = object.discoveredYear
+    out.push(year < 0 ? `It has been on record since ${group(Math.abs(year))} BC.`
+      : year < 1000 ? `It has been on record since the year ${year}.`
+      : `It has been on record since ${year}.`)
+  }
+
+  return out
+}
+
+function renderObjectPage(object, { byId, published, objects }) {
   const categoryName = capitalizeWords(object.category)
+  const context = contextSentences(object, objects, categoryName)
   const rows = []
   const ordered = PROPERTY_LABELS.filter(([key]) => object[key] !== undefined && object[key] !== null)
   const extra = Object.keys(object)
@@ -247,7 +358,7 @@ ${object.description ? `<p>${escapeHtml(object.description)}</p>` : ""}
 <table><tbody>
 ${rows.join("\n")}
 </tbody></table>
-<a class="play" href="/">Play today's Cosmodle</a>`
+${context.length ? `<h2>${escapeHtml(object.name)} in context</h2>\n${context.map(sentence => `<p>${escapeHtml(sentence)}</p>`).join("\n")}\n` : ""}<a class="play" href="/">Play today's Cosmodle</a>`
 
   return page({
     path: urlFor(object.id),
@@ -348,9 +459,6 @@ page does not lose your progress.</li>
 percentage, current streak and guess distribution.</li>
 <li><strong>Player id</strong> (<code>celestial:playerId</code>) — a random identifier, described in
 the next section.</li>
-<li><strong>Consent record</strong> (<code>cosmodle:consent</code>) — whether you granted or denied
-consent for advertising cookies, so that you are not asked again on every visit. It stores only the
-word "granted" or "denied". If no valid record is present, Cosmodle treats it as no consent given.</li>
 </ul>
 
 <h2>The anonymous player id</h2>
@@ -388,10 +496,9 @@ has no access to their contents.</p>
 <h2>Consent in the EEA, the UK and Switzerland</h2>
 <p>If you are in the European Economic Area, the United Kingdom or Switzerland, consent for
 advertising cookies and personalised advertising is collected through a Google-certified Consent
-Management Platform before any advertising cookie is set. Your choice is recorded by that CMP and,
-in the form described above, in your browser's <code>localStorage</code>. You can change or withdraw
-it at any time from the consent controls on the site, and withdrawing it stops personalised
-advertising from that point on.</p>
+Management Platform before any advertising cookie is set. Your choice is recorded by that CMP, in
+its own storage rather than by Cosmodle. You can change or withdraw it at any time from the consent
+controls it presents, and withdrawing it stops personalised advertising from that point on.</p>
 
 <h2>Children</h2>
 <p>Cosmodle is not directed at children under 13 and does not knowingly collect information from
@@ -432,7 +539,7 @@ export function generateSite({ objects }) {
 
   const files = {}
   for (const object of publishable) {
-    files[`objects/${object.id}.html`] = renderObjectPage(object, { byId, published })
+    files[`objects/${object.id}.html`] = renderObjectPage(object, { byId, published, objects })
   }
   files["objects/index.html"] = renderObjectIndex(publishable)
   files["about.html"] = renderAbout()

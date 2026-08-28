@@ -22,8 +22,6 @@ describe("generateSite", () => {
       const has = paths.includes(`objects/${object.id}.html`)
       expect(has, `${object.id} (${object.category})`).toBe(PUBLISHED_CATEGORIES.has(object.category))
     }
-    expect(site["sitemap.xml"]).not.toContain("/objects/cartwheel_galaxy<")
-    expect(site["objects/index.html"]).not.toContain("Cartwheel Galaxy")
   })
 
   it("renders an object's name, description and formatted facts", () => {
@@ -47,6 +45,33 @@ describe("generateSite", () => {
     }
     expect(site["sitemap.xml"]).not.toContain(".html")
     expect(site["objects/mercury.html"]).toContain('<link rel="canonical" href="https://cosmodle.com/objects/mercury">')
+  })
+
+  // Google calls a large set of near-identical short pages scaled content abuse whether or not a
+  // machine wrote them, and one borrowed sentence per object was exactly that. The context section
+  // is derived from the object's own figures, so the floor is per-page rather than a template check.
+  it("gives every object page enough of its own prose to stand as a page", () => {
+    const thin = []
+    for (const [path, contents] of pages) {
+      if (!path.startsWith("objects/") || path === "objects/index.html") continue
+      const words = contents
+        .replace(/<style[\s\S]*?<\/style>/g, "")
+        .replace(/<[^>]+>/g, " ")
+        .trim()
+        .split(/\s+/).length
+      if (words < 90) thin.push(`${path} (${words} words)`)
+    }
+    expect(thin).toEqual([])
+  })
+
+  it("states nothing in the context section that the object's own figures do not support", () => {
+    const mercury = site["objects/mercury.html"]
+    expect(mercury).toContain("<h2>Mercury in context</h2>")
+    // 4,879 / 12,742 = 0.383, and sunlight crosses 0.39 AU in a shade over three minutes.
+    expect(mercury).toContain("38 percent of the diameter of Earth")
+    expect(mercury).toContain("sunlight takes 3 minutes to reach it")
+    // A comet is eleven orders of magnitude lighter than Earth, which no multiple renders readably.
+    expect(site["objects/halley.html"]).toContain("less than a thousandth of the mass of Earth")
   })
 
   it("writes a page per publishable object plus the standing pages", () => {
