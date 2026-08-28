@@ -1,11 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs"
 import { dirname, join } from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
-// Node strips the type annotations, so the pages format their figures through the very same code
-// the game does rather than a copy of it that has to be kept in step.
-import { formatPropertyValue, group, capitalizeWords, PREHISTORIC_YEAR } from "../src/lib/formatting.ts"
-
-export { formatPropertyValue }
 
 // The game itself is a single-page app with no router, so search engines and the AdSense crawler see
 // one empty shell. These pages are written straight into dist/ after vite build to give both of them
@@ -25,6 +20,44 @@ const DATE_FORMAT = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "
 
 function formatDate(date) {
   return DATE_FORMAT.format(date)
+}
+
+// Ported from src/lib/formatting.ts rather than imported, because this script is plain Node ESM and
+// cannot read TypeScript. Keep the two in step if the units there change.
+function group(v) {
+  return v.toLocaleString("en-US", { maximumFractionDigits: 20 })
+}
+
+const PREHISTORIC_YEAR = -3000
+
+function capitalizeWords(s) {
+  return s.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())
+}
+
+export function formatPropertyValue(property, value) {
+  if (property === "discoveredYear" && value === PREHISTORIC_YEAR) return "Prehistoric"
+  if (value === undefined || value === null) return "—"
+  if (typeof value === "boolean") return value ? "Yes" : "No"
+  if (property === "distanceFromSunAU") return `${value.toFixed(2)} AU`
+  if (property === "distanceFromEarthLy") return `${group(Number(value.toPrecision(3)))} ly`
+  if (property === "distanceFromParentKm" || property === "diameterKm") return `${group(Math.round(value))} km`
+  if (property === "temperatureK") return `${group(Math.round(value - 273.15))}°C`
+  if (property === "orbitalPeriodDays") return `${group(Math.round(value))} days`
+  if (property === "rotationPeriodHours") return `${group(Number(value.toPrecision(4)))} hours`
+  if (property === "massKg") {
+    const exponent = Math.floor(Math.log10(Math.abs(value)))
+    return `${(value / Math.pow(10, exponent)).toFixed(2)} × 10^${exponent} kg`
+  }
+  if (property === "gravityMs2") {
+    if (value !== 0 && Math.abs(value) < 0.01) return `${value.toExponential(2)} m/s²`
+    return `${group(Number(value.toPrecision(3)))} m/s²`
+  }
+  if (property === "areaSqDeg") return `${group(value)} sq°`
+  if (property === "brightestStarMagnitude") return `mag ${value}`
+  if (property === "category" || property === "parentBodyId" || property === "hemisphere") {
+    return capitalizeWords(String(value))
+  }
+  return String(value)
 }
 
 // Row order for the fact table, and the human label for each field. Anything populated but missing
