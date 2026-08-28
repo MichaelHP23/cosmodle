@@ -15,8 +15,6 @@ const PLANET_PROFILE: ProfileEntry[] = [
   { property: "rotationPeriodHours", label: "Rotation Period", kind: "numeric" },
 ]
 
-const DWARF_PLANET_PROFILE: ProfileEntry[] = PLANET_PROFILE
-
 const MOON_PROFILE: ProfileEntry[] = [
   { property: "category", label: "Type", kind: "exact" },
   { property: "parentBodyId", label: "Parent Body", kind: "exact" },
@@ -123,7 +121,7 @@ const TRANSIENT_PROFILE: ProfileEntry[] = [
 
 const PROFILES_BY_CATEGORY: Record<CelestialCategory, ProfileEntry[]> = {
   planet: PLANET_PROFILE,
-  dwarf_planet: DWARF_PLANET_PROFILE,
+  dwarf_planet: PLANET_PROFILE,
   moon: MOON_PROFILE,
   asteroid: SMALL_BODY_PROFILE,
   comet: SMALL_BODY_PROFILE,

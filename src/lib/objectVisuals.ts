@@ -20,7 +20,3 @@ const CATEGORY_DEFAULT_COLOR: Record<CelestialCategory, string> = {
 export function getObjectColor(object: CelestialObject): string {
   return object.color ?? CATEGORY_DEFAULT_COLOR[object.category]
 }
-
-export function getCategoryColor(category: CelestialCategory): string {
-  return CATEGORY_DEFAULT_COLOR[category]
-}

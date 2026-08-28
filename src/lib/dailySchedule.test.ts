@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { getDailyObject, dateForDayNumber, daysSinceEpoch, LAUNCH_DATE } from "./dailyObject"
-import { extendSchedule, daysRemaining, HORIZON_DAYS } from "../../scripts/extend-schedule.mjs"
+import { extendSchedule, daysRemaining, HORIZON_DAYS } from "../../scripts/extend-schedule.ts"
 import schedule from "../data/dailySchedule.json"
 import dataset from "../data/celestialObjects.json"
 import type { CelestialObject } from "../types/celestial"

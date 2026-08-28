@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import { GameBoard } from './components/GameBoard'
 import { loadAdSense, loadFundingChoices } from './lib/ads.ts'
 
 // The consent manager goes first so it is in place to gate personalised ads before AdSense asks for
@@ -11,6 +11,6 @@ loadAdSense()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <GameBoard />
   </StrictMode>,
 )

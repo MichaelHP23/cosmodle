@@ -17,57 +17,25 @@ export function dateForDayNumber(dayNumber: number, epoch: Date = LAUNCH_DATE): 
   return new Date(epoch.getFullYear(), epoch.getMonth(), epoch.getDate() + (dayNumber - 1))
 }
 
-function mulberry32(seed: number): () => number {
-  let state = seed
-  return function next() {
-    state |= 0
-    state = (state + 0x6d2b79f5) | 0
-    let t = Math.imul(state ^ (state >>> 15), 1 | state)
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296
-  }
-}
-
-export function seededShuffle<T>(array: T[], seed: number): T[] {
-  const result = [...array]
-  const rng = mulberry32(seed)
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(rng() * (i + 1))
-    ;[result[i], result[j]] = [result[j], result[i]]
-  }
-  return result
-}
-
 // Which object each day serves is committed data, not a function of the dataset. The old rotation
 // derived every day's answer from dataset.length, so adding a single object reshuffled days people
 // had already played, grading their saved guesses against a different object. dailySchedule.json is
 // append-only, so dataset growth can never rewrite a day that is already in it.
 // Extend it with `npm run schedule`; a test fails once it runs close to its end.
+// Running off the end of the schedule throws rather than falling back to a rotation derived from
+// dataset.length: that rotation is exactly the bug the schedule replaced, and serving a wrong answer
+// quietly is worse than failing loudly. dailySchedule.test.ts starts failing HORIZON_DAYS ahead of
+// this, which is the warning to run `npm run schedule`.
 export function getDailyObject(date: Date, dataset: CelestialObject[]): CelestialObject {
   const days = daysSinceEpoch(date, LAUNCH_DATE)
-
   const scheduledId = (schedule as string[])[days]
-  if (scheduledId) {
-    const scheduled = dataset.find(o => o.id === scheduledId)
-    if (scheduled) return scheduled
+  const scheduled = scheduledId ? dataset.find(o => o.id === scheduledId) : undefined
+  if (!scheduled) {
+    throw new Error(`No object scheduled for day ${days + 1}; run \`npm run schedule\``)
   }
-
-  // ponytail: past the end of the schedule this falls back to the old dataset.length-derived
-  // rotation, which is unstable across dataset growth. It is only reachable if the schedule was
-  // left unextended for HORIZON_DAYS after the test started failing. Run `npm run schedule`.
-  const n = dataset.length
-  const cycle = Math.floor(days / n)
-  const position = ((days % n) + n) % n
-  const order = seededShuffle(
-    Array.from({ length: n }, (_, i) => i),
-    cycle
-  )
-  return dataset[order[position]]
+  return scheduled
 }
 
-export function pickRandomObject(dataset: CelestialObject[], excludeId?: string): CelestialObject {
-  const pool = excludeId ? dataset.filter(o => o.id !== excludeId) : dataset
-  const source = pool.length > 0 ? pool : dataset
-  const index = Math.floor(Math.random() * source.length)
-  return source[index]
+export function pickRandomObject(dataset: CelestialObject[]): CelestialObject {
+  return dataset[Math.floor(Math.random() * dataset.length)]
 }

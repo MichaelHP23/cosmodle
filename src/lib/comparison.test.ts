@@ -3,7 +3,7 @@ import { compareProperty } from "./comparison"
 
 describe("compareProperty - numeric", () => {
   it("returns correct for identical values", () => {
-    expect(compareProperty(100, 100, "numeric")).toEqual({ status: "correct", difference: 0 })
+    expect(compareProperty(100, 100, "numeric")).toEqual({ status: "correct" })
   })
   it("returns close for values within loose tolerance", () => {
     const result = compareProperty(100, 108, "numeric")

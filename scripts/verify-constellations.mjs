@@ -2,7 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { fileURLToPath, pathToFileURL } from "node:url"
 import { cachedFetch } from "./lib/fetchCache.mjs"
-import { proposeChange, renderReport, applyChanges } from "./lib/datasetDiff.mjs"
+import { renderReport, applyChanges } from "./lib/datasetDiff.mjs"
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const DATASET = path.join(ROOT, "src/data/celestialObjects.json")
@@ -104,7 +104,7 @@ export function collectChanges(dataset, rows) {
       console.error(`skipping ${obj.id}.${field}: ${rejection}`)
       return
     }
-    proposeChange(changes, { id: obj.id, field, from: current, to: value, reason, source: SOURCE })
+    changes.push({ id: obj.id, field, from: current, to: value, reason, source: SOURCE })
   }
 
   for (const row of rows) {
@@ -123,7 +123,7 @@ export function collectChanges(dataset, rows) {
     }
     const shouldBeZodiac = ZODIAC.includes(normalizeName(c.name))
     if (Boolean(c.isZodiac) !== shouldBeZodiac) {
-      proposeChange(changes, {
+      changes.push({
         id: c.id,
         field: "isZodiac",
         from: c.isZodiac,

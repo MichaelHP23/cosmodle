@@ -1,9 +1,6 @@
 import { ZERO_STATISTICS, applyResult, applyGiveUp, normalizeDistribution } from "./statisticsCore"
 import type { Statistics } from "./statisticsCore"
 
-export type { Statistics, DailyResult } from "./statisticsCore"
-export { deriveStatsFromResults, getWinPercentage } from "./statisticsCore"
-
 const STORAGE_KEY = "celestial:statistics"
 
 export function getStatistics(): Statistics {

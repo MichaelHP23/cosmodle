@@ -1,6 +1,6 @@
 import type { CelestialObject } from "../types/celestial"
 import type { ComparisonStatus } from "../types/game"
-import type { Statistics } from "../lib/statistics"
+import type { Statistics } from "../lib/statisticsCore"
 import { ObjectCard } from "./ObjectCard"
 import { Share } from "./Share"
 import { StatsPanel } from "./StatsPanel"

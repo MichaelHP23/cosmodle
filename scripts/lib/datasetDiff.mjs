@@ -1,10 +1,5 @@
 import fs from "node:fs"
 
-export function proposeChange(list, change) {
-  list.push(change)
-  return list
-}
-
 export function renderReport(list) {
   if (list.length === 0) return "no changes proposed"
   const lines = list.map(

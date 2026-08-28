@@ -1,6 +1,6 @@
 // Thousands separators. The explicit fraction-digit ceiling matters: toLocaleString defaults to at
 // most 3 decimals, which would flatten a value like 0.0000158 ly to "0".
-function group(v: number): string {
+export function group(v: number): string {
   return v.toLocaleString("en-US", { maximumFractionDigits: 20 })
 }
 
@@ -50,7 +50,7 @@ export function formatMagnitude(v: number): string {
   return `mag ${v}`
 }
 
-function capitalizeWords(s: string): string {
+export function capitalizeWords(s: string): string {
   return s.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase())
 }
 

@@ -10,10 +10,7 @@ export type ComparisonStatus =
   | "incorrect"
   | "not_applicable"
 
-export type ComparisonResult = {
-  status: ComparisonStatus
-  difference?: number
-}
+export type ComparisonResult = { status: ComparisonStatus }
 
 export type ProfileEntry = {
   property: keyof CelestialObject

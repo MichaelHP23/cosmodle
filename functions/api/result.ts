@@ -1,7 +1,11 @@
-import { isValidUuid, isValidGuessCount, isValidHintsUsed } from "../_shared/validate"
-import { isValidDayNumber } from "../_shared/dayNumber"
-import { json } from "../_shared/response"
-import { rowsToResults, type ResultRow } from "../_shared/rows"
+import {
+  isValidUuid,
+  isValidGuessCount,
+  isValidHintsUsed,
+  isValidDayNumber,
+  rowsToResults,
+  type ResultRow,
+} from "../_shared/util"
 import { deriveStatsFromResults } from "../../src/lib/statisticsCore"
 
 interface Env {
@@ -10,16 +14,16 @@ interface Env {
 
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const body = (await request.json().catch(() => null)) as Record<string, unknown> | null
-  if (!body || !isValidUuid(body.uuid)) return json({ error: "invalid_uuid" }, 400)
-  if (!isValidDayNumber(body.dayNumber)) return json({ error: "invalid_day_number" }, 400)
-  if (typeof body.won !== "boolean") return json({ error: "invalid_won" }, 400)
-  if (!isValidHintsUsed(body.hintsUsed)) return json({ error: "invalid_hints_used" }, 400)
+  if (!body || !isValidUuid(body.uuid)) return Response.json({ error: "invalid_uuid" }, { status: 400 })
+  if (!isValidDayNumber(body.dayNumber)) return Response.json({ error: "invalid_day_number" }, { status: 400 })
+  if (typeof body.won !== "boolean") return Response.json({ error: "invalid_won" }, { status: 400 })
+  if (!isValidHintsUsed(body.hintsUsed)) return Response.json({ error: "invalid_hints_used" }, { status: 400 })
   // Older clients do not send gaveUp at all, so absent means a normal finished game.
   if (body.gaveUp !== undefined && typeof body.gaveUp !== "boolean") {
-    return json({ error: "invalid_gave_up" }, 400)
+    return Response.json({ error: "invalid_gave_up" }, { status: 400 })
   }
   if (!isValidGuessCount(body.guessCount, body.gaveUp === true)) {
-    return json({ error: "invalid_guess_count" }, 400)
+    return Response.json({ error: "invalid_guess_count" }, { status: 400 })
   }
 
   await env.DB.prepare(
@@ -42,5 +46,5 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     .bind(body.uuid)
     .all<ResultRow>()
 
-  return json(deriveStatsFromResults(rowsToResults(results ?? [])))
+  return Response.json(deriveStatsFromResults(rowsToResults(results ?? [])))
 }

@@ -1,6 +1,4 @@
-import { json } from "../_shared/response"
-import { buildGuessDistribution } from "../_shared/guessDistribution"
-import { currentDayNumber } from "../_shared/dayNumber"
+import { buildGuessDistribution, currentDayNumber } from "../_shared/util"
 import { STATS_BUCKET_COUNT } from "../../src/lib/gameConstants"
 
 interface Env {
@@ -30,14 +28,13 @@ export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
   const totalGames = winRow?.total ?? 0
   const totalWins = winRow?.wins ?? 0
 
-  return json(
+  return Response.json(
     {
       totalPlayers: totalPlayersRow?.n ?? 0,
       playedToday: playedTodayRow?.n ?? 0,
       winRate: totalGames > 0 ? Math.round((totalWins / totalGames) * 100) : 0,
       guessDistribution: buildGuessDistribution(wonRows ?? [], STATS_BUCKET_COUNT),
     },
-    200,
-    { "Cache-Control": "public, max-age=60" }
+    { headers: { "Cache-Control": "public, max-age=60" } }
   )
 }

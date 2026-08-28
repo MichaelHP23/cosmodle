@@ -21,7 +21,7 @@ export const HORIZON_DAYS = 90
 // played, day 4 was live when the schedule was introduced.
 const SEED = ["cartwheel_galaxy", "nix", "3c48", "ankaa"]
 
-function mulberry32(seed) {
+function mulberry32(seed: number): () => number {
   let state = seed
   return function next() {
     state |= 0
@@ -39,13 +39,17 @@ function mulberry32(seed) {
 // Within that pool it also avoids the category that played yesterday. Constellations are 30% of the
 // dataset, so without this they clump into runs of two and three days that all look alike, which is
 // what makes the rotation feel repetitive even though it never actually repeats an object.
-export function extendSchedule(existing, dataset, targetLength) {
+export function extendSchedule(
+  existing: string[],
+  dataset: { id: string; category: string }[],
+  targetLength: number
+): string[] {
   const schedule = [...existing]
   const categoryOf = new Map(dataset.map(o => [o.id, o.category]))
   const datasetIds = dataset.map(o => o.id)
-  const counts = new Map(datasetIds.map(id => [id, 0]))
+  const counts = new Map<string, number>(datasetIds.map(id => [id, 0]))
   for (const id of schedule) {
-    if (counts.has(id)) counts.set(id, counts.get(id) + 1)
+    if (counts.has(id)) counts.set(id, counts.get(id)! + 1)
   }
 
   while (schedule.length < targetLength) {
@@ -62,31 +66,31 @@ export function extendSchedule(existing, dataset, targetLength) {
     if (varied.length > 0) pool = varied
     const pick = pool[Math.floor(mulberry32(day)() * pool.length)]
     schedule.push(pick)
-    counts.set(pick, counts.get(pick) + 1)
+    counts.set(pick, counts.get(pick)! + 1)
   }
   return schedule
 }
 
 // The alarm the test asserts on: how long the schedule has left before it runs out.
 // Kept here so the generator and the test agree on when it is time to extend.
-export function daysRemaining(scheduleLength, todayDayNumber) {
+export function daysRemaining(scheduleLength: number, todayDayNumber: number): number {
   return scheduleLength - todayDayNumber
 }
 
-export function daysSinceLaunch(today, launch) {
+export function daysSinceLaunch(today: Date, launch: Date): number {
   const a = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime()
   const b = new Date(launch.getFullYear(), launch.getMonth(), launch.getDate()).getTime()
   return Math.round((a - b) / 86400000)
 }
 
 function main() {
-  const dataset = JSON.parse(fs.readFileSync(DATASET_PATH, "utf8"))
+  const dataset: { id: string; category: string }[] = JSON.parse(fs.readFileSync(DATASET_PATH, "utf8"))
   const datasetIds = dataset.map(o => o.id)
-  const existing = fs.existsSync(SCHEDULE_PATH)
+  const existing: string[] = fs.existsSync(SCHEDULE_PATH)
     ? JSON.parse(fs.readFileSync(SCHEDULE_PATH, "utf8"))
     : SEED
 
-  const stale = existing.filter(id => !datasetIds.includes(id))
+  const stale = existing.filter((id: string) => !datasetIds.includes(id))
   if (stale.length > 0) {
     console.error(`Refusing to write: scheduled objects missing from the dataset: ${stale.join(", ")}`)
     console.error("Removing or renaming a scheduled object rewrites days people have played. Restore the id.")

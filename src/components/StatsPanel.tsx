@@ -1,5 +1,4 @@
-import type { Statistics } from "../lib/statistics"
-import { getWinPercentage } from "../lib/statistics"
+import { getWinPercentage, type Statistics } from "../lib/statisticsCore"
 import { StatBlock } from "./StatBlock"
 import { GuessDistribution } from "./GuessDistribution"
 

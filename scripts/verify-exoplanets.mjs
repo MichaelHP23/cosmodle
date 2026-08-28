@@ -2,7 +2,7 @@ import fs from "node:fs"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 import { cachedFetch } from "./lib/fetchCache.mjs"
-import { proposeChange, renderReport, applyChanges } from "./lib/datasetDiff.mjs"
+import { renderReport, applyChanges } from "./lib/datasetDiff.mjs"
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..")
 const DATASET = path.join(ROOT, "src/data/celestialObjects.json")
@@ -12,6 +12,9 @@ const NAMES = {
   "51_pegasi_b": "51 Peg b", hd_209458_b: "HD 209458 b", kepler_16b: "Kepler-16 b",
   wasp_12b: "WASP-12 b", "55_cancri_e": "55 Cnc e", kepler_186f: "Kepler-186 f",
   gj1214b: "GJ 1214 b", hr8799b: "HR 8799 b", gliese667cc: "GJ 667 C c", toi700d: "TOI-700 d",
+  hd_189733_b: "HD 189733 b", kelt_9b: "KELT-9 b", k2_18b: "K2-18 b", lhs_1140b: "LHS 1140 b",
+  wasp_121b: "WASP-121 b", kepler_442b: "Kepler-442 b", kepler_10b: "Kepler-10 b",
+  wasp_76b: "WASP-76 b", gj_1132b: "GJ 1132 b",
 }
 
 const EARTH_RADIUS_KM = 6371
@@ -36,7 +39,7 @@ for (const [id, plName] of Object.entries(NAMES)) {
   compare(obj, "temperatureK", row.pl_eqt, "pl_eqt")
   compare(obj, "distanceFromEarthLy", row.sy_dist * LY_PER_PC, "sy_dist")
   if (row.disc_year && obj.discoveredYear !== row.disc_year) {
-    proposeChange(changes, { id, field: "discoveredYear", from: obj.discoveredYear, to: row.disc_year, reason: "disc_year", source: "NASA Exoplanet Archive" })
+    changes.push({ id, field: "discoveredYear", from: obj.discoveredYear, to: row.disc_year, reason: "disc_year", source: "NASA Exoplanet Archive" })
   }
 }
 
@@ -44,7 +47,7 @@ function compare(obj, field, value, reason) {
   if (!Number.isFinite(value) || typeof obj[field] !== "number") return
   const rel = Math.abs(value - obj[field]) / Math.max(Math.abs(value), 1e-9)
   if (rel <= 0.05) return
-  proposeChange(changes, { id: obj.id, field, from: obj[field], to: Number(value.toPrecision(6)), reason, source: "NASA Exoplanet Archive" })
+  changes.push({ id: obj.id, field, from: obj[field], to: Number(value.toPrecision(6)), reason, source: "NASA Exoplanet Archive" })
 }
 
 console.log(renderReport(changes))

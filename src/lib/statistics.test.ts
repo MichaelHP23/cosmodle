@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { describe, it, expect, beforeEach } from "vitest"
-import { getStatistics, recordDailyResult, getWinPercentage, mergeServerStatistics } from "./statistics"
+import { getStatistics, recordDailyResult, mergeServerStatistics } from "./statistics"
+import { getWinPercentage } from "./statisticsCore"
 
 beforeEach(() => {
   localStorage.clear()

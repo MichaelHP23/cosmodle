@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest"
-import { createInitialState, applyGuess, applyHint, applyGiveUp, MAX_GUESSES, MAX_HINTS } from "./gameState"
+import { createInitialState, applyGuess, applyHint, applyGiveUp } from "./gameState"
+import { MAX_GUESSES, MAX_HINTS } from "./gameConstants"
 import type { CelestialObject } from "../types/celestial"
 
 const dataset: CelestialObject[] = [

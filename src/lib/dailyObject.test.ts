@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 // Schedule-backed daily answers are covered in dailySchedule.test.ts.
-import { daysSinceEpoch, dateForDayNumber, getDailyObject, pickRandomObject, seededShuffle, LAUNCH_DATE } from "./dailyObject"
+import { daysSinceEpoch, dateForDayNumber, getDailyObject, pickRandomObject, LAUNCH_DATE } from "./dailyObject"
 import type { CelestialObject } from "../types/celestial"
 
 const dataset: CelestialObject[] = [
@@ -35,61 +35,13 @@ describe("dateForDayNumber", () => {
   })
 })
 
-describe("seededShuffle", () => {
-  it("is deterministic for the same seed", () => {
-    const a = seededShuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 42)
-    const b = seededShuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 42)
-    expect(a).toEqual(b)
-  })
-  it("produces a permutation (same elements, no duplicates)", () => {
-    const input = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    const shuffled = seededShuffle(input, 7)
-    expect([...shuffled].sort((x, y) => x - y)).toEqual(input)
-  })
-  it("different seeds usually produce different orders", () => {
-    const a = seededShuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 1)
-    const b = seededShuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 2)
-    expect(a).not.toEqual(b)
-  })
-  it("does not mutate the input array", () => {
-    const input = [0, 1, 2]
-    seededShuffle(input, 5)
-    expect(input).toEqual([0, 1, 2])
-  })
-})
-
 describe("getDailyObject", () => {
-  it("returns the same object for the same date", () => {
-    const date = new Date("2026-09-01T00:00:00Z")
-    expect(getDailyObject(date, dataset).id).toBe(getDailyObject(date, dataset).id)
+  it("throws rather than inventing an answer past the end of the schedule", () => {
+    const farFuture = new Date(LAUNCH_DATE.getTime() + 100000 * 24 * 60 * 60 * 1000)
+    expect(() => getDailyObject(farFuture, dataset)).toThrow(/npm run schedule/)
   })
-  it("can return different objects for different dates", () => {
-    const d1 = new Date("2026-09-01T00:00:00Z")
-    const d2 = new Date("2026-09-02T00:00:00Z")
-    const o1 = getDailyObject(d1, dataset)
-    const o2 = getDailyObject(d2, dataset)
-    expect([o1.id, o2.id].length).toBe(2)
-  })
-  it("does not simply cycle through the dataset in array order", () => {
-    const ids = Array.from({ length: dataset.length }, (_, i) =>
-      getDailyObject(new Date(LAUNCH_DATE.getTime() + i * 24 * 60 * 60 * 1000), dataset).id
-    )
-    expect(ids).not.toEqual(dataset.map(o => o.id))
-  })
-  it("covers every object exactly once within one full cycle (no repeats, no skips)", () => {
-    const ids = Array.from({ length: dataset.length }, (_, i) =>
-      getDailyObject(new Date(LAUNCH_DATE.getTime() + i * 24 * 60 * 60 * 1000), dataset).id
-    )
-    expect([...ids].sort()).toEqual(dataset.map(o => o.id).sort())
-  })
-  it("uses a different shuffle order for the next cycle", () => {
-    const cycle0 = Array.from({ length: dataset.length }, (_, i) =>
-      getDailyObject(new Date(LAUNCH_DATE.getTime() + i * 24 * 60 * 60 * 1000), dataset).id
-    )
-    const cycle1 = Array.from({ length: dataset.length }, (_, i) =>
-      getDailyObject(new Date(LAUNCH_DATE.getTime() + (dataset.length + i) * 24 * 60 * 60 * 1000), dataset).id
-    )
-    expect(cycle1).not.toEqual(cycle0)
+  it("throws when the scheduled object is missing from the dataset", () => {
+    expect(() => getDailyObject(LAUNCH_DATE, dataset)).toThrow(/No object scheduled/)
   })
 })
 
@@ -97,11 +49,5 @@ describe("pickRandomObject", () => {
   it("returns an object from the dataset", () => {
     const picked = pickRandomObject(dataset)
     expect(dataset.map(o => o.id)).toContain(picked.id)
-  })
-  it("excludes the given id when possible", () => {
-    for (let i = 0; i < 20; i++) {
-      const picked = pickRandomObject(dataset, "a")
-      expect(picked.id).not.toBe("a")
-    }
   })
 })

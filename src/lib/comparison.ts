@@ -11,19 +11,18 @@ function relativeDiff(guess: number, answer: number): number {
 }
 
 function compareNumeric(guess: number, answer: number): ComparisonResult {
-  const difference = answer - guess
   const rel = relativeDiff(guess, answer)
-  if (rel <= NUMERIC_CORRECT_TOLERANCE) return { status: "correct", difference }
-  if (rel <= NUMERIC_CLOSE_TOLERANCE) return { status: "close", difference }
-  return { status: difference > 0 ? "higher" : "lower", difference }
+  if (rel <= NUMERIC_CORRECT_TOLERANCE) return { status: "correct" }
+  if (rel <= NUMERIC_CLOSE_TOLERANCE) return { status: "close" }
+  return { status: answer > guess ? "higher" : "lower" }
 }
 
 function compareTemperature(guess: number, answer: number): ComparisonResult {
   const difference = answer - guess
   const abs = Math.abs(difference)
-  if (abs <= TEMPERATURE_CORRECT_TOLERANCE_K) return { status: "correct", difference }
-  if (abs <= TEMPERATURE_CLOSE_TOLERANCE_K) return { status: "close", difference }
-  return { status: difference > 0 ? "higher" : "lower", difference }
+  if (abs <= TEMPERATURE_CORRECT_TOLERANCE_K) return { status: "correct" }
+  if (abs <= TEMPERATURE_CLOSE_TOLERANCE_K) return { status: "close" }
+  return { status: difference > 0 ? "higher" : "lower" }
 }
 
 function compareExact(guess: unknown, answer: unknown): ComparisonResult {

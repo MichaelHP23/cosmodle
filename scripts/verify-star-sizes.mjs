@@ -22,12 +22,17 @@ export function predictedMagnitude({ radiusSolar, teff, distanceLy }) {
 
 const SOLAR_DIAMETER_KM = 1391000
 
-// Closure cannot work for these three, so flagging them every run would only train the reader to
-// ignore the report.
-const KNOWN = {
+// Closure cannot work for these, so flagging them every run would only train the reader to ignore
+// the report. The two dust-reddened supergiants are the honest limit of the formula rather than a
+// limit of the data: it converts luminosity straight to apparent magnitude with no extinction term,
+// so any star seen through significant dust is predicted brighter than it really looks.
+export const KNOWN = {
   sun: "the Sun's distance is not stored in light years to useful precision",
   capella: "two G giants of similar brightness, and the dataset records only the larger one's radius",
   proxima_centauri: "an M5.5 dwarf, where the Torres bolometric correction is least reliable",
+  barnards_star: "an M4 dwarf, where the Torres bolometric correction is least reliable",
+  mu_cephei: "a reddened supergiant, and the closure carries no interstellar extinction term",
+  vy_canis_majoris: "a hypergiant inside its own dust cocoon, which dims it by several magnitudes",
 }
 
 // The report only runs when the file is executed directly, so importing it from a test stays silent.
