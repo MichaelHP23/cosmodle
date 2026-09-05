@@ -21,6 +21,7 @@ import { HowToPlayModal } from "./HowToPlayModal"
 import { GlobalStatsModal } from "./GlobalStatsModal"
 import { ArchiveList } from "./ArchiveList"
 import { HintPanel } from "./HintPanel"
+import { GameInfo } from "./GameInfo"
 import { AdSlot } from "./AdSlot"
 
 const typedDataset = dataset as CelestialObject[]
@@ -321,6 +322,10 @@ export function GameBoard() {
             )}
           </>
         )}
+        {/* Outside the board's own conditional so it always renders, same reasons as the ad slot below:
+            genuine, non-spoiler text about the game itself, on the same screen the ad occupies rather
+            than gated behind a modal like How to Play. */}
+        <GameInfo />
         {/* Outside the board's own conditional so the reserved height exists in every mode and from
             the first paint, which is what keeps the layout shift at zero whether an ad ever fills or
             not. Below the guess table, so it can never come between a player and their next guess. */}
