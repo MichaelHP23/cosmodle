@@ -1,10 +1,14 @@
+import { MAX_GUESSES } from "../lib/gameConstants"
+
 export function GameInfo() {
   return (
     <div className="mx-auto mt-8 w-full max-w-[728px] rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-4 text-sm text-[#4d4d4d]">
       <h2 className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">About this game</h2>
       <p>
-        Cosmodle picks one celestial object out of the whole sky each day and asks you to name it in seven
-        guesses or fewer. Every guess you make gets checked property by property — distance, diameter, mass,
+        {/* Read from the constant rather than spelled out, so the copy cannot drift away from the rule
+            the game actually enforces the way "seven" did. */}
+        Cosmodle picks one celestial object out of the whole sky each day and asks you to name it in{" "}
+        {MAX_GUESSES} guesses or fewer. Every guess you make gets checked property by property — distance, diameter, mass,
         temperature, orbital period, number of moons, whatever applies to that kind of object — against the
         real answer, so you learn whether you're above or below it and close in from there. No sign-up, and
         a fresh round is always waiting in Practice mode if you want another one right now.

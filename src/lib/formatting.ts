@@ -12,6 +12,17 @@ export function formatKm(v: number): string {
   return `${group(Math.round(v))} km`
 }
 
+export const KM_PER_LIGHT_YEAR = 9.4607e12
+
+// Past interstellar scale a diameter in kilometres is a 19-digit number nobody can read, let alone
+// compare: the Andromeda Galaxy spans 1,436,690,000,000,000,000 km. Anything a light-year or wider is
+// therefore measured the way astronomers measure it. Stars and event horizons stay well below the
+// threshold and keep their kilometres.
+export function formatSpan(km: number): string {
+  if (Math.abs(km) >= KM_PER_LIGHT_YEAR) return formatLightYears(km / KM_PER_LIGHT_YEAR)
+  return formatKm(km)
+}
+
 export function formatKelvinAsCelsius(k: number): string {
   const c = Math.round(k - 273.15)
   return `${group(c)}°C`
@@ -25,10 +36,20 @@ export function formatHours(v: number): string {
   return `${group(Number(v.toPrecision(4)))} hours`
 }
 
+const SUPERSCRIPT_DIGITS = "⁰¹²³⁴⁵⁶⁷⁸⁹"
+
+// A caret is programmer's notation: rendered on a page "10^24" reads as a typo rather than as a power.
+export function toSuperscript(n: number): string {
+  return String(n)
+    .split("")
+    .map(c => (c === "-" ? "⁻" : SUPERSCRIPT_DIGITS[Number(c)] ?? c))
+    .join("")
+}
+
 export function formatMassKg(v: number): string {
   const exponent = Math.floor(Math.log10(Math.abs(v)))
   const mantissa = v / Math.pow(10, exponent)
-  return `${mantissa.toFixed(2)} × 10^${exponent} kg`
+  return `${mantissa.toFixed(2)} × 10${toSuperscript(exponent)} kg`
 }
 
 export function formatGravity(v: number): string {
@@ -65,7 +86,8 @@ export function formatPropertyValue(property: string, value: unknown): string {
   if (typeof value === "boolean") return value ? "Yes" : "No"
   if (property === "distanceFromSunAU") return formatAU(value as number)
   if (property === "distanceFromEarthLy") return formatLightYears(value as number)
-  if (property === "distanceFromParentKm" || property === "diameterKm") return formatKm(value as number)
+  if (property === "distanceFromParentKm") return formatKm(value as number)
+  if (property === "diameterKm") return formatSpan(value as number)
   if (property === "temperatureK") return formatKelvinAsCelsius(value as number)
   if (property === "orbitalPeriodDays") return formatDays(value as number)
   if (property === "rotationPeriodHours") return formatHours(value as number)
@@ -105,7 +127,15 @@ function stepBracket(value: number, step: number): [number, number] {
 
 // Splits a formatted value into its unit prefix ("mag "), its number, and its unit suffix (" km"), so
 // a range can be written once inside the units instead of repeating them on both endpoints.
+// A superscript exponent belongs to the number, but the identical characters also show up inside
+// units — "m/s²" — where they belong to the suffix. Only the scientific form is unambiguous, so it is
+// matched outright and everything else falls back to splitting on plain digits.
+const SCIENTIFIC_FORM = /^(.*?)((?:[\d.]+\s*×\s*)?10[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)(.*)$/
+
 function splitUnits(text: string): { prefix: string; core: string; suffix: string } {
+  const scientific = SCIENTIFIC_FORM.exec(text)
+  if (scientific) return { prefix: scientific[1], core: scientific[2], suffix: scientific[3] }
+
   const prefix = /^[^0-9-]*/.exec(text)![0]
   const rest = text.slice(prefix.length)
   const suffix = /[^0-9]*$/.exec(rest)![0]
@@ -121,7 +151,7 @@ function dropRepeatedMantissa(core: string): string {
 
 // Endpoints are formatted through the same per-property dispatch exact values use, then merged, so a
 // range can never end up carrying a different unit from the value it brackets.
-function joinRange(property: string, low: number, high: number): string {
+export function joinRange(property: string, low: number, high: number): string {
   const start = splitUnits(formatPropertyValue(property, low))
   const end = splitUnits(formatPropertyValue(property, high))
   // A negative endpoint would otherwise read as "-70 - -60°C", where the separator cannot be picked
@@ -137,18 +167,18 @@ const REDSHIFT_STEP = 0.5
 // Below this the Celsius scale is crossing zero, where a proportional bracket would be absurdly tight.
 const MIN_TEMPERATURE_STEP = 10
 
-// A hint reveals which bracket a value falls in rather than the value itself, so the player learns the
-// scale of the answer without being handed it.
-export function formatPropertyRange(property: string, value: unknown): string {
-  // Categories, types, host names and yes/no flags have no scale to bracket, so they reveal exactly as
-  // they always did. Missing values fall through here too and stay a dash.
-  if (typeof value !== "number" || !Number.isFinite(value)) return formatPropertyValue(property, value)
-
-  // A year is not an order of magnitude. The decade it sits in is the bracket a player expects, and it
-  // is also the one bracket that reads better as a word than as two endpoints.
+// The numeric bounds a hint puts around a value, or null where the property has no scale to bracket
+// (a category, a host name, a yes/no flag, a missing value) and a hint therefore reveals it outright.
+// Shared with the knowledge panel, which needs the endpoints rather than the sentence, so a hint and
+// the guesses can be combined into a single bound instead of contradicting each other on screen.
+export function propertyBracket(property: string, value: unknown): [number, number] | null {
+  if (typeof value !== "number" || !Number.isFinite(value)) return null
+  // A decade of years is the bracket a player expects, but "1770s" is not a pair of endpoints, so the
+  // hint keeps its own wording and the panel treats the decade as the bounds.
   if (property === "discoveredYear") {
-    if (value === PREHISTORIC_YEAR) return "Prehistoric"
-    return `${Math.floor(value / 10) * 10}s`
+    if (value === PREHISTORIC_YEAR) return null
+    const decade = Math.floor(value / 10) * 10
+    return [decade, decade + 10]
   }
 
   // Stored in Kelvin but shown in Celsius, so the bracket has to be chosen on the Celsius value or its
@@ -158,19 +188,30 @@ export function formatPropertyRange(property: string, value: unknown): string {
     const magnitude = Math.abs(celsius)
     const step = magnitude < MIN_TEMPERATURE_STEP ? MIN_TEMPERATURE_STEP : Math.pow(10, decadeExponent(magnitude))
     const [low, high] = stepBracket(celsius, step)
-    return joinRange(property, low + 273.15, high + 273.15)
+    return [low + 273.15, high + 273.15]
   }
 
   if (property === "apparentMagnitude" || property === "brightestStarMagnitude") {
-    const [low, high] = stepBracket(value, MAGNITUDE_STEP)
-    return joinRange(property, low, high)
+    return stepBracket(value, MAGNITUDE_STEP)
   }
 
   if (property === "redshift") {
-    const [low, high] = stepBracket(value, REDSHIFT_STEP)
-    return joinRange(property, low, high)
+    return stepBracket(value, REDSHIFT_STEP)
   }
 
-  const [low, high] = decadeBracket(value)
-  return joinRange(property, low, high)
+  return decadeBracket(value)
+}
+
+// A hint reveals which bracket a value falls in rather than the value itself, so the player learns the
+// scale of the answer without being handed it.
+export function formatPropertyRange(property: string, value: unknown): string {
+  // Categories, types, host names and yes/no flags have no scale to bracket, so they reveal exactly as
+  // they always did. Missing values fall through here too and stay a dash.
+  const bracket = propertyBracket(property, value)
+  if (!bracket) return formatPropertyValue(property, value)
+
+  // The one bracket that reads better as a word than as two endpoints.
+  if (property === "discoveredYear") return `${bracket[0]}s`
+
+  return joinRange(property, bracket[0], bracket[1])
 }

@@ -21,10 +21,13 @@ describe("formatting", () => {
     expect(formatHours(24.62)).toBe("24.62 hours")
   })
   it("formats mass in kg using compact scientific form", () => {
-    expect(formatMassKg(5.972e24)).toBe("5.97 × 10^24 kg")
+    expect(formatMassKg(5.972e24)).toBe("5.97 × 10²⁴ kg")
   })
   it("formats gravity", () => {
     expect(formatGravity(9.81)).toBe("9.81 m/s²")
+  })
+  it("writes a mass exponent as a superscript rather than a caret", () => {
+    expect(formatMassKg(1.4819e23)).toBe("1.48 × 10²³ kg")
   })
   it("formats light years with 3 significant figures", () => {
     expect(formatLightYears(4.25)).toBe("4.25 ly")
@@ -79,9 +82,10 @@ describe("formatPropertyRange", () => {
     expect(formatPropertyRange("areaSqDeg", 1280)).toBe("1,000 - 10,000 sq°")
   })
   it("brackets mass by exponent without repeating the mantissa", () => {
-    expect(formatPropertyRange("massKg", 5.972e24)).toBe("10^24 - 10^25 kg")
+    expect(formatPropertyRange("massKg", 5.972e24)).toBe("10²⁴ - 10²⁵ kg")
   })
   it("brackets gravity, keeping tiny values in scientific notation", () => {
+    // The ² in "m/s²" is a unit, not an exponent, so the range must still hoist it out as the suffix.
     expect(formatPropertyRange("gravityMs2", 9.81)).toBe("1 - 10 m/s²")
     expect(formatPropertyRange("gravityMs2", 3.4e-10)).toBe("1.00e-10 - 1.00e-9 m/s²")
   })
