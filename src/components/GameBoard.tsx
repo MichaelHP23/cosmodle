@@ -11,9 +11,12 @@ import { getStatistics, recordDailyResult, recordDailyGiveUp, mergeServerStatist
 import type { Statistics } from "../lib/statisticsCore"
 import { getOrCreatePlayerId } from "../lib/playerId"
 import { postResult, getPlayerStats } from "../lib/api"
+import { deriveKnowledge, revealKnowledge, describeKnowledge } from "../lib/knowledge"
 import { DailyHeader } from "./DailyHeader"
 import { GuessInput } from "./GuessInput"
-import { GuessTable } from "./GuessTable"
+import { GuessList } from "./GuessList"
+import { KnowledgePanel } from "./KnowledgePanel"
+import { ObjectHero } from "./ObjectHero"
 import { ResultModal } from "./ResultModal"
 import { LossModal } from "./LossModal"
 import { Footer } from "./Footer"
@@ -208,6 +211,21 @@ export function GameBoard() {
   const displayDayNumber = mode === "archive" ? archiveDayNumber ?? todayDayNumber : todayDayNumber
   const showingArchiveList = mode === "archive" && archiveDayNumber === null
 
+  // What the guesses have established. Once the game is over there is nothing left to deduce, so the
+  // same panel switches to the answer's own values and becomes its stat sheet.
+  const knowledge = answer
+    ? gameOver
+      ? revealKnowledge(profile, answer, typedDataset)
+      : deriveKnowledge(profile, guesses, answer, typedDataset)
+    : []
+  const heroStatus = won
+    ? `Solved in ${guessIds.length} ${guessIds.length === 1 ? "guess" : "guesses"}`
+    : lost
+      ? gaveUp
+        ? "Gave up"
+        : "Out of guesses"
+      : `${MAX_GUESSES - guessIds.length} guesses left`
+
   return (
     <div className="starfield flex min-h-screen flex-col">
       <div className="mx-auto flex w-full max-w-[1200px] flex-1 flex-col px-4 py-8">
@@ -230,62 +248,92 @@ export function GameBoard() {
 
         {!showingArchiveList && answer && (
           <>
+            <ObjectHero
+              clauses={describeKnowledge(knowledge)}
+              guessCount={guessIds.length}
+              maxGuesses={MAX_GUESSES}
+              revealed={gameOver ? answer : null}
+              status={heroStatus}
+            />
             {!gameOver && (
               <>
-                <HintPanel
-                  profile={profile}
-                  answer={answer}
-                  hintsUsed={hintsUsed}
-                  dataset={typedDataset}
-                  maxHints={MAX_HINTS}
-                  onUseHint={handleUseHint}
-                  correctProperties={correctProperties}
-                  wrongGuessCount={guessIds.length}
-                />
                 <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />
-                <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-sm text-[#4d4d4d]">
-                  <span>
-                    {MAX_GUESSES - guessIds.length} of {MAX_GUESSES} guesses left
-                  </span>
-                  {confirmingGiveUp ? (
-                    <span className="flex items-center gap-2">
-                      <span className="text-[#b33]">
-                        {mode === "daily" ? "This resets your streak. Sure?" : "Reveal the answer?"}
-                      </span>
-                      <button
-                        className="rounded-lg border-2 border-[#b33] bg-[#b33] px-3 py-1 font-semibold text-white hover:bg-[#a02c2c]"
-                        onClick={handleGiveUp}
-                      >
-                        Give Up
-                      </button>
-                      <button
-                        className="rounded-lg border-2 border-[#8a8a8a] bg-white px-3 py-1 font-semibold text-[#4d4d4d] hover:bg-[#f0f0f0]"
-                        onClick={() => setConfirmingGiveUp(false)}
-                      >
-                        Keep Playing
-                      </button>
-                    </span>
-                  ) : (
-                    <button
-                      className="rounded-lg border-2 border-[#c9c9c9] bg-white px-3 py-1 font-semibold text-[#8a5050] hover:border-[#b33] hover:text-[#b33]"
-                      onClick={() => setConfirmingGiveUp(true)}
-                    >
-                      I Give Up
-                    </button>
-                  )}
+                <div className="mt-2.5">
+                  <HintPanel
+                    profile={profile}
+                    answer={answer}
+                    hintsUsed={hintsUsed}
+                    dataset={typedDataset}
+                    maxHints={MAX_HINTS}
+                    onUseHint={handleUseHint}
+                    correctProperties={correctProperties}
+                    wrongGuessCount={guessIds.length}
+                  />
                 </div>
               </>
             )}
-            <div className="mt-4 flex justify-center">
-              <GuessTable profile={profile} guesses={guesses} answer={answer} dataset={typedDataset} />
+
+            <div className="mb-2 flex items-baseline justify-between gap-2 px-0.5">
+              <span className="text-xs font-bold text-[#2c2742]">
+                {gameOver ? answer.name : "What you know"}
+              </span>
+              <span className="text-[11px] text-[#8a8399]">
+                {gameOver
+                  ? "today's stats"
+                  : guessIds.length === 0
+                    ? "every guess narrows these down"
+                    : `${guessIds.length} ${guessIds.length === 1 ? "guess" : "guesses"} in`}
+              </span>
             </div>
+            <KnowledgePanel knowledge={knowledge} />
+
+            {guesses.length > 0 && (
+              <div className="mt-4">
+                <div className="mb-2 flex items-baseline justify-between gap-2 px-0.5">
+                  <span className="text-xs font-bold text-[#2c2742]">Your guesses</span>
+                  <span className="text-[11px] text-[#8a8399]">tap one to open it</span>
+                </div>
+                <GuessList profile={profile} guesses={guesses} answer={answer} dataset={typedDataset} />
+              </div>
+            )}
+
+            {!gameOver && (
+              <div className="mt-3 text-center">
+                {confirmingGiveUp ? (
+                  <span className="flex flex-wrap items-center justify-center gap-2 text-xs">
+                    <span className="text-[#b3405a]">
+                      {mode === "daily" ? "This resets your streak. Sure?" : "Reveal the answer?"}
+                    </span>
+                    <button
+                      className="rounded-lg bg-[#b3405a] px-3 py-1.5 font-semibold text-white hover:bg-[#a02c4e]"
+                      onClick={handleGiveUp}
+                    >
+                      Give up
+                    </button>
+                    <button
+                      className="rounded-lg bg-[#2c2742]/8 px-3 py-1.5 font-semibold text-[#2c2742]"
+                      onClick={() => setConfirmingGiveUp(false)}
+                    >
+                      Keep playing
+                    </button>
+                  </span>
+                ) : (
+                  <button
+                    className="text-xs font-semibold text-[#8a8399] hover:text-[#b3405a]"
+                    onClick={() => setConfirmingGiveUp(true)}
+                  >
+                    I give up
+                  </button>
+                )}
+              </div>
+            )}
             {gameOver && !showResultModal && (
               <div className="mt-4 text-center">
                 <button
-                  className="rounded-lg border-2 border-[#4d4d4d] bg-white px-4 py-2 font-semibold text-[#4d4d4d] hover:bg-[#f0f0f0]"
+                  className="rounded-xl bg-[#e8a33d] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#d9942f]"
                   onClick={() => setShowResultModal(true)}
                 >
-                  View Result
+                  View result
                 </button>
               </div>
             )}

@@ -79,25 +79,21 @@ export function HintPanel({
   const hintsLeft = Math.max(0, Math.min(maxHints - hintsUsed, hintable.length - revealTarget))
 
   return (
-    <div className="mb-2 flex flex-wrap items-center gap-2">
+    <div className="mb-4 flex flex-wrap items-center gap-2">
       <button
-        className="rounded-lg border-2 border-[#f0a500] bg-white px-3 py-1 text-sm font-semibold text-[#b8860b] transition-colors hover:bg-[#fff6e0] disabled:cursor-not-allowed disabled:opacity-40"
+        className="rounded-lg bg-[#e8a33d]/12 px-2.5 py-1.5 text-xs font-semibold text-[#c9852a] transition-colors hover:bg-[#e8a33d]/20 disabled:cursor-not-allowed disabled:opacity-40"
         onClick={onUseHint}
         disabled={hintsLeft <= 0}
       >
-        {allRevealed ? "All hints revealed" : `Hint (${hintsLeft} left)`}
+        {allRevealed ? "All hints revealed" : `Reveal a hint · ${hintsLeft} left`}
       </button>
       {revealedEntries.map((entry, index) => (
-        <span
-          key={entry.property}
-          className="flex items-center gap-1 rounded-full border border-[#f0a500] bg-[#fff6e0] px-2 py-0.5 text-xs font-semibold text-[#8a6400]"
-        >
-          {index === 0 && (
-            <span className="rounded-full bg-[#f0a500] px-1.5 py-px text-[10px] uppercase tracking-wide text-white">
-              Free hint
-            </span>
-          )}
-          {entry.label}: {formatPropertyRange(entry.property, (answer as any)[entry.property])}
+        <span key={entry.property} className="text-xs text-[#8a8399]">
+          {index === 0 && "Free hint: "}
+          {entry.label}:{" "}
+          <b className="font-semibold text-[#2c2742]">
+            {formatPropertyRange(entry.property, (answer as any)[entry.property])}
+          </b>
         </span>
       ))}
     </div>
