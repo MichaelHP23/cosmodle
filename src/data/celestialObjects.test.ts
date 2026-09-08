@@ -200,6 +200,17 @@ describe("imagery", () => {
     expect(problems).toEqual([])
   })
 
+  it("never carries tracking parameters on an image URL", () => {
+    // The Wikipedia API returns its thumbnails with "?utm_source=...&utm_campaign=api&utm_content=..."
+    // attached. The image is identical without it, but those are the canonical shape of a tracking URL
+    // and content blockers drop requests carrying them — which silently replaced real photographs with
+    // the generated fallback for anyone running one.
+    const problems = (dataset as CelestialObject[])
+      .filter(o => o.imageUrl && /[?&]utm_/.test(o.imageUrl))
+      .map(o => o.id)
+    expect(problems).toEqual([])
+  })
+
   it("gives every constellation its IAU chart and nothing else", () => {
     const problems = (dataset as CelestialObject[])
       .filter(o => o.category === "constellation")
