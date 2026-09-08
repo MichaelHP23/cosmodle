@@ -6,6 +6,18 @@ body {
   background: #fff8e7;
 }
 
+/* The hero block is the one dark surface on the page, so it carries its own starfield rather than
+   borrowing the page's, which is drawn in ink and would vanish against it. */
+.starfield-dark {
+  background-image:
+    radial-gradient(1px 1px at 40px 26px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 150px 96px, rgba(255, 255, 255, 0.26), transparent),
+    radial-gradient(1.4px 1.4px at 300px 40px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 250px 120px, rgba(255, 255, 255, 0.22), transparent);
+  background-repeat: repeat;
+  background-size: 340px 160px;
+}
+
 .title-text {
   cursor: default;
   user-select: none;

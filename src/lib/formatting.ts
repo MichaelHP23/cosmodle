@@ -12,6 +12,17 @@ export function formatKm(v: number): string {
   return `${group(Math.round(v))} km`
 }
 
+export const KM_PER_LIGHT_YEAR = 9.4607e12
+
+// Past interstellar scale a diameter in kilometres is a 19-digit number nobody can read, let alone
+// compare: the Andromeda Galaxy spans 1,436,690,000,000,000,000 km. Anything a light-year or wider is
+// therefore measured the way astronomers measure it. Stars and event horizons stay well below the
+// threshold and keep their kilometres.
+export function formatSpan(km: number): string {
+  if (Math.abs(km) >= KM_PER_LIGHT_YEAR) return formatLightYears(km / KM_PER_LIGHT_YEAR)
+  return formatKm(km)
+}
+
 export function formatKelvinAsCelsius(k: number): string {
   const c = Math.round(k - 273.15)
   return `${group(c)}°C`
@@ -25,10 +36,20 @@ export function formatHours(v: number): string {
   return `${group(Number(v.toPrecision(4)))} hours`
 }
 
+const SUPERSCRIPT_DIGITS = "⁰¹²³⁴⁵⁶⁷⁸⁹"
+
+// A caret is programmer's notation: rendered on a page "10^24" reads as a typo rather than as a power.
+export function toSuperscript(n: number): string {
+  return String(n)
+    .split("")
+    .map(c => (c === "-" ? "⁻" : SUPERSCRIPT_DIGITS[Number(c)] ?? c))
+    .join("")
+}
+
 export function formatMassKg(v: number): string {
   const exponent = Math.floor(Math.log10(Math.abs(v)))
   const mantissa = v / Math.pow(10, exponent)
-  return `${mantissa.toFixed(2)} × 10^${exponent} kg`
+  return `${mantissa.toFixed(2)} × 10${toSuperscript(exponent)} kg`
 }
 
 export function formatGravity(v: number): string {
@@ -65,7 +86,8 @@ export function formatPropertyValue(property: string, value: unknown): string {
   if (typeof value === "boolean") return value ? "Yes" : "No"
   if (property === "distanceFromSunAU") return formatAU(value as number)
   if (property === "distanceFromEarthLy") return formatLightYears(value as number)
-  if (property === "distanceFromParentKm" || property === "diameterKm") return formatKm(value as number)
+  if (property === "distanceFromParentKm") return formatKm(value as number)
+  if (property === "diameterKm") return formatSpan(value as number)
   if (property === "temperatureK") return formatKelvinAsCelsius(value as number)
   if (property === "orbitalPeriodDays") return formatDays(value as number)
   if (property === "rotationPeriodHours") return formatHours(value as number)
@@ -105,7 +127,15 @@ function stepBracket(value: number, step: number): [number, number] {
 
 // Splits a formatted value into its unit prefix ("mag "), its number, and its unit suffix (" km"), so
 // a range can be written once inside the units instead of repeating them on both endpoints.
+// A superscript exponent belongs to the number, but the identical characters also show up inside
+// units — "m/s²" — where they belong to the suffix. Only the scientific form is unambiguous, so it is
+// matched outright and everything else falls back to splitting on plain digits.
+const SCIENTIFIC_FORM = /^(.*?)((?:[\d.]+\s*×\s*)?10[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)(.*)$/
+
 function splitUnits(text: string): { prefix: string; core: string; suffix: string } {
+  const scientific = SCIENTIFIC_FORM.exec(text)
+  if (scientific) return { prefix: scientific[1], core: scientific[2], suffix: scientific[3] }
+
   const prefix = /^[^0-9-]*/.exec(text)![0]
   const rest = text.slice(prefix.length)
   const suffix = /[^0-9]*$/.exec(rest)![0]
@@ -121,7 +151,7 @@ function dropRepeatedMantissa(core: string): string {
 
 // Endpoints are formatted through the same per-property dispatch exact values use, then merged, so a
 // range can never end up carrying a different unit from the value it brackets.
-function joinRange(property: string, low: number, high: number): string {
+export function joinRange(property: string, low: number, high: number): string {
   const start = splitUnits(formatPropertyValue(property, low))
   const end = splitUnits(formatPropertyValue(property, high))
   // A negative endpoint would otherwise read as "-70 - -60°C", where the separator cannot be picked
