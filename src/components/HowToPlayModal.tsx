@@ -1,12 +1,12 @@
-import { ResultIndicator } from "./ResultIndicator"
+import { StatusOrb } from "./StatusOrb"
 import { MAX_GUESSES, MAX_HINTS } from "../lib/gameConstants"
 
-const LEGEND: { status: Parameters<typeof ResultIndicator>[0]["status"]; label: string; detail: string }[] = [
-  { status: "correct", label: "Correct", detail: "Exact match, or within 2% for numbers / 3°C for temperature." },
+const LEGEND: { status: Parameters<typeof StatusOrb>[0]["status"]; label: string; detail: string }[] = [
+  { status: "correct", label: "Match", detail: "Exact match, or within 2% for numbers / 3°C for temperature." },
   { status: "close", label: "Close", detail: "Within 15% for numbers, or within 25°C for temperature." },
   { status: "higher", label: "Higher", detail: "The answer's value is higher than your guess." },
   { status: "lower", label: "Lower", detail: "The answer's value is lower than your guess." },
-  { status: "incorrect", label: "Incorrect", detail: "Not a match, and not within any tolerance." },
+  { status: "incorrect", label: "Not it", detail: "Not a match, and not within any tolerance." },
   { status: "not_applicable", label: "N/A", detail: "This property doesn't apply to one of the two objects (e.g. comparing rings on a star)." },
 ]
 
@@ -37,8 +37,8 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
 
         <ol className="mb-4 list-decimal space-y-1.5 pl-5 text-sm text-[#4d4d4d]">
           <li>Search for and select any celestial object as your guess.</li>
-          <li>Your guess is compared to the mystery object property-by-property: distance, size, temperature, moons, whatever applies to its category, and each one gets a colored square.</li>
-          <li>Read the squares (legend below) to narrow down what the answer could be, then guess again.</li>
+          <li>Your guess is compared to the mystery object property-by-property: distance, size, temperature, moons, whatever applies to its category, and each one gets its own marker.</li>
+          <li>Read the markers (legend below) to narrow down what the answer could be, then guess again.</li>
           <li>Guess the exact object, or run out of guesses and see the answer revealed.</li>
         </ol>
 
@@ -47,7 +47,7 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
           <div className="space-y-2.5">
             {LEGEND.map(({ status, label, detail }) => (
               <div key={status} className="flex items-start gap-3 text-sm text-[#1a1a1a]">
-                <ResultIndicator status={status} title={label} />
+                <StatusOrb status={status} title={label} />
                 <div>
                   <div className="font-semibold">{label}</div>
                   <div className="text-xs text-[#4d4d4d]">{detail}</div>
