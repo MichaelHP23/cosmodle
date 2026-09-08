@@ -5,6 +5,7 @@ import {
   isValidHintsUsed,
   currentDayNumber,
   isValidDayNumber,
+  resolveDayNumber,
   buildGuessDistribution,
 } from "./util"
 import { MAX_HINTS } from "../../src/lib/gameConstants"
@@ -78,6 +79,39 @@ describe("isValidDayNumber", () => {
   it("rejects non-integers", () => {
     expect(isValidDayNumber(2.5, now)).toBe(false)
     expect(isValidDayNumber("2", now)).toBe(false)
+  })
+})
+
+describe("resolveDayNumber", () => {
+  const now = new Date(Date.UTC(2026, 7, 19)) // day number 2
+
+  it("takes the day the client says it is playing", () => {
+    expect(resolveDayNumber("2", now)).toBe(2)
+  })
+  it("takes a local day sitting either side of the UTC day", () => {
+    // A player east of UTC is already on the next day, one west is still on the previous one.
+    expect(resolveDayNumber("3", now)).toBe(3)
+    expect(resolveDayNumber("1", now)).toBe(1)
+  })
+  it("falls back to the server's day when no day is sent", () => {
+    // A cached older client sends nothing at all and still gets a sensible count.
+    expect(resolveDayNumber(null, now)).toBe(2)
+    expect(resolveDayNumber("", now)).toBe(2)
+  })
+  it("never reads a missing day as day 0, even in the game's first days", () => {
+    // `Number(null)` is 0, which sits within the tolerated drift of day 1 and would match no rows.
+    const launchDay = new Date(Date.UTC(2026, 7, 18)) // day number 1
+    expect(resolveDayNumber(null, launchDay)).toBe(1)
+    expect(resolveDayNumber("", launchDay)).toBe(1)
+    expect(resolveDayNumber("0", launchDay)).toBe(1)
+  })
+  it("falls back rather than trusting a day outside the possible drift", () => {
+    expect(resolveDayNumber("99", now)).toBe(2)
+    expect(resolveDayNumber("-1", now)).toBe(2)
+  })
+  it("falls back on values that are not whole numbers", () => {
+    expect(resolveDayNumber("banana", now)).toBe(2)
+    expect(resolveDayNumber("2.5", now)).toBe(2)
   })
 })
 

@@ -14,6 +14,19 @@ export function isValidDayNumber(dayNumber: unknown, now: Date = new Date()): bo
   return Math.abs(dayNumber - currentDayNumber(now)) <= 1
 }
 
+// The puzzle rolls over at each player's own local midnight (src/lib/dailyObject.ts), not at UTC
+// midnight, so which day a client is playing is the client's to state. A client's local day can sit
+// one either side of the UTC day and no further, which is exactly the drift isValidDayNumber allows.
+// An absent or unusable value falls back to the server's own day rather than failing the request,
+// which is what a cached older client that sends nothing still gets. Absent is checked before the
+// number conversion because `Number(null)` and `Number("")` are 0, not NaN, and the day before the
+// game launched is inside the tolerated drift on launch day while matching no rows at all, so days
+// below the first are turned away too.
+export function resolveDayNumber(raw: string | null, now: Date = new Date()): number {
+  const requested = raw === null || raw.trim() === "" ? NaN : Number(raw)
+  return isValidDayNumber(requested, now) && requested >= 1 ? requested : currentDayNumber(now)
+}
+
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 // The client's guess limit has come down over time (20 at launch, 15 now). A player still running a
