@@ -337,7 +337,7 @@ export function GameBoard() {
         <div className="flex-1" aria-hidden="true" />
         <Footer onGlobalStatsClick={() => setShowGlobalStats(true)} />
         {showHowToPlay && <HowToPlayModal onClose={closeHowToPlay} />}
-        {showGlobalStats && <GlobalStatsModal onClose={() => setShowGlobalStats(false)} />}
+        {showGlobalStats && <GlobalStatsModal dayNumber={todayDayNumber} onClose={() => setShowGlobalStats(false)} />}
       </div>
     </div>
   )

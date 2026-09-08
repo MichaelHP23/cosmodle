@@ -3,16 +3,16 @@ import { getGlobalStats, type GlobalStats } from "../lib/api"
 import { StatBlock } from "./StatBlock"
 import { GuessDistribution } from "./GuessDistribution"
 
-export function GlobalStatsModal({ onClose }: { onClose: () => void }) {
+export function GlobalStatsModal({ onClose, dayNumber }: { onClose: () => void; dayNumber: number }) {
   const [stats, setStats] = useState<GlobalStats | null>(null)
   const [loadFailed, setLoadFailed] = useState(false)
 
   useEffect(() => {
-    getGlobalStats().then(result => {
+    getGlobalStats(dayNumber).then(result => {
       if (result) setStats(result)
       else setLoadFailed(true)
     })
-  }, [])
+  }, [dayNumber])
 
   return (
     <div
