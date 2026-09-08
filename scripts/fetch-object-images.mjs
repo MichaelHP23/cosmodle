@@ -140,8 +140,14 @@ export function describesCategory(description, category) {
   return expected.some(word => text.includes(word))
 }
 
+// The API hands back its thumbnails with a "?utm_source=...&utm_campaign=api&utm_content=thumbnail"
+// query attached. It is analytics for Wikimedia and means nothing to us — the same URL without it
+// returns byte-for-byte the same image — but those three parameters are the canonical shape of a
+// tracking URL, and content blockers on phones drop requests carrying them. A blocked portrait falls
+// back to the generated one, which is why real photographs were not appearing for some players.
 export function canonicalizeImageUrl(url) {
-  return url.replace(/^https:\/\/[a-z]+\.wikimedia\.org/, CANONICAL_IMAGE_HOST)
+  const withoutTracking = url.split("?")[0]
+  return withoutTracking.replace(/^https:\/\/[a-z]+\.wikimedia\.org/, CANONICAL_IMAGE_HOST)
 }
 
 function pageTitleFor(object) {
@@ -169,11 +175,28 @@ async function findImage(object) {
   return { status: "ok", title, url }
 }
 
+// Brings image URLs already in the dataset up to the same shape new ones are written in, so a URL
+// that predates a rule here does not sit there breaking for the players a blocker affects.
+function normalize(dataset) {
+  const changed = []
+  for (const object of dataset) {
+    if (!object.imageUrl) continue
+    const canonical = canonicalizeImageUrl(object.imageUrl)
+    if (canonical !== object.imageUrl) {
+      object.imageUrl = canonical
+      changed.push(object.id)
+    }
+  }
+  return changed
+}
+
 async function main() {
   const apply = process.argv.includes("--apply")
   const only = process.argv.find(a => a.startsWith("--category="))?.split("=")[1]
 
   const dataset = JSON.parse(fs.readFileSync(DATASET, "utf8"))
+  const normalized = normalize(dataset)
+  if (normalized.length > 0) console.log(`${normalized.length} existing URLs normalized\n`)
   const missing = dataset.filter(o => !o.imageUrl && (!only || o.category === only))
   console.log(`${missing.length} objects without an image${only ? ` in ${only}` : ""}\n`)
 
@@ -215,7 +238,11 @@ async function main() {
     dataset.find(o => o.id === object.id).imageUrl = url
   }
   fs.writeFileSync(DATASET, JSON.stringify(dataset, null, 2) + "\n")
-  console.log(`\nwrote ${found.length} imageUrl values into ${path.relative(ROOT, DATASET)}`)
+  console.log(
+    `\nwrote ${found.length} new imageUrl values` +
+      (normalized.length > 0 ? ` and normalized ${normalized.length} existing ones` : "") +
+      ` into ${path.relative(ROOT, DATASET)}`
+  )
 }
 
 if (process.argv[1] && import.meta.url === `file://${process.argv[1]}`) {
