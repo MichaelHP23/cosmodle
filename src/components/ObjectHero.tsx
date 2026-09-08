@@ -64,14 +64,14 @@ export function ObjectHero({
         </div>
       </div>
 
-      <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
-        <span className="flex gap-1" aria-hidden="true">
-          {Array.from({ length: maxGuesses }, (_, i) => (
-            <span
-              key={i}
-              className={`h-[7px] w-[7px] rounded-full ${i < guessCount ? "bg-[#e8a33d]" : "bg-white/15"}`}
-            />
-          ))}
+      <div className="mt-3 flex items-center justify-between gap-4 border-t border-white/10 pt-3">
+        {/* A dot per guess meant fifteen of them, which read as clutter rather than as progress. A bar
+            says the same thing at a glance and does not change shape if MAX_GUESSES ever does. */}
+        <span className="h-1 w-24 shrink-0 overflow-hidden rounded-full bg-white/15" aria-hidden="true">
+          <span
+            className="block h-full rounded-full bg-[#e8a33d] transition-all"
+            style={{ width: `${Math.min(100, (guessCount / maxGuesses) * 100)}%` }}
+          />
         </span>
         <span className="text-[11px] text-[#9990b8]">{status}</span>
       </div>
