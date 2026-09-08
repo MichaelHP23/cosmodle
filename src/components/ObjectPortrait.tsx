@@ -99,7 +99,10 @@ function GeneratedPortrait({ object, size }: { object: CelestialObject; size: nu
 }
 
 export function ObjectPortrait({ object, size = 96 }: { object: CelestialObject; size?: number }) {
-  const [imageFailed, setImageFailed] = useState(false)
+  // Remembering which URL failed rather than that one did: a single failure used to latch the
+  // component into its generated portrait, so every later object it rendered lost its photograph too.
+  const [failedUrl, setFailedUrl] = useState<string | null>(null)
+  const imageFailed = failedUrl !== null && failedUrl === object.imageUrl
 
   if (object.imageUrl && !imageFailed) {
     return (
@@ -110,7 +113,7 @@ export function ObjectPortrait({ object, size = 96 }: { object: CelestialObject;
         height={size}
         className="portrait-pop mx-auto rounded-full object-cover shadow-md"
         style={{ width: size, height: size }}
-        onError={() => setImageFailed(true)}
+        onError={() => setFailedUrl(object.imageUrl ?? null)}
       />
     )
   }
