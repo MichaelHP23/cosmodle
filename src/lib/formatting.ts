@@ -167,18 +167,18 @@ const REDSHIFT_STEP = 0.5
 // Below this the Celsius scale is crossing zero, where a proportional bracket would be absurdly tight.
 const MIN_TEMPERATURE_STEP = 10
 
-// A hint reveals which bracket a value falls in rather than the value itself, so the player learns the
-// scale of the answer without being handed it.
-export function formatPropertyRange(property: string, value: unknown): string {
-  // Categories, types, host names and yes/no flags have no scale to bracket, so they reveal exactly as
-  // they always did. Missing values fall through here too and stay a dash.
-  if (typeof value !== "number" || !Number.isFinite(value)) return formatPropertyValue(property, value)
-
-  // A year is not an order of magnitude. The decade it sits in is the bracket a player expects, and it
-  // is also the one bracket that reads better as a word than as two endpoints.
+// The numeric bounds a hint puts around a value, or null where the property has no scale to bracket
+// (a category, a host name, a yes/no flag, a missing value) and a hint therefore reveals it outright.
+// Shared with the knowledge panel, which needs the endpoints rather than the sentence, so a hint and
+// the guesses can be combined into a single bound instead of contradicting each other on screen.
+export function propertyBracket(property: string, value: unknown): [number, number] | null {
+  if (typeof value !== "number" || !Number.isFinite(value)) return null
+  // A decade of years is the bracket a player expects, but "1770s" is not a pair of endpoints, so the
+  // hint keeps its own wording and the panel treats the decade as the bounds.
   if (property === "discoveredYear") {
-    if (value === PREHISTORIC_YEAR) return "Prehistoric"
-    return `${Math.floor(value / 10) * 10}s`
+    if (value === PREHISTORIC_YEAR) return null
+    const decade = Math.floor(value / 10) * 10
+    return [decade, decade + 10]
   }
 
   // Stored in Kelvin but shown in Celsius, so the bracket has to be chosen on the Celsius value or its
@@ -188,19 +188,30 @@ export function formatPropertyRange(property: string, value: unknown): string {
     const magnitude = Math.abs(celsius)
     const step = magnitude < MIN_TEMPERATURE_STEP ? MIN_TEMPERATURE_STEP : Math.pow(10, decadeExponent(magnitude))
     const [low, high] = stepBracket(celsius, step)
-    return joinRange(property, low + 273.15, high + 273.15)
+    return [low + 273.15, high + 273.15]
   }
 
   if (property === "apparentMagnitude" || property === "brightestStarMagnitude") {
-    const [low, high] = stepBracket(value, MAGNITUDE_STEP)
-    return joinRange(property, low, high)
+    return stepBracket(value, MAGNITUDE_STEP)
   }
 
   if (property === "redshift") {
-    const [low, high] = stepBracket(value, REDSHIFT_STEP)
-    return joinRange(property, low, high)
+    return stepBracket(value, REDSHIFT_STEP)
   }
 
-  const [low, high] = decadeBracket(value)
-  return joinRange(property, low, high)
+  return decadeBracket(value)
+}
+
+// A hint reveals which bracket a value falls in rather than the value itself, so the player learns the
+// scale of the answer without being handed it.
+export function formatPropertyRange(property: string, value: unknown): string {
+  // Categories, types, host names and yes/no flags have no scale to bracket, so they reveal exactly as
+  // they always did. Missing values fall through here too and stay a dash.
+  const bracket = propertyBracket(property, value)
+  if (!bracket) return formatPropertyValue(property, value)
+
+  // The one bracket that reads better as a word than as two endpoints.
+  if (property === "discoveredYear") return `${bracket[0]}s`
+
+  return joinRange(property, bracket[0], bracket[1])
 }

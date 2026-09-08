@@ -12,6 +12,7 @@ import type { Statistics } from "../lib/statisticsCore"
 import { getOrCreatePlayerId } from "../lib/playerId"
 import { postResult, getPlayerStats } from "../lib/api"
 import { deriveKnowledge, revealKnowledge, describeKnowledge } from "../lib/knowledge"
+import { useRevealedHints } from "../lib/useRevealedHints"
 import { DailyHeader } from "./DailyHeader"
 import { GuessInput } from "./GuessInput"
 import { GuessList } from "./GuessList"
@@ -211,12 +212,23 @@ export function GameBoard() {
   const displayDayNumber = mode === "archive" ? archiveDayNumber ?? todayDayNumber : todayDayNumber
   const showingArchiveList = mode === "archive" && archiveDayNumber === null
 
-  // What the guesses have established. Once the game is over there is nothing left to deduce, so the
-  // same panel switches to the answer's own values and becomes its stat sheet.
+  // Hints are evidence about the answer just as guesses are, so the panel is built from both.
+  const { revealedEntries, hintsLeft, allRevealed } = useRevealedHints({
+    profile,
+    answer: answer ?? dailyAnswer,
+    dataset: typedDataset,
+    hintsUsed,
+    maxHints: MAX_HINTS,
+    correctProperties,
+    wrongGuessCount: guessIds.length,
+  })
+
+  // What the guesses and hints have established. Once the game is over there is nothing left to
+  // deduce, so the same panel switches to the answer's own values and becomes its stat sheet.
   const knowledge = answer
     ? gameOver
       ? revealKnowledge(profile, answer, typedDataset)
-      : deriveKnowledge(profile, guesses, answer, typedDataset)
+      : deriveKnowledge(profile, guesses, answer, typedDataset, revealedEntries.map(e => e.property))
     : []
   const heroStatus = won
     ? `Solved in ${guessIds.length} ${guessIds.length === 1 ? "guess" : "guesses"}`
@@ -260,14 +272,11 @@ export function GameBoard() {
                 <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />
                 <div className="mt-2.5">
                   <HintPanel
-                    profile={profile}
                     answer={answer}
-                    hintsUsed={hintsUsed}
-                    dataset={typedDataset}
-                    maxHints={MAX_HINTS}
+                    revealedEntries={revealedEntries}
+                    hintsLeft={hintsLeft}
+                    allRevealed={allRevealed}
                     onUseHint={handleUseHint}
-                    correctProperties={correctProperties}
-                    wrongGuessCount={guessIds.length}
                   />
                 </div>
               </>

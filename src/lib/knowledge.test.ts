@@ -90,6 +90,60 @@ describe("deriveKnowledge", () => {
     expect(rows.find(r => r.property === "distanceFromParentKm")!.label).toBe("Distance from Parent")
   })
 
+  it("takes a hinted categorical property as revealed outright", () => {
+    const rows = deriveKnowledge(moonProfile, [], ganymede, objects, ["category"])
+    const type = rows.find(r => r.property === "category")!
+    expect(type.state).toBe("locked")
+    expect(type.display).toBe("Moon")
+  })
+
+  it("folds a hinted numeric bracket into the panel as a bound", () => {
+    const rows = deriveKnowledge(moonProfile, [], ganymede, objects, ["diameterKm"])
+    const diameter = rows.find(r => r.property === "diameterKm")!
+    expect(diameter.state).toBe("narrowed")
+    // The hint brackets Ganymede's 5,268 km into its decade, so the row has to contain the answer.
+    expect(diameter.display).toBe("1,000 - 10,000 km")
+  })
+
+  it("keeps whichever bound is tighter when a guess and a hint cover the same property", () => {
+    // The hint brackets diameter at 1,000-10,000 km; guessing Europa (3,122 km, too small) raises the
+    // floor, so the combined row must use the guess's lower bound over the hint's.
+    const rows = deriveKnowledge(moonProfile, [byName("Europa")], ganymede, objects, ["diameterKm"])
+    const diameter = rows.find(r => r.property === "diameterKm")!
+    expect(diameter.display).toBe("3,122 - 10,000 km")
+  })
+
+  it("never lets a hinted bound exclude the answer", () => {
+    // Displayed masses carry superscript exponents ("10²³ kg"), so the endpoints have to be read back
+    // through the same notation before they can be compared to the raw value.
+    const fromSuperscript = (sup: string) =>
+      Number(sup.replace(/⁻/g, "-").replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]/g, c => String("⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(c))))
+    const toPlainNumbers = (text: string) =>
+      text
+        .replace(/([\d.]+)\s*×\s*10([⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)/g, (_, m, s) => String(Number(m) * 10 ** fromSuperscript(s)))
+        .replace(/10([⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)/g, (_, s) => String(10 ** fromSuperscript(s)))
+
+    const hinted = moonProfile.map(e => e.property as string)
+    const rows = deriveKnowledge(moonProfile, [byName("Europa"), byName("Callisto")], ganymede, objects, hinted)
+    let checked = 0
+    for (const row of rows) {
+      const value = (ganymede as Record<string, unknown>)[row.property]
+      // Temperature is stored in Kelvin but displayed in Celsius, so its endpoints are not on the same
+      // scale as the stored value and cannot be compared without converting first.
+      if (typeof value !== "number" || row.property === "temperatureK") continue
+      if (!row.display.includes(" - ")) continue
+      const bounds =
+        toPlainNumbers(row.display)
+          .match(/-?[\d,]+(?:\.\d+)?(?:e[+-]?\d+)?/gi)
+          ?.map(n => Number(n.replace(/,/g, ""))) ?? []
+      if (bounds.length < 2) continue
+      expect(value).toBeGreaterThanOrEqual(bounds[0])
+      expect(value).toBeLessThanOrEqual(bounds[1])
+      checked++
+    }
+    expect(checked).toBeGreaterThan(0)
+  })
+
   it("measures a galaxy's diameter in light-years rather than quintillions of kilometres", () => {
     const andromeda = byName("Andromeda Galaxy")
     const rows = revealKnowledge(getProfileForCategory("galaxy"), andromeda, objects)

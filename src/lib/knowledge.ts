@@ -2,7 +2,7 @@ import type { CelestialObject } from "../types/celestial"
 import type { ComparisonStatus, ProfileEntry } from "../types/game"
 import { compareProperty } from "./comparison"
 import { getComparableValue } from "./objectProfiles"
-import { formatPropertyValue, joinRange } from "./formatting"
+import { formatPropertyValue, joinRange, propertyBracket } from "./formatting"
 
 // How firmly a property has been pinned down. "locked" is a value the guesses have actually matched,
 // "narrowed" is a bound or an exclusion, "unknown" is a property no guess has said anything about.
@@ -25,12 +25,23 @@ type Observation = { value: unknown; status: ComparisonStatus }
 // below, so the tightest pair of those is everything the player has been told. "correct" is a match
 // only to within the comparator's tolerance, which is why it reads as "about" rather than as the
 // answer's own value, and "close" carries no direction so it can only ever be a neighbourhood.
-function describeNumeric(property: string, observations: Observation[]): { state: KnowledgeState; display: string } {
+function describeNumeric(
+  property: string,
+  observations: Observation[],
+  hintBracket: [number, number] | null
+): { state: KnowledgeState; display: string } {
   const match = observations.find(o => o.status === "correct")
   if (match) return { state: "locked", display: `about ${formatPropertyValue(property, match.value)}` }
 
   const above = observations.filter(o => o.status === "higher").map(o => o.value as number)
   const below = observations.filter(o => o.status === "lower").map(o => o.value as number)
+  // A hint's bracket is a bound like any other, so it is folded in with the guesses rather than being
+  // shown separately. Whichever source is tighter at each end wins, which is what the player actually
+  // knows once they hold both facts at once.
+  if (hintBracket) {
+    above.push(hintBracket[0])
+    below.push(hintBracket[1])
+  }
   const low = above.length > 0 ? Math.max(...above) : undefined
   const high = below.length > 0 ? Math.min(...below) : undefined
 
@@ -72,7 +83,8 @@ export function deriveKnowledge(
   profile: ProfileEntry[],
   guesses: CelestialObject[],
   answer: CelestialObject,
-  dataset: CelestialObject[]
+  dataset: CelestialObject[],
+  hintedProperties: string[] = []
 ): PropertyKnowledge[] {
   const knowledge = profile.map(entry => {
     const answerValue = getComparableValue(answer, entry.property, dataset)
@@ -80,10 +92,24 @@ export function deriveKnowledge(
       const value = getComparableValue(guess, entry.property, dataset)
       return { value, status: compareProperty(value, answerValue, entry.kind).status }
     })
+    const hinted = hintedProperties.includes(entry.property as string)
+
+    // A hint on a property with no scale hands over the value itself, so there is nothing left to
+    // deduce about it. On a numeric property it only brackets the value, and that bracket joins the
+    // bounds the guesses have established.
+    if (hinted && (entry.kind === "exact" || propertyBracket(entry.property, answerValue) === null)) {
+      return {
+        property: entry.property as string,
+        label: entry.label,
+        state: "locked" as KnowledgeState,
+        display: formatPropertyValue(entry.property, answerValue),
+      }
+    }
+
     const resolved =
       entry.kind === "exact"
         ? describeExact(entry.property, observations)
-        : describeNumeric(entry.property, observations)
+        : describeNumeric(entry.property, observations, hinted ? propertyBracket(entry.property, answerValue) : null)
     return { property: entry.property as string, label: entry.label, ...resolved }
   })
 
