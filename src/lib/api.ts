@@ -43,9 +43,9 @@ export async function getPlayerStats(uuid: string): Promise<Statistics | null> {
   }
 }
 
-export async function getGlobalStats(): Promise<GlobalStats | null> {
+export async function getGlobalStats(dayNumber: number): Promise<GlobalStats | null> {
   try {
-    const res = await fetch("/api/stats")
+    const res = await fetch(`/api/stats?day=${dayNumber}`)
     if (!res.ok) return null
     return (await res.json()) as GlobalStats
   } catch {
