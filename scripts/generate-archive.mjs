@@ -46,7 +46,8 @@ export function formatPropertyValue(property, value) {
   if (property === "rotationPeriodHours") return `${group(Number(value.toPrecision(4)))} hours`
   if (property === "massKg") {
     const exponent = Math.floor(Math.log10(Math.abs(value)))
-    return `${(value / Math.pow(10, exponent)).toFixed(2)} × 10^${exponent} kg`
+    const superscript = String(exponent).split("").map(c => (c === "-" ? "⁻" : "⁰¹²³⁴⁵⁶⁷⁸⁹"[Number(c)] ?? c)).join("")
+    return `${(value / Math.pow(10, exponent)).toFixed(2)} × 10${superscript} kg`
   }
   if (property === "gravityMs2") {
     if (value !== 0 && Math.abs(value) < 0.01) return `${value.toExponential(2)} m/s²`
