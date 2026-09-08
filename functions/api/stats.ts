@@ -1,12 +1,16 @@
-import { buildGuessDistribution, currentDayNumber } from "../_shared/util"
+import { buildGuessDistribution, currentDayNumber, isValidDayNumber } from "../_shared/util"
 import { STATS_BUCKET_COUNT } from "../../src/lib/gameConstants"
 
 interface Env {
   DB: D1Database
 }
 
-export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
-  const today = currentDayNumber()
+export const onRequestGet: PagesFunction<Env> = async ({ request, env }) => {
+  // The puzzle rolls over at each player's own local midnight (src/lib/dailyObject.ts), not at UTC
+  // midnight, so "today" for this player's own day number is theirs to say. A missing or malformed
+  // value falls back to the server's UTC day rather than rejecting the request.
+  const requestedDay = Number(new URL(request.url).searchParams.get("day"))
+  const today = isValidDayNumber(requestedDay) ? requestedDay : currentDayNumber()
 
   const totalPlayersRow = await env.DB.prepare("SELECT COUNT(DISTINCT uuid) as n FROM results").first<{ n: number }>()
   const playedTodayRow = await env.DB.prepare("SELECT COUNT(DISTINCT uuid) as n FROM results WHERE day_number = ?")

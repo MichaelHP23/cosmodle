@@ -40,6 +40,7 @@ describe("getGlobalStats", () => {
   it("returns parsed global stats on success", async () => {
     const stats = { totalPlayers: 5, playedToday: 2, winRate: 80, guessDistribution: [0, 1, 2, 0, 0, 0, 0] }
     vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true, json: async () => stats }))
-    expect(await getGlobalStats()).toEqual(stats)
+    expect(await getGlobalStats(3)).toEqual(stats)
+    expect(fetch).toHaveBeenCalledWith("/api/stats?day=3")
   })
 })
