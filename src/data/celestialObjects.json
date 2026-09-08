@@ -3883,7 +3883,8 @@
     "temperatureK": 6530,
     "difficulty": 3,
     "description": "A nearby yellow-white subgiant, one of the closest bright stars to the Sun.",
-    "discoveredYear": 150
+    "discoveredYear": 150,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Position_Alpha_Cmi.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
   },
   {
     "id": "acrux",
@@ -3899,7 +3900,8 @@
     "temperatureK": 24000,
     "difficulty": 3,
     "description": "The brightest star of the Southern Cross and the southernmost first-magnitude star.",
-    "discoveredYear": 150
+    "discoveredYear": 150,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Acrux_kstars.png/330px-Acrux_kstars.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "pollux",
@@ -4968,7 +4970,8 @@
     "massKg": 1.591e+33,
     "clusterType": "Open",
     "discoveredYear": 150,
-    "description": "The brightest open cluster in the sky, a knot of hot blue stars that most people can pick out with the naked eye as six or seven points."
+    "description": "The brightest open cluster in the sky, a knot of hot blue stars that most people can pick out with the naked eye as six or seven points.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Pleiades_large.jpg/330px-Pleiades_large.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "hyades",
@@ -4981,7 +4984,8 @@
     "massKg": 7.956e+32,
     "clusterType": "Open",
     "discoveredYear": 150,
-    "description": "The nearest open cluster to the Sun, forming the V-shaped face of Taurus, though Aldebaran only appears to belong to it and lies much closer."
+    "description": "The nearest open cluster to the Sun, forming the V-shaped face of Taurus, though Aldebaran only appears to belong to it and lies much closer.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Hyades_cluster.jpg/330px-Hyades_cluster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "omega_centauri",
@@ -4994,7 +4998,8 @@
     "massKg": 7.956e+36,
     "clusterType": "Globular",
     "discoveredYear": 1677,
-    "description": "The largest globular cluster in the galaxy, holding millions of stars, and possibly the stripped core of a galaxy the Milky Way swallowed."
+    "description": "The largest globular cluster in the galaxy, holding millions of stars, and possibly the stripped core of a galaxy the Milky Way swallowed.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Omega_Centauri_Stars.png/330px-Omega_Centauri_Stars.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "m13",
@@ -5007,7 +5012,8 @@
     "massKg": 1.193e+36,
     "clusterType": "Globular",
     "discoveredYear": 1714,
-    "description": "The finest globular cluster visible from northern latitudes, and the target of the 1974 Arecibo radio message."
+    "description": "The finest globular cluster visible from northern latitudes, and the target of the 1974 Arecibo radio message.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/M13-Globular-Cluster.png/330px-M13-Globular-Cluster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "double_cluster",
@@ -5020,7 +5026,8 @@
     "massKg": 7.359e+33,
     "clusterType": "Open",
     "discoveredYear": 150,
-    "description": "A pair of open clusters in Perseus that sit close enough together to share one telescope field, both only a few million years old."
+    "description": "A pair of open clusters in Perseus that sit close enough together to share one telescope field, both only a few million years old.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Double_Cluster.jpg/330px-Double_Cluster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "47_tucanae",
@@ -5033,7 +5040,8 @@
     "massKg": 1.392e+36,
     "clusterType": "Globular",
     "discoveredYear": 1751,
-    "description": "The second brightest globular cluster in the sky, dense enough at its core that its stars are separated by only a fraction of a light year."
+    "description": "The second brightest globular cluster in the sky, dense enough at its core that its stars are separated by only a fraction of a light year.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Heic1510a.tif/lossy-page1-330px-Heic1510a.tif.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "grb_221009a",
@@ -5044,7 +5052,8 @@
     "distanceFromEarthLy": 1900000000,
     "eventType": "Gamma-Ray Burst",
     "discoveredYear": 2022,
-    "description": "The brightest gamma-ray burst ever recorded, so bright it saturated every detector pointed at it and disturbed Earth's ionosphere from two billion light years away."
+    "description": "The brightest gamma-ray burst ever recorded, so bright it saturated every detector pointed at it and disturbed Earth's ionosphere from two billion light years away.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Xrt_image_crop.jpg/330px-Xrt_image_crop.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "sn_1987a",
@@ -5055,7 +5064,8 @@
     "distanceFromEarthLy": 168000,
     "eventType": "Supernova",
     "discoveredYear": 1987,
-    "description": "The nearest supernova seen since the invention of the telescope, and the first whose neutrinos were detected on Earth, three hours before the light arrived."
+    "description": "The nearest supernova seen since the invention of the telescope, and the first whose neutrinos were detected on Earth, three hours before the light arrived.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/New_Hubble_Observations_of_Supernova_1987A_Trace_Shock_Wave_%284954621859%29.jpg/330px-New_Hubble_Observations_of_Supernova_1987A_Trace_Shock_Wave_%284954621859%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "hd_189733_b",
@@ -5070,7 +5080,8 @@
     "orbitalPeriodDays": 2.21857,
     "discoveredYear": 2005,
     "difficulty": 3,
-    "description": "A deep blue hot Jupiter whose color comes from silicate clouds that scatter light and may fall as sideways glass rain."
+    "description": "A deep blue hot Jupiter whose color comes from silicate clouds that scatter light and may fall as sideways glass rain.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/HD_189733_b_comparison.png/330px-HD_189733_b_comparison.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "kelt_9b",
@@ -5085,7 +5096,8 @@
     "orbitalPeriodDays": 1.4811,
     "discoveredYear": 2017,
     "difficulty": 4,
-    "description": "The hottest known giant planet, so fiercely irradiated that molecules in its atmosphere are torn apart into their constituent atoms."
+    "description": "The hottest known giant planet, so fiercely irradiated that molecules in its atmosphere are torn apart into their constituent atoms.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Artist%27s_impression_of_KELT-9b_orbiting_KELT-9.jpg/330px-Artist%27s_impression_of_KELT-9b_orbiting_KELT-9.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "k2_18b",
@@ -5100,7 +5112,8 @@
     "orbitalPeriodDays": 32.94,
     "discoveredYear": 2015,
     "difficulty": 3,
-    "description": "A habitable-zone sub-Neptune where water vapor and carbon-bearing molecules have been detected, making it a leading candidate ocean world."
+    "description": "A habitable-zone sub-Neptune where water vapor and carbon-bearing molecules have been detected, making it a leading candidate ocean world.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Exoplanet_K2-18_b_%28Illustration%29.jpg/330px-Exoplanet_K2-18_b_%28Illustration%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "lhs_1140b",
@@ -5115,7 +5128,8 @@
     "orbitalPeriodDays": 24.7371,
     "discoveredYear": 2017,
     "difficulty": 4,
-    "description": "A dense super-Earth in the habitable zone of a quiet red dwarf, considered one of the best targets for atmospheric study."
+    "description": "A dense super-Earth in the habitable zone of a quiet red dwarf, considered one of the best targets for atmospheric study.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Artist%E2%80%99s_impression_of_the_super-Earth_exoplanet_LHS_1140b.jpg/330px-Artist%E2%80%99s_impression_of_the_super-Earth_exoplanet_LHS_1140b.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "wasp_121b",
@@ -5130,7 +5144,8 @@
     "orbitalPeriodDays": 1.2749,
     "discoveredYear": 2016,
     "difficulty": 5,
-    "description": "An ultra-hot Jupiter stretched into a football shape by tides, with vaporized metals escaping from its glowing upper atmosphere."
+    "description": "An ultra-hot Jupiter stretched into a football shape by tides, with vaporized metals escaping from its glowing upper atmosphere.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/WASP-121b_01.jpg/330px-WASP-121b_01.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "kepler_442b",
@@ -5145,7 +5160,8 @@
     "orbitalPeriodDays": 112.3053,
     "discoveredYear": 2015,
     "difficulty": 4,
-    "description": "A super-Earth orbiting an orange dwarf, ranked among the most promising known planets for surface habitability."
+    "description": "A super-Earth orbiting an orange dwarf, ranked among the most promising known planets for surface habitability.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Exoplanet_Comparison_K2-72_e_%28ver_2%29.png/330px-Exoplanet_Comparison_K2-72_e_%28ver_2%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "kepler_10b",
@@ -5160,7 +5176,8 @@
     "orbitalPeriodDays": 0.8375,
     "discoveredYear": 2011,
     "difficulty": 4,
-    "description": "The first unambiguously rocky planet found by the Kepler mission, circling its star in only 20 hours with a likely molten surface."
+    "description": "The first unambiguously rocky planet found by the Kepler mission, circling its star in only 20 hours with a likely molten surface.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Exoplanet_Comparison_Kepler-10_b.png/330px-Exoplanet_Comparison_Kepler-10_b.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "wasp_76b",
@@ -5190,7 +5207,8 @@
     "orbitalPeriodDays": 1.62893,
     "discoveredYear": 2015,
     "difficulty": 5,
-    "description": "A roughly Earth-sized rocky world often called a Venus twin, and one of the nearest transiting planets suitable for atmospheric searches."
+    "description": "A roughly Earth-sized rocky world often called a Venus twin, and one of the nearest transiting planets suitable for atmospheric searches.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Exoplanet_Comparison_GJ_1132_b.png/330px-Exoplanet_Comparison_GJ_1132_b.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "gaia_bh1",
@@ -5204,7 +5222,8 @@
     "discoveredYear": 2022,
     "difficulty": 4,
     "description": "The closest known black hole to Earth, found by Gaia through the wobble of a Sun-like companion star rather than any X-ray glow.",
-    "redshift": 0
+    "redshift": 0,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Gaia_BH1_PanSTARRS.jpg/330px-Gaia_BH1_PanSTARRS.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "gaia_bh3",
@@ -5218,7 +5237,8 @@
     "discoveredYear": 2024,
     "difficulty": 4,
     "description": "The most massive stellar black hole known in the Milky Way, orbited by an ancient metal-poor star that helped reveal its presence.",
-    "redshift": 0
+    "redshift": 0,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Artist%E2%80%99s_impression_of_the_system_with_the_most_massive_stellar_black_hole_in_our_galaxy_%28eso2408a%29.jpg/330px-Artist%E2%80%99s_impression_of_the_system_with_the_most_massive_stellar_black_hole_in_our_galaxy_%28eso2408a%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "holmberg_15a_black_hole",
@@ -5246,7 +5266,8 @@
     "discoveredYear": 2009,
     "difficulty": 5,
     "description": "A hyperluminous X-ray source on the edge of the galaxy ESO 243-49, long regarded as the strongest candidate for an intermediate-mass black hole.",
-    "redshift": 0.0224
+    "redshift": 0.0224,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/ESO_243-49_%28HST%29.jpg/330px-ESO_243-49_%28HST%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "sn_1006",
@@ -5259,7 +5280,8 @@
     "eventType": "Supernova",
     "discoveredYear": 1006,
     "difficulty": 3,
-    "description": "The brightest stellar event in recorded history, described by observers across Asia, Africa and Europe as visible in daylight for weeks."
+    "description": "The brightest stellar event in recorded history, described by observers across Asia, Africa and Europe as visible in daylight for weeks.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/SN_1006.jpg/330px-SN_1006.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "grb_080319b",
@@ -5272,7 +5294,8 @@
     "eventType": "Gamma-Ray Burst",
     "discoveredYear": 2008,
     "difficulty": 4,
-    "description": "The naked-eye burst, briefly visible without a telescope despite its light having travelled for most of the age of the universe."
+    "description": "The naked-eye burst, briefly visible without a telescope despite its light having travelled for most of the age of the universe.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/GRB_080319B.jpg/330px-GRB_080319B.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "at_2017gfo",
@@ -5285,7 +5308,8 @@
     "eventType": "Kilonova",
     "discoveredYear": 2017,
     "difficulty": 5,
-    "description": "The first kilonova ever observed alongside gravitational waves, produced when two neutron stars merged and forged heavy elements including gold."
+    "description": "The first kilonova ever observed alongside gravitational waves, produced when two neutron stars merged and forged heavy elements including gold.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/GW170817_spectrograms.svg/330px-GW170817_spectrograms.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "phoebe",
@@ -5302,7 +5326,8 @@
     "gravityMs2": 0.049,
     "orbitalPeriodDays": 550.31,
     "difficulty": 4,
-    "description": "A dark, heavily cratered moon that circles Saturn backwards, and is thought to be a captured body from the outer solar system."
+    "description": "A dark, heavily cratered moon that circles Saturn backwards, and is thought to be a captured body from the outer solar system.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Phoebe_cassini_full.jpg/330px-Phoebe_cassini_full.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "prometheus",
@@ -5319,7 +5344,8 @@
     "gravityMs2": 0.0057,
     "orbitalPeriodDays": 0.613,
     "difficulty": 5,
-    "description": "A porous, potato shaped shepherd moon whose gravity carves dark channels into the inner edge of Saturn's F ring."
+    "description": "A porous, potato shaped shepherd moon whose gravity carves dark channels into the inner edge of Saturn's F ring.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Prometheus_12-26-09b.jpg/330px-Prometheus_12-26-09b.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "pandora",
@@ -5336,7 +5362,8 @@
     "gravityMs2": 0.0055,
     "orbitalPeriodDays": 0.6285,
     "difficulty": 5,
-    "description": "Orbits just outside Saturn's F ring and works with Prometheus to keep the narrow ring confined."
+    "description": "Orbits just outside Saturn's F ring and works with Prometheus to keep the narrow ring confined.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/PIA21055_-_Pandora_Up_Close.jpg/330px-PIA21055_-_Pandora_Up_Close.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "atlas",
@@ -5353,7 +5380,8 @@
     "gravityMs2": 0.00162274,
     "orbitalPeriodDays": 0.6019,
     "difficulty": 5,
-    "description": "A tiny moon with a smooth equatorial ridge of accumulated ring material that gives it a flying saucer shape."
+    "description": "A tiny moon with a smooth equatorial ridge of accumulated ring material that gives it a flying saucer shape.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Atlas_color_PIA21449.png/330px-Atlas_color_PIA21449.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "daphnis",
@@ -5370,7 +5398,8 @@
     "gravityMs2": 0.000298377,
     "orbitalPeriodDays": 0.5942,
     "difficulty": 5,
-    "description": "Nicknamed the wavemaker moon because its gravity raises waves in the edges of the Keeler Gap it orbits within."
+    "description": "Nicknamed the wavemaker moon because its gravity raises waves in the edges of the Keeler Gap it orbits within.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/PIA21056cropsharpen.jpg/330px-PIA21056cropsharpen.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "metis",
@@ -5421,7 +5450,8 @@
     "gravityMs2": 0.0304278,
     "orbitalPeriodDays": 0.4287,
     "difficulty": 5,
-    "description": "A small inner moon of Neptune whose gravity is thought to hold together the clumpy arcs in the planet's outermost ring."
+    "description": "A small inner moon of Neptune whose gravity is thought to hold together the clumpy arcs in the planet's outermost ring.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Galatea_moon.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
   },
   {
     "id": "despina",
@@ -5438,7 +5468,8 @@
     "gravityMs2": 0.0213167,
     "orbitalPeriodDays": 0.3347,
     "difficulty": 5,
-    "description": "A dark, irregularly shaped moon found in Voyager 2 images that orbits just inside Neptune's Le Verrier ring."
+    "description": "A dark, irregularly shaped moon found in Voyager 2 images that orbits just inside Neptune's Le Verrier ring.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Despina.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
   },
   {
     "id": "portia",
@@ -5455,7 +5486,8 @@
     "gravityMs2": 0.0170207,
     "orbitalPeriodDays": 0.5132,
     "difficulty": 5,
-    "description": "The second largest of the small inner moons of Uranus, part of a tightly packed group whose orbits may be unstable over long timescales."
+    "description": "The second largest of the small inner moons of Uranus, part of a tightly packed group whose orbits may be unstable over long timescales.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Portia%2C_moon_of_Uranus%2C_1986.jpg/330px-Portia%2C_moon_of_Uranus%2C_1986.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "sylvia",
@@ -5471,7 +5503,8 @@
     "orbitalPeriodDays": 2375,
     "difficulty": 5,
     "description": "The first asteroid discovered to have two moons of its own, which were named Romulus and Remus.",
-    "discoveredYear": 1866
+    "discoveredYear": 1866,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/87_Sylvia_VLT_%282021%29%2C_deconvolved.pdf/page1-120px-87_Sylvia_VLT_%282021%29%2C_deconvolved.pdf.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "kleopatra",
@@ -5487,7 +5520,8 @@
     "orbitalPeriodDays": 1706,
     "difficulty": 5,
     "description": "A metal rich asteroid shaped like a dog bone, with two small moons circling its elongated body.",
-    "discoveredYear": 1880
+    "discoveredYear": 1880,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/216_Kleopatra_VLT_%282021%29%2C_deconvolved.pdf/page1-120px-216_Kleopatra_VLT_%282021%29%2C_deconvolved.pdf.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "mathilde",
@@ -5503,7 +5537,8 @@
     "orbitalPeriodDays": 1572,
     "difficulty": 5,
     "description": "A very dark, extremely porous asteroid photographed by the NEAR Shoemaker spacecraft in 1997, pocked by craters nearly as wide as itself.",
-    "discoveredYear": 1885
+    "discoveredYear": 1885,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/253_Mathilde_NASA_crop.png/330px-253_Mathilde_NASA_crop.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "hektor",
@@ -5519,7 +5554,8 @@
     "orbitalPeriodDays": 4381,
     "difficulty": 5,
     "description": "The largest of the Jupiter trojan asteroids, a reddish two lobed body that also has a small moon.",
-    "discoveredYear": 1907
+    "discoveredYear": 1907,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Hektor_%26_Skamandrios_2006_Jul_16.PNG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
   },
   {
     "id": "gaspra",
@@ -5535,7 +5571,8 @@
     "orbitalPeriodDays": 1200,
     "difficulty": 5,
     "description": "The first asteroid ever seen up close, imaged by the Galileo spacecraft during its 1991 flyby on the way to Jupiter.",
-    "discoveredYear": 1916
+    "discoveredYear": 1916,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/951_Gaspra.jpg/330px-951_Gaspra.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "phaethon",
@@ -5551,7 +5588,8 @@
     "orbitalPeriodDays": 523.5,
     "difficulty": 4,
     "description": "An asteroid that behaves like a comet, shedding debris near the Sun and supplying the material for the annual Geminid meteor shower.",
-    "discoveredYear": 1983
+    "discoveredYear": 1983,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2e/PIA22185.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
   },
   {
     "id": "churyumov_gerasimenko",
@@ -5567,7 +5605,8 @@
     "orbitalPeriodDays": 2353,
     "difficulty": 4,
     "description": "The rubber duck shaped comet orbited by the Rosetta spacecraft, which dropped the Philae lander onto its surface in 2014.",
-    "discoveredYear": 1969
+    "discoveredYear": 1969,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Comet_67P_True_color.jpg/330px-Comet_67P_True_color.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "tempel_1",
@@ -5583,7 +5622,8 @@
     "orbitalPeriodDays": 2038,
     "difficulty": 5,
     "description": "Struck deliberately by a NASA impactor in 2005 so astronomers could study the material blasted out from beneath its crust.",
-    "discoveredYear": 1867
+    "discoveredYear": 1867,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/PIA02142_Tempel_1_bottom_sharped.jpg/330px-PIA02142_Tempel_1_bottom_sharped.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "wild_2",
@@ -5599,7 +5639,8 @@
     "orbitalPeriodDays": 2341,
     "difficulty": 5,
     "description": "The Stardust spacecraft flew through its coma in 2004 and returned the first samples of cometary dust to Earth.",
-    "discoveredYear": 1978
+    "discoveredYear": 1978,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Wild2_3.jpg/330px-Wild2_3.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "borrelly",
@@ -5615,7 +5656,8 @@
     "orbitalPeriodDays": 2502,
     "difficulty": 5,
     "description": "A bowling pin shaped comet photographed at close range by the Deep Space 1 probe in 2001.",
-    "discoveredYear": 1904
+    "discoveredYear": 1904,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Comet_Borrelly_Nucleus.jpg/330px-Comet_Borrelly_Nucleus.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "bellatrix",
@@ -5675,7 +5717,8 @@
     "difficulty": 4,
     "description": "The nearest red giant to the Sun, marking the top of the Southern Cross and standing out for its orange colour beside its blue neighbours.",
     "redshift": 0,
-    "apparentMagnitude": 1.64
+    "apparentMagnitude": 1.64,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Gacrux.jpg/330px-Gacrux.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "algol",
@@ -5735,7 +5778,8 @@
     "difficulty": 3,
     "description": "A faint red dwarf that is the fourth-nearest star to the Sun and races across the sky faster than any other known star.",
     "redshift": 0,
-    "apparentMagnitude": 9.5
+    "apparentMagnitude": 9.5,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Barnardstar2006.jpg/330px-Barnardstar2006.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "tau_ceti",
@@ -5795,7 +5839,8 @@
     "difficulty": 4,
     "description": "A red hypergiant among the largest stars known, shedding so much gas that its own dust dims the view of it from Earth.",
     "redshift": 0,
-    "apparentMagnitude": 7.95
+    "apparentMagnitude": 7.95,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/VY_Canis_Majoris%2C_Rutherford_Observatory%2C_07_September_2014.jpeg/330px-VY_Canis_Majoris%2C_Rutherford_Observatory%2C_07_September_2014.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "beehive_cluster",
@@ -5810,7 +5855,8 @@
     "discoveredYear": 150,
     "difficulty": 3,
     "description": "One of the nearest open clusters to the Sun, seen by the naked eye as a hazy patch in Cancer and resolved into dozens of stars by Galileo in 1609.",
-    "redshift": 0
+    "redshift": 0,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/M44-Star-Cluster.png/330px-M44-Star-Cluster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "m7",
@@ -5825,7 +5871,8 @@
     "discoveredYear": 130,
     "difficulty": 3,
     "description": "A bright naked-eye cluster in the tail of Scorpius, recorded by Ptolemy in AD 130 as a nebulous patch following the scorpion's sting.",
-    "redshift": 0
+    "redshift": 0,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/The_star_cluster_Messier_7.jpg/330px-The_star_cluster_Messier_7.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "m67",
@@ -5840,7 +5887,8 @@
     "discoveredYear": 1779,
     "difficulty": 5,
     "description": "One of the oldest open clusters known, holding more than a hundred Sun-like stars that have stayed bound together for billions of years.",
-    "redshift": 0
+    "redshift": 0,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/M67-Star-Cluster.png/330px-M67-Star-Cluster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "m4",
@@ -5855,7 +5903,8 @@
     "discoveredYear": 1745,
     "difficulty": 4,
     "description": "The nearest globular cluster to the Sun, loosely concentrated enough that even a small telescope resolves its individual stars.",
-    "redshift": 0
+    "redshift": 0,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Globular_star_cluster_Messier_4.jpg/330px-Globular_star_cluster_Messier_4.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "m22",
@@ -5870,7 +5919,8 @@
     "discoveredYear": 1665,
     "difficulty": 4,
     "description": "One of the brightest globular clusters in the sky and one of only a few known to contain a planetary nebula.",
-    "redshift": 0
+    "redshift": 0,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/The_crammed_centre_of_Messier_22.jpg/330px-The_crammed_centre_of_Messier_22.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   },
   {
     "id": "m15",
@@ -5885,6 +5935,7 @@
     "discoveredYear": 1746,
     "difficulty": 5,
     "description": "One of the densest globular clusters in the Milky Way, whose core has collapsed into an extremely tight concentration of stars.",
-    "redshift": 0
+    "redshift": 0,
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/M15_Globular_Cluster_from_the_Mount_Lemmon_SkyCenter_Schulman_Telescope_courtesy_Adam_Block.jpg/330px-M15_Globular_Cluster_from_the_Mount_Lemmon_SkyCenter_Schulman_Telescope_courtesy_Adam_Block.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
   }
 ]
