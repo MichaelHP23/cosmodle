@@ -54,8 +54,13 @@ export function formatMassKg(v: number): string {
 
 export function formatGravity(v: number): string {
   // Derived surface gravities span from ~1e-10 (a galaxy's outskirts) to ~1e12 (an event horizon),
-  // so keep small values in scientific notation rather than rounding them to a meaningless 0.
-  if (v !== 0 && Math.abs(v) < 0.01) return `${v.toExponential(2)} m/s²`
+  // so keep small values in scientific notation rather than rounding them to a meaningless 0. Written
+  // the same way mass is: "4.85e-4" beside "2.20 × 10¹⁴" in the same column reads as two different
+  // kinds of number rather than two sizes of the same one.
+  if (v !== 0 && Math.abs(v) < 0.01) {
+    const [mantissa, exponent] = v.toExponential(2).split("e")
+    return `${mantissa} × 10${toSuperscript(Number(exponent))} m/s²`
+  }
   return `${group(Number(v.toPrecision(3)))} m/s²`
 }
 
