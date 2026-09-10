@@ -40,7 +40,7 @@ describe("deriveKnowledge", () => {
     const guesses = [byName("Titan"), byName("Triton"), byName("Miranda")].filter(Boolean)
     const row = knowledgeFor(guesses)("parentBodyId")
     if (guesses.length < 3) return
-    expect(row.display).toMatch(/^not .+, .+ \+\d+ more$/)
+    expect(row.display).toMatch(/^not .+ or .+ \+\d+ more$/)
   })
 
   it("turns a guess that was too small into a lower bound", () => {

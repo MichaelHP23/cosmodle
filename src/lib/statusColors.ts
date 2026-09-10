@@ -11,3 +11,15 @@ export const ORB_COLORS: Record<ComparisonStatus, string> = {
   incorrect: "#c17287",
   not_applicable: "#d8cdb6",
 }
+
+// The summary row of a collapsed guess, where the four hues above turned a list of guesses into
+// confetti. Three steps of one warm scale instead: it matched, it was close, it was neither. Which
+// direction a miss went is a detail, and details belong in the guess you opened.
+export const MARK_TONES: Record<ComparisonStatus, string> = {
+  correct: "#d99a2b",
+  close: "#cbb489",
+  higher: "#e3dccd",
+  lower: "#e3dccd",
+  incorrect: "#e3dccd",
+  not_applicable: "#eee8dc",
+}
