@@ -24,7 +24,6 @@ import { Footer } from "./Footer"
 import { HowToPlayModal } from "./HowToPlayModal"
 import { GlobalStatsModal } from "./GlobalStatsModal"
 import { ArchiveList } from "./ArchiveList"
-import { HintPanel } from "./HintPanel"
 import { GameInfo } from "./GameInfo"
 import { AdSlot } from "./AdSlot"
 
@@ -267,49 +266,42 @@ export function GameBoard() {
               revealed={gameOver ? answer : null}
               status={heroStatus}
             />
-            {!gameOver && (
-              <>
-                <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />
-                <div className="mt-2.5">
-                  <HintPanel
-                    answer={answer}
-                    revealedEntries={revealedEntries}
-                    hintsLeft={hintsLeft}
-                    allRevealed={allRevealed}
-                    onUseHint={handleUseHint}
-                  />
-                </div>
-              </>
-            )}
+            {!gameOver && <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />}
 
-            <div className="mb-2 flex items-baseline justify-between gap-2 px-0.5">
-              <span className="text-xs font-bold text-[#2c2742]">
+            {/* The hint control sits on the panel heading because that is what it acts on: spending a
+                hint fills in one of these rows. It used to sit above with a chip repeating the value,
+                which said the same thing twice. */}
+            <div className="mb-1 mt-6 flex items-baseline justify-between gap-3 px-0.5">
+              <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-[#8b8598]">
                 {gameOver ? answer.name : "What you know"}
               </span>
-              <span className="text-[11px] text-[#8a8399]">
-                {gameOver
-                  ? "today's stats"
-                  : guessIds.length === 0
-                    ? "every guess narrows these down"
-                    : `${guessIds.length} ${guessIds.length === 1 ? "guess" : "guesses"} in`}
-              </span>
+              {!gameOver && (
+                <button
+                  className="text-[12.5px] font-semibold text-[#d99a2b] disabled:cursor-not-allowed disabled:text-[#c4bdb0]"
+                  onClick={handleUseHint}
+                  disabled={hintsLeft <= 0}
+                >
+                  {allRevealed ? "All hints revealed" : `Reveal a hint · ${hintsLeft}`}
+                </button>
+              )}
             </div>
             <KnowledgePanel knowledge={knowledge} />
 
             {guesses.length > 0 && (
-              <div className="mt-4">
-                <div className="mb-2 flex items-baseline justify-between gap-2 px-0.5">
-                  <span className="text-xs font-bold text-[#2c2742]">Your guesses</span>
-                  <span className="text-[11px] text-[#8a8399]">tap one to open it</span>
+              <>
+                <div className="mb-1 mt-7 px-0.5">
+                  <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-[#8b8598]">
+                    Your guesses
+                  </span>
                 </div>
                 <GuessList profile={profile} guesses={guesses} answer={answer} dataset={typedDataset} />
-              </div>
+              </>
             )}
 
             {!gameOver && (
-              <div className="mt-3 text-center">
+              <div className="mt-7 text-right">
                 {confirmingGiveUp ? (
-                  <span className="flex flex-wrap items-center justify-center gap-2 text-xs">
+                  <span className="flex flex-wrap items-center justify-end gap-2 text-xs">
                     <span className="text-[#b3405a]">
                       {mode === "daily" ? "This resets your streak. Sure?" : "Reveal the answer?"}
                     </span>
@@ -328,7 +320,7 @@ export function GameBoard() {
                   </span>
                 ) : (
                   <button
-                    className="text-xs font-semibold text-[#8a8399] hover:text-[#b3405a]"
+                    className="text-[13px] text-[#8b8598] hover:text-[#b3405a]"
                     onClick={() => setConfirmingGiveUp(true)}
                   >
                     I give up
