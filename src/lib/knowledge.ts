@@ -72,7 +72,7 @@ function describeExact(property: string, observations: Observation[]): { state: 
   }
   if (ruledOut.length === 0) return { state: "unknown", display: UNKNOWN_DISPLAY }
 
-  const shown = ruledOut.slice(0, MAX_EXCLUSIONS_SHOWN).join(", ")
+  const shown = ruledOut.slice(0, MAX_EXCLUSIONS_SHOWN).join(" or ")
   const rest = ruledOut.length - MAX_EXCLUSIONS_SHOWN
   return { state: "narrowed", display: rest > 0 ? `not ${shown} +${rest} more` : `not ${shown}` }
 }

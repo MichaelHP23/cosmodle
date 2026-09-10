@@ -25,6 +25,8 @@ describe("formatting", () => {
   })
   it("formats gravity", () => {
     expect(formatGravity(9.81)).toBe("9.81 m/s²")
+    // Tiny derived gravities use the same superscript form as mass, not a stray "4.85e-4".
+    expect(formatGravity(4.85e-4)).toBe("4.85 × 10⁻⁴ m/s²")
   })
   it("writes a mass exponent as a superscript rather than a caret", () => {
     expect(formatMassKg(1.4819e23)).toBe("1.48 × 10²³ kg")
@@ -87,7 +89,9 @@ describe("formatPropertyRange", () => {
   it("brackets gravity, keeping tiny values in scientific notation", () => {
     // The ² in "m/s²" is a unit, not an exponent, so the range must still hoist it out as the suffix.
     expect(formatPropertyRange("gravityMs2", 9.81)).toBe("1 - 10 m/s²")
-    expect(formatPropertyRange("gravityMs2", 3.4e-10)).toBe("1.00e-10 - 1.00e-9 m/s²")
+    // Both endpoints of a decade bracket are exact powers of ten, so the repeated "1.00 ×" is dropped
+    // and the exponents carry the range, the same way a mass bracket reads.
+    expect(formatPropertyRange("gravityMs2", 3.4e-10)).toBe("10⁻¹⁰ - 10⁻⁹ m/s²")
   })
 
   it("brackets a temperature in Celsius, since Celsius is what the player sees", () => {

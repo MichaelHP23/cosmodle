@@ -4,7 +4,7 @@ import type { ComparisonStatus, ProfileEntry } from "../types/game"
 import { compareProperty } from "../lib/comparison"
 import { getComparableValue } from "../lib/objectProfiles"
 import { formatPropertyValue } from "../lib/formatting"
-import { ORB_COLORS } from "../lib/statusColors"
+import { MARK_TONES } from "../lib/statusColors"
 import { StatusOrb } from "./StatusOrb"
 
 type GuessRow = {
@@ -49,43 +49,40 @@ export function GuessList({
       {rows.map(({ guess, cells }) => {
         const open = openId === guess.id
         return (
-          <div
-            key={guess.id}
-            className={`mb-1.5 rounded-xl border bg-[#fffdf7] ${open ? "border-[#ded2b6]" : "border-[#eae0cb]"}`}
-          >
+          <div key={guess.id} className="border-b border-[#ece2cd] last:border-b-0">
             <button
-              className="flex w-full items-center justify-between gap-2 px-3 py-2 text-left"
+              className="flex w-full items-center justify-between gap-3 px-0.5 py-3 text-left"
               onClick={() => setOpenId(open ? null : guess.id)}
               aria-expanded={open}
             >
-              <span className="min-w-0 truncate text-[13px] font-semibold text-[#2c2742]">
+              <span className="min-w-0 truncate text-[14.5px] font-semibold text-[#2f2b40]">
                 {guess.name}
-                <span className="ml-1.5 text-[10.5px] font-normal text-[#8a8399]">
+                <span className="ml-[7px] text-[12.5px] font-normal text-[#8b8598]">
                   {guess.category.replace(/_/g, " ")}
                 </span>
               </span>
-              <span className="flex shrink-0 gap-1" aria-hidden="true">
+              <span className="flex shrink-0 gap-[5px]" aria-hidden="true">
                 {cells.map(cell => (
                   <span
                     key={cell.entry.property}
-                    className="h-[7.5px] w-[7.5px] rounded-full"
-                    style={{ background: ORB_COLORS[cell.status] }}
+                    className="h-[7px] w-[7px] rounded-full"
+                    style={{ background: MARK_TONES[cell.status] }}
                   />
                 ))}
               </span>
             </button>
 
             {open && (
-              <div className="grid grid-cols-4 gap-x-1 gap-y-3 px-2 pb-3 pt-1">
+              <div className="grid grid-cols-4 gap-x-1 gap-y-3 px-1 pb-4 pt-1">
                 {cells.map(cell => (
                   <div key={cell.entry.property} className="flex flex-col items-center gap-1">
                     {/* Fixed height for the label: "Average Temperature" wraps to two lines where
                         "Mass" does not, and without it the orbs in a row sit at different heights. */}
-                    <span className="flex h-[22px] items-center text-center text-[9.5px] leading-tight text-[#8a8399]">
+                    <span className="flex h-[22px] items-center text-center text-[9.5px] leading-tight text-[#8b8598]">
                       {cell.entry.label}
                     </span>
                     <StatusOrb status={cell.status} size={26} title={`${cell.entry.label}: ${cell.value}`} />
-                    <span className="text-center text-[10px] font-semibold leading-tight text-[#2c2742]">
+                    <span className="text-center text-[10px] font-semibold leading-tight text-[#2f2b40]">
                       {cell.value}
                     </span>
                   </div>

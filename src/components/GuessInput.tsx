@@ -51,7 +51,7 @@ export function GuessInput({
   return (
     <div className="relative">
       <input
-        className="w-full rounded-xl border border-[#eae0cb] bg-[#fffdf7] px-3.5 py-3 text-sm text-[#2c2742] shadow-sm placeholder-[#a8a1b5] focus:border-[#e8a33d] focus:outline-none"
+        className="w-full rounded-xl border border-[#ece2cd] bg-[#fffdf7] px-3.5 py-3.5 text-[15px] text-[#2f2b40] placeholder-[#a9a2b3] focus:border-[#d99a2b] focus:outline-none"
         placeholder="Guess a celestial object"
         value={query}
         onChange={e => handleChange(e.target.value)}
