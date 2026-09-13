@@ -12,6 +12,17 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Runs before first paint so a player who wants dark never sees a frame of cream. Kept in sync
+         with useTheme.ts, which owns the same key and the same fallback to the system setting. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("cosmodle:theme")
+          var dark = stored === "dark" || (stored !== "light" && matchMedia("(prefers-color-scheme: dark)").matches)
+          if (dark) document.documentElement.classList.add("dark")
+        } catch (e) {}
+      })()
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

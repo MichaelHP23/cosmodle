@@ -18,11 +18,11 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
         if (e.target === e.currentTarget) onClose()
       }}
     >
-      <div className="mx-auto my-8 w-full max-w-md rounded-xl border-2 border-[#4d4d4d] bg-[#f7f7f7] p-6">
+      <div className="mx-auto my-8 w-full max-w-md rounded-xl border-2 border-[var(--line-strong)] bg-[var(--surface-raised)] p-6">
         <div className="mb-4 flex items-start justify-between">
-          <h2 className="text-xl font-bold text-[#1a1a1a]">How to Play</h2>
+          <h2 className="text-xl font-bold text-[var(--ink-strong)]">How to Play</h2>
           <button
-            className="text-[#8a8a8a] hover:text-[#4d4d4d]"
+            className="text-[var(--muted-2)] hover:text-[var(--ink-2)]"
             onClick={onClose}
             aria-label="Close"
           >
@@ -30,35 +30,35 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        <p className="mb-3 text-sm text-[#4d4d4d]">
+        <p className="mb-3 text-sm text-[var(--ink-2)]">
           There's a mystery celestial object: a planet, moon, star, galaxy, whatever the universe throws
           at you. Find it in {MAX_GUESSES} guesses or fewer.
         </p>
 
-        <ol className="mb-4 list-decimal space-y-1.5 pl-5 text-sm text-[#4d4d4d]">
+        <ol className="mb-4 list-decimal space-y-1.5 pl-5 text-sm text-[var(--ink-2)]">
           <li>Search for and select any celestial object as your guess.</li>
           <li>Your guess is compared to the mystery object property-by-property: distance, size, temperature, moons, whatever applies to its category, and each one gets its own marker.</li>
           <li>Read the markers (legend below) to narrow down what the answer could be, then guess again.</li>
           <li>Guess the exact object, or run out of guesses and see the answer revealed.</li>
         </ol>
 
-        <div className="mb-4 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3">
-          <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Legend</div>
+        <div className="mb-4 rounded-lg border border-[var(--hair-2)] bg-[var(--bg)] p-3">
+          <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[var(--ink-2)]">Legend</div>
           <div className="space-y-2.5">
             {LEGEND.map(({ status, label, detail }) => (
-              <div key={status} className="flex items-start gap-3 text-sm text-[#1a1a1a]">
+              <div key={status} className="flex items-start gap-3 text-sm text-[var(--ink-strong)]">
                 <StatusOrb status={status} title={label} />
                 <div>
                   <div className="font-semibold">{label}</div>
-                  <div className="text-xs text-[#4d4d4d]">{detail}</div>
+                  <div className="text-xs text-[var(--ink-2)]">{detail}</div>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="mb-4 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3 text-sm text-[#4d4d4d]">
-          <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Hints</div>
+        <div className="mb-4 rounded-lg border border-[var(--hair-2)] bg-[var(--bg)] p-3 text-sm text-[var(--ink-2)]">
+          <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[var(--ink-2)]">Hints</div>
           <p>
             Your first hint is free and shows up before you guess anything. After that the Hint button
             reveals another of the mystery object's properties, starting with whichever one narrows the
@@ -70,8 +70,8 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
           </p>
         </div>
 
-        <div className="mb-4 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3 text-sm text-[#4d4d4d]">
-          <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Dates</div>
+        <div className="mb-4 rounded-lg border border-[var(--hair-2)] bg-[var(--bg)] p-3 text-sm text-[var(--ink-2)]">
+          <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[var(--ink-2)]">Dates</div>
           <p>
             Telescopic objects show the year they were discovered. Stars and constellations you can see with
             the naked eye were never discovered, so they show the earliest catalogue that records them
@@ -81,17 +81,17 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
           </p>
         </div>
 
-        <div className="rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3 text-sm text-[#4d4d4d]">
-          <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Modes</div>
+        <div className="rounded-lg border border-[var(--hair-2)] bg-[var(--bg)] p-3 text-sm text-[var(--ink-2)]">
+          <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[var(--ink-2)]">Modes</div>
           <ul className="space-y-1.5">
-            <li><span className="font-semibold text-[#1a1a1a]">Daily:</span> one puzzle a day, same for everyone. Wins/losses count toward your Played, Win %, and Streak stats.</li>
-            <li><span className="font-semibold text-[#1a1a1a]">Practice:</span> unlimited random rounds, anytime. Doesn't affect your stats.</li>
-            <li><span className="font-semibold text-[#1a1a1a]">Archive:</span> replay any past daily puzzle you missed.</li>
+            <li><span className="font-semibold text-[var(--ink-strong)]">Daily:</span> one puzzle a day, same for everyone. Wins/losses count toward your Played, Win %, and Streak stats.</li>
+            <li><span className="font-semibold text-[var(--ink-strong)]">Practice:</span> unlimited random rounds, anytime. Doesn't affect your stats.</li>
+            <li><span className="font-semibold text-[var(--ink-strong)]">Archive:</span> replay any past daily puzzle you missed.</li>
           </ul>
         </div>
 
-        <div className="mt-4 rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3 text-sm text-[#4d4d4d]">
-          <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">Giving up</div>
+        <div className="mt-4 rounded-lg border border-[var(--hair-2)] bg-[var(--bg)] p-3 text-sm text-[var(--ink-2)]">
+          <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[var(--ink-2)]">Giving up</div>
           <p>
             I Give Up ends the day and shows you the answer. On the daily puzzle it resets your streak to
             zero, but that is the whole cost: it is not recorded as a loss, so your Played count and Win %
@@ -100,7 +100,7 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
         </div>
 
         <button
-          className="mt-4 w-full rounded-lg border-2 border-[#00998a] bg-[#00b99b] px-4 py-2 font-semibold text-white transition-colors hover:bg-[#00a68a]"
+          className="mt-4 w-full rounded-lg border-2 border-[var(--teal)] bg-[var(--teal-bright)] px-4 py-2 font-semibold text-white transition-colors hover:bg-[var(--teal-deep)]"
           onClick={onClose}
         >
           Got it

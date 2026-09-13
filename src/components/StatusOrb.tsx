@@ -22,12 +22,12 @@ export function StatusOrb({ status, size = 30, title }: { status: ComparisonStat
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" role="img" aria-label={label}>
       <title>{label}</title>
-      {status === "correct" && <circle cx="20" cy="20" r="13" fill="#e8a33d" />}
+      {status === "correct" && <circle cx="20" cy="20" r="13" fill="var(--orb-correct)" />}
 
       {status === "close" && (
         <>
-          <circle cx="20" cy="20" r="13" fill="#fffdf7" stroke="#2f9e8f" strokeWidth="1.5" />
-          <path d="M20 7 A13 13 0 0 0 20 33 Z" fill="#2f9e8f" />
+          <circle cx="20" cy="20" r="13" fill="var(--surface)" stroke="var(--orb-close)" strokeWidth="1.5" />
+          <path d="M20 7 A13 13 0 0 0 20 33 Z" fill="var(--orb-close)" />
         </>
       )}
 
@@ -44,11 +44,11 @@ export function StatusOrb({ status, size = 30, title }: { status: ComparisonStat
             rx="17"
             ry="4.6"
             fill="none"
-            stroke="#7c74c9"
+            stroke="var(--orb-direction)"
             strokeWidth="1.4"
             transform={`rotate(${status === "higher" ? -18 : 18} 20 20)`}
           />
-          <circle cx="20" cy="20" r="11.6" fill="#7c74c9" />
+          <circle cx="20" cy="20" r="11.6" fill="var(--orb-direction)" />
           {/* The near side of the ring, drawn over the planet so it reads as a ring rather than a halo. */}
           <g clipPath={`url(#front-${id})`}>
             <ellipse
@@ -57,7 +57,7 @@ export function StatusOrb({ status, size = 30, title }: { status: ComparisonStat
               rx="17"
               ry="4.6"
               fill="none"
-              stroke="#7c74c9"
+              stroke="var(--orb-direction)"
               strokeWidth="1.4"
               transform={`rotate(${status === "higher" ? -18 : 18} 20 20)`}
             />
@@ -65,7 +65,7 @@ export function StatusOrb({ status, size = 30, title }: { status: ComparisonStat
           <path
             d={status === "higher" ? "M16 21.2 L20 17.2 L24 21.2" : "M16 18.8 L20 22.8 L24 18.8"}
             fill="none"
-            stroke="#fffdf7"
+            stroke="var(--surface)"
             strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -75,13 +75,13 @@ export function StatusOrb({ status, size = 30, title }: { status: ComparisonStat
 
       {status === "incorrect" && (
         <>
-          <circle cx="20" cy="20" r="13" fill="#fffdf7" stroke="#c17287" strokeWidth="1.5" />
-          <circle cx="20" cy="20" r="3" fill="#c17287" />
+          <circle cx="20" cy="20" r="13" fill="var(--surface)" stroke="var(--orb-wrong)" strokeWidth="1.5" />
+          <circle cx="20" cy="20" r="3" fill="var(--orb-wrong)" />
         </>
       )}
 
       {status === "not_applicable" && (
-        <circle cx="20" cy="20" r="13" fill="none" stroke="#d8cdb6" strokeWidth="1.4" strokeDasharray="2.5 3" />
+        <circle cx="20" cy="20" r="13" fill="none" stroke="var(--orb-na)" strokeWidth="1.4" strokeDasharray="2.5 3" />
       )}
     </svg>
   )
