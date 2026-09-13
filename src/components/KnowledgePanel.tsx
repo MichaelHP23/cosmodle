@@ -1,17 +1,51 @@
+import { useEffect, useRef, useState } from "react"
 import type { PropertyKnowledge } from "../lib/knowledge"
+
+// How long the arriving row stays lit. Long enough to catch the eye if you were looking at the button
+// you just pressed rather than at the row six lines below it.
+const FLASH_MS = 1600
 
 // No card, no border, no coloured pip per row. Every row used to carry a dot saying whether the value
 // was pinned or merely bounded, which the wording already says — "Comet" against "under 11 km" — so
 // the dots were thirty-odd marks of pure decoration competing with the numbers they sat next to.
 export function KnowledgePanel({ knowledge }: { knowledge: PropertyKnowledge[] }) {
+  const [flashing, setFlashing] = useState<string[]>([])
+  // Rows already hinted when this mounted are not new: reloading mid-game should not relight every
+  // hint the player spent earlier.
+  const seen = useRef<Set<string> | null>(null)
+
+  useEffect(() => {
+    const hinted = knowledge.filter(row => row.fromHint).map(row => row.property)
+    if (seen.current === null) {
+      seen.current = new Set(hinted)
+      return
+    }
+    const landed = hinted.filter(property => !seen.current!.has(property))
+    for (const property of hinted) seen.current.add(property)
+    if (landed.length === 0) return
+
+    setFlashing(landed)
+    const timer = setTimeout(() => setFlashing([]), FLASH_MS)
+    return () => clearTimeout(timer)
+  }, [knowledge])
+
   return (
     <div>
       {knowledge.map(row => (
         <div
           key={row.property}
-          className="flex items-baseline justify-between gap-4 border-b border-[#ece2cd] px-0.5 py-3 last:border-b-0"
+          className={`flex items-baseline justify-between gap-4 border-b border-[#ece2cd] px-2 py-3 last:border-b-0 ${
+            row.fromHint ? "rounded-md bg-[#e8a33d]/[0.09]" : ""
+          } ${flashing.includes(row.property) ? "hint-landed" : ""}`}
         >
-          <span className="text-sm text-[#8b8598]">{row.label}</span>
+          <span className="flex items-baseline gap-1.5 text-sm text-[#8b8598]">
+            {row.label}
+            {/* A word as well as a colour: which rows were bought rather than deduced should not be a
+                thing only a player who can separate amber from cream is able to read. */}
+            {row.fromHint && (
+              <span className="text-[9px] font-bold uppercase tracking-wide text-[#b07c1e]">hint</span>
+            )}
+          </span>
           <span
             className={`text-right text-sm ${
               row.state === "unknown" ? "text-[#c4bdb0]" : "font-semibold text-[#2f2b40]"

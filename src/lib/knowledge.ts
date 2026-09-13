@@ -13,6 +13,10 @@ export type PropertyKnowledge = {
   label: string
   state: KnowledgeState
   display: string
+  // Whether a hint put this row here rather than the player's own guesses. Once hints started filling
+  // the panel in they became invisible as hints: a row simply appeared, and a player who was not
+  // watching that spot had no way to tell a fact they spent a hint on from one they had deduced.
+  fromHint: boolean
 }
 
 const UNKNOWN_DISPLAY = "—"
@@ -103,6 +107,7 @@ export function deriveKnowledge(
         label: entry.label,
         state: "locked" as KnowledgeState,
         display: formatPropertyValue(entry.property, answerValue),
+        fromHint: true,
       }
     }
 
@@ -110,7 +115,7 @@ export function deriveKnowledge(
       entry.kind === "exact"
         ? describeExact(entry.property, observations)
         : describeNumeric(entry.property, observations, hinted ? propertyBracket(entry.property, answerValue) : null)
-    return { property: entry.property as string, label: entry.label, ...resolved }
+    return { property: entry.property as string, label: entry.label, ...resolved, fromHint: hinted }
   })
 
   // Once the parent body is known, "Distance from Parent" can name it instead — the row says more for
@@ -130,11 +135,14 @@ export function revealKnowledge(
   answer: CelestialObject,
   dataset: CelestialObject[]
 ): PropertyKnowledge[] {
+  // Nothing is marked as hinted once the game is over: every row is the answer's own value by then,
+  // and flagging some of them would be marking how the player got there, not what is true.
   const knowledge = profile.map(entry => ({
     property: entry.property as string,
     label: entry.label,
     state: "locked" as KnowledgeState,
     display: formatPropertyValue(entry.property, getComparableValue(answer, entry.property, dataset)),
+    fromHint: false,
   }))
 
   const parent = knowledge.find(k => k.property === "parentBodyId")
