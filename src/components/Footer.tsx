@@ -7,22 +7,22 @@ const PLAYLIN_BADGE_HEIGHT = 39
 
 export function Footer({ onGlobalStatsClick }: { onGlobalStatsClick: () => void }) {
   return (
-    <footer className="mt-10 flex flex-wrap items-center justify-center gap-4 border-t border-[#e0e0e0] pt-4 text-sm text-[#4d4d4d]">
+    <footer className="mt-10 flex flex-wrap items-center justify-center gap-4 border-t border-[var(--hair-2)] pt-4 text-sm text-[var(--ink-2)]">
       <a
         href="https://michael-pink.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="hover:text-[#00998a] hover:underline"
+        className="hover:text-[var(--teal)] hover:underline"
       >
         michael-pink.com
       </a>
-      <button className="hover:text-[#00998a] hover:underline" onClick={onGlobalStatsClick}>
+      <button className="hover:text-[var(--teal)] hover:underline" onClick={onGlobalStatsClick}>
         Global Stats
       </button>
-      <a href="/about" className="hover:text-[#00998a] hover:underline">
+      <a href="/about" className="hover:text-[var(--teal)] hover:underline">
         About
       </a>
-      <a href="/privacy" className="hover:text-[#00998a] hover:underline">
+      <a href="/privacy" className="hover:text-[var(--teal)] hover:underline">
         Privacy
       </a>
       <KofiWidget />

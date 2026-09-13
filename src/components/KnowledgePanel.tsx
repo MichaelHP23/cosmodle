@@ -34,21 +34,21 @@ export function KnowledgePanel({ knowledge }: { knowledge: PropertyKnowledge[] }
       {knowledge.map(row => (
         <div
           key={row.property}
-          className={`flex items-baseline justify-between gap-4 border-b border-[#ece2cd] px-2 py-3 last:border-b-0 ${
-            row.fromHint ? "rounded-md bg-[#e8a33d]/[0.09]" : ""
+          className={`flex items-baseline justify-between gap-4 border-b border-[var(--hair)] px-2 py-3 last:border-b-0 ${
+            row.fromHint ? "rounded-md bg-[var(--amber-bright)]/[0.09]" : ""
           } ${flashing.includes(row.property) ? "hint-landed" : ""}`}
         >
-          <span className="flex items-baseline gap-1.5 text-sm text-[#8b8598]">
+          <span className="flex items-baseline gap-1.5 text-sm text-[var(--muted)]">
             {row.label}
             {/* A word as well as a colour: which rows were bought rather than deduced should not be a
                 thing only a player who can separate amber from cream is able to read. */}
             {row.fromHint && (
-              <span className="text-[9px] font-bold uppercase tracking-wide text-[#b07c1e]">hint</span>
+              <span className="text-[9px] font-bold uppercase tracking-wide text-[var(--amber-deep)]">hint</span>
             )}
           </span>
           <span
             className={`text-right text-sm ${
-              row.state === "unknown" ? "text-[#c4bdb0]" : "font-semibold text-[#2f2b40]"
+              row.state === "unknown" ? "text-[var(--faint)]" : "font-semibold text-[var(--ink)]"
             }`}
           >
             {row.display}

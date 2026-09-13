@@ -1,9 +1,119 @@
 @import "tailwindcss";
 
+/* Every colour in the app resolves through one of these, so a theme is a change of values rather than
+   a second set of class names scattered through the components. The light values are exactly the
+   hexes that were written inline before, so light mode renders identically. */
+:root {
+  /* cosmic latte: the average color of the universe (Glazebrook & Baldry, 2002) */
+  --bg: #fff8e7;
+  --surface: #fffdf7;
+  --surface-raised: #f7f7f7;
+  --surface-hover: #f0f0f0;
+  --surface-tint: #fdf3e0;
+
+  --ink-strong: #1a1a1a;
+  --ink: #2f2b40;
+  --ink-2: #4d4d4d;
+  --muted: #8b8598;
+  --muted-2: #8a8a8a;
+  --faint: #c4bdb0;
+  --placeholder: #a9a2b3;
+
+  --hair: #ece2cd;
+  --hair-2: #e0e0e0;
+  --line-strong: #4d4d4d;
+
+  --amber: #d99a2b;
+  --amber-bright: #e8a33d;
+  --amber-deep: #b07c1e;
+  --amber-text: #8a6400;
+  --teal: #00998a;
+  --teal-bright: #00b99b;
+  --teal-deep: #00a68a;
+  --rose: #b3405a;
+  --rose-deep: #a02c4e;
+
+  /* The object band, which stays dark in both themes — in light it is the one dark surface, in dark
+     it is a surface lifted just clear of the page. */
+  --band: #241f38;
+  --band-well: #191430;
+  --band-text: #ffffff;
+  --band-sub: #918ab0;
+  --band-body: #cec8e2;
+  --band-hair: rgb(255 255 255 / 0.09);
+  --band-track: rgb(255 255 255 / 0.13);
+
+  --star: rgb(47 43 64 / 0.12);
+
+  /* Comparison indicators. The orb colours read against --surface, which is why the half-disc fill is
+     a token rather than a fixed near-white. */
+  --orb-correct: #e8a33d;
+  --orb-close: #2f9e8f;
+  --orb-direction: #7c74c9;
+  --orb-wrong: #c17287;
+  --orb-na: #d8cdb6;
+  --mark-hit: #d99a2b;
+  --mark-close: #cbb489;
+  --mark-off: #e3dccd;
+  --mark-na: #eee8dc;
+  color-scheme: light;
+}
+
+html.dark {
+  --bg: #0f0c18;
+  --surface: #181327;
+  --surface-raised: #1c1730;
+  --surface-hover: #241d38;
+  --surface-tint: #2a2038;
+
+  --ink-strong: #fbf6ea;
+  --ink: #f0e9db;
+  --ink-2: #ddd5c6;
+  --muted: #9a93ab;
+  --muted-2: #918aa4;
+  --faint: #6b6480;
+  --placeholder: #6b6480;
+
+  --hair: #2a2440;
+  --hair-2: #2a2440;
+  --line-strong: #3a3352;
+
+  --amber: #e8a33d;
+  --amber-bright: #f0b350;
+  --amber-deep: #ffcb7a;
+  --amber-text: #ffcb7a;
+  --teal: #35c9b4;
+  --teal-bright: #35c9b4;
+  --teal-deep: #2aa896;
+  --rose: #e07a92;
+  --rose-deep: #c9566f;
+
+  --band: #1c1730;
+  --band-well: #141026;
+  --band-text: #f0e9db;
+  --band-sub: #9a93ab;
+  --band-body: #cec8e2;
+  --band-hair: rgb(255 255 255 / 0.10);
+  --band-track: rgb(255 255 255 / 0.12);
+
+  /* The flat repeating texture gives way to the real star field in dark. */
+  --star: transparent;
+
+  --orb-correct: #e8a33d;
+  --orb-close: #35c9b4;
+  --orb-direction: #8f87e0;
+  --orb-wrong: #d6798f;
+  --orb-na: #3f3856;
+  --mark-hit: #e8a33d;
+  --mark-close: #97815a;
+  --mark-off: #37314a;
+  --mark-na: #2a2440;
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
-  /* cosmic latte: the average color of the universe (Glazebrook & Baldry, 2002) */
-  background: #fff8e7;
+  background: var(--bg);
 }
 
 /* A hint fills in a row that can be well below the button that bought it, so the row announces itself
@@ -84,13 +194,113 @@ body {
   }
 }
 
+/* ---- the dark theme's night sky ---- */
+
+/* Fixed rather than scrolled, so the board moves across the sky instead of dragging it along. */
+.sky-rich {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Light mode has its own flat speckle texture and no stars at all. */
+html:not(.dark) .sky-rich {
+  display: none;
+}
+
+.sky-rich svg,
+.sky-haze {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* The galactic band the stars also cluster along, kept faint enough that text over it never has to
+   fight it. */
+.sky-haze {
+  background:
+    linear-gradient(
+      102deg,
+      transparent 26%,
+      rgb(198 210 255 / 0.03) 41%,
+      rgb(255 236 206 / 0.04) 50%,
+      rgb(198 210 255 / 0.025) 59%,
+      transparent 74%
+    ),
+    radial-gradient(38% 24% at 68% 22%, rgb(150 170 255 / 0.032), transparent 70%),
+    radial-gradient(30% 20% at 24% 74%, rgb(255 190 150 / 0.022), transparent 70%);
+}
+
+.sky-tw {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes tw-dim {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.32; }
+}
+@keyframes tw-mid {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.54; }
+}
+@keyframes tw-lit {
+  0%, 100% { opacity: 0.26; }
+  50% { opacity: 0.78; }
+}
+
+.sky-shooting {
+  position: absolute;
+  left: 80%;
+  top: 10%;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0;
+  animation: sky-shoot 19s linear infinite;
+}
+
+.sky-shooting::after {
+  content: "";
+  position: absolute;
+  right: 1px;
+  top: 0;
+  width: 64px;
+  height: 1px;
+  background: linear-gradient(to left, rgb(255 255 255 / 0.7), transparent);
+}
+
+@keyframes sky-shoot {
+  0%, 94% { opacity: 0; transform: translate(0, 0); }
+  95% { opacity: 0.85; transform: translate(0, 0); }
+  99.5%, 100% { opacity: 0; transform: translate(-160px, 96px); }
+}
+
+/* A still sky for anyone who has asked the system to calm down. */
+@media (prefers-reduced-motion: reduce) {
+  .sky-tw {
+    animation: none;
+    opacity: 0.5;
+  }
+  .sky-shooting {
+    display: none;
+  }
+}
+
 .starfield {
   background-image:
-    radial-gradient(1px 1px at 20px 30px, rgba(0,0,0,0.12), transparent),
-    radial-gradient(1px 1px at 90px 90px, rgba(0,0,0,0.1), transparent),
-    radial-gradient(1.5px 1.5px at 160px 50px, rgba(0,0,0,0.1), transparent),
-    radial-gradient(1px 1px at 210px 130px, rgba(0,0,0,0.12), transparent),
-    radial-gradient(1.5px 1.5px at 250px 20px, rgba(0,0,0,0.08), transparent);
+    radial-gradient(1px 1px at 20px 30px, var(--star), transparent),
+    radial-gradient(1px 1px at 90px 90px, var(--star), transparent),
+    radial-gradient(1.5px 1.5px at 160px 50px, var(--star), transparent),
+    radial-gradient(1px 1px at 210px 130px, var(--star), transparent),
+    radial-gradient(1.5px 1.5px at 250px 20px, var(--star), transparent);
   background-repeat: repeat;
   background-size: 280px 180px;
 }
