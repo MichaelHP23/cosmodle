@@ -6,8 +6,8 @@ import { MAX_GUESSES } from "../lib/gameConstants"
 // in the markup — crawlers read expandable content normally — while letting the board end quietly.
 export function GameInfo() {
   return (
-    <details className="group mx-auto mt-8 w-full max-w-[728px] border-t border-[#ece2cd] pt-4">
-      <summary className="flex cursor-pointer list-none items-center gap-1.5 text-[13px] text-[#8b8598] hover:text-[#2f2b40] [&::-webkit-details-marker]:hidden">
+    <details className="group mx-auto mt-8 w-full max-w-[728px] border-t border-[var(--hair)] pt-4">
+      <summary className="flex cursor-pointer list-none items-center gap-1.5 text-[13px] text-[var(--muted)] hover:text-[var(--ink)] [&::-webkit-details-marker]:hidden">
         <svg
           className="transition-transform group-open:rotate-90"
           width="10"
@@ -25,7 +25,7 @@ export function GameInfo() {
         About this game
       </summary>
 
-      <div className="mt-3 text-sm leading-relaxed text-[#6b6579]">
+      <div className="mt-3 text-sm leading-relaxed text-[var(--muted)]">
         <p>
           {/* Read from the constant rather than spelled out, so the copy cannot drift away from the rule
               the game actually enforces the way "seven" did. */}
@@ -38,7 +38,7 @@ export function GameInfo() {
         <p className="mt-2">
           The figures behind every guess come from published astronomical catalogues — NASA and JPL for
           planetary and orbital data, SIMBAD for stellar measurements, Wikipedia for the rest — rounded for
-          readability but not invented. The <a className="underline hover:text-[#2f2b40]" href="/about">About
+          readability but not invented. The <a className="underline hover:text-[var(--ink)]" href="/about">About
           page</a> has the full breakdown of where each number comes from and how the daily object is chosen.
         </p>
       </div>

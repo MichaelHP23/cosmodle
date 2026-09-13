@@ -24,7 +24,7 @@ export function ObjectHero({
   const lead = clauses[0]?.text ?? "Today's object"
 
   return (
-    <div className="starfield-dark mb-5 rounded-2xl bg-[#241f38] px-4 pb-3.5 pt-3.5">
+    <div className="starfield-dark mb-5 rounded-2xl bg-[var(--band)] px-4 pb-3.5 pt-3.5">
       <div className="flex items-center gap-3.5">
         {revealed ? (
           // Objects without a photo fall back to a generated portrait built for the light page, and a
@@ -35,7 +35,7 @@ export function ObjectHero({
           </div>
         ) : (
           <div
-            className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-dashed border-[#d99a2b]/45 bg-[#191430] text-[17px] font-bold text-[#d99a2b]"
+            className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-dashed border-[var(--amber)]/45 bg-[var(--band-well)] text-[17px] font-bold text-[var(--amber)]"
             aria-hidden="true"
           >
             ?
@@ -46,17 +46,17 @@ export function ObjectHero({
           <div className="text-[17px] font-semibold leading-tight text-white">
             {revealed ? revealed.name : lead}
           </div>
-          <div className="mt-0.5 text-xs text-[#918ab0]">{status}</div>
+          <div className="mt-0.5 text-xs text-[var(--band-sub)]">{status}</div>
         </div>
       </div>
 
       {revealed?.description && (
-        <p className="mt-3 text-[13px] leading-relaxed text-[#cec8e2]">{revealed.description}</p>
+        <p className="mt-3 text-[13px] leading-relaxed text-[var(--band-body)]">{revealed.description}</p>
       )}
 
       <div className="mt-3.5 h-[3px] overflow-hidden rounded-full bg-white/[0.13]" aria-hidden="true">
         <div
-          className="h-full rounded-full bg-[#d99a2b] transition-all"
+          className="h-full rounded-full bg-[var(--amber)] transition-all"
           style={{ width: `${Math.min(100, (guessCount / maxGuesses) * 100)}%` }}
         />
       </div>
