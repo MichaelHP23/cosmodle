@@ -13,11 +13,13 @@ import { getOrCreatePlayerId } from "../lib/playerId"
 import { postResult, getPlayerStats } from "../lib/api"
 import { deriveKnowledge, revealKnowledge, describeKnowledge } from "../lib/knowledge"
 import { useRevealedHints } from "../lib/useRevealedHints"
+import { useTheme } from "../lib/useTheme"
 import { DailyHeader } from "./DailyHeader"
 import { GuessInput } from "./GuessInput"
 import { GuessList } from "./GuessList"
 import { KnowledgePanel } from "./KnowledgePanel"
 import { ObjectHero } from "./ObjectHero"
+import { StarField } from "./StarField"
 import { ResultModal } from "./ResultModal"
 import { LossModal } from "./LossModal"
 import { Footer } from "./Footer"
@@ -38,6 +40,7 @@ function toDateString(date: Date): string {
 }
 
 export function GameBoard() {
+  const { theme, toggleTheme } = useTheme()
   const [mode, setMode] = useState<GameMode>("daily")
   const today = useMemo(() => toDateString(new Date()), [])
   const dailyAnswer = useMemo(() => getDailyObject(new Date(), typedDataset), [])
@@ -238,15 +241,23 @@ export function GameBoard() {
       : `${MAX_GUESSES - guessIds.length} guesses left`
 
   return (
-    <div className="starfield flex min-h-screen flex-col">
-      <div className="mx-auto flex w-full max-w-[1200px] flex-1 flex-col px-4 py-8">
-        <DailyHeader mode={mode} onModeChange={changeMode} dayNumber={displayDayNumber} onHelpClick={() => setShowHowToPlay(true)} />
+    <div className="starfield relative flex min-h-screen flex-col">
+      <StarField />
+      <div className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-1 flex-col px-4 py-8">
+        <DailyHeader
+          mode={mode}
+          onModeChange={changeMode}
+          dayNumber={displayDayNumber}
+          onHelpClick={() => setShowHowToPlay(true)}
+          theme={theme}
+          onToggleTheme={toggleTheme}
+        />
 
         {mode === "archive" && (
           <div className="mb-4">
             {archiveDayNumber !== null ? (
               <button
-                className="rounded-lg border-2 border-[#4d4d4d] bg-white px-3 py-1 text-sm font-semibold text-[#4d4d4d] hover:bg-[#f0f0f0]"
+                className="rounded-lg border-2 border-[var(--line-strong)] bg-white px-3 py-1 text-sm font-semibold text-[var(--ink-2)] hover:bg-[var(--surface-hover)]"
                 onClick={backToArchiveList}
               >
                 ‹ Back to Archive
@@ -272,12 +283,12 @@ export function GameBoard() {
                 hint fills in one of these rows. It used to sit above with a chip repeating the value,
                 which said the same thing twice. */}
             <div className="mb-1 mt-6 flex items-baseline justify-between gap-3 px-0.5">
-              <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-[#8b8598]">
+              <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-[var(--muted)]">
                 {gameOver ? answer.name : "What you know"}
               </span>
               {!gameOver && (
                 <button
-                  className="text-[12.5px] font-semibold text-[#d99a2b] disabled:cursor-not-allowed disabled:text-[#c4bdb0]"
+                  className="text-[12.5px] font-semibold text-[var(--amber)] disabled:cursor-not-allowed disabled:text-[var(--faint)]"
                   onClick={handleUseHint}
                   disabled={hintsLeft <= 0}
                 >
@@ -290,7 +301,7 @@ export function GameBoard() {
             {guesses.length > 0 && (
               <>
                 <div className="mb-1 mt-7 px-0.5">
-                  <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-[#8b8598]">
+                  <span className="text-[10.5px] font-bold uppercase tracking-[0.1em] text-[var(--muted)]">
                     Your guesses
                   </span>
                 </div>
@@ -302,17 +313,17 @@ export function GameBoard() {
               <div className="mt-7 text-right">
                 {confirmingGiveUp ? (
                   <span className="flex flex-wrap items-center justify-end gap-2 text-xs">
-                    <span className="text-[#b3405a]">
+                    <span className="text-[var(--rose)]">
                       {mode === "daily" ? "This resets your streak. Sure?" : "Reveal the answer?"}
                     </span>
                     <button
-                      className="rounded-lg bg-[#b3405a] px-3 py-1.5 font-semibold text-white hover:bg-[#a02c4e]"
+                      className="rounded-lg bg-[var(--rose)] px-3 py-1.5 font-semibold text-white hover:bg-[var(--rose-deep)]"
                       onClick={handleGiveUp}
                     >
                       Give up
                     </button>
                     <button
-                      className="rounded-lg bg-[#2c2742]/8 px-3 py-1.5 font-semibold text-[#2c2742]"
+                      className="rounded-lg bg-[var(--ink)]/8 px-3 py-1.5 font-semibold text-[var(--ink)]"
                       onClick={() => setConfirmingGiveUp(false)}
                     >
                       Keep playing
@@ -320,7 +331,7 @@ export function GameBoard() {
                   </span>
                 ) : (
                   <button
-                    className="text-[13px] text-[#8b8598] hover:text-[#b3405a]"
+                    className="text-[13px] text-[var(--muted)] hover:text-[var(--rose)]"
                     onClick={() => setConfirmingGiveUp(true)}
                   >
                     I give up
@@ -331,7 +342,7 @@ export function GameBoard() {
             {gameOver && !showResultModal && (
               <div className="mt-4 text-center">
                 <button
-                  className="rounded-xl bg-[#e8a33d] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#d9942f]"
+                  className="rounded-xl bg-[var(--amber-bright)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[var(--amber)]"
                   onClick={() => setShowResultModal(true)}
                 >
                   View result
@@ -362,7 +373,7 @@ export function GameBoard() {
             {mode === "practice" && gameOver && (
               <div className="mt-4 text-center">
                 <button
-                  className="rounded-lg border-2 border-[#00998a] bg-[#00b99b] px-4 py-2 font-semibold text-white hover:bg-[#00a68a]"
+                  className="rounded-lg border-2 border-[var(--teal)] bg-[var(--teal-bright)] px-4 py-2 font-semibold text-white hover:bg-[var(--teal-deep)]"
                   onClick={startNewPractice}
                 >
                   Play Again

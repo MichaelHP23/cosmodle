@@ -49,15 +49,15 @@ export function GuessList({
       {rows.map(({ guess, cells }) => {
         const open = openId === guess.id
         return (
-          <div key={guess.id} className="border-b border-[#ece2cd] last:border-b-0">
+          <div key={guess.id} className="border-b border-[var(--hair)] last:border-b-0">
             <button
               className="flex w-full items-center justify-between gap-3 px-0.5 py-3 text-left"
               onClick={() => setOpenId(open ? null : guess.id)}
               aria-expanded={open}
             >
-              <span className="min-w-0 truncate text-[14.5px] font-semibold text-[#2f2b40]">
+              <span className="min-w-0 truncate text-[14.5px] font-semibold text-[var(--ink)]">
                 {guess.name}
-                <span className="ml-[7px] text-[12.5px] font-normal text-[#8b8598]">
+                <span className="ml-[7px] text-[12.5px] font-normal text-[var(--muted)]">
                   {guess.category.replace(/_/g, " ")}
                 </span>
               </span>
@@ -78,11 +78,11 @@ export function GuessList({
                   <div key={cell.entry.property} className="flex flex-col items-center gap-1">
                     {/* Fixed height for the label: "Average Temperature" wraps to two lines where
                         "Mass" does not, and without it the orbs in a row sit at different heights. */}
-                    <span className="flex h-[22px] items-center text-center text-[9.5px] leading-tight text-[#8b8598]">
+                    <span className="flex h-[22px] items-center text-center text-[9.5px] leading-tight text-[var(--muted)]">
                       {cell.entry.label}
                     </span>
                     <StatusOrb status={cell.status} size={26} title={`${cell.entry.label}: ${cell.value}`} />
-                    <span className="text-center text-[10px] font-semibold leading-tight text-[#2f2b40]">
+                    <span className="text-center text-[10px] font-semibold leading-tight text-[var(--ink)]">
                       {cell.value}
                     </span>
                   </div>
