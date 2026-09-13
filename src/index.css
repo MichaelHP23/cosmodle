@@ -6,6 +6,27 @@ body {
   background: #fff8e7;
 }
 
+/* A hint fills in a row that can be well below the button that bought it, so the row announces itself
+   once and then settles into the steady tint that marks it as hinted for the rest of the game. */
+@keyframes hint-landed {
+  from {
+    background-color: rgba(232, 163, 61, 0.34);
+  }
+  to {
+    background-color: rgba(232, 163, 61, 0.09);
+  }
+}
+
+.hint-landed {
+  animation: hint-landed 1.6s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint-landed {
+    animation: none;
+  }
+}
+
 /* The hero block is the one dark surface on the page, so it carries its own starfield rather than
    borrowing the page's, which is drawn in ink and would vanish against it. */
 .starfield-dark {

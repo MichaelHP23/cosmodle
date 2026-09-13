@@ -90,6 +90,24 @@ describe("deriveKnowledge", () => {
     expect(rows.find(r => r.property === "distanceFromParentKm")!.label).toBe("Distance from Parent")
   })
 
+  it("marks a row a hint filled in, and leaves deduced rows unmarked", () => {
+    const rows = deriveKnowledge(moonProfile, [byName("Europa")], ganymede, objects, ["diameterKm"])
+    expect(rows.find(r => r.property === "diameterKm")!.fromHint).toBe(true)
+    // Parent came from guessing Europa, not from a hint, so it must not claim to be one.
+    expect(rows.find(r => r.property === "parentBodyId")!.fromHint).toBe(false)
+    expect(rows.filter(r => r.fromHint)).toHaveLength(1)
+  })
+
+  it("marks a hinted categorical row too, not just the numeric ones", () => {
+    const rows = deriveKnowledge(moonProfile, [], ganymede, objects, ["category"])
+    expect(rows.find(r => r.property === "category")!.fromHint).toBe(true)
+  })
+
+  it("marks nothing as hinted once the answer is out", () => {
+    const rows = revealKnowledge(moonProfile, ganymede, objects)
+    expect(rows.every(r => r.fromHint === false)).toBe(true)
+  })
+
   it("takes a hinted categorical property as revealed outright", () => {
     const rows = deriveKnowledge(moonProfile, [], ganymede, objects, ["category"])
     const type = rows.find(r => r.property === "category")!
