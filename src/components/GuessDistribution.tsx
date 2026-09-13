@@ -12,11 +12,11 @@ export function GuessDistribution({
     highlightGuessCount !== undefined ? Math.min(highlightGuessCount, distribution.length) : undefined
 
   return (
-    <div className="rounded-lg border border-[#e0e0e0] bg-[#fff8e7] p-3">
-      <div className="mb-2 text-center text-sm font-bold uppercase tracking-wide text-[#4d4d4d]">
+    <div className="rounded-lg border border-[var(--hair-2)] bg-[var(--bg)] p-3">
+      <div className="mb-2 text-center text-sm font-bold uppercase tracking-wide text-[var(--ink-2)]">
         Guess Distribution
       </div>
-      {subtitle && <div className="mb-2 -mt-1 text-center text-xs text-[#8a8a8a]">{subtitle}</div>}
+      {subtitle && <div className="mb-2 -mt-1 text-center text-xs text-[var(--muted-2)]">{subtitle}</div>}
       <div className="space-y-1">
         {distribution.map((count, i) => {
           const guessNumber = i + 1
@@ -26,10 +26,10 @@ export function GuessDistribution({
           const widthPercent = Math.max((count / maxCount) * 100, count > 0 ? 8 : 0)
           return (
             <div key={guessNumber} className="flex items-center gap-2 text-sm">
-              <span className="w-5 font-bold text-[#4d4d4d]">{label}</span>
+              <span className="w-5 font-bold text-[var(--ink-2)]">{label}</span>
               <div className="flex-1">
                 <div
-                  className={`flex h-6 min-w-[24px] items-center justify-end rounded px-2 text-xs font-bold text-white ${isHighlighted ? "bg-[#00b99b]" : "bg-[#9a9a9a]"}`}
+                  className={`flex h-6 min-w-[24px] items-center justify-end rounded px-2 text-xs font-bold text-white ${isHighlighted ? "bg-[var(--teal-bright)]" : "bg-[var(--muted-2)]"}`}
                   style={{ width: `${widthPercent}%` }}
                 >
                   {count}

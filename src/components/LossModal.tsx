@@ -28,14 +28,14 @@ export function LossModal({
         if (e.target === e.currentTarget) onClose()
       }}
     >
-      <div className="mx-auto my-8 w-full max-w-md rounded-xl border-2 border-[#4d4d4d] bg-[#f7f7f7] p-6">
+      <div className="mx-auto my-8 w-full max-w-md rounded-xl border-2 border-[var(--line-strong)] bg-[var(--surface-raised)] p-6">
         <div className="mb-4 flex items-start justify-between">
           <div className="flex-1 text-center">
-            <div className="text-lg font-bold text-[#1a1a1a]">{gaveUp ? "GAVE UP" : "OUT OF GUESSES"}</div>
-            <div className="text-sm text-[#4d4d4d]">The answer was</div>
+            <div className="text-lg font-bold text-[var(--ink-strong)]">{gaveUp ? "GAVE UP" : "OUT OF GUESSES"}</div>
+            <div className="text-sm text-[var(--ink-2)]">The answer was</div>
           </div>
           <button
-            className="text-[#8a8a8a] hover:text-[#4d4d4d]"
+            className="text-[var(--muted-2)] hover:text-[var(--ink-2)]"
             onClick={onClose}
             aria-label="Close"
           >

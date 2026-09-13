@@ -20,23 +20,23 @@ export function ArchiveList({
 
   if (pastDayNumbers.length === 0) {
     return (
-      <div className="rounded-xl border-2 border-[#4d4d4d] bg-[#fff8e7]/70 p-6 text-center text-[#4d4d4d]">
+      <div className="rounded-xl border-2 border-[var(--line-strong)] bg-[var(--bg)]/70 p-6 text-center text-[var(--ink-2)]">
         No previous puzzles yet — check back tomorrow for Cosmodle #{todayDayNumber + 1}.
       </div>
     )
   }
 
   return (
-    <div className="max-h-[60vh] overflow-y-auto rounded-xl border-2 border-[#4d4d4d] bg-[#fff8e7]/70">
+    <div className="max-h-[60vh] overflow-y-auto rounded-xl border-2 border-[var(--line-strong)] bg-[var(--bg)]/70">
       <ul className="divide-y divide-[#e0e0e0]">
         {pastDayNumbers.map(dayNumber => (
           <li key={dayNumber}>
             <button
-              className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-[#f0f0f0]"
+              className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-[var(--surface-hover)]"
               onClick={() => onSelect(dayNumber)}
             >
-              <span className="font-semibold text-[#1a1a1a]">Cosmodle #{dayNumber}</span>
-              <span className="text-sm text-[#4d4d4d]">{formatArchiveDate(dayNumber)}</span>
+              <span className="font-semibold text-[var(--ink-strong)]">Cosmodle #{dayNumber}</span>
+              <span className="text-sm text-[var(--ink-2)]">{formatArchiveDate(dayNumber)}</span>
             </button>
           </li>
         ))}
