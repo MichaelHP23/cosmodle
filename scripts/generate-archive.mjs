@@ -16,6 +16,11 @@ export const CONTACT_EMAIL = "mpink2491@gmail.com"
 // The day the game launched, which the about page states. Mirrors src/lib/dailyObject.ts.
 export const LAUNCH_DATE = new Date(2026, 7, 18)
 
+// Mirrors src/lib/gameConstants.ts. This script is plain Node ESM and cannot import a .ts file the way
+// vite.config.ts does, so the about page's mention of the guess limit is kept here instead of drifting
+// into a hand-written number the way the homepage's meta description once did.
+const MAX_GUESSES = 15
+
 const DATE_FORMAT = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "long", day: "numeric" })
 
 function formatDate(date) {
@@ -124,6 +129,15 @@ export const PUBLISHED_CATEGORIES = new Set([
   "transient",
 ])
 
+// Stars and constellations are most of the catalogue (186 of 360 pages) and the least distinguishable
+// member to member: a page for "Alpha Reticuli" is the same handful of sentences as one for "Alpha
+// Sculptoris" with different numbers substituted in. Two hundred near-duplicate pages read as thin,
+// auto-generated content to a search engine and to a human reviewing the site for advertising, and
+// dragged the whole domain down with them. These categories still get a page each — still linked from
+// the object index, still fine to guess against, still real facts — they are just not something this
+// site asks Google to index: noindexed, and left out of the sitemap.
+const NOINDEXED_CATEGORIES = new Set(["star", "constellation"])
+
 // ponytail: no <img> tags anywhere in these pages. Most imageUrl values are hotlinked Wikimedia
 // thumbnails, and publishing them would mean hosting the files ourselves plus rendering each one's
 // author, licence and source link from the Commons API. That is a separate job from getting text
@@ -144,6 +158,28 @@ const CATEGORY_PLURALS = {
   exoplanet: "Exoplanets",
   star_cluster: "Star clusters",
   transient: "Transient events",
+}
+
+// One sentence about the kind of object, not the object itself: every planet page already differs by
+// its own numbers, but nothing on a page said what a planet actually is, so a reader (or a search
+// engine) comparing two pages saw the same arithmetic sentences twice with different figures. This is
+// true regardless of which object it's attached to, which is what makes it a fact about the category
+// rather than more derived arithmetic.
+const CATEGORY_BLURBS = {
+  planet: "Planets are massive enough to pull themselves round and to have cleared their orbit of other debris — the second part is the line the solar system's dwarf planets fall short of.",
+  dwarf_planet: "Dwarf planets are round for the same reason planets are, gravity, but share their orbit with other bodies a full planet would have swept aside or absorbed.",
+  asteroid: "Asteroids are rocky leftovers from the solar system's formation, most of them confined to the belt between Mars and Jupiter where Jupiter's gravity kept them from ever assembling into a planet.",
+  comet: "Comets are icy bodies that vaporise as they near the Sun, and it's that boiling-off gas and dust, not the comet itself, that forms the tail.",
+  star: "Stars spend most of their lives fusing hydrogen into helium in their core, and it's the balance between that outward pressure and gravity pulling inward that fixes how big and how bright a star gets.",
+  exoplanet: "Every exoplanet here was found indirectly, by the wobble or the dimming it causes in its own star, since none is close enough to photograph in real detail.",
+  constellation: "A constellation is a pattern drawn on the sky rather than a physical grouping: its stars are usually unrelated and sit at wildly different distances, just lined up as seen from Earth.",
+  moon: "Moons form in different ways — some alongside their planet from the same disk of debris, others captured afterward or thrown up by a collision — and which of those happened is not always settled.",
+  black_hole: "Nothing that crosses a black hole's event horizon, light included, comes back out, so every one here is known only from its effect on whatever orbits nearby.",
+  quasar: "A quasar is the extremely luminous core of a galaxy whose central black hole is actively feeding, and it can outshine every star in that galaxy combined.",
+  galaxy: "A galaxy is a gravitationally bound collection of stars, gas and dust, anywhere from a few million to several trillion stars, usually anchored by a supermassive black hole at its centre.",
+  nebula: "Nebulae are clouds of gas and dust between the stars: some are collapsing to form new ones, others are the expanding wreckage of stars that already died.",
+  star_cluster: "A star cluster's members formed together from the same collapsing cloud, which is why they tend to share an age even where their individual masses differ wildly.",
+  transient: "A transient is a one-time event rather than a lasting object — an explosion or outburst that brightens, fades, and is gone, so what's recorded here is a moment, not a body still there to look at.",
 }
 
 export function escapeHtml(s) {
@@ -194,10 +230,11 @@ const NAV = [
   ["/", "Play"],
   ["/objects/", "All objects"],
   ["/about", "About"],
+  ["/updates", "Updates"],
   ["/privacy", "Privacy"],
 ]
 
-function page({ path, title, description, body }) {
+function page({ path, title, description, body, noindex }) {
   const nav = NAV.map(([href, label]) => `<a href="${href}">${label}</a>`).join("")
   return `<!doctype html>
 <html lang="en">
@@ -206,7 +243,7 @@ function page({ path, title, description, body }) {
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(description)}">
-<link rel="canonical" href="${ORIGIN}${path}">
+${noindex ? `<meta name="robots" content="noindex,follow">\n` : ""}<link rel="canonical" href="${ORIGIN}${path}">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <style>${STYLE}</style>
 </head>
@@ -278,6 +315,7 @@ function period(days) {
 function contextSentences(object, objects, categoryName) {
   const out = []
   const name = object.name
+  if (CATEGORY_BLURBS[object.category]) out.push(CATEGORY_BLURBS[object.category])
 
   if (object.category === "constellation") {
     if (typeof object.areaSqDeg === "number") {
@@ -399,6 +437,7 @@ ${context.length ? `<h2>${escapeHtml(object.name)} in context</h2>\n${context.ma
     title: `${object.name} — ${categoryName} facts | Cosmodle`,
     description: truncate(description, 155),
     body,
+    noindex: NOINDEXED_CATEGORIES.has(object.category),
   })
 }
 
@@ -438,7 +477,7 @@ function renderAbout() {
     description: "What Cosmodle is, how the daily celestial object is chosen, and where its astronomical data comes from.",
     body: `<h1>About Cosmodle</h1>
 <p>Cosmodle is a daily guessing game about space. Every day there is one mystery celestial object,
-and you have seven guesses to find it. Each guess is compared against the answer across properties
+and you have ${MAX_GUESSES} guesses to find it. Each guess is compared against the answer across properties
 such as distance, diameter, mass, temperature, orbital period and number of moons, and you are told
 whether the answer's value is higher or lower than your guess. Narrow it down from there.</p>
 <p>There is no account and no login. A daily puzzle, a practice mode with unlimited random rounds,
@@ -468,6 +507,61 @@ something that looks wrong, please say so.</p>
 <h2>Contact</h2>
 <p>Cosmodle is made by Michael Pink. Corrections, bug reports and suggestions go to
 <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.</p>
+<a class="play" href="/">Play today's Cosmodle</a>`,
+  })
+}
+
+// Hand-written, not generated: this is the one page on the site whose content is not derived from the
+// dataset, and it earns its keep for that reason. Newest entry first; add one line here whenever
+// something a player would notice actually ships, worded as what changed rather than as a commit
+// message.
+function renderUpdates() {
+  return page({
+    path: "/updates",
+    title: "Updates | Cosmodle",
+    description: "What's changed in Cosmodle: new features, new categories of objects, and design changes, newest first.",
+    body: `<h1>Updates</h1>
+<p class="lede">What's changed in Cosmodle, newest first.</p>
+
+<h2>September 13, 2026</h2>
+<ul>
+<li>Added a dark theme that follows your system setting, with a night sky behind the board.</li>
+</ul>
+
+<h2>September 8–10, 2026</h2>
+<ul>
+<li>Reworked the board for mobile: guesses now feed a running knowledge panel instead of a growing
+table, and remaining guesses show as a progress bar.</li>
+<li>Gave 51 more objects their real photograph, drawn from Wikimedia Commons.</li>
+</ul>
+
+<h2>September 5, 2026</h2>
+<ul>
+<li>Started carrying advertising, to help cover hosting costs and keep the game free with no account
+and no paywall.</li>
+</ul>
+
+<h2>August 27, 2026</h2>
+<ul>
+<li>Published fact pages for moons, black holes, quasars, galaxies, nebulae, star clusters and
+transient events, once their figures were checked against a catalogue.</li>
+</ul>
+
+<h2>August 24, 2026</h2>
+<ul>
+<li>Published fact pages for constellations, along with this site's About and Privacy pages.</li>
+</ul>
+
+<h2>August 22, 2026</h2>
+<ul>
+<li>Added star clusters and transient events as categories you can be asked to guess.</li>
+<li>Changed the daily schedule so the same category of object never comes up two days running.</li>
+</ul>
+
+<h2>August 18, 2026</h2>
+<ul>
+<li>Cosmodle launched, with the daily puzzle, practice mode and an archive of past days.</li>
+</ul>
 <a class="play" href="/">Play today's Cosmodle</a>`,
   })
 }
@@ -577,14 +671,16 @@ export function generateSite({ objects }) {
   }
   files["objects/index.html"] = renderObjectIndex(publishable)
   files["about.html"] = renderAbout()
+  files["updates.html"] = renderUpdates()
   files["privacy.html"] = renderPrivacy()
 
   const sitemapPaths = [
     "/",
     "/objects/",
     "/about",
+    "/updates",
     "/privacy",
-    ...publishable.map(o => urlFor(o.id)),
+    ...publishable.filter(o => !NOINDEXED_CATEGORIES.has(o.category)).map(o => urlFor(o.id)),
   ]
   files["sitemap.xml"] = renderSitemap(sitemapPaths)
   files["robots.txt"] = `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`
@@ -610,7 +706,8 @@ function main() {
   }
 
   const pages = Object.keys(files).length
-  console.log(`generate-archive: wrote ${pages} files to dist/ (${pages - 5} object pages)`)
+  const objectPages = Object.keys(files).filter(f => f.startsWith("objects/") && f !== "objects/index.html").length
+  console.log(`generate-archive: wrote ${pages} files to dist/ (${objectPages} object pages)`)
 }
 
 if (process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url) main()

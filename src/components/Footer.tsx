@@ -22,6 +22,9 @@ export function Footer({ onGlobalStatsClick }: { onGlobalStatsClick: () => void 
       <a href="/about" className="hover:text-[var(--teal)] hover:underline">
         About
       </a>
+      <a href="/updates" className="hover:text-[var(--teal)] hover:underline">
+        Updates
+      </a>
       <a href="/privacy" className="hover:text-[var(--teal)] hover:underline">
         Privacy
       </a>

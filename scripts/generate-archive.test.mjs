@@ -75,8 +75,43 @@ describe("generateSite", () => {
   })
 
   it("writes a page per publishable object plus the standing pages", () => {
-    expect(Object.keys(site)).toHaveLength(publishable.length + 5)
+    expect(Object.keys(site)).toHaveLength(publishable.length + 6)
     expect(site["sitemap.xml"]).toContain("<loc>https://cosmodle.com/privacy</loc>")
+    expect(site["sitemap.xml"]).toContain("<loc>https://cosmodle.com/updates</loc>")
     expect(site["robots.txt"]).toContain("Sitemap: https://cosmodle.com/sitemap.xml")
+  })
+
+  // Stars and constellations are 186 of the 360 published pages and the least distinguishable member
+  // to member, which is a large enough share of near-identical pages to read as thin, auto-generated
+  // content for the domain as a whole. They still get a page each, still linked and still playable —
+  // they are just not something the site asks a search engine to index.
+  it("keeps stars and constellations out of the index without unpublishing them", () => {
+    const noindexed = objects.filter(o => ["star", "constellation"].includes(o.category) && PUBLISHED_CATEGORIES.has(o.category))
+    expect(noindexed.length).toBeGreaterThan(0)
+    for (const object of noindexed) {
+      const path = `objects/${object.id}.html`
+      expect(site[path], path).toContain('<meta name="robots" content="noindex,follow">')
+      expect(site["sitemap.xml"], object.id).not.toContain(`<loc>https://cosmodle.com/objects/${object.id}</loc>`)
+    }
+  })
+
+  it("indexes every other published category normally", () => {
+    const indexed = publishable.filter(o => !["star", "constellation"].includes(o.category))
+    for (const object of indexed) {
+      const path = `objects/${object.id}.html`
+      expect(site[path], path).not.toContain('name="robots"')
+      expect(site["sitemap.xml"], object.id).toContain(`<loc>https://cosmodle.com/objects/${object.id}</loc>`)
+    }
+  })
+
+  it("gives every category its own, not-derived-from-a-single-object sentence", () => {
+    // Mercury's page (a planet) and Halley's (a comet) should differ in more than their own numbers.
+    expect(site["objects/mercury.html"]).toContain("cleared their orbit of other debris")
+    expect(site["objects/halley.html"]).toContain("vaporise as they near the Sun")
+  })
+
+  it("publishes a hand-written updates page, not one derived from the dataset", () => {
+    expect(site["updates.html"]).toContain("<h1>Updates</h1>")
+    expect(site["updates.html"]).toContain("August 18, 2026")
   })
 })
