@@ -1,3 +1,5 @@
+import { MAX_GUESSES } from "../lib/gameConstants"
+
 export function GuessDistribution({
   distribution,
   highlightGuessCount,
@@ -8,8 +10,11 @@ export function GuessDistribution({
   subtitle?: string
 }) {
   const maxCount = Math.max(1, ...distribution)
-  // Two-digit labels ("15+") need more room than the single digits the 7-bucket chart shows.
+  // Two-digit labels need more room than the single digits the 7-bucket chart shows.
   const labelWidthClass = distribution.length >= 10 ? "w-8" : "w-5"
+  // A chart with fewer bars than the guess limit puts everything above its last bar into that bar, so
+  // the label gets a "+". A chart that runs all the way to the limit has no higher score to absorb.
+  const lastBucketOverflows = distribution.length < MAX_GUESSES
   const clampedHighlight =
     highlightGuessCount !== undefined ? Math.min(highlightGuessCount, distribution.length) : undefined
 
@@ -23,7 +28,7 @@ export function GuessDistribution({
         {distribution.map((count, i) => {
           const guessNumber = i + 1
           const isLastBucket = i === distribution.length - 1
-          const label = isLastBucket ? `${guessNumber}+` : String(guessNumber)
+          const label = isLastBucket && lastBucketOverflows ? `${guessNumber}+` : String(guessNumber)
           const isHighlighted = clampedHighlight === guessNumber
           const widthPercent = Math.max((count / maxCount) * 100, count > 0 ? 8 : 0)
           return (
