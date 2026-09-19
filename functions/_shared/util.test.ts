@@ -103,7 +103,11 @@ describe("buildGuessDistribution", () => {
       buildGuessDistribution([{ guess_count: 8, n: 3 }, { guess_count: 15, n: 2 }], 15)
     ).toEqual([0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 2])
   })
-  it("still folds legacy results above 15 into the last global bucket", () => {
-    expect(buildGuessDistribution([{ guess_count: 18, n: 4 }], 15)).toEqual([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4])
+  it("drops results above the bucket count when overflow is dropped", () => {
+    expect(buildGuessDistribution([{ guess_count: 18, n: 4 }], 15, "drop")).toEqual(new Array(15).fill(0))
+  })
+  it("keeps results at the bucket count when overflow is dropped", () => {
+    const dist = buildGuessDistribution([{ guess_count: 15, n: 2 }, { guess_count: 16, n: 9 }], 15, "drop")
+    expect(dist[14]).toBe(2)
   })
 })
