@@ -98,4 +98,12 @@ describe("buildGuessDistribution", () => {
   it("clamps guess counts above the bucket count into the last bucket", () => {
     expect(buildGuessDistribution([{ guess_count: 9, n: 3 }, { guess_count: 15, n: 2 }], 7)).toEqual([0, 0, 0, 0, 0, 0, 5])
   })
+  it("keeps 8-15 in their own buckets when the global bucket count is used", () => {
+    expect(
+      buildGuessDistribution([{ guess_count: 8, n: 3 }, { guess_count: 15, n: 2 }], 15)
+    ).toEqual([0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 2])
+  })
+  it("still folds legacy results above 15 into the last global bucket", () => {
+    expect(buildGuessDistribution([{ guess_count: 18, n: 4 }], 15)).toEqual([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4])
+  })
 })

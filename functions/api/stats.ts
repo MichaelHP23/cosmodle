@@ -1,5 +1,5 @@
 import { buildGuessDistribution, currentDayNumber } from "../_shared/util"
-import { STATS_BUCKET_COUNT } from "../../src/lib/gameConstants"
+import { GLOBAL_STATS_BUCKET_COUNT } from "../../src/lib/gameConstants"
 
 interface Env {
   DB: D1Database
@@ -33,7 +33,7 @@ export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
       totalPlayers: totalPlayersRow?.n ?? 0,
       playedToday: playedTodayRow?.n ?? 0,
       winRate: totalGames > 0 ? Math.round((totalWins / totalGames) * 100) : 0,
-      guessDistribution: buildGuessDistribution(wonRows ?? [], STATS_BUCKET_COUNT),
+      guessDistribution: buildGuessDistribution(wonRows ?? [], GLOBAL_STATS_BUCKET_COUNT),
     },
     { headers: { "Cache-Control": "public, max-age=60" } }
   )
