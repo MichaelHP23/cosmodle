@@ -8,6 +8,8 @@ export function GuessDistribution({
   subtitle?: string
 }) {
   const maxCount = Math.max(1, ...distribution)
+  // Two-digit labels ("15+") need more room than the single digits the 7-bucket chart shows.
+  const labelWidthClass = distribution.length >= 10 ? "w-8" : "w-5"
   const clampedHighlight =
     highlightGuessCount !== undefined ? Math.min(highlightGuessCount, distribution.length) : undefined
 
@@ -26,7 +28,7 @@ export function GuessDistribution({
           const widthPercent = Math.max((count / maxCount) * 100, count > 0 ? 8 : 0)
           return (
             <div key={guessNumber} className="flex items-center gap-2 text-sm">
-              <span className="w-5 font-bold text-[var(--ink-2)]">{label}</span>
+              <span className={`${labelWidthClass} font-bold text-[var(--ink-2)]`}>{label}</span>
               <div className="flex-1">
                 <div
                   className={`flex h-6 min-w-[24px] items-center justify-end rounded px-2 text-xs font-bold text-white ${isHighlighted ? "bg-[var(--teal-bright)]" : "bg-[var(--muted-2)]"}`}
