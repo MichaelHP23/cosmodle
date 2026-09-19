@@ -53,12 +53,19 @@ export function rowsToResults(rows: ResultRow[]): DailyResult[] {
   }))
 }
 
-export function buildGuessDistribution(rows: { guess_count: number; n: number }[], bucketCount: number): number[] {
+// A chart that stops short of the guess limit labels its last bucket "7+" and folds everything above
+// it in. A chart that runs to the limit labels that bucket "15", so folding would count a legacy
+// 18-guess win as a 15 - those rows are dropped instead of being reported as something they weren't.
+export function buildGuessDistribution(
+  rows: { guess_count: number; n: number }[],
+  bucketCount: number,
+  overflow: "fold" | "drop" = "fold"
+): number[] {
   const distribution = new Array(bucketCount).fill(0)
   for (const row of rows) {
-    if (row.guess_count >= 1) {
-      distribution[Math.min(row.guess_count, bucketCount) - 1] += row.n
-    }
+    if (row.guess_count < 1) continue
+    if (row.guess_count > bucketCount && overflow === "drop") continue
+    distribution[Math.min(row.guess_count, bucketCount) - 1] += row.n
   }
   return distribution
 }
