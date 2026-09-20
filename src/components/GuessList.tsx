@@ -65,7 +65,7 @@ export function GuessList({
                 {cells.map(cell => (
                   <span
                     key={cell.entry.property}
-                    className="h-[7px] w-[7px] rounded-full"
+                    className="h-[7px] w-[7px] rounded-[2.4px]"
                     style={{ background: MARK_TONES[cell.status] }}
                   />
                 ))}
@@ -74,14 +74,19 @@ export function GuessList({
 
             {open && (
               <div className="grid grid-cols-4 gap-x-1 gap-y-3 px-1 pb-4 pt-1">
-                {cells.map(cell => (
+                {cells.map((cell, i) => (
                   <div key={cell.entry.property} className="flex flex-col items-center gap-1">
                     {/* Fixed height for the label: "Average Temperature" wraps to two lines where
                         "Mass" does not, and without it the orbs in a row sit at different heights. */}
                     <span className="flex h-[22px] items-center text-center text-[9.5px] leading-tight text-[var(--muted)]">
                       {cell.entry.label}
                     </span>
-                    <StatusOrb status={cell.status} size={26} title={`${cell.entry.label}: ${cell.value}`} />
+                    <StatusOrb
+                      status={cell.status}
+                      size={26}
+                      title={`${cell.entry.label}: ${cell.value}`}
+                      delay={i * 0.055}
+                    />
                     <span className="text-center text-[10px] font-semibold leading-tight text-[var(--ink)]">
                       {cell.value}
                     </span>
