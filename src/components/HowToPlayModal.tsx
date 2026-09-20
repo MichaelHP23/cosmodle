@@ -45,9 +45,9 @@ export function HowToPlayModal({ onClose }: { onClose: () => void }) {
         <div className="mb-4 rounded-lg border border-[var(--hair-2)] bg-[var(--bg)] p-3">
           <div className="mb-2 text-sm font-bold uppercase tracking-wide text-[var(--ink-2)]">Legend</div>
           <div className="space-y-2.5">
-            {LEGEND.map(({ status, label, detail }) => (
+            {LEGEND.map(({ status, label, detail }, i) => (
               <div key={status} className="flex items-start gap-3 text-sm text-[var(--ink-strong)]">
-                <StatusOrb status={status} title={label} />
+                <StatusOrb status={status} title={label} delay={i * 0.06} />
                 <div>
                   <div className="font-semibold">{label}</div>
                   <div className="text-xs text-[var(--ink-2)]">{detail}</div>

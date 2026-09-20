@@ -45,12 +45,16 @@
 
   --star: rgb(47 43 64 / 0.12);
 
-  /* Comparison indicators. The orb colours read against --surface, which is why the half-disc fill is
-     a token rather than a fixed near-white. */
+  /* Comparison indicators. Each marker is a solid tile of one of these with its glyph cut out in
+     --orb-glyph, so the glyph colour has to clear 3:1 against all three filled tiles. "Not it" is the
+     one quiet state: a wash rather than a full-strength fill, with its own darker ink for the bar. */
   --orb-correct: #e8a33d;
   --orb-close: #2f9e8f;
   --orb-direction: #7c74c9;
   --orb-wrong: #c17287;
+  --orb-wrong-wash: #f4e2e6;
+  --orb-wrong-ink: #a8455e;
+  --orb-glyph: #241f38;
   --orb-na: #d8cdb6;
   --mark-hit: #d99a2b;
   --mark-close: #cbb489;
@@ -103,6 +107,10 @@ html.dark {
   --orb-close: #35c9b4;
   --orb-direction: #8f87e0;
   --orb-wrong: #d6798f;
+  --orb-wrong-wash: #3a2739;
+  --orb-wrong-ink: #d6798f;
+  /* The glyph is cut out in the surface colour, so a tile reads as a hole punched in the card. */
+  --orb-glyph: #181327;
   --orb-na: #3f3856;
   --mark-hit: #e8a33d;
   --mark-close: #97815a;
@@ -133,6 +141,44 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .hint-landed {
+    animation: none;
+  }
+}
+
+/* Opening a guess turns its markers over one after another, left to right, so the row lands as a
+   sequence rather than all at once. The perspective lives in the keyframes so a marker needs no
+   wrapper element to supply it. */
+@keyframes orb-flip {
+  from {
+    transform: perspective(220px) rotateX(88deg) scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: perspective(220px) rotateX(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.orb-flip {
+  animation: orb-flip 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* The one marker worth looking twice at turns its sparkle over once the tile itself has landed. */
+@keyframes orb-twinkle {
+  0% { transform: scale(1) rotate(0deg); }
+  45% { transform: scale(1.16) rotate(24deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.orb-twinkle {
+  transform-box: view-box;
+  transform-origin: 20px 20px;
+  animation: orb-twinkle 0.8s ease-in-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb-flip,
+  .orb-twinkle {
     animation: none;
   }
 }
