@@ -75,32 +75,23 @@ describe("generateSite", () => {
   })
 
   it("writes a page per publishable object plus the standing pages", () => {
-    expect(Object.keys(site)).toHaveLength(publishable.length + 6)
-    expect(site["sitemap.xml"]).toContain("<loc>https://cosmodle.com/privacy</loc>")
-    expect(site["sitemap.xml"]).toContain("<loc>https://cosmodle.com/updates</loc>")
+    expect(Object.keys(site)).toHaveLength(publishable.length + 8)
     expect(site["robots.txt"]).toContain("Sitemap: https://cosmodle.com/sitemap.xml")
   })
 
-  // Stars and constellations are 186 of the 360 published pages and the least distinguishable member
-  // to member, which is a large enough share of near-identical pages to read as thin, auto-generated
-  // content for the domain as a whole. They still get a page each, still linked and still playable —
-  // they are just not something the site asks a search engine to index.
-  it("keeps stars and constellations out of the index without unpublishing them", () => {
-    const noindexed = objects.filter(o => ["star", "constellation"].includes(o.category) && PUBLISHED_CATEGORIES.has(o.category))
-    expect(noindexed.length).toBeGreaterThan(0)
-    for (const object of noindexed) {
+  // Every object page is the same template with different numbers, and AdSense kept rejecting the
+  // site for low value content with any of them indexed. They stay published, linked and followed;
+  // the sitemap offers only the hand-written pages.
+  it("keeps every object page out of the index without unpublishing it", () => {
+    for (const object of publishable) {
       const path = `objects/${object.id}.html`
       expect(site[path], path).toContain('<meta name="robots" content="noindex,follow">')
-      expect(site["sitemap.xml"], object.id).not.toContain(`<loc>https://cosmodle.com/objects/${object.id}</loc>`)
     }
-  })
-
-  it("indexes every other published category normally", () => {
-    const indexed = publishable.filter(o => !["star", "constellation"].includes(o.category))
-    for (const object of indexed) {
-      const path = `objects/${object.id}.html`
+    expect(site["objects/index.html"]).toContain('<meta name="robots" content="noindex,follow">')
+    const locs = [...site["sitemap.xml"].matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1])
+    expect(locs).toEqual(["/", "/how-to-play", "/guide", "/about", "/updates", "/privacy"].map(p => `https://cosmodle.com${p}`))
+    for (const path of ["how-to-play.html", "guide.html", "about.html", "updates.html", "privacy.html"]) {
       expect(site[path], path).not.toContain('name="robots"')
-      expect(site["sitemap.xml"], object.id).toContain(`<loc>https://cosmodle.com/objects/${object.id}</loc>`)
     }
   })
 

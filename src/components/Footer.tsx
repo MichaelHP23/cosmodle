@@ -19,6 +19,12 @@ export function Footer({ onGlobalStatsClick }: { onGlobalStatsClick: () => void 
       <button className="hover:text-[var(--teal)] hover:underline" onClick={onGlobalStatsClick}>
         Global Stats
       </button>
+      <a href="/how-to-play" className="hover:text-[var(--teal)] hover:underline">
+        How to play
+      </a>
+      <a href="/guide" className="hover:text-[var(--teal)] hover:underline">
+        Object guide
+      </a>
       <a href="/about" className="hover:text-[var(--teal)] hover:underline">
         About
       </a>

@@ -20,6 +20,7 @@ export const LAUNCH_DATE = new Date(2026, 7, 18)
 // vite.config.ts does, so the about page's mention of the guess limit is kept here instead of drifting
 // into a hand-written number the way the homepage's meta description once did.
 const MAX_GUESSES = 15
+const MAX_HINTS = 8
 
 const DATE_FORMAT = new Intl.DateTimeFormat("en-US", { year: "numeric", month: "long", day: "numeric" })
 
@@ -129,14 +130,10 @@ export const PUBLISHED_CATEGORIES = new Set([
   "transient",
 ])
 
-// Stars and constellations are most of the catalogue (186 of 360 pages) and the least distinguishable
-// member to member: a page for "Alpha Reticuli" is the same handful of sentences as one for "Alpha
-// Sculptoris" with different numbers substituted in. Two hundred near-duplicate pages read as thin,
-// auto-generated content to a search engine and to a human reviewing the site for advertising, and
-// dragged the whole domain down with them. These categories still get a page each — still linked from
-// the object index, still fine to guess against, still real facts — they are just not something this
-// site asks Google to index: noindexed, and left out of the sitemap.
-const NOINDEXED_CATEGORIES = new Set(["star", "constellation"])
+// Every object page is the same template with different numbers substituted in. AdSense rejected the
+// site for "Low value content" three times (Sep 5, 15 and 24, 2026), the last after stars and
+// constellations alone were noindexed, so none of them are offered for indexing any more. They are
+// still generated, linked and followed; what Google evaluates is the hand-written pages only.
 
 // ponytail: no <img> tags anywhere in these pages. Most imageUrl values are hotlinked Wikimedia
 // thumbnails, and publishing them would mean hosting the files ourselves plus rendering each one's
@@ -228,6 +225,8 @@ function urlFor(id) {
 
 const NAV = [
   ["/", "Play"],
+  ["/how-to-play", "How to play"],
+  ["/guide", "Object guide"],
   ["/objects/", "All objects"],
   ["/about", "About"],
   ["/updates", "Updates"],
@@ -437,7 +436,7 @@ ${context.length ? `<h2>${escapeHtml(object.name)} in context</h2>\n${context.ma
     title: `${object.name} — ${categoryName} facts | Cosmodle`,
     description: truncate(description, 155),
     body,
-    noindex: NOINDEXED_CATEGORIES.has(object.category),
+    noindex: true,
   })
 }
 
@@ -467,6 +466,209 @@ function renderObjectIndex(objects) {
     body: `<h1>Objects in Cosmodle</h1>
 <p class="lede">Fact pages for ${objects.length} of the celestial objects that can turn up as a guess or an answer, grouped by type. More are added as their figures are checked against a catalogue.</p>
 ${sections}`,
+    noindex: true,
+  })
+}
+
+// Hand-written, like the updates page. The rules half mirrors HowToPlayModal.tsx and comparison.ts;
+// if a tolerance or the hint allowance changes there, change it here too.
+function renderHowToPlay() {
+  return page({
+    path: "/how-to-play",
+    title: "How to play Cosmodle, with strategy tips",
+    description: `The rules of Cosmodle, what each colored tile means, how hints work, and strategies for finding the mystery celestial object in ${MAX_GUESSES} guesses or fewer.`,
+    body: `<h1>How to play Cosmodle</h1>
+<p class="lede">The rules, what the tiles mean, and how to find the answer in fewer guesses.</p>
+
+<p>Every day Cosmodle picks one mystery object from the sky. It could be a planet, a moon, a comet,
+a star, a galaxy, a black hole, even a supernova. You get ${MAX_GUESSES} guesses to name it. There is
+no multiple choice and no list to scroll through: you type the name of anything in the catalogue,
+and the game tells you how your guess compares with the answer, one property at a time.</p>
+
+<h2>The rules</h2>
+<ol>
+<li>Type an object's name in the search box and pick it from the suggestions.</li>
+<li>Your guess is compared with the mystery object on every property that applies to it: type,
+distance, diameter, mass, temperature, orbital period, number of moons and so on. Each comparison
+comes back as a colored tile.</li>
+<li>Use the tiles to rule things out, then guess again.</li>
+<li>Name the exact object to win. Run out of guesses and the answer is revealed.</li>
+</ol>
+
+<h2>Reading the tiles</h2>
+<table><tbody>
+<tr><th scope="row">Correct</th><td>An exact match, or within 2 percent for a number and within 3 degrees for a temperature.</td></tr>
+<tr><th scope="row">Close</th><td>Within 15 percent for a number, or within 25 degrees for a temperature.</td></tr>
+<tr><th scope="row">Higher</th><td>The answer's value is bigger than your guess's.</td></tr>
+<tr><th scope="row">Lower</th><td>The answer's value is smaller than your guess's.</td></tr>
+<tr><th scope="row">Incorrect</th><td>A yes-or-no property, like type or rings, that does not match.</td></tr>
+<tr><th scope="row">N/A</th><td>The property does not apply to one of the two objects. A constellation has no mass of its own, and a black hole has no visible brightness.</td></tr>
+</tbody></table>
+<p>The percentages are relative, not absolute. Being "close" on the distance of a galaxy 2.5 million
+light years away means being within a few hundred thousand light years of it, while being close on
+the distance of a planet means being within a fraction of an astronomical unit. That is deliberate:
+it keeps the tiles fair across objects whose sizes differ by a factor of a trillion.</p>
+<p>Guesses do not have to be the same kind of object as the answer. Where a property can be worked
+out for both, the game does it for you: distance from the Sun in astronomical units and distance from
+Earth in light years describe the same thing, so a star guessed against a planet still gets an arrow.
+Only a property one object genuinely does not have comes back N/A.</p>
+
+<h2>Hints</h2>
+<p>You get one free hint before your first guess. After that the Hint button reveals another of the
+answer's properties, up to ${MAX_HINTS} more, and one extra free reveal arrives every four wrong
+guesses. Hints start with whichever property narrows the field most and skip anything you have already
+pinned down with a correct tile. Numbers are shown as a range rather than an exact figure, so a hint
+tells you the scale without giving the answer away.</p>
+<p>Hints cost nothing. A win is a win however many you used, and it still extends your streak.</p>
+
+<h2>Strategy</h2>
+<h3>Find the type first</h3>
+<p>The single most useful tile is Type. Knowing the answer is a moon rather than a star removes most
+of the catalogue at once, and it tells you which properties are going to matter. If your free hint
+does not settle it, a first guess from the middle of the scale, such as a nearby star or a large
+planet, usually shows you from the distance arrow alone whether the answer lives in the solar system,
+elsewhere in the Milky Way, or in another galaxy entirely.</p>
+
+<h3>Think in orders of magnitude</h3>
+<p>Distances in Cosmodle span from a few hundred thousand kilometres to more than thirteen billion
+light years. Rather than creeping upward one object at a time, jump by a factor of ten or a hundred.
+A rough ladder helps:</p>
+<ul>
+<li>The planets sit between 0.4 and 30 astronomical units from the Sun. Past Neptune come the dwarf
+planets and, much further out, the long-period comets.</li>
+<li>The nearest star beyond the Sun is a little over 4 light years away. Most of the naked-eye stars
+lie within a few hundred.</li>
+<li>Nebulae and star clusters in the Milky Way are mostly hundreds to tens of thousands of light years
+away.</li>
+<li>Nearby galaxies are millions of light years away. Quasars start at hundreds of millions and run
+into the billions.</li>
+</ul>
+
+<h3>Split the range</h3>
+<p>Once you know the type, treat each numeric arrow like a number guessing game. If the answer is a
+star further than Sirius but closer than Rigel, your next guess should sit roughly halfway between
+them, not just past Sirius. Two or three well-placed guesses can pin a distance down to the "close"
+band.</p>
+
+<h3>Let the exact properties do the work</h3>
+<p>Some properties are yes-or-no rather than numbers: rings, zodiac membership, hemisphere, galaxy
+type, the planet a moon orbits. Once one of those turns correct it cuts the remaining candidates
+sharply. For a moon, the parent planet is often the fastest way in; for a constellation, hemisphere
+and zodiac membership narrow 88 candidates to a handful.</p>
+
+<h3>Use practice mode to learn the scale</h3>
+<p>Practice mode gives unlimited random rounds that do not touch your statistics. It is the quickest
+way to get a feel for how big, how hot and how far away things are, which is most of what the daily
+puzzle is really testing.</p>
+
+<h2>Game modes</h2>
+<ul>
+<li><strong>Daily:</strong> one puzzle a day, the same for everyone. Results count toward your
+Played, Win percentage and Streak statistics.</li>
+<li><strong>Practice:</strong> unlimited random rounds at any time, with no effect on your
+statistics.</li>
+<li><strong>Archive:</strong> go back and play any past daily puzzle you missed.</li>
+</ul>
+<p>Giving up on the daily puzzle shows the answer and resets your streak, but it is not counted as a
+loss, so your Played count and Win percentage stay where they were.</p>
+<a class="play" href="/">Play today's Cosmodle</a>`,
+  })
+}
+
+// Hand-written overview of every kind of object the game can ask for. The "compared on" lists mirror
+// the profiles in src/lib/objectProfiles.ts.
+function renderGuide() {
+  return page({
+    path: "/guide",
+    title: "Guide to the objects in Cosmodle | Planets to quasars",
+    description: "A guide to the fourteen kinds of celestial object in Cosmodle, from planets and moons to black holes, quasars and supernovae, and how each one is compared in the game.",
+    body: `<h1>A guide to the objects in Cosmodle</h1>
+<p class="lede">Fourteen kinds of object, from the Moon to the edge of the observable universe, and
+what to look for in each.</p>
+
+<p>Cosmodle's catalogue covers several hundred objects. They are not all measured the same way: it
+makes sense to ask how many moons a planet has, but not a galaxy, and a constellation has no single
+distance at all. So each kind of object is compared on its own set of properties. Knowing which set
+applies is half the game.</p>
+
+<h2>Close to home: the solar system</h2>
+<h3>Planets and dwarf planets</h3>
+<p>The eight planets and a handful of dwarf planets are compared on distance from the Sun,
+temperature, diameter, mass, surface gravity, number of moons, rings, orbital period, rotation period
+and when they were first recorded. The naked-eye planets have been known since prehistory, while
+Uranus, Neptune and the dwarf planets each have a discovery year. Rings are a strong clue: only the
+four giant planets and the dwarf planet Haumea have them.</p>
+
+<h3>Moons</h3>
+<p>Moons are compared on the planet they orbit, how far from it they orbit, temperature, diameter,
+mass, gravity and orbital period. The parent planet is usually the fastest way in. Jupiter and Saturn
+between them hold most of the moons in the game, so once you know the parent, orbital distance
+separates the inner moons, which circle in hours or days, from the distant captured ones.</p>
+
+<h3>Asteroids and comets</h3>
+<p>These small bodies share a profile: distance from the Sun, diameter, mass, temperature and orbital
+period. Most asteroids stay in the main belt between Mars and Jupiter, within a few astronomical units
+of the Sun. Comets swing much wider. Their average distances run from a couple of astronomical units
+to thousands, and their orbital periods from a few years to tens of thousands, so a single distance guess
+usually tells you which of the two you are dealing with.</p>
+
+<h2>The Milky Way</h2>
+<h3>Stars</h3>
+<p>Stars are the largest group in the catalogue. They are compared on distance from Earth, surface
+temperature, diameter, mass and when they were first recorded. Temperature is a good early lever:
+red giants like Betelgeuse and Antares sit around 3,500 kelvin, the Sun at about 5,800, and hot blue
+stars like Rigel and Spica well above 10,000. Stars you can see with the naked eye show the date of
+the earliest catalogue that lists them rather than a discovery year.</p>
+
+<h3>Exoplanets</h3>
+<p>Planets around other stars are compared on their host star, distance from Earth, equilibrium
+temperature, diameter, mass, orbital period and discovery year. The nearest are a little over four
+light years away. Many of the famous ones are "hot Jupiters" that orbit their star in a few days,
+so a very short orbital period is a useful hint.</p>
+
+<h3>Constellations</h3>
+<p>The 88 constellations recognised by the International Astronomical Union are compared on their
+hemisphere, the area of sky they cover, the brightness of their brightest star, whether they belong
+to the zodiac, and when they were first recorded. Hydra is the largest and Crux the smallest. The
+forty-eight constellations described by Ptolemy around AD 150 show that date; the rest were added by
+later astronomers, mostly for the southern sky.</p>
+
+<h3>Nebulae and star clusters</h3>
+<p>Nebulae are compared on distance, diameter, nebula type, apparent brightness and discovery year.
+Star clusters use a similar set with cluster type in place of nebula type. The type tile is what
+separates them within their group: an emission nebula from a planetary nebula, an open cluster of
+young stars from a globular cluster of very old ones. Most of both sit within tens of thousands of
+light years, inside the Milky Way or in its immediate neighbourhood.</p>
+
+<h2>Beyond the Milky Way</h2>
+<h3>Galaxies</h3>
+<p>Galaxies are compared on distance, diameter, estimated mass, galaxy type and discovery year.
+Distance runs from our own Milky Way, at zero, to hundreds of millions of light years. Galaxy type,
+spiral, elliptical or irregular, is an exact match and narrows the field quickly.</p>
+
+<h3>Black holes</h3>
+<p>Black holes are compared on distance, the diameter of their event horizon, mass, type and discovery
+year. Type splits them into stellar-mass black holes a few times heavier than the Sun, the rare
+intermediate class, and the supermassive ones at the centres of galaxies, which can be billions of
+times heavier. Mass and event-horizon size go up together, so one arrow tells you about the other.</p>
+
+<h3>Quasars</h3>
+<p>Quasars are the brightest objects in the catalogue and the most distant: hundreds of millions to
+more than thirteen billion light years away. They are compared on distance, the mass of their central
+black hole, redshift, apparent brightness and discovery year. Redshift rises with distance, so the
+two arrows usually agree.</p>
+
+<h3>Transient events</h3>
+<p>A few entries are not lasting objects at all but explosions: supernovae, gamma-ray bursts and a
+kilonova from two neutron stars colliding. They are compared on distance, redshift, peak brightness,
+event type and discovery year. The historical supernovae are nearby and were seen by eye; the
+gamma-ray bursts happened billions of light years away.</p>
+
+<h2>Where the numbers come from</h2>
+<p>Figures are drawn from NASA and JPL, the NASA Exoplanet Archive, SIMBAD and Wikipedia, and rounded
+for readability. Catalogues disagree and values get revised, so if something looks wrong, the
+<a href="/about">About page</a> says how to report it.</p>
+<a class="play" href="/">Play today's Cosmodle</a>`,
   })
 }
 
@@ -522,6 +724,12 @@ function renderUpdates() {
     description: "What's changed in Cosmodle: new features, new categories of objects, and design changes, newest first.",
     body: `<h1>Updates</h1>
 <p class="lede">What's changed in Cosmodle, newest first.</p>
+
+<h2>September 24, 2026</h2>
+<ul>
+<li>Added a <a href="/how-to-play">How to play</a> page with strategy tips, and a
+<a href="/guide">guide</a> to the fourteen kinds of object in the game.</li>
+</ul>
 
 <h2>September 13, 2026</h2>
 <ul>
@@ -670,17 +878,19 @@ export function generateSite({ objects }) {
     files[`objects/${object.id}.html`] = renderObjectPage(object, { byId, published, objects })
   }
   files["objects/index.html"] = renderObjectIndex(publishable)
+  files["how-to-play.html"] = renderHowToPlay()
+  files["guide.html"] = renderGuide()
   files["about.html"] = renderAbout()
   files["updates.html"] = renderUpdates()
   files["privacy.html"] = renderPrivacy()
 
   const sitemapPaths = [
     "/",
-    "/objects/",
+    "/how-to-play",
+    "/guide",
     "/about",
     "/updates",
     "/privacy",
-    ...publishable.filter(o => !NOINDEXED_CATEGORIES.has(o.category)).map(o => urlFor(o.id)),
   ]
   files["sitemap.xml"] = renderSitemap(sitemapPaths)
   files["robots.txt"] = `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`
