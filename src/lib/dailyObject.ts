@@ -1,4 +1,4 @@
-import schedule from "../data/dailySchedule.json"
+import { getDailyAnswerId } from "./api"
 import type { CelestialObject } from "../types/celestial"
 
 export const LAUNCH_DATE = new Date(2026, 7, 18) // local calendar date, not UTC
@@ -17,23 +17,11 @@ export function dateForDayNumber(dayNumber: number, epoch: Date = LAUNCH_DATE): 
   return new Date(epoch.getFullYear(), epoch.getMonth(), epoch.getDate() + (dayNumber - 1))
 }
 
-// Which object each day serves is committed data, not a function of the dataset. The old rotation
-// derived every day's answer from dataset.length, so adding a single object reshuffled days people
-// had already played, grading their saved guesses against a different object. dailySchedule.json is
-// append-only, so dataset growth can never rewrite a day that is already in it.
-// Extend it with `npm run schedule`; a test fails once it runs close to its end.
-// Running off the end of the schedule throws rather than falling back to a rotation derived from
-// dataset.length: that rotation is exactly the bug the schedule replaced, and serving a wrong answer
-// quietly is worse than failing loudly. dailySchedule.test.ts starts failing HORIZON_DAYS ahead of
-// this, which is the warning to run `npm run schedule`.
-export function getDailyObject(date: Date, dataset: CelestialObject[]): CelestialObject {
-  const days = daysSinceEpoch(date, LAUNCH_DATE)
-  const scheduledId = (schedule as string[])[days]
-  const scheduled = scheduledId ? dataset.find(o => o.id === scheduledId) : undefined
-  if (!scheduled) {
-    throw new Error(`No object scheduled for day ${days + 1}; run \`npm run schedule\``)
-  }
-  return scheduled
+// Which object each day serves is decided and stored server side (functions/api/daily/[day].ts), so
+// no answer ships in the bundle. Null means the server couldn't be reached or the id is unknown.
+export async function fetchDailyObject(dayNumber: number, dataset: CelestialObject[]): Promise<CelestialObject | null> {
+  const id = await getDailyAnswerId(dayNumber)
+  return dataset.find(o => o.id === id) ?? null
 }
 
 export function pickRandomObject(dataset: CelestialObject[]): CelestialObject {

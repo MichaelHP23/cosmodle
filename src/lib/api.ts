@@ -52,3 +52,18 @@ export async function getGlobalStats(): Promise<GlobalStats | null> {
     return null
   }
 }
+
+// The answer is fetched per day rather than bundled, so reading the app's code reveals nothing.
+export async function getDailyAnswerId(dayNumber: number): Promise<string | null> {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const res = await fetch(`/api/daily/${dayNumber}`)
+      if (res.ok) return ((await res.json()) as { objectId: string }).objectId
+      if (res.status === 404) return null
+    } catch {
+      // network hiccup — retry below
+    }
+    if (attempt < 2) await new Promise(resolve => setTimeout(resolve, 500 * 2 ** attempt))
+  }
+  return null
+}

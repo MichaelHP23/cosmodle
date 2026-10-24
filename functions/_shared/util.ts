@@ -69,3 +69,22 @@ export function buildGuessDistribution(
   }
   return distribution
 }
+
+// Picks a day's object from those used least so far, so nothing repeats until every object has had a
+// turn and newly added objects come up straight away. Within that pool it skips yesterday's object
+// and category where it can: constellations are 30% of the dataset and clump into look-alike runs
+// otherwise. `random` is injectable only so the test can pin it.
+export function pickDailyObjectId(
+  dataset: { id: string; category: string }[],
+  counts: Map<string, number>,
+  previousId: string | null,
+  random: () => number = Math.random
+): string {
+  const min = Math.min(...dataset.map(o => counts.get(o.id) ?? 0))
+  let pool = dataset.filter(o => (counts.get(o.id) ?? 0) === min)
+  if (pool.length > 1) pool = pool.filter(o => o.id !== previousId)
+  const previousCategory = dataset.find(o => o.id === previousId)?.category
+  const varied = pool.filter(o => o.category !== previousCategory)
+  if (varied.length > 0) pool = varied
+  return pool[Math.floor(random() * pool.length)].id
+}

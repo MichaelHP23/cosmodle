@@ -6,6 +6,7 @@ import {
   currentDayNumber,
   isValidDayNumber,
   buildGuessDistribution,
+  pickDailyObjectId,
 } from "./util"
 import { MAX_HINTS } from "../../src/lib/gameConstants"
 
@@ -109,5 +110,33 @@ describe("buildGuessDistribution", () => {
   it("keeps results at the bucket count when overflow is dropped", () => {
     const dist = buildGuessDistribution([{ guess_count: 15, n: 2 }, { guess_count: 16, n: 9 }], 15, "drop")
     expect(dist[14]).toBe(2)
+  })
+})
+
+describe("pickDailyObjectId", () => {
+  const dataset = [
+    { id: "a", category: "star" },
+    { id: "b", category: "star" },
+    { id: "c", category: "planet" },
+    { id: "d", category: "moon" },
+  ]
+  const first = () => 0
+
+  it("only draws from the least-used objects, so nothing repeats before everything has had a turn", () => {
+    const counts = new Map([["a", 1], ["b", 1], ["c", 1]])
+    expect(pickDailyObjectId(dataset, counts, null, first)).toBe("d")
+  })
+  it("brings a newly added object (never counted) straight in", () => {
+    const counts = new Map([["a", 2], ["b", 2], ["c", 2], ["d", 2]])
+    expect(pickDailyObjectId([...dataset, { id: "new", category: "star" }], counts, null, first)).toBe("new")
+  })
+  it("avoids yesterday's category when the pool allows it", () => {
+    for (const r of [0, 0.5, 0.99]) {
+      expect(["c", "d"]).toContain(pickDailyObjectId(dataset, new Map(), "a", () => r))
+    }
+  })
+  it("never serves yesterday's object twice in a row", () => {
+    const tie = new Map([["a", 0], ["b", 0], ["c", 1], ["d", 1]])
+    expect(pickDailyObjectId(dataset, tie, "a", first)).toBe("b")
   })
 })

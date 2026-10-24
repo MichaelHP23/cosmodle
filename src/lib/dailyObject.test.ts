@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest"
-// Schedule-backed daily answers are covered in dailySchedule.test.ts.
-import { daysSinceEpoch, dateForDayNumber, getDailyObject, pickRandomObject, LAUNCH_DATE } from "./dailyObject"
+import { daysSinceEpoch, dateForDayNumber, pickRandomObject, LAUNCH_DATE } from "./dailyObject"
 import type { CelestialObject } from "../types/celestial"
 
 const dataset: CelestialObject[] = [
@@ -32,16 +31,6 @@ describe("dateForDayNumber", () => {
       const date = dateForDayNumber(dayNumber, LAUNCH_DATE)
       expect(daysSinceEpoch(date, LAUNCH_DATE) + 1).toBe(dayNumber)
     }
-  })
-})
-
-describe("getDailyObject", () => {
-  it("throws rather than inventing an answer past the end of the schedule", () => {
-    const farFuture = new Date(LAUNCH_DATE.getTime() + 100000 * 24 * 60 * 60 * 1000)
-    expect(() => getDailyObject(farFuture, dataset)).toThrow(/npm run schedule/)
-  })
-  it("throws when the scheduled object is missing from the dataset", () => {
-    expect(() => getDailyObject(LAUNCH_DATE, dataset)).toThrow(/No object scheduled/)
   })
 })
 

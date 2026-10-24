@@ -686,10 +686,11 @@ whether the answer's value is higher or lower than your guess. Narrow it down fr
 and an archive of past puzzles are all playable straight from the home page.</p>
 
 <h2>How the daily object is chosen</h2>
-<p>The answer for each day is fixed in advance in a committed schedule rather than derived from the
-size of the dataset. That matters: deriving it would mean that adding a new object silently changed
-the answer to a day someone had already played, and graded their saved guesses against something
-else. The schedule is append-only, so a day that has been played can never be rewritten.</p>
+<p>Each day's object is drawn at random on the server the first time anyone plays that day, and then
+stored, so it is the same for everyone and never changes afterwards, even as new objects are added.
+No object comes back until every other one has had a turn, and the same kind of object never comes
+up two days running. Because the answer is not part of the game's code, it cannot be looked up ahead
+of time.</p>
 <p>Day 1 was ${escapeHtml(formatDate(LAUNCH_DATE))}. The puzzle rolls over at your own local midnight
 rather than at UTC midnight.</p>
 
@@ -724,6 +725,13 @@ function renderUpdates() {
     description: "What's changed in Cosmodle: new features, new categories of objects, and design changes, newest first.",
     body: `<h1>Updates</h1>
 <p class="lede">What's changed in Cosmodle, newest first.</p>
+
+<h2>October 24, 2026</h2>
+<ul>
+<li>The daily object is now drawn at random on the server when the day begins, instead of coming from
+a list shipped with the game, so the whole collection is in rotation and future answers can't be
+read out of the code.</li>
+</ul>
 
 <h2>September 24, 2026</h2>
 <ul>

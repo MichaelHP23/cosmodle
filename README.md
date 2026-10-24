@@ -36,7 +36,7 @@ React + TypeScript + Vite, styled with Tailwind CSS, backed by Cloudflare Pages 
 
 The D1 migrations are deliberately **not** tracked in this repository, so a fresh clone cannot
 provision the database from `wrangler d1 migrations apply` and has to create the table by hand. The
-whole schema is one table, recorded here so it is not lost with the working copy:
+schema is recorded here so it is not lost with the working copy:
 
 ```sql
 CREATE TABLE results (
@@ -54,6 +54,17 @@ CREATE TABLE results (
 `gave_up` arrived after the table did, so an existing database needs
 `ALTER TABLE results ADD COLUMN gave_up INTEGER NOT NULL DEFAULT 0;` rather than the full CREATE.
 
+Daily answers live in a second table, filled by `/api/daily/:day` as each day goes live. Days 1-72
+were seeded from the schedule that used to be committed here (see git history for
+`src/data/dailySchedule.json`); a fresh database without those rows would re-draw them.
+
+```sql
+CREATE TABLE daily_answers (
+  day_number INTEGER PRIMARY KEY,
+  object_id TEXT NOT NULL
+);
+```
+
 ## Advertising
 
 See [`docs/advertising.md`](docs/advertising.md) for how the ad slot, its environment variables,
@@ -70,15 +81,14 @@ Two rules the script keeps, both covered by `scripts/generate-archive.test.mjs`:
 
 - No generated page ties an object to a puzzle day. The in-app archive asks players to solve past
   days, so an index of past answers, or even a "featured on day N" line, would solve them for free.
-  These pages are reference material about the objects and say nothing about the schedule.
+  These pages are reference material about the objects and say nothing about which day served what.
 - Only categories listed in `PUBLISHED_CATEGORIES` get a page, because a generated page states its
   figures as fact: every category is published now that a `verify:` script covers each one. Add a
   category once its figures have been checked against a catalogue and its pages, index entries and
   sitemap URLs follow.
 
-The schedule itself is a separate problem: `dailySchedule.json` is imported by the app, so every
-scheduled day already ships in the JavaScript bundle and anyone reading it can see future answers.
-Keeping it out of these pages does not fix that, it just declines to make it a one-click affair.
+The daily answers themselves never ship: `functions/api/daily/[day].ts` draws each day's object the
+first time anyone asks for it and stores it in D1, refusing days that aren't live anywhere yet.
 
 ## Development
 

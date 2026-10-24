@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react"
 import dataset from "../data/celestialObjects.json"
 import type { CelestialObject } from "../types/celestial"
 import type { ComparisonStatus, DailyGameState, GameMode } from "../types/game"
-import { getDailyObject, pickRandomObject, daysSinceEpoch, dateForDayNumber, LAUNCH_DATE } from "../lib/dailyObject"
+import { fetchDailyObject, pickRandomObject, daysSinceEpoch, dateForDayNumber, LAUNCH_DATE } from "../lib/dailyObject"
 import { createInitialState, applyGuess, applyHint, applyGiveUp, loadDailyState, saveDailyState } from "../lib/gameState"
 import { MAX_GUESSES, MAX_HINTS } from "../lib/gameConstants"
 import { getProfileForCategory, getComparableValue } from "../lib/objectProfiles"
@@ -39,11 +39,46 @@ function toDateString(date: Date): string {
   return `${y}-${m}-${d}`
 }
 
+// Today's answer comes from the server, so the board waits for it rather than guessing.
 export function GameBoard() {
+  const [dailyAnswer, setDailyAnswer] = useState<CelestialObject | null>(null)
+  const [failed, setFailed] = useState(false)
+
+  function load() {
+    setFailed(false)
+    fetchDailyObject(daysSinceEpoch(new Date(), LAUNCH_DATE) + 1, typedDataset).then(found =>
+      found ? setDailyAnswer(found) : setFailed(true)
+    )
+  }
+  useEffect(load, [])
+
+  if (dailyAnswer) return <Game dailyAnswer={dailyAnswer} />
+  return (
+    <div className="starfield relative flex min-h-screen items-center justify-center px-4">
+      <StarField />
+      <div className="relative z-10 text-center text-sm text-[var(--muted)]">
+        {failed ? (
+          <>
+            <p className="mb-3">Couldn't load today's puzzle. Check your connection.</p>
+            <button
+              className="rounded-xl bg-[var(--amber-bright)] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[var(--amber)]"
+              onClick={load}
+            >
+              Try again
+            </button>
+          </>
+        ) : (
+          <p>Loading today's puzzle…</p>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function Game({ dailyAnswer }: { dailyAnswer: CelestialObject }) {
   const { theme, toggleTheme } = useTheme()
   const [mode, setMode] = useState<GameMode>("daily")
   const today = useMemo(() => toDateString(new Date()), [])
-  const dailyAnswer = useMemo(() => getDailyObject(new Date(), typedDataset), [])
   const todayDayNumber = useMemo(() => daysSinceEpoch(new Date(), LAUNCH_DATE) + 1, [])
   const playerId = useMemo(() => getOrCreatePlayerId(), [])
 
@@ -55,6 +90,8 @@ export function GameBoard() {
   const [practiceGaveUp, setPracticeGaveUp] = useState(false)
   const [archiveDayNumber, setArchiveDayNumber] = useState<number | null>(null)
   const [archiveState, setArchiveState] = useState<DailyGameState | null>(null)
+  // Keyed by day so a slow fetch for a day the player already backed out of can't land on another.
+  const [archiveAnswers, setArchiveAnswers] = useState<Record<number, CelestialObject>>({})
   const [showResultModal, setShowResultModal] = useState(false)
   const [showHowToPlay, setShowHowToPlay] = useState(() => !localStorage.getItem(HOW_TO_PLAY_SEEN_KEY))
   const [showGlobalStats, setShowGlobalStats] = useState(false)
@@ -80,10 +117,7 @@ export function GameBoard() {
     })
   }, [playerId])
 
-  const archiveAnswer = useMemo(
-    () => (archiveDayNumber !== null ? getDailyObject(dateForDayNumber(archiveDayNumber), typedDataset) : null),
-    [archiveDayNumber]
-  )
+  const archiveAnswer = archiveDayNumber !== null ? archiveAnswers[archiveDayNumber] ?? null : null
 
   const answer = mode === "daily" ? dailyAnswer : mode === "practice" ? practiceAnswer : archiveAnswer
   const guessIds = mode === "daily" ? dailyState.guessIds : mode === "practice" ? practiceGuessIds : archiveState?.guessIds ?? []
@@ -170,6 +204,13 @@ export function GameBoard() {
     setArchiveDayNumber(dayNumber)
     setArchiveState(loadDailyState(dateString) ?? createInitialState(dateString))
     setShowResultModal(false)
+    if (!archiveAnswers[dayNumber]) {
+      fetchDailyObject(dayNumber, typedDataset).then(found => {
+        if (found) setArchiveAnswers(a => ({ ...a, [dayNumber]: found }))
+        // ponytail: unreachable server just drops back to the list, no error message
+        else setArchiveDayNumber(d => (d === dayNumber ? null : d))
+      })
+    }
   }
 
   function backToArchiveList() {
@@ -264,6 +305,9 @@ export function GameBoard() {
               </button>
             ) : (
               <ArchiveList todayDayNumber={todayDayNumber} onSelect={selectArchiveDay} />
+            )}
+            {archiveDayNumber !== null && !archiveAnswer && (
+              <p className="mt-6 text-center text-sm text-[var(--muted)]">Loading day {archiveDayNumber}…</p>
             )}
           </div>
         )}

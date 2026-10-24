@@ -9,7 +9,6 @@
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "vitest run",
-    "schedule": "node scripts/extend-schedule.ts",
     "verify:small-bodies": "node scripts/verify-small-bodies.mjs",
     "verify:constellations": "node scripts/verify-constellations.mjs",
     "verify:exoplanets": "node scripts/verify-exoplanets.mjs",
