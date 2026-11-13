@@ -87,6 +87,39 @@ describe("narrowCandidates", () => {
   })
 })
 
+describe("narrowCandidates type rule", () => {
+  it("never pads a known type with objects of another type", () => {
+    // Category plus every other hint leaves almost nothing, yet the fillers are still all stars.
+    for (const name of ["Betelgeuse", "Mars", "Ganymede", "Andromeda Galaxy"]) {
+      const answer = objects.find(o => o.name === name)
+      if (!answer) continue
+      const profile = getProfileForCategory(answer.category)
+      const result = narrowCandidates({
+        profile,
+        guesses: [],
+        answer,
+        dataset: objects,
+        hintedProperties: profile.map(e => e.property as string),
+        minCandidates: 30,
+      })
+      expect(result.every(o => o.category === answer.category)).toBe(true)
+    }
+  })
+
+  it("never pads with a type a guess has ruled out", () => {
+    const answer = objects.find(o => o.name === "Earth")!
+    const result = narrowCandidates({
+      profile: getProfileForCategory(answer.category),
+      guesses: [objects.find(o => o.name === "Moon")!],
+      answer,
+      dataset: objects,
+      hintedProperties: ["temperatureK"],
+      minCandidates: 30,
+    })
+    expect(result.some(o => o.category === "moon")).toBe(false)
+  })
+})
+
 describe("minimumCandidates", () => {
   it("keeps the list long early and lets it shrink as guesses run out", () => {
     expect(minimumCandidates(15)).toBe(30)

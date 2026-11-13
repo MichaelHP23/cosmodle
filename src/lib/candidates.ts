@@ -116,8 +116,12 @@ export function narrowCandidates({
   const fitting = pool.filter(o => miss.get(o.id) === 0)
   if (fitting.length >= minCandidates) return fitting
 
+  // The type is never fudged: once the player knows it is a star, or that it is not a planet, every
+  // filler honours that, even if the list ends up shorter than the minimum.
+  const typeConstraints = constraints.filter(c => c.entry.property === "category")
   const fillers = pool
     .filter(o => miss.get(o.id)! > 0)
+    .filter(o => typeConstraints.every(c => c.fits(getComparableValue(o, "category", dataset))))
     .map((o, index) => ({ o, index }))
     .sort((a, b) => miss.get(a.o.id)! - miss.get(b.o.id)! || a.index - b.index)
     .slice(0, minCandidates - fitting.length)
