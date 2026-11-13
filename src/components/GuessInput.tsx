@@ -4,11 +4,14 @@ import { getSearchHint } from "../lib/objectProfiles"
 
 export function GuessInput({
   dataset,
+  fullDataset = dataset,
   guessedIds,
   onGuess,
   narrowed = false,
 }: {
   dataset: CelestialObject[]
+  // Every object in the game, so a name the clues have ruled out can be told apart from a typo.
+  fullDataset?: CelestialObject[]
   guessedIds: string[]
   onGuess: (id: string) => void
   // Whether the dataset has already been cut down to the objects that fit the player's clues, so the
@@ -18,12 +21,16 @@ export function GuessInput({
   const [query, setQuery] = useState("")
   const [highlightedIndex, setHighlightedIndex] = useState(0)
 
-  const results = query.trim().length === 0
+  const needle = query.trim().toLowerCase()
+  const matches = (o: CelestialObject) => o.name.toLowerCase().includes(needle)
+  const results = needle.length === 0
     ? []
     : dataset
-        .filter(o => o.name.toLowerCase().includes(query.trim().toLowerCase()))
+        .filter(matches)
         .filter(o => !guessedIds.includes(o.id))
         .slice(0, 8)
+  // Typing a real object's name and seeing nothing reads as a broken search, so say why it is missing.
+  const ruledOut = needle.length > 0 && results.length === 0 && narrowed && fullDataset.some(matches)
 
   function select(id: string) {
     onGuess(id)
@@ -75,6 +82,11 @@ export function GuessInput({
             </li>
           ))}
         </ul>
+      )}
+      {ruledOut && (
+        <div className="absolute z-20 mt-1 w-full rounded-xl border border-[var(--hair)] bg-[var(--surface)] px-4 py-2.5 text-sm text-[var(--muted)] shadow-lg">
+          Nothing matching “{query.trim()}” fits your clues.
+        </div>
       )}
       {narrowed && (
         <p className="mt-1.5 px-0.5 text-[11.5px] text-[var(--muted)]">

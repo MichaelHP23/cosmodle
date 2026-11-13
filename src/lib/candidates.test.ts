@@ -3,7 +3,7 @@ import dataset from "../data/celestialObjects.json"
 import type { CelestialObject } from "../types/celestial"
 import { getProfileForCategory, getComparableValue } from "./objectProfiles"
 import { propertyBracket } from "./formatting"
-import { narrowCandidates, MIN_CANDIDATES } from "./candidates"
+import { narrowCandidates, minimumCandidates, MIN_CANDIDATES } from "./candidates"
 
 const objects = dataset as CelestialObject[]
 const byName = (name: string) => objects.find(o => o.name === name)!
@@ -67,5 +67,30 @@ describe("narrowCandidates", () => {
     const result = narrow(betelgeuse, [byName("Rigel"), byName("Sirius")], profile)
     expect(result.length).toBe(MIN_CANDIDATES)
     expect(result.some(o => o.id === betelgeuse.id)).toBe(true)
+  })
+
+  it("fills a short list with the objects that come closest to fitting", () => {
+    // Earth's free temperature hint fits almost nothing else, so the rest are near misses.
+    const earth = byName("Earth")
+    const result = narrowCandidates({
+      profile: getProfileForCategory(earth.category),
+      guesses: [],
+      answer: earth,
+      dataset: objects,
+      hintedProperties: ["temperatureK"],
+      minCandidates: 20,
+    })
+    expect(result).toHaveLength(20)
+    expect(result.some(o => o.id === "earth")).toBe(true)
+    // Nothing wildly hotter, like a star, is used as filler while near-Earth temperatures are left.
+    expect(result.some(o => o.category === "star")).toBe(false)
+  })
+})
+
+describe("minimumCandidates", () => {
+  it("keeps the list long early and lets it shrink as guesses run out", () => {
+    expect(minimumCandidates(15)).toBe(30)
+    expect(minimumCandidates(5)).toBe(10)
+    expect(minimumCandidates(1)).toBe(MIN_CANDIDATES)
   })
 })

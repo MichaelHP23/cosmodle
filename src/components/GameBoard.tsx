@@ -13,7 +13,7 @@ import { getOrCreatePlayerId } from "../lib/playerId"
 import { postResult, getPlayerStats } from "../lib/api"
 import { deriveKnowledge, revealKnowledge, describeKnowledge } from "../lib/knowledge"
 import { useRevealedHints } from "../lib/useRevealedHints"
-import { narrowCandidates } from "../lib/candidates"
+import { narrowCandidates, minimumCandidates } from "../lib/candidates"
 import { useTheme } from "../lib/useTheme"
 import { DailyHeader } from "./DailyHeader"
 import { GuessInput } from "./GuessInput"
@@ -275,7 +275,14 @@ function Game({ dailyAnswer }: { dailyAnswer: CelestialObject }) {
   const candidates = useMemo(
     () =>
       answer
-        ? narrowCandidates({ profile, guesses, answer, dataset: typedDataset, hintedProperties })
+        ? narrowCandidates({
+            profile,
+            guesses,
+            answer,
+            dataset: typedDataset,
+            hintedProperties,
+            minCandidates: minimumCandidates(MAX_GUESSES - guessIds.length),
+          })
         : typedDataset,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [answer?.id, guessKey, hintedKey]
@@ -337,7 +344,13 @@ function Game({ dailyAnswer }: { dailyAnswer: CelestialObject }) {
               revealed={gameOver ? answer : null}
               status={heroStatus}
             />
-            {!gameOver && <GuessInput dataset={candidates} guessedIds={guessIds} onGuess={handleGuess} narrowed={searchNarrowed} />}
+            {!gameOver && <GuessInput
+                dataset={candidates}
+                fullDataset={typedDataset}
+                guessedIds={guessIds}
+                onGuess={handleGuess}
+                narrowed={searchNarrowed}
+              />}
 
             {/* The hint control sits on the panel heading because that is what it acts on: spending a
                 hint fills in one of these rows. It used to sit above with a chip repeating the value,
