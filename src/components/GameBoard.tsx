@@ -13,6 +13,7 @@ import { getOrCreatePlayerId } from "../lib/playerId"
 import { postResult, getPlayerStats } from "../lib/api"
 import { deriveKnowledge, revealKnowledge, describeKnowledge } from "../lib/knowledge"
 import { useRevealedHints } from "../lib/useRevealedHints"
+import { narrowCandidates } from "../lib/candidates"
 import { useTheme } from "../lib/useTheme"
 import { DailyHeader } from "./DailyHeader"
 import { GuessInput } from "./GuessInput"
@@ -266,6 +267,21 @@ function Game({ dailyAnswer }: { dailyAnswer: CelestialObject }) {
     wrongGuessCount: guessIds.length,
   })
 
+  // The search only offers objects that still fit every clue, so the field visibly shrinks as the
+  // player learns more. Keyed on ids rather than the arrays, which are rebuilt every render.
+  const hintedProperties = revealedEntries.map(e => e.property as string)
+  const hintedKey = hintedProperties.join(",")
+  const guessKey = guessIds.join(",")
+  const candidates = useMemo(
+    () =>
+      answer
+        ? narrowCandidates({ profile, guesses, answer, dataset: typedDataset, hintedProperties })
+        : typedDataset,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [answer?.id, guessKey, hintedKey]
+  )
+  const searchNarrowed = candidates.length < typedDataset.length - guessIds.length
+
   // What the guesses and hints have established. Once the game is over there is nothing left to
   // deduce, so the same panel switches to the answer's own values and becomes its stat sheet.
   const knowledge = answer
@@ -321,7 +337,7 @@ function Game({ dailyAnswer }: { dailyAnswer: CelestialObject }) {
               revealed={gameOver ? answer : null}
               status={heroStatus}
             />
-            {!gameOver && <GuessInput dataset={typedDataset} guessedIds={guessIds} onGuess={handleGuess} />}
+            {!gameOver && <GuessInput dataset={candidates} guessedIds={guessIds} onGuess={handleGuess} narrowed={searchNarrowed} />}
 
             {/* The hint control sits on the panel heading because that is what it acts on: spending a
                 hint fills in one of these rows. It used to sit above with a chip repeating the value,

@@ -6,10 +6,14 @@ export function GuessInput({
   dataset,
   guessedIds,
   onGuess,
+  narrowed = false,
 }: {
   dataset: CelestialObject[]
   guessedIds: string[]
   onGuess: (id: string) => void
+  // Whether the dataset has already been cut down to the objects that fit the player's clues, so the
+  // input can say so rather than leave them wondering where an object went.
+  narrowed?: boolean
 }) {
   const [query, setQuery] = useState("")
   const [highlightedIndex, setHighlightedIndex] = useState(0)
@@ -71,6 +75,11 @@ export function GuessInput({
             </li>
           ))}
         </ul>
+      )}
+      {narrowed && (
+        <p className="mt-1.5 px-0.5 text-[11.5px] text-[var(--muted)]">
+          Search only shows objects that fit your clues so far.
+        </p>
       )}
     </div>
   )
